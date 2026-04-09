@@ -4,65 +4,71 @@ export default function TrustBar() {
   const { trust } = siteConfig;
 
   return (
-    <section className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-5 py-5 text-center text-sm sm:px-8 sm:py-6">
-        <div className="flex items-center gap-2 text-slate-800">
-          <div className="flex items-center gap-0.5 text-yellow-500">
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-          </div>
-          <span className="font-semibold">{trust.rating}</span>
-          <span className="text-slate-500">{trust.ratingLabel}</span>
-        </div>
-
-        <span className="hidden h-5 w-px bg-slate-200 sm:block" />
-
-        <div className="flex items-center gap-2 text-slate-800">
-          <svg
-            className="h-4 w-4 text-slate-400"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 21s-7-4.35-7-11a7 7 0 1114 0c0 6.65-7 11-7 11z"
-            />
-            <circle cx="12" cy="10" r="2.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <span className="font-semibold">{trust.customers}</span>
-          <span className="text-slate-500">{trust.customersLabel}</span>
-        </div>
-
-        {trust.highlights.map((highlight) => (
-          <div key={highlight} className="flex items-center gap-2 text-slate-800">
-            <span className="hidden h-5 w-px bg-slate-200 sm:block" />
-            <svg
-              className="h-4 w-4 text-emerald-600"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
+    <section className="border-y border-slate-200 bg-slate-50">
+      <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10">
+        <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+          {trust.stats.map((stat) => (
+            <li
+              key={stat.label}
+              className="flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-5 text-center shadow-sm sm:px-6 sm:py-6"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-            <span className="font-semibold">{highlight}</span>
-          </div>
-        ))}
+              <TrustIcon name={stat.icon} />
+              <div className="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+                {stat.value}
+              </div>
+              <div className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500 sm:text-sm sm:normal-case sm:tracking-normal">
+                {stat.label}
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
 }
 
-function StarIcon() {
-  return (
-    <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.447a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.447a1 1 0 00-1.175 0l-3.37 2.447c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.05 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.287-3.957z" />
-    </svg>
-  );
+function TrustIcon({ name }: { name: string }) {
+  const className = "h-6 w-6 text-slate-400";
+  const common = {
+    className,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  switch (name) {
+    case "star":
+      return (
+        <svg {...common} fill="currentColor" stroke="none" className="h-6 w-6 text-yellow-500">
+          <path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.5l7.1-.6z" />
+        </svg>
+      );
+    case "users":
+      return (
+        <svg {...common}>
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      );
+    case "pin":
+      return (
+        <svg {...common}>
+          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+      );
+    case "phone":
+      return (
+        <svg {...common}>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
 }

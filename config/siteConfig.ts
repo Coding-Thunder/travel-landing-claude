@@ -183,6 +183,12 @@ export const siteConfig = {
       "Free cancellation",
       "Airport & hotel delivery",
     ],
+    stats: [
+      { value: "4.8★", label: "Customer Rating", icon: "star" },
+      { value: "10,000+", label: "Customers Served", icon: "users" },
+      { value: "100%", label: "Locally Operated", icon: "pin" },
+      { value: "24/7", label: "Live Support", icon: "phone" },
+    ],
   },
 
   // ---------- Testimonials ----------
