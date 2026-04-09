@@ -97,10 +97,11 @@ export default function WhyChooseUs() {
             Why Choose Us
           </p>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
-            Thousands of {city} drivers trust us
+            A straightforward rental experience in {city}
           </h2>
           <p className="mt-4 text-base text-slate-600">
-            No gimmicks. No surprises. Just a fast, honest rental experience.
+            Transparent pricing, live phone support, and clearly disclosed
+            terms — the way renting should work.
           </p>
         </motion.div>
 

@@ -35,20 +35,20 @@ export default function Offers() {
           className="mx-auto mb-12 max-w-2xl text-center sm:mb-14"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-600">
-            Today&apos;s {city} Deals
+            {city} Rental Options
           </p>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
-            Limited-time offers, phone only
+            Phone reservations, transparent pricing
           </h2>
           <p className="mt-4 text-base text-slate-600">
-            These rates aren&apos;t listed online. Call{" "}
+            All rates are quoted based on live availability. Call{" "}
             <a
               href={`tel:${phone}`}
               className="font-semibold text-slate-900 underline-offset-4 hover:underline"
             >
               {phoneDisplay}
             </a>{" "}
-            to lock them in before they&apos;re gone.
+            for a clear, all-in quote.
           </p>
         </motion.div>
 
@@ -104,7 +104,7 @@ export default function Offers() {
                 href={`tel:${phone}`}
                 className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-900 transition hover:border-red-600 hover:bg-red-600 hover:text-white"
               >
-                Call to Claim
+                Call for a Quote
                 <svg
                   className="h-4 w-4"
                   viewBox="0 0 24 24"

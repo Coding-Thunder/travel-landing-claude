@@ -44,8 +44,8 @@ export default function CarPreview() {
             </h2>
           </div>
           <p className="text-sm text-slate-600 sm:max-w-xs sm:text-right">
-            Inventory moves fast in {siteConfig.city}. Call to confirm availability
-            and lock in your rate.
+            Vehicles shown are examples of our fleet. Call to confirm live
+            availability and receive a clear, all-in quote.
           </p>
         </motion.div>
 

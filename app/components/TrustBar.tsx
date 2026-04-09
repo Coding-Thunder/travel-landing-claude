@@ -31,8 +31,9 @@ export default function TrustBar() {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-5.13a4 4 0 11-8 0 4 4 0 018 0zm6 0a4 4 0 11-8 0 4 4 0 018 0z"
+              d="M12 21s-7-4.35-7-11a7 7 0 1114 0c0 6.65-7 11-7 11z"
             />
+            <circle cx="12" cy="10" r="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <span className="font-semibold">{trust.customers}</span>
           <span className="text-slate-500">{trust.customersLabel}</span>

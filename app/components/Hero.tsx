@@ -141,15 +141,17 @@ export default function Hero() {
             </div>
             <div>
               <dt className="text-[11px] font-medium uppercase tracking-wide text-white/50">
-                Customers
+                Based in
               </dt>
-              <dd className="mt-1 text-2xl font-extrabold">{trust.customers}</dd>
+              <dd className="mt-1 text-2xl font-extrabold">
+                {siteConfig.city}
+              </dd>
             </div>
             <div>
               <dt className="text-[11px] font-medium uppercase tracking-wide text-white/50">
-                Support
+                Phone support
               </dt>
-              <dd className="mt-1 text-2xl font-extrabold">{trust.support}</dd>
+              <dd className="mt-1 text-2xl font-extrabold">Live</dd>
             </div>
           </dl>
         </motion.div>
@@ -163,15 +165,18 @@ export default function Hero() {
         >
           <div className="w-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md">
             <p className="text-[11px] font-semibold uppercase tracking-wider text-white/60">
-              Starting at
+              Rates from
             </p>
             <div className="mt-1 flex items-baseline gap-2">
               <span className="text-5xl font-extrabold tracking-tight">
                 ${hero.priceFrom}
               </span>
-              <span className="text-sm font-medium text-white/70">/ day</span>
+              <span className="text-sm font-medium text-white/70">/ day*</span>
             </div>
             <p className="mt-3 text-sm text-white/70">{hero.priceFromNote}</p>
+            <p className="mt-2 text-[11px] text-white/50">
+              *Based on availability. Final rate confirmed by phone.
+            </p>
 
             <div className="mt-5 space-y-3 border-t border-white/10 pt-5 text-sm">
               {hero.pricePoints.map((point) => (
