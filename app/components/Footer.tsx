@@ -1,139 +1,146 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/siteConfig";
+import Icon from "./ui/Icon";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const {
+    name,
+    shortName,
+    legalName,
+    phone,
+    phoneVanity,
+    phoneDisplay,
+    email,
+    addressLine,
+    addressCity,
+    addressRegionCode,
+    addressPostal,
+    footerColumns,
+    social,
+    legalLinks,
+    hours,
+  } = siteConfig;
 
   return (
     <footer className="border-t border-slate-800 bg-slate-950 text-slate-300">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:px-8 sm:py-14 md:grid-cols-4">
-        {/* Brand + pitch */}
-        <div className="md:col-span-1">
-          <p className="text-lg font-extrabold tracking-tight text-white">
-            {siteConfig.name}
-          </p>
-          <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
-            {siteConfig.legalName}
-          </p>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-slate-400">
-            Locally operated car rental provider in {siteConfig.city},{" "}
-            {siteConfig.regionCode}. Reservations by phone with a live agent.
-          </p>
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="mt-5 inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-red-700"
-          >
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
+      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-14">
+        <div className="grid gap-10 lg:grid-cols-12">
+          {/* Brand + call block */}
+          <div className="lg:col-span-4">
+            <div className="flex items-center gap-2.5">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">
+                <Icon name="car" className="h-5 w-5" />
+              </span>
+              <span className="text-lg font-extrabold tracking-tight text-white">{shortName}</span>
+            </div>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-slate-400">
+              Licensed, insured car rentals nationwide. Reserve by phone with a live US-based agent — no
+              hidden fees, free cancellation, instant confirmation.
+            </p>
+
+            <a
+              href={`tel:${phone}`}
+              className="mt-5 inline-flex flex-col rounded-2xl border border-slate-800 bg-slate-900 px-5 py-3.5 transition hover:border-slate-700"
             >
-              <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
-            </svg>
-            {siteConfig.phoneDisplay}
-          </a>
-        </div>
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                Toll-free · 24/7
+              </span>
+              <span className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white">
+                <Icon name="phone" className="h-5 w-5 text-brand-400" />
+                {phoneVanity}
+              </span>
+            </a>
 
-        {/* Contact */}
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-            Contact
-          </p>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li>
-              <a
-                href={`tel:${siteConfig.phone}`}
-                className="text-slate-300 hover:text-white"
-              >
-                {siteConfig.phoneDisplay}
-              </a>
-            </li>
-            <li>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="break-all text-slate-300 hover:text-white"
-              >
-                {siteConfig.email}
-              </a>
-            </li>
-            <li>
-              <a
-                href={siteConfig.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-300 hover:text-white"
-              >
-                WhatsApp
-              </a>
-            </li>
-            <li className="text-slate-400">{siteConfig.hours}</li>
-          </ul>
-        </div>
-
-        {/* Location */}
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-            Location
-          </p>
-          <address className="mt-4 not-italic text-sm leading-relaxed text-slate-400">
-            {siteConfig.addressLine}
-            <br />
-            {siteConfig.addressCity}, {siteConfig.addressRegionCode}{" "}
-            {siteConfig.addressPostal}
-            <br />
-            {siteConfig.addressRegion}, {siteConfig.country}
-          </address>
-          <p className="mt-3 text-xs text-slate-500">
-            Pickup &amp; delivery across the {siteConfig.city} area.
-          </p>
-        </div>
-
-        {/* Legal */}
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-            Legal
-          </p>
-          <ul className="mt-4 space-y-2 text-sm">
-            {siteConfig.legalLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-slate-300 hover:text-white"
+            {/* Social */}
+            <div className="mt-6 flex items-center gap-3">
+              {social.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 text-slate-400 transition hover:border-slate-600 hover:text-white"
                 >
-                  {link.label}
-                </Link>
-              </li>
+                  <Icon name={s.icon as "facebook"} className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link columns */}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-5">
+            {footerColumns.map((col) => (
+              <div key={col.title}>
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{col.title}</p>
+                <ul className="mt-4 space-y-2.5 text-sm">
+                  {col.links.map((l) => (
+                    <li key={l.label}>
+                      <Link href={l.href} className="text-slate-400 transition hover:text-white">
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-            <li>
-              <Link href="/#about" className="text-slate-300 hover:text-white">
-                About the business
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/#how-it-works"
-                className="text-slate-300 hover:text-white"
-              >
-                How it works
-              </Link>
-            </li>
-          </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="lg:col-span-3">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Contact</p>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li className="flex items-start gap-2.5">
+                <Icon name="phone" className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />
+                <a href={`tel:${phone}`} className="text-slate-300 hover:text-white">
+                  {phoneDisplay}
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Icon name="headset" className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />
+                <a href={`mailto:${email}`} className="break-all text-slate-300 hover:text-white">
+                  {email}
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Icon name="map" className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />
+                <address className="not-italic leading-relaxed text-slate-400">
+                  {addressLine}
+                  <br />
+                  {addressCity}, {addressRegionCode} {addressPostal}
+                </address>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Icon name="clock" className="h-4 w-4 shrink-0 text-slate-500" />
+                <span className="text-slate-400">{hours}</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <div className="border-t border-slate-800">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-5 text-xs text-slate-500 sm:px-8 md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} {siteConfig.legalName}. All rights reserved.
+            © {year} {legalName}. All rights reserved. {name} is a registered trademark.
           </p>
-          <p className="text-slate-500">
-            This site uses cookies and third-party analytics (including Google
-            Analytics &amp; Google Ads) to measure performance. See our{" "}
-            <Link
-              href="/privacy-policy"
-              className="underline-offset-4 hover:underline"
-            >
+          <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            {legalLinks.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="underline-offset-4 transition hover:text-slate-300 hover:underline">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="mx-auto max-w-6xl px-5 pb-6 text-xs text-slate-600 sm:px-8">
+          <p>
+            Vehicle images are illustrative. Rates from ${siteConfig.hero.priceFrom}/day are based on
+            availability and confirmed by phone. This site uses cookies and third-party analytics
+            (including Google Analytics &amp; Google Ads) to measure performance — see our{" "}
+            <Link href="/privacy-policy" className="underline-offset-4 hover:underline">
               Privacy Policy
             </Link>
             .

@@ -4,6 +4,9 @@ import "./globals.css";
 import { siteConfig } from "@/config/siteConfig";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CallProvider from "./components/call/CallProvider";
+import StickyCallBar from "./components/call/StickyCallBar";
+import CookieNotice from "./components/CookieNotice";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +19,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://budgetravelsforu.com"),
   title: {
     default: siteConfig.seo.title,
     template: `%s | ${siteConfig.name}`,
   },
+  alternates: { canonical: "/" },
   description: siteConfig.seo.description,
   keywords: [...siteConfig.seo.keywords],
   applicationName: siteConfig.name,
@@ -68,7 +73,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0f172a",
+  themeColor: "#1d4ed8",
 };
 
 export default function RootLayout({
@@ -85,9 +90,13 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-white text-slate-900"
         suppressHydrationWarning
       >
-        <Header />
-        <main className="flex flex-1 flex-col">{children}</main>
-        <Footer />
+        <CallProvider>
+          <Header />
+          <main className="flex flex-1 flex-col">{children}</main>
+          <Footer />
+          <StickyCallBar />
+          <CookieNotice />
+        </CallProvider>
       </body>
     </html>
   );

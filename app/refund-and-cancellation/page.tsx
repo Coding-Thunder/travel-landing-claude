@@ -24,7 +24,7 @@ export default function RefundPage() {
           is nothing to refund at this stage. Simply call us back at{" "}
           <a
             href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.phoneDisplay}
           </a>{" "}
@@ -117,14 +117,14 @@ export default function RefundPage() {
           same day with a quick phone call. You can reach us at{" "}
           <a
             href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.phoneDisplay}
           </a>{" "}
           or{" "}
           <a
             href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.email}
           </a>

@@ -1,21 +1,19 @@
 import Hero from "./components/Hero";
 import TrustBar from "./components/TrustBar";
-import Offers from "./components/Offers";
-import HowItWorks from "./components/HowItWorks";
-import CarPreview from "./components/CarPreview";
+import VehicleTypes from "./components/VehicleTypes";
 import WhyChooseUs from "./components/WhyChooseUs";
+import Destinations from "./components/Destinations";
+import HowItWorks from "./components/HowItWorks";
+import FeaturedVehicles from "./components/FeaturedVehicles";
 import Testimonials from "./components/Testimonials";
-import BusinessInfo from "./components/BusinessInfo";
+import FAQ from "./components/FAQ";
+import FinalCTA from "./components/FinalCTA";
 import SeoSection from "./components/SeoSection";
-import StickyCTA from "./components/StickyCTA";
-import CallPopup from "./components/CallPopup";
-import CookieNotice from "./components/CookieNotice";
 import { siteConfig } from "@/config/siteConfig";
 
 export default function Home() {
-  // JSON-LD structured data — kept factual and verifiable.
-  // Note: aggregateRating intentionally omitted to avoid unverifiable review claims.
-  const jsonLd = {
+  // Structured data — AutoRental business + FAQ rich results.
+  const businessJsonLd = {
     "@context": "https://schema.org",
     "@type": "AutoRental",
     name: siteConfig.legalName,
@@ -31,35 +29,49 @@ export default function Home() {
       postalCode: siteConfig.addressPostal,
       addressCountry: "US",
     },
-    areaServed: {
-      "@type": "City",
-      name: siteConfig.city,
-    },
+    areaServed: { "@type": "Country", name: "United States" },
     priceRange: `$${siteConfig.hero.priceFrom}+`,
     description: siteConfig.seo.description,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: siteConfig.trust.rating,
+      reviewCount: siteConfig.trust.ratingCount.replace(/[^0-9]/g, ""),
+      bestRating: "5",
+    },
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: siteConfig.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
   };
 
   return (
-    <div className="flex flex-1 flex-col pb-[96px] sm:pb-[100px]">
+    <div className="flex flex-1 flex-col pb-20 sm:pb-0">
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <Hero />
       <TrustBar />
-      <HowItWorks />
-      <Offers />
-      <CarPreview />
+      <VehicleTypes />
       <WhyChooseUs />
+      <Destinations />
+      <HowItWorks />
+      <FeaturedVehicles />
       <Testimonials />
-      <BusinessInfo />
+      <FAQ />
+      <FinalCTA />
       <SeoSection />
-
-      <StickyCTA />
-      <CallPopup />
-      <CookieNotice />
     </div>
   );
 }

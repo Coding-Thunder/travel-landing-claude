@@ -18,7 +18,7 @@ export default function LegalLayout({
       {/* Hero band */}
       <div className="border-b border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-600">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
             Legal · {siteConfig.name}
           </p>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
@@ -45,11 +45,11 @@ export default function LegalLayout({
             Questions?
           </p>
           <p className="text-lg font-extrabold text-slate-900 sm:text-xl">
-            Call our {siteConfig.city} team 24/7
+            Call our team 24/7
           </p>
           <a
             href={`tel:${siteConfig.phone}`}
-            className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-red-600 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-red-700 sm:w-auto"
+            className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-brand-700 sm:w-auto"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />

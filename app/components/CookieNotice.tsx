@@ -19,7 +19,10 @@ export default function CookieNotice() {
         return () => window.clearTimeout(t);
       }
     } catch {
-      setVisible(true);
+      // localStorage unavailable — show the notice on the next tick to avoid
+      // a synchronous setState inside the effect body.
+      const t = window.setTimeout(() => setVisible(true), 0);
+      return () => window.clearTimeout(t);
     }
   }, []);
 
@@ -38,7 +41,7 @@ export default function CookieNotice() {
     <div
       role="region"
       aria-label="Cookie notice"
-      className="fixed inset-x-3 bottom-[108px] z-[45] mx-auto max-w-xl rounded-2xl border border-slate-200 bg-white/98 p-4 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.35)] backdrop-blur sm:inset-x-auto sm:left-5 sm:right-auto sm:bottom-[112px] sm:p-5"
+      className="fixed inset-x-3 bottom-[84px] z-[45] mx-auto max-w-xl rounded-2xl border border-slate-200 bg-white/98 p-4 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.35)] backdrop-blur sm:inset-x-auto sm:left-5 sm:right-auto sm:bottom-6 sm:p-5"
       style={{
         paddingBottom: "max(1rem, env(safe-area-inset-bottom))",
       }}
@@ -66,7 +69,7 @@ export default function CookieNotice() {
             See our{" "}
             <Link
               href="/privacy-policy"
-              className="font-semibold text-red-600 underline-offset-4 hover:underline"
+              className="font-semibold text-brand-600 underline-offset-4 hover:underline"
             >
               {cookieNotice.learnMore}
             </Link>{" "}

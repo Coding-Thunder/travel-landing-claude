@@ -23,14 +23,14 @@ export default function PrivacyPage() {
           You can reach us by phone at{" "}
           <a
             href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.phoneDisplay}
           </a>{" "}
           or by email at{" "}
           <a
             href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.email}
           </a>
@@ -136,7 +136,7 @@ export default function PrivacyPage() {
             href="https://adssettings.google.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             adssettings.google.com
           </a>
@@ -145,7 +145,7 @@ export default function PrivacyPage() {
             href="https://tools.google.com/dlpage/gaoptout"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             Google Analytics opt-out browser add-on
           </a>
@@ -225,14 +225,14 @@ export default function PrivacyPage() {
           To exercise any of these rights, call us at{" "}
           <a
             href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.phoneDisplay}
           </a>{" "}
           or email{" "}
           <a
             href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.email}
           </a>
@@ -267,14 +267,14 @@ export default function PrivacyPage() {
           available at{" "}
           <a
             href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.phoneDisplay}
           </a>{" "}
           or{" "}
           <a
             href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.email}
           </a>

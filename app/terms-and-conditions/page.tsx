@@ -25,7 +25,7 @@ export default function TermsPage() {
           reservations are taken by phone at{" "}
           <a
             href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.phoneDisplay}
           </a>{" "}
@@ -165,14 +165,14 @@ export default function TermsPage() {
           Questions about these Terms? Call us at{" "}
           <a
             href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.phoneDisplay}
           </a>{" "}
           or email{" "}
           <a
             href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-red-600 underline-offset-4 hover:underline"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
             {siteConfig.email}
           </a>
