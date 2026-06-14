@@ -63,7 +63,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
 };
 
 /** Default active brand when `NEXT_PUBLIC_BRAND` is not set. */
-export const DEFAULT_BRAND_ID: BrandId = "my-budget-car";
+export const DEFAULT_BRAND_ID: BrandId = "rental-confirmation";
 
 /** "8557616979" → "(855) 761-6979". Returns input unchanged if not 10 digits. */
 export function formatPhone(digits: string): string {
