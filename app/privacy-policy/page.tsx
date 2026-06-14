@@ -4,7 +4,8 @@ import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: `Privacy policy for ${siteConfig.legalName} — how we handle personal information, cookies, and advertising identifiers for phone-based car rentals in ${siteConfig.city}.`,
+  description: `Privacy policy for ${siteConfig.legalName} — how we handle personal information, cookies, and advertising identifiers for phone-based car rentals.`,
+  alternates: { canonical: "/privacy-policy" },
   robots: { index: true, follow: true },
 };
 

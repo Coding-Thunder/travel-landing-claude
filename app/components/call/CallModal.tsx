@@ -20,17 +20,11 @@ export default function CallModal({ open, onClose, pickup = "", source = "manual
   const { phone, phoneVanity, callResponse, callModal, trust, destinations } = siteConfig;
   const [name, setName] = useState("");
   const [phoneVal, setPhoneVal] = useState("");
-  const [pickupVal, setPickupVal] = useState(pickup);
-  const [lastPickup, setLastPickup] = useState(pickup);
   const [submitted, setSubmitted] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
-
-  // Sync the pre-filled pickup when a CTA passes a new value (render-time
-  // prop-sync — avoids cascading setState inside an effect).
-  if (pickup !== lastPickup) {
-    setLastPickup(pickup);
-    setPickupVal(pickup);
-  }
+  // Pickup is an uncontrolled field: `key={pickup}` remounts it with the
+  // CTA-provided default, while the user can still edit it freely.
+  const pickupRef = useRef<HTMLInputElement>(null);
 
   // Manage body scroll lock, focus and Escape-to-close while open.
   useEffect(() => {
@@ -58,7 +52,8 @@ export default function CallModal({ open, onClose, pickup = "", source = "manual
     } catch {
       /* ignore */
     }
-    console.info("[lead] callback request", { name, phone: phoneVal, pickup: pickupVal, source });
+    const pickupValue = pickupRef.current?.value ?? "";
+    console.info("[lead] callback request", { name, phone: phoneVal, pickup: pickupValue, source });
     setSubmitted(true);
   };
 
@@ -143,7 +138,7 @@ export default function CallModal({ open, onClose, pickup = "", source = "manual
                       </span>
                       <span className="text-left">
                         <span className="block text-[11px] font-semibold uppercase tracking-wider text-brand-700">
-                          {callModal.callCta} — toll free
+                          {callModal.callCta} · 24/7
                         </span>
                         <span className="block text-xl font-extrabold tracking-tight text-slate-900">
                           {phoneVanity}
@@ -191,11 +186,12 @@ export default function CallModal({ open, onClose, pickup = "", source = "manual
                     </Field>
                     <Field label={callModal.fields.location} htmlFor="cb-loc">
                       <input
+                        key={pickup}
+                        ref={pickupRef}
                         id="cb-loc"
                         type="text"
                         list="cb-cities"
-                        value={pickupVal}
-                        onChange={(e) => setPickupVal(e.target.value)}
+                        defaultValue={pickup}
                         placeholder="City or airport"
                         className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-[15px] text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
                       />

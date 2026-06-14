@@ -27,7 +27,7 @@ export default function Header() {
             href={`tel:${phone}`}
             className="mx-auto flex items-center gap-2 font-semibold hover:text-white/90 sm:mx-0"
           >
-            <span className="text-white/70">24/7 toll-free:</span>
+            <span className="text-white/70">Call 24/7:</span>
             <span className="inline-flex items-center gap-1 font-extrabold tracking-tight">
               <Icon name="phone" className="h-3.5 w-3.5" />
               {phoneVanity}

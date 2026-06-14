@@ -60,7 +60,7 @@ export default function StickyCallBar() {
         </div>
         <div className="p-4">
           <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-            Toll-free reservations
+            24/7 reservations
           </p>
           <a
             href={`tel:${phone}`}

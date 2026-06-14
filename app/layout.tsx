@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://budgetravelsforu.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.seo.title,
     template: `%s | ${siteConfig.name}`,

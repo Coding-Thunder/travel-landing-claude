@@ -35,7 +35,7 @@ export default function FinalCTA() {
               className="inline-flex flex-col items-center rounded-2xl border border-white/15 bg-white/10 px-8 py-5 backdrop-blur transition hover:bg-white/15"
             >
               <span className="text-[11px] font-semibold uppercase tracking-wider text-white/60">
-                Toll-free · {callResponse}
+                24/7 reservations · {callResponse}
               </span>
               <span className="mt-1 flex items-center gap-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
                 <Icon name="phone" className="h-8 w-8 text-brand-300" />

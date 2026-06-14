@@ -1,0 +1,111 @@
+/**
+ * JSON-LD structured-data builders.
+ * All values are derived from the active brand via siteConfig — never hardcoded.
+ */
+import { siteConfig } from "@/config/siteConfig";
+
+const url = siteConfig.url;
+const telephoneE164 = `+1${siteConfig.phone}`;
+
+const postalAddress = {
+  "@type": "PostalAddress",
+  streetAddress: siteConfig.addressLine,
+  addressLocality: siteConfig.addressCity,
+  addressRegion: siteConfig.addressRegionCode,
+  postalCode: siteConfig.addressPostal,
+  addressCountry: "US",
+};
+
+export function organizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${url}/#organization`,
+    name: siteConfig.legalName,
+    alternateName: siteConfig.name,
+    url,
+    logo: `${url}/icon.svg`,
+    image: siteConfig.seo.ogImage,
+    email: siteConfig.email,
+    telephone: telephoneE164,
+    address: postalAddress,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: telephoneE164,
+        contactType: "reservations",
+        areaServed: "US",
+        availableLanguage: ["English", "Spanish"],
+      },
+    ],
+    sameAs: siteConfig.social.map((s) => s.href),
+  };
+}
+
+export function localBusinessSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["AutoRental", "LocalBusiness"],
+    "@id": `${url}/#localbusiness`,
+    name: siteConfig.name,
+    legalName: siteConfig.legalName,
+    url,
+    telephone: telephoneE164,
+    email: siteConfig.email,
+    image: siteConfig.seo.ogImage,
+    priceRange: `$${siteConfig.hero.priceFrom}+`,
+    address: postalAddress,
+    areaServed: { "@type": "Country", name: "United States" },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "00:00",
+        closes: "23:59",
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: siteConfig.trust.rating,
+      reviewCount: siteConfig.trust.ratingCount.replace(/[^0-9]/g, ""),
+      bestRating: "5",
+    },
+  };
+}
+
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${url}/#website`,
+    name: siteConfig.name,
+    url,
+    publisher: { "@id": `${url}/#organization` },
+    inLanguage: "en-US",
+  };
+}
+
+export function faqSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: siteConfig.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
+export function breadcrumbSchema(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: `${url}${item.path}`,
+    })),
+  };
+}

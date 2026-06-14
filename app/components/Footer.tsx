@@ -44,7 +44,7 @@ export default function Footer() {
               className="mt-5 inline-flex flex-col rounded-2xl border border-slate-800 bg-slate-900 px-5 py-3.5 transition hover:border-slate-700"
             >
               <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                Toll-free · 24/7
+                Reservations · 24/7
               </span>
               <span className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white">
                 <Icon name="phone" className="h-5 w-5 text-brand-400" />

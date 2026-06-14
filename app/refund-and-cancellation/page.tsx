@@ -4,7 +4,8 @@ import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
   title: "Refund & Cancellation Policy",
-  description: `Refund and cancellation policy for ${siteConfig.legalName} — free cancellation and transparent refunds for phone-based car rentals in ${siteConfig.city}.`,
+  description: `Refund and cancellation policy for ${siteConfig.legalName} — free cancellation and transparent refunds for phone-based car rentals.`,
+  alternates: { canonical: "/refund-and-cancellation" },
   robots: { index: true, follow: true },
 };
 

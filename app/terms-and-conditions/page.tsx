@@ -4,7 +4,8 @@ import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
-  description: `Terms and conditions for ${siteConfig.legalName} — phone-based car rental service in ${siteConfig.city}, ${siteConfig.regionCode}.`,
+  description: `Terms and conditions for ${siteConfig.legalName} — phone-based nationwide car rental reservations and support.`,
+  alternates: { canonical: "/terms-and-conditions" },
   robots: { index: true, follow: true },
 };
 
