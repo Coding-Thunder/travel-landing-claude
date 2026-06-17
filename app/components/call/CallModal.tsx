@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { siteConfig } from "@/config/siteConfig";
+import { trackContactConversion } from "@/lib/analytics";
 import Icon from "../ui/Icon";
 import StarRating from "../ui/StarRating";
 
@@ -54,6 +55,7 @@ export default function CallModal({ open, onClose, pickup = "", source = "manual
     }
     const pickupValue = pickupRef.current?.value ?? "";
     console.info("[lead] callback request", { name, phone: phoneVal, pickup: pickupValue, source });
+    trackContactConversion();
     setSubmitted(true);
   };
 

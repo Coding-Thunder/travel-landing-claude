@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import CallProvider from "./components/call/CallProvider";
 import StickyCallBar from "./components/call/StickyCallBar";
 import CookieNotice from "./components/CookieNotice";
+import GoogleTag from "./components/analytics/GoogleTag";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -90,6 +91,7 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-white text-slate-900"
         suppressHydrationWarning
       >
+        <GoogleTag />
         <CallProvider>
           <Header />
           <main className="flex flex-1 flex-col">{children}</main>

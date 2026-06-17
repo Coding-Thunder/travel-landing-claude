@@ -30,6 +30,12 @@ export type BrandConfig = {
   email: string;
   /** Optional logo image path under /public; empty falls back to the wordmark. */
   logo: string;
+  /**
+   * Google Ads / gtag config. Leave `gtagId` empty to disable analytics for a
+   * brand (the tag simply won't render). `contactSendTo` is the conversion
+   * action's send_to value fired on calls + callback submissions.
+   */
+  ads: { gtagId: string; contactSendTo: string };
 };
 
 export const BRANDS: Record<BrandId, BrandConfig> = {
@@ -41,6 +47,10 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     domain: "mybudgetcar.com",
     email: "reservations@mybudgetcar.com",
     logo: "",
+    ads: {
+      gtagId: "AW-18205099745",
+      contactSendTo: "AW-18205099745/XUwSCKOdvL8cEOGN7-hD",
+    },
   },
   "budget-travel": {
     id: "budget-travel",
@@ -50,6 +60,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     domain: "budgetravelsforu.com",
     email: "reservations@budgetravelsforu.com",
     logo: "",
+    ads: { gtagId: "", contactSendTo: "" },
   },
   "rental-confirmation": {
     id: "rental-confirmation",
@@ -59,6 +70,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     domain: "rentalconfirmation.com",
     email: "reservations@rentalconfirmation.com",
     logo: "",
+    ads: { gtagId: "", contactSendTo: "" },
   },
 };
 
