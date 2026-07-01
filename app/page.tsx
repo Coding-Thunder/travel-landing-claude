@@ -5,6 +5,7 @@ import WhyChooseUs from "./components/WhyChooseUs";
 import PopularAirports from "./components/PopularAirports";
 import HowItWorks from "./components/HowItWorks";
 import FeaturedVehicles from "./components/FeaturedVehicles";
+import TrustStats from "./components/TrustStats";
 import Testimonials from "./components/Testimonials";
 import SeoContent from "./components/SeoContent";
 import LocalSeo from "./components/LocalSeo";
@@ -40,6 +41,7 @@ export default function Home() {
       <PopularAirports />
       <HowItWorks />
       <FeaturedVehicles />
+      <TrustStats />
       <Testimonials />
       <SeoContent />
       <LocalSeo />

@@ -40,8 +40,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     { path: "/about", priority: 0.8, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/sitemap", priority: 0.3, changeFrequency: "monthly" },
     { path: "/terms-and-conditions", priority: 0.4, changeFrequency: "yearly" },
     { path: "/privacy-policy", priority: 0.4, changeFrequency: "yearly" },
+    { path: "/cookie-policy", priority: 0.4, changeFrequency: "yearly" },
     { path: "/refund-and-cancellation", priority: 0.4, changeFrequency: "yearly" },
   ];
 

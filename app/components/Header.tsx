@@ -2,6 +2,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/siteConfig";
 import Icon from "./ui/Icon";
 import CtaButton from "./call/CtaButton";
+import MobileMenu from "./MobileMenu";
 
 const NAV = [
   { label: "Airports", href: "/airports" },
@@ -102,6 +103,9 @@ export default function Header() {
               <Icon name="phone" className="h-4 w-4" />
               Call
             </a>
+
+            {/* Mobile/tablet menu */}
+            <MobileMenu items={NAV} />
           </div>
         </div>
       </div>

@@ -399,8 +399,9 @@ export const siteConfig = {
   legalLinks: [
     { label: "Terms & Conditions", href: "/terms-and-conditions" },
     { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Cookie Policy", href: "/cookie-policy" },
     { label: "Refund & Cancellation", href: "/refund-and-cancellation" },
-    { label: "Contact Us", href: "/contact" },
+    { label: "Sitemap", href: "/sitemap" },
   ] as LegalLink[],
 } as const;
 
