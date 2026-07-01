@@ -427,4 +427,259 @@ export const posts: Post[] = [
       { q: "Can I pick up and drop off at different airports?", a: "Yes. One-way rentals between airports are ideal for fly-in, fly-out road trips. Give both airports and your dates when you call and we'll quote the one-way rate and confirm unlimited mileage." },
     ],
   },
+
+  {
+    slug: "miami-airport-car-rental-guide",
+    title: "Miami Airport Car Rental Guide: South Beach, the Keys and Beyond",
+    excerpt:
+      "Miami rewards drivers. Here's how to rent smart at MIA, handle the tolls and causeways, and take on the greatest drive in Florida.",
+    category: "airport-guides",
+    categoryLabel: "Airport Guides",
+    tags: ["MIA", "Miami", "airport rentals", "road trips"],
+    authorSlug: "maya-torres",
+    publishedAt: "2026-06-01",
+    updatedAt: "2026-06-06",
+    heroImage: "https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?auto=format&fit=crop&w=1600&q=80",
+    heroAlt: "Pastel Art Deco buildings and palm trees in Miami Beach",
+    seoTitle: "Miami (MIA) Car Rental Guide — Beaches, Keys & Tips",
+    seoDescription:
+      "A complete guide to renting a car at Miami International (MIA): the MIA Mover to the rental center, cashless tolls, South Beach parking, and the drive to Key West.",
+    body: [
+      { type: "p", text: "Miami is a city built for driving. South Beach, Coral Gables, Wynwood and the long causeways between them are spread across the map, and the drive south to the Keys is a bucket-list trip in its own right. A rental from Miami International turns a beach vacation into a whole region." },
+      { type: "p", text: "Here's how to rent well at MIA — the pickup, the tolls, the parking reality, and the drives worth the miles. For pickup logistics and rates, see our [MIA airport rental page](/airports/mia)." },
+
+      { type: "h2", text: "Getting to the MIA rental center" },
+      { type: "p", text: "Miami connects to its rental center by the free MIA Mover train from the terminal's third level — a five-minute ride to the Miami Intermodal Center, where every major brand sits under one roof. Even in peak season it's a smooth pickup once you know to look for the Mover." },
+
+      { type: "h2", text: "Tolls and causeways" },
+      { type: "p", text: "Several Miami expressways — like the 836 and 112 — are cashless SunPass roads, and you'll cross bridge tolls heading to the beach. A transponder-equipped car keeps it simple." },
+      { type: "callout", variant: "tip", title: "Ask for a SunPass car", text: "Request a transponder-equipped vehicle so cashless tolls are handled automatically, and you avoid the mailed-invoice surcharges that follow otherwise." },
+
+      { type: "h2", text: "The parking reality in South Beach" },
+      { type: "p", text: "Parking on the beach is tight and metered, and hotel garages can add up. Budget for it the way you'd budget for tolls, and confirm your hotel's overnight rate before you arrive. A smaller car — a [compact](/vehicles/compact) or [mid-size](/vehicles/mid-size) — is easier to slot into the beach's cramped spaces." },
+
+      { type: "h2", text: "The drive to Key West" },
+      { type: "p", text: "This is the reason to rent in Miami. The Overseas Highway runs roughly three hours south through the Keys, hopping island to island over open water. A comfortable [mid-size](/vehicles/mid-size), or a convertible if you want the full experience, makes it unforgettable. Confirm unlimited mileage when you book — it's a long, glorious haul." },
+      { type: "h3", text: "Other drives worth taking" },
+      { type: "ul", items: [
+        "Everglades National Park — about an hour southwest for airboats and wildlife.",
+        "Fort Lauderdale — 40 minutes north for a quieter beach day.",
+        "Wynwood and the Design District — short hops that are far easier with your own car.",
+      ] },
+
+      { type: "h2", text: "Booking your MIA rental" },
+      { type: "p", text: "Call, give your flight and dates, and get an all-in quote with the SunPass and any extras spelled out. If you're flying home from a different city, ask about a [one-way rental](/blog/one-way-car-rental-guide) — Miami-to-Orlando is a popular one." },
+    ],
+    faqs: [
+      { q: "Can I drive to Key West from Miami airport?", a: "Yes — it's one of America's great drives, roughly three hours south on the Overseas Highway. A comfortable mid-size or a convertible makes the trip; confirm unlimited mileage when you call." },
+      { q: "How do I get to the MIA rental center?", a: "Take the free MIA Mover train from the terminal's third level to the Miami Intermodal Center, where all rental brands are located. It's about a five-minute ride." },
+      { q: "Are there tolls around Miami?", a: "Several Miami expressways are cashless SunPass roads, and you'll cross bridge tolls to the beach. Request a transponder-equipped vehicle and we'll explain the charges before you drive." },
+    ],
+  },
+
+  {
+    slug: "las-vegas-car-rental-guide",
+    title: "Las Vegas Car Rental Guide: Beyond the Strip",
+    excerpt:
+      "The Strip is walkable, but the best of Vegas is a drive away. Here's how to rent at Harry Reid International and reach Red Rock, Hoover Dam and Zion.",
+    category: "airport-guides",
+    categoryLabel: "Airport Guides",
+    tags: ["LAS", "Las Vegas", "airport rentals", "road trips"],
+    authorSlug: "daniel-reed",
+    publishedAt: "2026-05-20",
+    updatedAt: "2026-05-26",
+    heroImage: "https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?auto=format&fit=crop&w=1600&q=80",
+    heroAlt: "The Las Vegas Strip glowing at night",
+    seoTitle: "Las Vegas (LAS) Car Rental Guide — Red Rock, Zion & More",
+    seoDescription:
+      "How to rent a car at Las Vegas' Harry Reid International (LAS): the rental center shuttle, when you actually need a car, and the best desert drives from the Strip.",
+    body: [
+      { type: "p", text: "You can walk the Strip, but the best of Las Vegas is often a drive away — Red Rock Canyon at sunrise, the Hoover Dam, or the longer haul to Zion and the Grand Canyon. A rental from Harry Reid International turns a weekend of shows into a Southwest road trip." },
+      { type: "p", text: "Here's how to rent smart at LAS and where to point the car. For pickup logistics and rates, see our [Las Vegas airport rental page](/airports/las)." },
+
+      { type: "h2", text: "Do you need a car in Vegas?" },
+      { type: "p", text: "For the Strip itself, not really — it's walkable and rideshare covers the gaps. The case for a rental is everything outside it. Many visitors rent only for their road-trip days and rely on walking on the Strip, which keeps parking costs down." },
+      { type: "callout", variant: "note", title: "Strip parking isn't free anymore", text: "Many resorts now charge for self- and valet parking. If you're only leaving the Strip for a day or two, renting just for those days can be the smarter play." },
+
+      { type: "h2", text: "Getting your car at LAS" },
+      { type: "p", text: "All LAS rentals operate from the consolidated rental center about three miles from the terminals, served by free, frequent shuttles from the arrivals level. Plan roughly 15 minutes from gate to wheel." },
+
+      { type: "h2", text: "What to rent for the desert" },
+      { type: "p", text: "Desert highways reward comfort and a little extra power. Size up from bare economy for the long, hot drives." },
+      { type: "ul", items: [
+        "Red Rock and Hoover Dam day trips: a [mid-size](/vehicles/mid-size) is plenty.",
+        "Zion or the Grand Canyon: a comfortable [SUV](/vehicles/suv) makes the long hauls easier, and unlimited mileage matters.",
+        "Groups heading out together: a [minivan](/vehicles/minivan) keeps everyone comfortable.",
+      ] },
+
+      { type: "h2", text: "The best drives from Las Vegas" },
+      { type: "ol", items: [
+        "Red Rock Canyon — a 30-minute drive west for a scenic loop and hiking, best at sunrise.",
+        "Hoover Dam — 45 minutes southeast, easy to pair with Lake Mead.",
+        "Zion National Park — about 2.5 hours northeast into Utah, and worth every mile.",
+        "Grand Canyon South Rim — a longer 4.5-hour haul each way; start early and confirm unlimited mileage.",
+      ] },
+      { type: "callout", variant: "warning", title: "Respect the desert", text: "Summer afternoons routinely top 105°F. Start canyon drives early, keep water in the car, and watch your fuel on remote stretches between Vegas and the parks." },
+
+      { type: "h2", text: "Booking your LAS rental" },
+      { type: "p", text: "Call, share your dates and where you're headed, and get an all-in quote with the right vehicle for the miles. To trim the total, see [how to save money on airport rentals](/blog/how-to-save-money-on-airport-car-rentals)." },
+    ],
+    faqs: [
+      { q: "Do I need a rental car in Las Vegas?", a: "Not for the Strip itself, but you'll want one for Red Rock Canyon, Hoover Dam, or day trips to Zion and the Grand Canyon. Many visitors rent only for the road-trip days and walk or use rideshare on the Strip." },
+      { q: "How far is the LAS rental center from the airport?", a: "The consolidated rental center is about three miles away, with free shuttles running frequently from the arrivals level. Plan roughly 15 minutes." },
+      { q: "What car is best for a Grand Canyon day trip?", a: "A comfortable mid-size or SUV with unlimited mileage — the South Rim is a 4.5-hour drive each way through the desert. We'll recommend the right fit on the call." },
+    ],
+  },
+
+  {
+    slug: "family-road-trip-rental-guide",
+    title: "The Family Road Trip Rental Guide: Picking the Right Car",
+    excerpt:
+      "The right rental can make or break a family road trip. Here's how to choose between an SUV and a minivan, handle car seats, and pack for peace.",
+    category: "road-trips",
+    categoryLabel: "Road Trips",
+    tags: ["family travel", "road trips", "SUV rentals", "minivan rentals"],
+    authorSlug: "maya-torres",
+    publishedAt: "2026-05-08",
+    updatedAt: "2026-05-22",
+    heroImage: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1600&q=80",
+    heroAlt: "A family car packed for a road trip on an open road",
+    seoTitle: "Family Road Trip Rental Guide — SUV vs Minivan & Tips",
+    seoDescription:
+      "How to choose the right rental car for a family road trip: SUV versus minivan, car seats, luggage, and the practical details that keep everyone comfortable.",
+    body: [
+      { type: "p", text: "A family road trip lives or dies on the details, and the rental car is the biggest one. Get the size right and the miles fly by; get it wrong and you're rearranging luggage in a parking lot while the kids melt down. Here's how to choose well." },
+
+      { type: "h2", text: "SUV or minivan?" },
+      { type: "p", text: "This is the central decision, and it comes down to how you value space versus feel." },
+      { type: "ul", items: [
+        "An [SUV](/vehicles/suv) offers ground clearance, all-weather capability and a rugged feel — great for national parks, snow or unpaved roads.",
+        "A [minivan](/vehicles/minivan) offers the most usable interior space, sliding doors that make car-seat loading painless, and better fuel economy for the size.",
+        "For pure people-and-luggage capacity, the minivan usually wins; for adventure terrain, the SUV.",
+      ] },
+      { type: "callout", variant: "tip", title: "Don't underestimate sliding doors", text: "In tight parking lots and garages, a minivan's sliding doors are a genuine daily quality-of-life upgrade with kids and car seats. Parents who switch rarely go back." },
+
+      { type: "h2", text: "Car seats: bring or rent?" },
+      { type: "p", text: "You can bring your own seats or reserve them with the rental. Bringing your own guarantees a familiar, correctly-fitted seat; renting means less to haul through the airport. If you rent them, request them on the call so they're installed and ready at pickup." },
+
+      { type: "h2", text: "Sizing for luggage, not just seats" },
+      { type: "p", text: "A car that seats your family isn't necessarily a car that fits your family's stuff. Strollers, coolers, sports gear and a week of luggage eat cargo space fast. When you call, describe your gear, not just your headcount — an agent can right-size from there." },
+
+      { type: "h2", text: "The details that keep the peace" },
+      { type: "ol", items: [
+        "Confirm rear climate control or extra vents for back-seat passengers on hot routes.",
+        "Ask about rear-seat entertainment if that's your survival strategy for long stretches.",
+        "Confirm unlimited mileage — family road trips rack up miles quickly.",
+        "Plan fuel stops around meal and bathroom breaks to combine them.",
+      ] },
+
+      { type: "h2", text: "Booking the family car" },
+      { type: "p", text: "The fastest path is to call, describe your crew and your gear, and let an agent match the vehicle and confirm car seats and unlimited mileage in one conversation. Heading to Orlando? Our [MCO guide](/blog/orlando-airport-car-rental-guide) covers theme-park specifics; flying into different cities each way? See [one-way rentals](/blog/one-way-car-rental-guide)." },
+    ],
+    faqs: [
+      { q: "Is an SUV or minivan better for a family road trip?", a: "A minivan offers more usable interior space, easier car-seat access via sliding doors and better fuel economy; an SUV offers ground clearance and all-weather capability. For capacity, the minivan usually wins; for rugged terrain, the SUV." },
+      { q: "Should I bring my own car seats or rent them?", a: "Both work. Bringing your own guarantees a familiar, correctly-fitted seat; renting means less to carry through the airport. If you rent, request the seats when you call so they're ready at pickup." },
+      { q: "How do I know what size car my family needs?", a: "Size for your luggage and gear, not just your headcount. Describe your strollers, coolers and bags when you call and an agent will match you to a vehicle with enough cargo space." },
+    ],
+  },
+
+  {
+    slug: "best-time-to-book-a-rental-car",
+    title: "The Best Time to Book a Rental Car (and When to Rebook)",
+    excerpt:
+      "Rental prices move like airfare. Here's when to book, why free cancellation is your secret weapon, and how to avoid overpaying.",
+    category: "money-saving",
+    categoryLabel: "Money-Saving",
+    tags: ["saving money", "booking tips", "airport rentals"],
+    authorSlug: "daniel-reed",
+    publishedAt: "2026-04-22",
+    updatedAt: "2026-05-12",
+    heroImage: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=1600&q=80",
+    heroAlt: "A calendar and car keys on a desk",
+    seoTitle: "Best Time to Book a Rental Car — Timing & Rebooking",
+    seoDescription:
+      "When is the cheapest time to book a rental car? A practical guide to timing, why free cancellation lets you keep improving your rate, and peak-season pitfalls.",
+    body: [
+      { type: "p", text: "Rental car prices behave a lot like airfare: they move constantly with supply and demand. That scares people into either booking too early and forgetting about it, or waiting too long and paying a premium. The truth is more forgiving — and it hinges on one feature most travelers underuse." },
+
+      { type: "h2", text: "Book early, but not for the reason you think" },
+      { type: "p", text: "Booking two to four weeks ahead is usually smart, but not because the price is guaranteed to be lowest then. It's because the cheapest vehicle classes — [economy](/vehicles/economy) and [compact](/vehicles/compact) — sell out first at busy airports. Booking early secures the car itself, not just a rate." },
+      { type: "callout", variant: "tip", title: "Free cancellation changes everything", text: "Because most rentals offer free cancellation up to pickup, an early booking isn't a commitment — it's a floor you can improve on. Reserve a fair rate now, then rebook if the price drops." },
+
+      { type: "h2", text: "The rebooking strategy" },
+      { type: "p", text: "Here's the move experienced travelers use: reserve a reasonable rate as soon as you know your dates. Then check again a week or two later. If the price has dropped, book the new lower rate and cancel the old one. You're never locked in until pickup, so you capture the best price without the risk of waiting." },
+
+      { type: "h2", text: "When prices spike" },
+      { type: "p", text: "Some periods are simply expensive, and no amount of timing fully beats them." },
+      { type: "ul", items: [
+        "Major holidays and school breaks — book as early as you can and expect premiums.",
+        "Big local events and conventions — a citywide event can drain inventory and lift rates.",
+        "Peak summer at leisure destinations — Orlando, Las Vegas and beach markets get tight.",
+      ] },
+      { type: "p", text: "For these, early booking is less about the lowest rate and more about guaranteeing you get a car at all." },
+
+      { type: "h2", text: "Timing your pickup and return" },
+      { type: "p", text: "Rental days are 24-hour blocks, so a pickup time that doesn't match your return can tip you into an extra billed day. Line them up. And if your trip is five or six days, price the weekly rate too — it's often cheaper than the individual days." },
+
+      { type: "h2", text: "The simplest approach" },
+      { type: "p", text: "Book early with free cancellation, keep an eye on the price, and rebook if it drops. Or skip the tab-juggling entirely and call — an agent can see current availability, flag a rate that's about to change, and quote an all-in price. For more ways to cut the bill, see [how to save money on airport rentals](/blog/how-to-save-money-on-airport-car-rentals)." },
+    ],
+    faqs: [
+      { q: "When is the cheapest time to book a rental car?", a: "Generally two to four weeks ahead, mainly because the cheapest vehicle classes sell out first. Since most rentals offer free cancellation, book a fair rate early and rebook if the price drops closer to your trip." },
+      { q: "Can I rebook a rental if the price drops?", a: "Yes — this is the key strategy. With free cancellation, you can book a new lower rate and cancel the old reservation any time before pickup. You're never locked in until you collect the car." },
+      { q: "Should I book a rental car far in advance for holidays?", a: "Yes. During holidays, school breaks and big local events, inventory tightens and rates climb. Booking early is less about the lowest price and more about guaranteeing you get a car at all." },
+    ],
+  },
+
+  {
+    slug: "electric-car-rental-guide",
+    title: "Renting an Electric Car: What to Know Before You Plug In",
+    excerpt:
+      "EV rentals are cheaper to fuel and fun to drive — if you plan for charging. Here's an honest guide to renting electric for the first time.",
+    category: "vehicle-guides",
+    categoryLabel: "Vehicle Guides",
+    tags: ["EV rentals", "electric cars", "road trips", "booking tips"],
+    authorSlug: "maya-torres",
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-28",
+    heroImage: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1600&q=80",
+    heroAlt: "An electric car charging at a modern charging station",
+    seoTitle: "Electric Car Rental Guide — Charging, Range & Tips",
+    seoDescription:
+      "A first-timer's guide to renting an electric car: how charging works, planning range on a road trip, return policies, and when an EV rental makes sense.",
+    body: [
+      { type: "p", text: "Renting an electric car is a great way to try one without the commitment of buying — and on the right trip, it's cheaper to fuel and genuinely fun to drive. The one thing that separates a smooth EV rental from a stressful one is planning for charging. Do that, and the rest is easy." },
+
+      { type: "h2", text: "Why rent electric" },
+      { type: "ul", items: [
+        "Fuel savings: charging is typically cheaper than filling a tank, especially on longer rentals.",
+        "The drive: instant torque and a quiet cabin make city and highway driving surprisingly pleasant.",
+        "A no-risk test drive: thinking about buying an EV? A rental is the honest way to find out if it fits your life.",
+      ] },
+
+      { type: "h2", text: "Charging, explained simply" },
+      { type: "p", text: "There are two things to understand: where you charge and how fast." },
+      { type: "ol", items: [
+        "Level 2 (destination) charging is what you'll find at hotels, malls and parking garages — good for overnight top-ups.",
+        "DC fast charging is the road-trip kind, adding significant range in 20–40 minutes at highway-adjacent stations.",
+        "Plan your day around fast chargers if you're covering long distances, and top up overnight where you're staying.",
+      ] },
+      { type: "callout", variant: "tip", title: "Download the charging apps first", text: "Before you drive off, install the major charging network apps and set up payment. Sorting that out in a parking lot at 20% battery is the classic first-timer mistake." },
+
+      { type: "h2", text: "Know the return policy" },
+      { type: "p", text: "EVs don't have a 'full tank,' so return rules differ from gas cars. Some companies ask you to return at a certain charge level; others are more flexible but may bill for recharging. Confirm the exact policy when you book so there are no surprises." },
+      { type: "callout", variant: "warning", title: "Ask about the charge-return rule", text: "The single most common EV-rental surprise is a recharge fee at return. Ask what state of charge you need to return at, and whether there's a fee if you don't." },
+
+      { type: "h2", text: "When an EV rental makes sense (and when it doesn't)" },
+      { type: "p", text: "EV rentals shine for city trips and well-charged corridors. They're trickier for remote road trips where fast chargers are sparse. If your route is charger-rich, an [electric rental](/vehicles/electric) is a treat; if you're heading deep into the backcountry, a comfortable [mid-size](/vehicles/mid-size) or [SUV](/vehicles/suv) may be the less stressful choice." },
+
+      { type: "h2", text: "Booking an EV rental" },
+      { type: "p", text: "Call, tell us your route, and we'll help you decide whether electric fits your trip — and explain the charging and return rules up front. If you want to compare the running costs against a traditional car, our [money-saving guide](/blog/how-to-save-money-on-airport-car-rentals) is a good companion read." },
+    ],
+    faqs: [
+      { q: "Is renting an electric car worth it?", a: "For city trips and well-charged corridors, yes — charging is cheaper than fuel and the drive is excellent. It's a great low-risk way to try an EV. For remote road trips with sparse fast chargers, a gas car may be less stressful." },
+      { q: "How does charging a rental EV work?", a: "You'll use Level 2 chargers (at hotels, garages and malls) for overnight top-ups and DC fast chargers for quick range on the road. Install the major charging network apps and set up payment before you drive off." },
+      { q: "Do I have to return a rental EV fully charged?", a: "Policies vary. Some companies require a certain charge level at return, and some bill for recharging if you don't meet it. Confirm the exact return rule when you book to avoid a surprise fee." },
+    ],
+  },
 ];
