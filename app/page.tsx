@@ -2,7 +2,7 @@ import Hero from "./components/Hero";
 import TrustBar from "./components/TrustBar";
 import VehicleTypes from "./components/VehicleTypes";
 import WhyChooseUs from "./components/WhyChooseUs";
-import Destinations from "./components/Destinations";
+import PopularAirports from "./components/PopularAirports";
 import HowItWorks from "./components/HowItWorks";
 import FeaturedVehicles from "./components/FeaturedVehicles";
 import Testimonials from "./components/Testimonials";
@@ -37,7 +37,7 @@ export default function Home() {
       <TrustBar />
       <VehicleTypes />
       <WhyChooseUs />
-      <Destinations />
+      <PopularAirports />
       <HowItWorks />
       <FeaturedVehicles />
       <Testimonials />

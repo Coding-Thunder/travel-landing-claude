@@ -119,15 +119,15 @@ export const siteConfig = {
 
   // ---------- Hero ----------
   hero: {
-    eyebrow: "Live US-based agents · Lines open now",
-    title: "Rent a Car Anywhere",
-    titleAccent: "in the USA",
-    titleHighlight: "One call away.",
+    eyebrow: "Airport pickup · Live agents 24/7",
+    title: "Book a Rental Car",
+    titleAccent: "at the Airport",
+    titleHighlight: "Call to lock your rate.",
     subtitle:
-      "No hidden fees. Instant confirmation. Talk to a live US-based agent for the best rate on economy, SUV, luxury & electric rentals — in minutes.",
-    callLabel: "Call now — best rate by phone",
-    priceFrom: 29,
-    badges: ["No Hidden Fees", "Free Cancellation", "Instant Confirmation", "Verified Vehicles"],
+      "Skip the counter lines and the surprise fees. Tell us your airport and dates, and a live US-based agent confirms your best all-in rate on economy, SUV and luxury cars — in one quick call.",
+    callLabel: "Call now — best airport rate",
+    priceFrom: 28,
+    badges: ["No Hidden Fees", "Free Cancellation", "Same-Day Rentals", "Airport Pickup"],
   },
 
   // ---------- Quick Quote (hero form → opens call popup) ----------
@@ -182,14 +182,12 @@ export const siteConfig = {
 
   // ---------- Why choose us (8) ----------
   whyChooseUs: [
-    { title: "Transparent Pricing", description: "The rate we quote is the rate you pay. Taxes and fees disclosed up front.", icon: "tag" },
-    { title: "Airport Pickup", description: "Counters and curbside delivery at 300+ airport and city locations.", icon: "plane" },
-    { title: "Nationwide Coverage", description: "Pick up in one city, drop off in another — across all 50 states.", icon: "map" },
-    { title: "Flexible Rentals", description: "By the day, week or month. Extend or change plans with one call.", icon: "calendar" },
-    { title: "24/7 Roadside Assistance", description: "Help is one call away, any hour, anywhere you drive.", icon: "wrench" },
-    { title: "Verified Vehicles", description: "Every car is inspected, sanitized and safety-checked between rentals.", icon: "shield" },
-    { title: "Free Cancellation", description: "Plans change. Cancel free up to pickup — no questions, no fees.", icon: "check" },
-    { title: "Instant Confirmation", description: "Reserve by phone and get confirmation in minutes, not hours.", icon: "bolt" },
+    { title: "Affordable Rates", description: "Honest, all-in pricing with no resort-style fees bolted on at the counter. The rate we quote is the rate you pay.", icon: "tag" },
+    { title: "Same-Day Rentals", description: "Flight changed or plans came together last minute? Call and, where inventory allows, drive the same day.", icon: "bolt" },
+    { title: "Airport Pickup", description: "Meet your car at the counter or curbside at LAX, JFK, MCO, MIA and 300+ airport locations nationwide.", icon: "plane" },
+    { title: "Wide Selection", description: "Economy to luxury, SUVs to seven-seat minivans — matched to your trip, your group and your budget.", icon: "car" },
+    { title: "Secure Booking", description: "Reserve by phone with a live US-based agent. Clear terms, itemized pricing, no data harvested by forms.", icon: "lock" },
+    { title: "Flexible Rentals", description: "By the day, the week or the month, one-way between cities — extend or change plans with a single call.", icon: "calendar" },
   ] as Feature[],
 
   // ---------- Popular destinations (8) ----------
@@ -206,10 +204,10 @@ export const siteConfig = {
 
   // ---------- How it works (call-based, 4 steps) ----------
   howItWorks: [
-    { step: "01", title: "Call or request a callback", description: "Tap to call our 24/7 line or leave your number — a live agent reaches out fast.", icon: "phone" },
-    { step: "02", title: "Get a custom quote", description: "Share your dates, city and vehicle type. We confirm a clear, all-in rate by phone.", icon: "tag" },
-    { step: "03", title: "Reserve in minutes", description: "We hold the car in your name with instant confirmation. No deposit required.", icon: "check" },
-    { step: "04", title: "Pick up & drive", description: "Grab the keys at the airport or your door and hit the road — fully insured.", icon: "car" },
+    { step: "01", title: "Search your airport", description: "Enter your pickup airport and dates above, or just call — we cover LAX, JFK, MCO, MIA and 300+ locations.", icon: "map" },
+    { step: "02", title: "Call for your best rate", description: "Tap to call our 24/7 line or request a callback. A live agent confirms a clear, all-in price by phone.", icon: "phone" },
+    { step: "03", title: "Reserve in minutes", description: "We hold the car in your name with instant confirmation — no deposit and no lengthy online forms.", icon: "check" },
+    { step: "04", title: "Pick up & drive", description: "Meet your car at the airport counter or curbside and hit the road — fully insured.", icon: "car" },
   ] as HowStep[],
 
   // ---------- Featured vehicles (6) ----------
@@ -391,13 +389,13 @@ export const siteConfig = {
       ],
     },
     {
-      title: "Top locations",
+      title: "Airports",
       links: [
-        { label: "New York", href: "/#local-seo" },
-        { label: "Los Angeles", href: "/#local-seo" },
-        { label: "Miami", href: "/#local-seo" },
-        { label: "Las Vegas", href: "/#local-seo" },
-        { label: "All 50 states", href: "/#destinations" },
+        { label: "LAX — Los Angeles", href: "/airports/lax" },
+        { label: "JFK — New York", href: "/airports/jfk" },
+        { label: "MCO — Orlando", href: "/airports/mco" },
+        { label: "MIA — Miami", href: "/airports/mia" },
+        { label: "All airports", href: "/airports" },
       ],
     },
     {

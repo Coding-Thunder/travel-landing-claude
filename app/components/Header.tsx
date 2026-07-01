@@ -4,11 +4,11 @@ import Icon from "./ui/Icon";
 import CtaButton from "./call/CtaButton";
 
 const NAV = [
-  { label: "Vehicles", href: "#vehicles" },
-  { label: "Destinations", href: "#destinations" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Airports", href: "/airports" },
+  { label: "Vehicles", href: "/#vehicles" },
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export default function Header() {
@@ -57,13 +57,13 @@ export default function Header() {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
             {NAV.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-sm font-semibold text-slate-600 transition hover:text-brand-700"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
