@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/siteConfig";
 import { airports } from "@/config/airports";
+import { vehicleCategories } from "@/config/vehicles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
@@ -11,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/airports", priority: 0.9, changeFrequency: "weekly" },
     ...airports.map((a) => ({
       path: `/airports/${a.slug}`,
+      priority: 0.8,
+      changeFrequency: "monthly" as const,
+    })),
+    { path: "/vehicles", priority: 0.9, changeFrequency: "weekly" },
+    ...vehicleCategories.map((v) => ({
+      path: `/vehicles/${v.slug}`,
       priority: 0.8,
       changeFrequency: "monthly" as const,
     })),

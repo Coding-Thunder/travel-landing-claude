@@ -33,15 +33,6 @@ export type IconName =
 
 export type TrustItem = { label: string; sub: string; icon: IconName };
 
-export type VehicleType = {
-  name: string;
-  priceFrom: number;
-  seats: number;
-  blurb: string;
-  image: string;
-  gradient: string;
-};
-
 export type Feature = { title: string; description: string; icon: IconName };
 
 export type Destination = {
@@ -168,19 +159,7 @@ export const siteConfig = {
     { value: "50", label: "States covered" },
   ],
 
-  // ---------- Popular vehicle types (8) ----------
-  vehicleTypes: [
-    { name: "Economy", priceFrom: 29, seats: 5, blurb: "Fuel-sippers for city trips and errands.", image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1100&q=80", gradient: "from-sky-500 to-blue-600" },
-    { name: "Compact", priceFrom: 34, seats: 5, blurb: "Nimble, easy to park, great on gas.", image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1100&q=80", gradient: "from-cyan-500 to-sky-600" },
-    { name: "SUV", priceFrom: 49, seats: 5, blurb: "Room for the family, gear and road trips.", image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1100&q=80", gradient: "from-blue-600 to-indigo-700" },
-    { name: "Luxury", priceFrom: 89, seats: 5, blurb: "Premium sedans that make an impression.", image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1100&q=80", gradient: "from-slate-700 to-slate-900" },
-    { name: "Electric", priceFrom: 59, seats: 5, blurb: "Zero-emission driving with instant torque.", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1100&q=80", gradient: "from-emerald-500 to-teal-600" },
-    { name: "Minivan", priceFrom: 69, seats: 7, blurb: "Seven seats for groups and big families.", image: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=1100&q=80", gradient: "from-violet-500 to-purple-700" },
-    { name: "Convertible", priceFrom: 79, seats: 4, blurb: "Top down, sun out — make the drive the trip.", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1100&q=80", gradient: "from-orange-500 to-amber-600" },
-    { name: "Pickup Truck", priceFrom: 64, seats: 5, blurb: "Haul, tow and move with confidence.", image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1100&q=80", gradient: "from-stone-600 to-neutral-800" },
-  ] as VehicleType[],
-
-  // ---------- Why choose us (8) ----------
+  // ---------- Why choose us (6) ----------
   whyChooseUs: [
     { title: "Affordable Rates", description: "Honest, all-in pricing with no resort-style fees bolted on at the counter. The rate we quote is the rate you pay.", icon: "tag" },
     { title: "Same-Day Rentals", description: "Flight changed or plans came together last minute? Call and, where inventory allows, drive the same day.", icon: "bolt" },
@@ -401,7 +380,7 @@ export const siteConfig = {
     {
       title: "Resources",
       links: [
-        { label: "Vehicle types", href: "/#vehicles" },
+        { label: "Vehicle types", href: "/vehicles" },
         { label: "Featured fleet", href: "/#fleet" },
         { label: "FAQ", href: "/#faq" },
         { label: "Roadside assistance", href: "/#why" },

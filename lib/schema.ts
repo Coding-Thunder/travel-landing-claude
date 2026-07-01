@@ -101,6 +101,25 @@ export function faqSchemaFrom(items: { q: string; a: string }[]) {
   };
 }
 
+export function vehicleSchema(v: { name: string; slug: string; priceFrom: number; image: string; blurb: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${v.name} Car Rental`,
+    description: v.blurb,
+    image: v.image,
+    url: `${url}/vehicles/${v.slug}`,
+    brand: { "@type": "Brand", name: siteConfig.name },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "USD",
+      lowPrice: v.priceFrom,
+      availability: "https://schema.org/InStock",
+      seller: { "@id": `${url}/#organization` },
+    },
+  };
+}
+
 export function breadcrumbSchema(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",
