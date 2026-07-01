@@ -215,4 +215,216 @@ export const posts: Post[] = [
       { q: "Is credit-card rental coverage primary or secondary?", a: "It depends on the card. Secondary coverage pays only after your own insurance; primary coverage pays first, sparing your personal policy. Call your card's benefits line to confirm which you have and what's excluded." },
     ],
   },
+
+  {
+    slug: "jfk-car-rental-guide",
+    title: "The JFK Car Rental Guide: When to Rent and Where to Drive",
+    excerpt:
+      "New York City doesn't need a car — but everything around it does. Here's how to rent smart at JFK, from the AirTrain to the Hamptons.",
+    category: "airport-guides",
+    categoryLabel: "Airport Guides",
+    tags: ["JFK", "New York", "airport rentals", "road trips"],
+    authorSlug: "maya-torres",
+    publishedAt: "2026-06-05",
+    updatedAt: "2026-06-08",
+    heroImage: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1600&q=80",
+    heroAlt: "The New York City skyline seen across the water at dusk",
+    seoTitle: "JFK Car Rental Guide — When to Rent & Best Drives",
+    seoDescription:
+      "A practical guide to renting a car at JFK: how AirTrain pickup works, when you actually need a car in New York, tolls and congestion pricing, and the best drives.",
+    body: [
+      { type: "p", text: "Here's the counterintuitive truth about renting a car at JFK: for the New York City part of your trip, you probably shouldn't. For everything around the city — Long Island, the Hamptons, the Hudson Valley, the drive to New England — a rental is the difference between seeing the region and being stuck at the end of a train line." },
+      { type: "p", text: "This guide covers the smart way to rent at JFK: how pickup works, when to time your rental, the tolls you'll meet, and where the car actually earns its keep. For airport-specific logistics and current rates, see our [JFK airport rental page](/airports/jfk)." },
+
+      { type: "h2", text: "Do you even need a car in New York?" },
+      { type: "p", text: "In Manhattan, a car is a liability. Parking runs $50 a night or more, traffic is relentless, and the subway goes everywhere you want faster than you could drive. Many savvy travelers rent only for the days they're leaving the city — picking the car up when they head to Long Island or upstate, not when they land." },
+      { type: "callout", variant: "tip", title: "Rent for the trip, not the whole stay", text: "If you're spending three days in Manhattan and two in the Hamptons, consider renting for just the Hamptons portion. You'll skip five nights of garage fees that can cost more than the rental itself." },
+
+      { type: "h2", text: "How JFK rental pickup works" },
+      { type: "p", text: "JFK's rental facilities sit just outside the terminals, reached by the free AirTrain to the Federal Circle station. From any terminal, it's a short, step-free ride to the rental center and shuttles. Give your agent your terminal and arrival time and the paperwork will be ready when you get there." },
+      { type: "p", text: "Plan roughly 10–15 minutes from gate to counter including the AirTrain. It's one of the more painless big-airport pickups once you know where you're going." },
+
+      { type: "h2", text: "Tolls, bridges and congestion pricing" },
+      { type: "p", text: "The New York area is largely cashless, and you'll meet tolls the moment you point the car toward the city. Add Manhattan's congestion charge and it pays to plan ahead." },
+      { type: "ul", items: [
+        "Ask for an E-ZPass-equipped vehicle — JFK-area bridges and tunnels are cashless, and mailed-invoice surcharges add up.",
+        "Factor in Manhattan's congestion pricing if you'll drive into the core; sometimes it's cheaper to park outside and take transit in.",
+        "Winter travelers should confirm all-season or winter tires for drives north of the city.",
+      ] },
+
+      { type: "h2", text: "The best drives from JFK" },
+      { type: "h3", text: "The Hamptons" },
+      { type: "p", text: "About 90 minutes east along the Montauk Highway, the Hamptons deliver beaches, farm stands and village charm. A comfortable [mid-size](/vehicles/mid-size) handles the trip well; size up to an [SUV](/vehicles/suv) if you're carrying beach gear for the family." },
+      { type: "h3", text: "The Hudson Valley" },
+      { type: "p", text: "An hour-plus north lies Storm King, riverside towns and some of the best fall foliage in the country. This is prime road-trip territory and a strong argument for renting despite the city's transit." },
+      { type: "h3", text: "Long Island beaches" },
+      { type: "p", text: "Jones Beach and Robert Moses are 30–45 minutes away — an easy day trip when the weather turns warm." },
+
+      { type: "h2", text: "Booking your JFK rental" },
+      { type: "p", text: "The cleanest path is to call, give your flight and dates, and get an all-in quote with the E-ZPass and any extras spelled out. And before you accept coverage at the counter, read [our insurance guide](/blog/rental-car-insurance-explained) so you know what your card and personal policy already cover." },
+    ],
+    faqs: [
+      { q: "Do I need a car if I'm staying in Manhattan?", a: "Usually not. Parking is expensive and transit is excellent within the city. A JFK rental makes sense for Long Island, the Hamptons or driving upstate — many travelers rent only for the out-of-city portion of the trip." },
+      { q: "How do I get to the JFK rental center?", a: "Take the free AirTrain from your terminal to the Federal Circle station, where the rental center and shuttles are located. Plan about 10–15 minutes from gate to counter." },
+      { q: "Are tolls included in a JFK rental?", a: "No — tolls are separate and the area is largely cashless. Request an E-ZPass-equipped vehicle and ask your agent to explain the toll and congestion-pricing options for your route." },
+    ],
+  },
+
+  {
+    slug: "orlando-airport-car-rental-guide",
+    title: "Orlando Airport Car Rental Guide: Theme Parks, Coasts and Car Seats",
+    excerpt:
+      "Orlando runs on wheels. Here's how to rent the right car at MCO for the parks, size up for the family, and skip the toll-road headaches.",
+    category: "airport-guides",
+    categoryLabel: "Airport Guides",
+    tags: ["MCO", "Orlando", "airport rentals", "family travel"],
+    authorSlug: "daniel-reed",
+    publishedAt: "2026-06-10",
+    updatedAt: "2026-06-12",
+    heroImage: "https://images.unsplash.com/photo-1597466599360-3b9775841aec?auto=format&fit=crop&w=1600&q=80",
+    heroAlt: "Palm trees and a sunny Florida boulevard near the theme parks",
+    seoTitle: "Orlando (MCO) Car Rental Guide — Theme Parks & Family Tips",
+    seoDescription:
+      "Everything you need to rent a car at Orlando International (MCO): in-terminal pickup, the right vehicle for theme-park trips, toll roads, car seats and coastal day trips.",
+    body: [
+      { type: "p", text: "Orlando is a driving town wearing a theme-park costume. Between the parks, the outlet malls and the day trip to the coast, families burn through rideshare budgets in a single afternoon. A rental from Orlando International is almost always the cheaper, saner choice — and one of the easiest big-airport pickups in the country." },
+      { type: "p", text: "This guide covers what actually matters at MCO: the right car for a park trip, the toll roads that ring the resorts, car seats, and where to drive when you need a day off from the crowds. For pickup logistics and rates, see our [MCO airport rental page](/airports/mco)." },
+
+      { type: "h2", text: "Pickup is inside the terminal" },
+      { type: "p", text: "Unlike LAX or Las Vegas, Orlando keeps its major rental counters right inside the terminal, on Level 1 of both Terminal A and Terminal B — no off-site shuttle after a long flight with tired kids. Tell your agent which terminal your airline uses and your car will be waiting in the adjacent garage." },
+      { type: "callout", variant: "note", title: "One of the smoothest big airports", text: "In-terminal counters make MCO a genuinely low-stress pickup. If you're traveling with little ones, that alone is worth a lot." },
+
+      { type: "h2", text: "What to rent for a theme-park trip" },
+      { type: "p", text: "The single biggest mistake families make is renting too small to save a few dollars, then wrestling strollers and park gear into a compact trunk all week. Size to your gear, not just your headcount." },
+      { type: "ul", items: [
+        "Family of four with strollers and park bags: a [mid-size SUV](/vehicles/suv) is the sweet spot for trunk space and comfort.",
+        "Bigger groups or multi-generational trips: a [minivan](/vehicles/minivan) with sliding doors makes car-seat loading painless in tight lots.",
+        "Couples without much gear: a [compact](/vehicles/compact) keeps costs and fuel down.",
+      ] },
+
+      { type: "h2", text: "Toll roads and transponders" },
+      { type: "p", text: "The expressways around the parks — the 417, 429 and 528 (Beachline) — are largely cashless. A transponder-equipped car avoids mailed invoices and the surcharges that come with them." },
+      { type: "callout", variant: "tip", title: "Ask about the toll option upfront", text: "Confirm whether your rental includes a transponder and what the daily cap is. Around Orlando, the convenience usually beats routing around every toll." },
+
+      { type: "h2", text: "Car seats and the little things" },
+      { type: "p", text: "You can bring your own car seats or reserve them with the rental. Reserving them means one less thing to haul through the airport — just request them when you call so they're installed and ready. If you want to understand what else the counter might try to add, our [money-saving guide](/blog/how-to-save-money-on-airport-car-rentals) breaks down which extras are worth it." },
+
+      { type: "h2", text: "When you need a day off from the parks" },
+      { type: "p", text: "With a car, the coast is close. Cocoa Beach is about 45 minutes east on the 528, and the Kennedy Space Center is an easy add-on. A change of scenery mid-trip can save everyone's sanity." },
+    ],
+    faqs: [
+      { q: "What size car should I rent for Disney or Universal?", a: "For a family of four with strollers and park gear, a mid-size SUV or a minivan is the sweet spot. Tell us your group size and luggage when you call and we'll match the right vehicle." },
+      { q: "Do I need a toll pass in Orlando?", a: "The expressways around the parks are largely cashless, so a transponder-equipped car saves hassle and avoids invoice surcharges. We'll explain the toll options and pricing when you book." },
+      { q: "Can I rent a car seat at MCO?", a: "Yes. You can reserve car seats with your rental so they're ready at pickup — one less thing to carry through the airport. Just request them when you call." },
+    ],
+  },
+
+  {
+    slug: "under-25-car-rental-guide",
+    title: "Renting a Car Under 25: What It Costs and How to Do It",
+    excerpt:
+      "Yes, you can rent a car before you turn 25. Here's the truth about young-driver surcharges, age minimums and how to keep the extra cost down.",
+    category: "rental-tips",
+    categoryLabel: "Rental Tips",
+    tags: ["under-25 rentals", "young drivers", "fees", "booking tips"],
+    authorSlug: "daniel-reed",
+    publishedAt: "2026-04-12",
+    updatedAt: "2026-05-04",
+    heroImage: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=80",
+    heroAlt: "A young traveler standing beside a car with luggage",
+    seoTitle: "Renting a Car Under 25 — Costs, Rules & How-To",
+    seoDescription:
+      "A clear guide to renting a car if you're under 25: young-driver surcharges, age minimums by class, what you'll need, and practical ways to lower the cost.",
+    body: [
+      { type: "p", text: "The myth that you can't rent a car until you're 25 is exactly that — a myth. Drivers as young as 21 can rent at most locations, and some rent to 18-to-20-year-olds. What's true is that renting under 25 usually costs a little more, thanks to a young-driver surcharge. Here's how it actually works and how to keep it in check." },
+
+      { type: "h2", text: "The young-driver surcharge, explained" },
+      { type: "p", text: "Insurers consider drivers under 25 statistically higher-risk, so rental companies add a daily surcharge — often a flat per-day amount — to offset it. It's not a penalty aimed at you personally; it's a pricing rule that applies to the age band. The exact amount varies by location and season." },
+      { type: "callout", variant: "note", title: "It's per day, so trip length matters", text: "Because the surcharge is usually a daily fee, it weighs more heavily on short rentals. On a longer weekly rental, the surcharge is a smaller share of the total." },
+
+      { type: "h2", text: "Age minimums by vehicle class" },
+      { type: "p", text: "Younger renters typically have access to standard classes but may be restricted from premium ones." },
+      { type: "ul", items: [
+        "[Economy](/vehicles/economy), [compact](/vehicles/compact) and [mid-size](/vehicles/mid-size): widely available from age 21, and sometimes younger.",
+        "[SUVs](/vehicles/suv) and [full-size](/vehicles/full-size): usually available, occasionally with a slightly higher minimum age.",
+        "[Luxury](/vehicles/luxury) and specialty vehicles: often restricted to 25+ regardless of surcharge.",
+      ] },
+
+      { type: "h2", text: "What you'll need at pickup" },
+      { type: "ol", items: [
+        "A valid driver's license held for a minimum period (often at least a year).",
+        "A credit card in your own name — many locations won't accept a debit card for younger renters.",
+        "Proof of insurance, or coverage added to the rental.",
+      ] },
+
+      { type: "h2", text: "How to lower the cost" },
+      { type: "ul", items: [
+        "Rent by the week if you're close — the daily surcharge stings less spread across more days.",
+        "Right-size the car; a young-driver surcharge on an economy rental is a smaller total than on a big SUV.",
+        "Check whether a membership, corporate or university program you belong to waives or reduces the surcharge.",
+        "Call and ask directly — an agent can tell you the exact age rules and surcharge for your location before you commit.",
+      ] },
+      { type: "callout", variant: "tip", title: "Don't forget your existing coverage", text: "Before you buy protection at the counter, see [our insurance guide](/blog/rental-car-insurance-explained) — your credit card or a parent's policy may already cover you, though rules for younger drivers vary, so verify." },
+
+      { type: "h2", text: "The bottom line" },
+      { type: "p", text: "Renting under 25 is entirely doable — you'll just plan around a surcharge and a few extra requirements. Know the age rules for your location, bring a credit card in your name, right-size the car, and the 'you can't rent until 25' myth stays exactly where it belongs." },
+    ],
+    faqs: [
+      { q: "Can I rent a car at 21?", a: "Yes, at most locations, typically with a young-driver surcharge. Some locations rent to drivers aged 18–20 as well. Call to confirm the exact age rules and surcharge where you're renting." },
+      { q: "How much is the under-25 surcharge?", a: "It's usually a flat daily fee that varies by location and season. Because it's charged per day, it has a bigger impact on short rentals than long ones. We'll quote the exact amount for your dates on the phone." },
+      { q: "Do I need a credit card to rent under 25?", a: "Usually yes — many locations require a credit card in the renter's name for younger drivers rather than a debit card. Bring one in your own name, along with a license you've held for at least a year." },
+    ],
+  },
+
+  {
+    slug: "one-way-car-rental-guide",
+    title: "One-Way Car Rentals: How They Work and When They're Worth It",
+    excerpt:
+      "Fly into one city and out of another? A one-way rental can make it seamless. Here's how drop fees work and when a one-way beats a round trip.",
+    category: "rental-tips",
+    categoryLabel: "Rental Tips",
+    tags: ["one-way rentals", "road trips", "fees", "booking tips"],
+    authorSlug: "maya-torres",
+    publishedAt: "2026-03-28",
+    updatedAt: "2026-04-18",
+    heroImage: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80",
+    heroAlt: "An open highway stretching toward distant mountains",
+    seoTitle: "One-Way Car Rentals — How They Work & When to Use Them",
+    seoDescription:
+      "A plain guide to one-way car rentals: how drop fees are calculated, when a one-way beats a round trip, and how to book pickup and drop-off in different cities.",
+    body: [
+      { type: "p", text: "A one-way rental — pick up in one city, drop off in another — is one of the most useful tricks in travel, and one of the most misunderstood. It turns a linear road trip into a straight line instead of a there-and-back, and it saves you from doubling back just to return a car. The catch is the drop fee, and knowing when it's worth paying is the whole game." },
+
+      { type: "h2", text: "How one-way rentals work" },
+      { type: "p", text: "You reserve a specific pickup location and a different drop-off location. The rental company positions its fleet around demand, so returning a car where it's needed can be cheap — or, where it creates an imbalance, carry a one-way drop fee to cover repositioning." },
+
+      { type: "h2", text: "How drop fees are calculated" },
+      { type: "p", text: "Drop fees aren't random. They mostly reflect supply and demand between the two cities." },
+      { type: "ul", items: [
+        "Popular corridors (say, a busy interstate route between major metros) often have low or even no drop fee.",
+        "Returning a car to a smaller or lower-demand city can cost more, because the company has to reposition it.",
+        "Distance matters, but demand imbalance matters more — a short one-way into a low-demand town can cost more than a long one into a busy hub.",
+      ] },
+      { type: "callout", variant: "note", title: "Always ask for the one-way total", text: "The only way to know is to price it. When you call, give both cities and dates and ask for the all-in one-way rate so you can compare it honestly against the alternatives." },
+
+      { type: "h2", text: "When a one-way is worth it" },
+      { type: "p", text: "Compare the one-way total against what you'd otherwise pay, including your time." },
+      { type: "ol", items: [
+        "Versus doubling back: if returning to your start city means a full extra day of driving and an extra rental day, the drop fee often wins.",
+        "Versus flying between cities: a one-way rental can replace an intercity flight and a second rental entirely.",
+        "Versus a round trip you don't need: paying to keep a car you'll only drive one direction is its own kind of waste.",
+      ] },
+
+      { type: "h2", text: "Airport one-ways" },
+      { type: "p", text: "One-way rentals shine for classic fly-in, fly-out road trips: land at one airport, drive the route, fly home from another. Our airport pages — from [LAX](/airports/lax) to [Miami](/airports/mia) to [Las Vegas](/airports/las) — are natural start and end points, and a [mid-size](/vehicles/mid-size) or [SUV](/vehicles/suv) makes the miles comfortable." },
+
+      { type: "h2", text: "Booking a one-way" },
+      { type: "p", text: "The simplest way is to call, name your pickup and drop-off cities and dates, and get the one-way rate spelled out. While you're at it, ask about unlimited mileage — on a one-way road trip, the miles add up fast, and you don't want a surprise. For more ways to trim the bill, see [how to save money on airport rentals](/blog/how-to-save-money-on-airport-car-rentals)." },
+    ],
+    faqs: [
+      { q: "What is a one-way car rental drop fee?", a: "It's a charge some one-way rentals carry to cover repositioning the vehicle when your drop-off city differs from your pickup city. It reflects supply and demand between the two locations, so popular corridors are cheap while low-demand returns cost more." },
+      { q: "Are one-way rentals worth it?", a: "Often, yes — especially when the alternative is doubling back a full day to return the car, or booking an intercity flight plus a second rental. Price the all-in one-way total and compare it against those alternatives, including your time." },
+      { q: "Can I pick up and drop off at different airports?", a: "Yes. One-way rentals between airports are ideal for fly-in, fly-out road trips. Give both airports and your dates when you call and we'll quote the one-way rate and confirm unlimited mileage." },
+    ],
+  },
 ];
