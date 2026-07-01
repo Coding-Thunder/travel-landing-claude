@@ -363,7 +363,7 @@ export const siteConfig = {
       links: [
         { label: "About Us", href: "/about" },
         { label: "Contact Us", href: "/contact" },
-        { label: "How it works", href: "/#how-it-works" },
+        { label: "Blog", href: "/blog" },
         { label: "Customer reviews", href: "/#reviews" },
       ],
     },

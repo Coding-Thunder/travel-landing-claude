@@ -7,7 +7,7 @@ const NAV = [
   { label: "Airports", href: "/airports" },
   { label: "Vehicles", href: "/vehicles" },
   { label: "How it works", href: "/#how-it-works" },
-  { label: "Reviews", href: "/#reviews" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
 ];
 

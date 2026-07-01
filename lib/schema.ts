@@ -120,6 +120,30 @@ export function vehicleSchema(v: { name: string; slug: string; priceFrom: number
   };
 }
 
+export function articleSchema(input: {
+  title: string;
+  description: string;
+  slug: string;
+  image: string;
+  author: string;
+  publishedAt: string;
+  updatedAt: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: input.title,
+    description: input.description,
+    image: input.image,
+    author: { "@type": "Person", name: input.author },
+    publisher: { "@id": `${url}/#organization` },
+    datePublished: input.publishedAt,
+    dateModified: input.updatedAt,
+    mainEntityOfPage: `${url}/blog/${input.slug}`,
+    url: `${url}/blog/${input.slug}`,
+  };
+}
+
 export function breadcrumbSchema(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",

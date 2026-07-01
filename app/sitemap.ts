@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/siteConfig";
 import { airports } from "@/config/airports";
 import { vehicleCategories } from "@/config/vehicles";
+import { allPosts, categories, tags } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
@@ -19,6 +20,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...vehicleCategories.map((v) => ({
       path: `/vehicles/${v.slug}`,
       priority: 0.8,
+      changeFrequency: "monthly" as const,
+    })),
+    { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
+    ...allPosts.map((p) => ({
+      path: `/blog/${p.slug}`,
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    })),
+    ...categories().map((c) => ({
+      path: `/blog/category/${c.slug}`,
+      priority: 0.5,
+      changeFrequency: "weekly" as const,
+    })),
+    ...tags().map((t) => ({
+      path: `/blog/tag/${t.slug}`,
+      priority: 0.4,
       changeFrequency: "monthly" as const,
     })),
     { path: "/about", priority: 0.8, changeFrequency: "monthly" },
