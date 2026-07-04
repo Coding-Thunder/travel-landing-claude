@@ -1,4 +1,4 @@
-import Hero from "./components/Hero";
+import Hero from "./components/home/Hero";
 import TrustBar from "./components/TrustBar";
 import VehicleTypes from "./components/VehicleTypes";
 import WhyChooseUs from "./components/WhyChooseUs";
