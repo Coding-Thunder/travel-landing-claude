@@ -1,148 +1,211 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/config/siteConfig";
-import Container from "../components/ui/Container";
-import Icon from "../components/ui/Icon";
-import PageHero from "../components/PageHero";
-import CtaButton from "../components/call/CtaButton";
-import JsonLd from "../components/seo/JsonLd";
-import { breadcrumbSchema, localBusinessSchema, organizationSchema } from "@/lib/schema";
+import Link from "next/link";
+import { site } from "@/config/site";
+import { pageMetadata, organizationSchema, breadcrumbSchema } from "@/lib/seo";
+import PageHero from "@/app/components/trip/page-hero";
+import { Section, SectionHeading } from "@/app/components/trip/section";
+import Reveal from "@/app/components/trip/reveal";
+import Icon from "@/app/components/trip/lucide-icon";
+import EnquiryForm from "@/app/components/trip/EnquiryForm";
+import TrustBar from "@/app/components/trip/trust-bar";
+import JsonLd from "@/app/components/trip/json-ld";
+import { Button } from "@/components/ui/button";
 
-export const metadata: Metadata = {
-  title: "Contact Us — 24/7 Phone Reservations & Support",
-  description: `Contact ${siteConfig.name} for car rental reservations and support. Call ${siteConfig.phoneDisplay} 24/7, request a callback, or email ${siteConfig.email}. Nationwide coverage across all 50 US states.`,
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    title: `Contact ${siteConfig.name}`,
-    description: `Call ${siteConfig.phoneDisplay} 24/7 or request a callback for car rental reservations and support.`,
-    url: "/contact",
-    type: "website",
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Contact Us",
+  description:
+    "Get in touch with the TripReservations customer support team for help with reservation requests, booking enquiries and general travel questions. Reach us by email or online enquiry form during business hours.",
+  path: "/contact",
+});
+
+const email = site.company.supportEmail;
+const phone = site.company.phone;
+const hasPhone = !phone.startsWith("[");
+const telHref = site.company.phoneHref || phone.replace(/[^\d+]/g, "");
 
 export default function ContactPage() {
-  const { phone, phoneVanity, phoneDisplay, callResponse, email, addressLine, addressCity, addressRegionCode, addressPostal, supportHours, business, name } = siteConfig;
-
-  const methods = [
-    {
-      icon: "phone" as const,
-      label: "Call us",
-      value: phoneVanity,
-      sub: `${phoneDisplay} · ${callResponse}`,
-      href: `tel:${phone}`,
-    },
-    {
-      icon: "headset" as const,
-      label: "Email us",
-      value: email,
-      sub: "We reply within one business day",
-      href: `mailto:${email}`,
-    },
-    {
-      icon: "map" as const,
-      label: "Mailing address",
-      value: `${addressCity}, ${addressRegionCode} ${addressPostal}`,
-      sub: addressLine,
-      href: undefined,
-    },
-    {
-      icon: "clock" as const,
-      label: "Support hours",
-      value: "Open 24/7",
-      sub: "Including weekends & holidays",
-      href: undefined,
-    },
-  ];
-
   return (
     <>
       <JsonLd
         data={[
           organizationSchema(),
-          localBusinessSchema(),
           breadcrumbSchema([
             { name: "Home", path: "/" },
-            { name: "Contact Us", path: "/contact" },
+            { name: "Contact", path: "/contact" },
           ]),
         ]}
       />
 
       <PageHero
-        eyebrow="Contact us"
-        title="We're here 24/7 — just call"
-        subtitle={`Speak with a live US-based ${name} agent any time, day or night. Call for the best rate, request a callback, or send us a message.`}
+        eyebrow="Contact"
+        title="We're here to help"
+        subtitle="Our customer support team is available to assist you with reservation requests, booking enquiries and general travel questions."
         breadcrumbs={[
           { name: "Home", href: "/" },
-          { name: "Contact Us", href: "/contact" },
+          { name: "Contact", href: "/contact" },
         ]}
       />
 
-      <Container className="py-14 sm:py-16">
-        {/* Primary call CTA */}
-        <div className="rounded-3xl border border-brand-100 bg-brand-50 p-6 sm:p-8">
-          <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand-700">
-                Reservations &amp; support · 24/7
+      <Section tone="white">
+        <SectionHeading
+          eyebrow="Get in touch"
+          title="Contact our reservation team"
+          subtitle="Send us the details of your trip and we'll respond with suitable accommodation options. You can also reach us using the contact details below during business hours."
+        />
+
+        <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-14">
+          {/* LEFT — contact information */}
+          <div className="space-y-6">
+            <Reveal>
+              <h3 className="text-lg font-semibold text-navy-900">Contact details</h3>
+              <p className="mt-1 text-sm leading-relaxed text-navy-600">
+                Prefer to contact us directly? Use the details below and a member of our team will be glad to help.
               </p>
-              <a
-                href={`tel:${phone}`}
-                className="mt-1 block text-3xl font-extrabold tracking-tight text-slate-900 hover:text-brand-700 sm:text-4xl"
-              >
-                {phoneVanity}
-              </a>
-              <p className="mt-1 text-sm text-slate-600">{phoneDisplay} · {callResponse}</p>
-            </div>
-            <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row">
-              <a
-                href={`tel:${phone}`}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.55)] transition hover:bg-brand-700"
-              >
-                <Icon name="phone" className="h-5 w-5" />
-                Call Now
-              </a>
-              <CtaButton source="contact-callback" variant="secondary" size="lg">
-                <Icon name="headset" className="h-5 w-5 text-brand-600" />
-                Request a Callback
-              </CtaButton>
-            </div>
+            </Reveal>
+
+            <ul className="space-y-4">
+              {/* Email */}
+              <Reveal as="li" delay={0.04}>
+                <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
+                    <Icon name="mail" className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-navy-900">Email</p>
+                    <a
+                      href={`mailto:${email}`}
+                      className="mt-0.5 block break-words text-sm font-medium text-royal-700 underline-offset-4 hover:underline"
+                    >
+                      {email}
+                    </a>
+                    <p className="mt-1 text-xs leading-relaxed text-navy-500">
+                      The quickest way to reach us. We aim to reply as soon as possible during business hours.
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Telephone */}
+              <Reveal as="li" delay={0.08}>
+                <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
+                    <Icon name="phone" className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-navy-900">Telephone</p>
+                    {hasPhone ? (
+                      <a
+                        href={`tel:${telHref}`}
+                        className="mt-0.5 block text-sm font-medium text-royal-700 underline-offset-4 hover:underline"
+                      >
+                        {phone}
+                      </a>
+                    ) : (
+                      <p className="mt-0.5 text-sm font-medium text-navy-700">Available during business hours</p>
+                    )}
+                    <p className="mt-1 text-xs leading-relaxed text-navy-500">
+                      Lines are open during the hours listed below. Outside these times, please email us or use the
+                      enquiry form.
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Registered office */}
+              <Reveal as="li" delay={0.12}>
+                <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
+                    <Icon name="map-pin" className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-navy-900">Registered office</p>
+                    <address className="mt-0.5 text-sm font-medium not-italic leading-relaxed text-navy-700">
+                      {site.company.registeredOffice}
+                    </address>
+                    <p className="mt-1 text-xs leading-relaxed text-navy-500">
+                      Correspondence address for {site.legalName}. Please note this is not a walk-in customer centre.
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            </ul>
+
+            {/* Business hours */}
+            <Reveal delay={0.16}>
+              <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-sm">
+                <div className="flex items-center gap-2.5">
+                  <Icon name="clock" className="h-5 w-5 text-royal-600" />
+                  <h3 className="text-base font-semibold text-navy-900">Business hours</h3>
+                </div>
+                <p className="mt-2 text-xs leading-relaxed text-navy-500">
+                  All times are UK time (GMT/BST). Enquiries received outside these hours are answered on the next
+                  working day.
+                </p>
+                <table className="mt-4 w-full text-sm">
+                  <tbody className="divide-y divide-navy-100">
+                    {site.hours.map((h) => (
+                      <tr key={h.day}>
+                        <th scope="row" className="py-2.5 text-left font-medium text-navy-700">
+                          {h.day}
+                        </th>
+                        <td className="py-2.5 text-right text-navy-600">{h.time}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Reveal>
+
+            {/* Map placeholder — no fake map/address embedded */}
+            <Reveal delay={0.2}>
+              <div className="flex items-start gap-4 rounded-2xl border border-dashed border-navy-200 bg-navy-50 p-6">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-navy-500 ring-1 ring-navy-100">
+                  <Icon name="map-pin" className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-navy-900">Find us on the map</p>
+                  <p className="mt-1 text-sm leading-relaxed text-navy-600">
+                    An interactive Google Map of our registered office will be added here once the address has been
+                    confirmed.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* RIGHT — enquiry form */}
+          <div>
+            <EnquiryForm heading="Send us a message" />
           </div>
         </div>
 
-        {/* Contact methods */}
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {methods.map((m) => {
-            const inner = (
-              <>
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <Icon name={m.icon} className="h-5 w-5" />
-                </span>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-slate-400">{m.label}</p>
-                <p className="mt-1 text-base font-bold text-slate-900">{m.value}</p>
-                <p className="mt-0.5 text-sm text-slate-500">{m.sub}</p>
-              </>
-            );
-            return m.href ? (
-              <a key={m.label} href={m.href} className="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-brand-200 hover:shadow-[var(--shadow-card)]">
-                {inner}
-              </a>
-            ) : (
-              <div key={m.label} className="rounded-2xl border border-slate-200 bg-white p-5">
-                {inner}
-              </div>
-            );
-          })}
-        </div>
+        {/* Related links */}
+        <Reveal delay={0.1}>
+          <div className="mt-12 flex flex-col items-start gap-4 rounded-2xl border border-navy-100 bg-navy-50 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div>
+              <h3 className="text-base font-semibold text-navy-900">Have a general question?</h3>
+              <p className="mt-1 text-sm leading-relaxed text-navy-600">
+                You may find an immediate answer on our{" "}
+                <Link href="/faq" className="font-medium text-royal-700 underline-offset-4 hover:underline">
+                  frequently asked questions
+                </Link>{" "}
+                page, or read more about{" "}
+                <Link href="/hotels" className="font-medium text-royal-700 underline-offset-4 hover:underline">
+                  our hotel reservation service
+                </Link>
+                .
+              </p>
+            </div>
+            <Button asChild variant="royal" size="lg" className="shrink-0">
+              <Link href="/hotels">Explore hotels</Link>
+            </Button>
+          </div>
+        </Reveal>
 
-        {/* Business transparency */}
-        <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-7">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-slate-900">
-            <Icon name="shield" className="h-5 w-5 text-brand-600" />
-            About our business
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600">{business.description}</p>
-          <p className="mt-3 text-sm text-slate-600">{supportHours}</p>
-        </div>
-      </Container>
+        <p className="mt-8 text-xs leading-relaxed text-navy-500">{site.disclaimer}</p>
+      </Section>
+
+      <TrustBar />
     </>
   );
 }

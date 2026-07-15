@@ -1,111 +1,160 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import LegalLayout from "../components/LegalLayout";
-import { siteConfig } from "@/config/siteConfig";
+import LegalLayout from "@/app/components/trip/legal-layout";
+import JsonLd from "@/app/components/trip/json-ld";
+import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Cookie Policy",
-  description: `Cookie policy for ${siteConfig.legalName} — the cookies and analytics we use (including Google Analytics and Google Ads), why we use them, and how to control them.`,
-  alternates: { canonical: "/cookie-policy" },
-  robots: { index: true, follow: true },
-};
+  description:
+    "How TripReservations.co.uk uses cookies and similar technologies on this website, the categories of cookies we use and how you can manage them.",
+  path: "/cookie-policy",
+});
 
 export default function CookiePolicyPage() {
   return (
-    <LegalLayout
-      title="Cookie Policy"
-      updated="June 2026"
-      intro={`This Cookie Policy explains how ${siteConfig.legalName} ("we", "us", "our") uses cookies and similar technologies on this website, the categories of cookies we set, and the choices you have. It should be read alongside our Privacy Policy.`}
-    >
-      <section>
-        <h2>1. What cookies are</h2>
-        <p>
-          Cookies are small text files placed on your device when you visit a website. They let a site
-          remember your actions and preferences, measure how the site is used, and — with your consent
-          where required — measure the performance of advertising. Similar technologies such as pixels,
-          local storage and device identifiers work in comparable ways, and we refer to all of them as
-          &ldquo;cookies&rdquo; in this policy.
-        </p>
-      </section>
+    <>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Cookie Policy", path: "/cookie-policy" },
+          ]),
+        ]}
+      />
 
-      <section>
-        <h2>2. How we use cookies</h2>
-        <p>We group the cookies on this site into three categories:</p>
-        <ul>
-          <li>
-            <strong>Strictly necessary.</strong> Required for the site to function — for example,
-            remembering that you have dismissed our cookie notice. These do not track you across sites and
-            cannot be switched off through our banner.
-          </li>
-          <li>
-            <strong>Analytics.</strong> We use Google Analytics to understand which pages are visited and
-            how visitors move through the site, so we can improve it. This data is aggregated and used for
-            measurement, not to identify you personally.
-          </li>
-          <li>
-            <strong>Advertising.</strong> We use Google Ads, including conversion tracking and remarketing,
-            to measure the effectiveness of our advertising and to understand which visits lead to a phone
-            call or callback request. These cookies may be used to show you relevant ads on other sites.
-          </li>
-        </ul>
-      </section>
+      <LegalLayout
+        title="Cookie Policy"
+        updated="July 2026"
+        intro="This Cookie Policy explains how we use cookies and similar technologies on this website."
+      >
+        <section>
+          <h2>1. What Are Cookies?</h2>
+          <p>
+            Cookies are small text files that are placed on your computer, tablet or mobile
+            device when you visit a website. They are widely used to make websites work, to
+            make them work more efficiently and to provide information to the website owner.
+          </p>
+          <p>
+            A cookie allows a website to recognise your device and remember certain
+            information about your visit, such as your preferences or the pages you have
+            viewed. Similar technologies, including pixels, tags and local storage, perform
+            comparable functions. In this policy we refer to all of these technologies
+            collectively as &ldquo;cookies&rdquo;.
+          </p>
+        </section>
 
-      <section>
-        <h2>3. Third-party cookies</h2>
-        <p>
-          Some cookies are set by third parties that provide services to us. The main third parties on this
-          site are Google Analytics and Google Ads (both operated by Google). Their use of information is
-          governed by Google&rsquo;s own privacy and cookie policies. We do not control cookies set by
-          third parties, and we recommend reviewing their policies for details.
-        </p>
-      </section>
+        <section>
+          <h2>2. We Use Cookies To</h2>
+          <p>
+            We use cookies on TripReservations.co.uk to help our website operate reliably and
+            to improve the service we provide. In particular, we use cookies to:
+          </p>
+          <ul>
+            <li>
+              <strong>Improve performance</strong> &mdash; help our website load and run
+              efficiently across different devices and browsers.
+            </li>
+            <li>
+              <strong>Remember your preferences</strong> &mdash; recall choices you have made,
+              such as previously entered details, so you do not have to re-enter them.
+            </li>
+            <li>
+              <strong>Enhance security</strong> &mdash; help protect our website and your
+              information, and support the safe handling of enquiries submitted through the
+              site.
+            </li>
+            <li>
+              <strong>Analyse traffic</strong> &mdash; understand how visitors find and use
+              our website so that we can measure and improve its performance.
+            </li>
+            <li>
+              <strong>Improve your experience</strong> &mdash; make the website easier to
+              navigate and more relevant to the way our visitors use it.
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h2>4. Managing your cookies</h2>
-        <p>You can control cookies in several ways:</p>
-        <ul>
-          <li>
-            <strong>Browser settings.</strong> Most browsers let you block or delete cookies and warn you
-            before they are set. Blocking all cookies may affect how parts of this and other websites work.
-          </li>
-          <li>
-            <strong>Google&rsquo;s controls.</strong> You can opt out of personalized advertising through
-            Google&rsquo;s Ads Settings, and you can install Google&rsquo;s Analytics opt-out browser
-            add-on to prevent Analytics measurement.
-          </li>
-          <li>
-            <strong>Do Not Track.</strong> This site does not respond differently to browser
-            &ldquo;Do Not Track&rdquo; signals, as there is not yet a common standard for them.
-          </li>
-        </ul>
-      </section>
+        <section>
+          <h2>3. Types of Cookies We Use</h2>
+          <p>
+            The cookies used on this website fall into the following broad categories:
+          </p>
+          <ul>
+            <li>
+              <strong>Essential cookies.</strong> These cookies are necessary for the website
+              to function correctly. They enable core features such as page navigation, form
+              submission and access to secure areas of the site. Without these cookies, parts
+              of the website cannot work as intended.
+            </li>
+            <li>
+              <strong>Functional cookies.</strong> These cookies allow the website to remember
+              choices you make and to provide enhanced, more personalised features, such as
+              retaining information you have entered when requesting assistance.
+            </li>
+            <li>
+              <strong>Analytics cookies.</strong> These cookies collect information about how
+              visitors use our website, for example which pages are visited most often. The
+              information is aggregated and used to help us improve the way the website works.
+            </li>
+            <li>
+              <strong>Performance cookies.</strong> These cookies help us monitor and improve
+              the performance of the website, for example by measuring loading times and
+              identifying errors so that we can resolve them.
+            </li>
+          </ul>
+        </section>
 
-      <section>
-        <h2>5. Changes to this policy</h2>
-        <p>
-          We may update this Cookie Policy as our practices or applicable laws change. When we do, we will
-          revise the &ldquo;last updated&rdquo; date above. Material changes will be reflected on this page.
-        </p>
-      </section>
+        <section>
+          <h2>4. Managing Cookies</h2>
+          <p>
+            You can control and manage cookies in several ways. Most web browsers allow you to
+            view the cookies stored on your device, to delete individual cookies, to block
+            cookies from particular websites and to block cookies altogether. The options
+            available to you are usually found within your browser&rsquo;s settings or
+            preferences menu.
+          </p>
+          <p>
+            Please note that if you choose to disable or block cookies, some parts of this
+            website may not function correctly. In particular, disabling essential cookies may
+            affect features such as submitting an enquiry, and disabling functional cookies may
+            mean the site is unable to remember your preferences.
+          </p>
+        </section>
 
-      <section>
-        <h2>6. Contact us</h2>
-        <p>
-          Questions about this policy? Call us at{" "}
-          <a href={`tel:${siteConfig.phone}`} className="font-semibold text-brand-600 underline-offset-4 hover:underline">
-            {siteConfig.phoneDisplay}
-          </a>{" "}
-          or email{" "}
-          <a href={`mailto:${siteConfig.email}`} className="font-semibold text-brand-600 underline-offset-4 hover:underline">
-            {siteConfig.email}
-          </a>
-          . See also our{" "}
-          <Link href="/privacy-policy" className="font-semibold text-brand-600 underline-offset-4 hover:underline">
-            Privacy Policy
-          </Link>
-          .
-        </p>
-      </section>
-    </LegalLayout>
+        <section>
+          <h2>5. Third-Party Services</h2>
+          <p>
+            Some cookies on this website may be set by trusted third-party providers that
+            support the operation and measurement of our site, such as analytics and security
+            services. Where this is the case, those providers may use cookies in accordance
+            with their own privacy and cookie policies, over which we have no direct control.
+          </p>
+          <p>
+            We recommend reviewing the relevant provider&rsquo;s policies to understand how
+            they use cookies and the information collected through them. We do not use cookies
+            to sell your personal information.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Updates to This Policy</h2>
+          <p>
+            We may update this Cookie Policy from time to time to reflect changes in the
+            technologies we use, changes to our practices, or changes in applicable law. When
+            we make changes, we will revise the &ldquo;last updated&rdquo; date shown at the
+            top of this page. We encourage you to review this policy periodically so that you
+            remain informed about how we use cookies.
+          </p>
+          <p>
+            This Cookie Policy should be read together with our{" "}
+            <Link href="/privacy">Privacy Policy</Link>, which explains how we handle your
+            personal information, and our{" "}
+            <Link href="/terms">Terms &amp; Conditions</Link>, which govern your use of this
+            website. If you have any questions about our use of cookies, please{" "}
+            <Link href="/contact">contact us</Link> and our team will be happy to help.
+          </p>
+        </section>
+      </LegalLayout>
+    </>
   );
 }

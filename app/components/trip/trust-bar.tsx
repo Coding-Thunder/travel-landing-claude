@@ -1,6 +1,6 @@
 import { site } from "@/config/site";
 import Container from "./container";
-import Icon from "./icon";
+import Icon from "./lucide-icon";
 import Reveal from "./reveal";
 
 export default function TrustBar() {

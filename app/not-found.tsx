@@ -1,49 +1,56 @@
 import Link from "next/link";
-import { siteConfig } from "@/config/siteConfig";
-import Container from "./components/ui/Container";
-import Icon from "./components/ui/Icon";
+import Container from "@/app/components/trip/container";
+import Reveal from "@/app/components/trip/reveal";
+import { Button } from "@/components/ui/button";
 
-const LINKS = [
-  { label: "Airport rentals", href: "/airports" },
-  { label: "Vehicle types", href: "/vehicles" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+const QUICK_LINKS = [
+  { label: "Browse hotel categories", href: "/hotels" },
+  { label: "Frequently asked questions", href: "/faq" },
 ];
 
 export default function NotFound() {
   return (
-    <Container className="flex min-h-[62vh] flex-col items-center justify-center py-20 text-center">
-      <p className="text-7xl font-extrabold tracking-tight text-brand-600 sm:text-8xl">404</p>
-      <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-        This page took a wrong turn
-      </h1>
-      <p className="mt-3 max-w-md text-slate-600">
-        The page you&rsquo;re looking for doesn&rsquo;t exist or has moved. Let&rsquo;s get you back on the road.
-      </p>
+    <section className="bg-white py-24 sm:py-28 lg:py-32">
+      <Container className="max-w-2xl text-center">
+        <Reveal>
+          <p className="text-7xl font-semibold tracking-tight text-navy-900 sm:text-8xl">404</p>
+          <h1 className="mt-6 text-2xl font-semibold tracking-tight text-navy-900 sm:text-3xl">
+            This page could not be found.
+          </h1>
+          <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-navy-600">
+            The page you were looking for may have moved, or the link might be
+            out of date. Our reservation team is on hand if you need help finding
+            the right stay.
+          </p>
 
-      <div className="mt-7 flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row">
-        <Link
-          href="/"
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.55)] transition hover:bg-brand-700"
-        >
-          Back to home
-        </Link>
-        <a
-          href={`tel:${siteConfig.phone}`}
-          className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-base font-bold text-slate-900 transition hover:bg-slate-50"
-        >
-          <Icon name="phone" className="h-5 w-5 text-brand-600" />
-          Call {siteConfig.phoneVanity}
-        </a>
-      </div>
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button asChild variant="royal" size="lg">
+              <Link href="/">Back to home</Link>
+            </Button>
+            <Button asChild variant="navyOutline" size="lg">
+              <Link href="/contact">Contact support</Link>
+            </Button>
+          </div>
 
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-semibold text-slate-500">
-        {LINKS.map((l) => (
-          <Link key={l.href} href={l.href} className="transition hover:text-brand-700">
-            {l.label}
-          </Link>
-        ))}
-      </div>
-    </Container>
+          <div className="mt-12 border-t border-navy-100 pt-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-royal-600">
+              Popular pages
+            </p>
+            <ul className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium text-navy-700">
+              {QUICK_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="underline-offset-4 transition-colors hover:text-royal-700 hover:underline"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      </Container>
+    </section>
   );
 }
