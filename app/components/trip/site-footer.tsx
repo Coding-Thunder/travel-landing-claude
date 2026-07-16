@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { site } from "@/config/site";
+import { LogoMark } from "./logo";
 
 const hasPhone = !site.company.phone.startsWith("[");
 
@@ -12,7 +13,7 @@ export default function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-royal-600 text-sm font-bold text-white">TR</span>
+              <LogoMark className="h-9 w-9" />
               <span className="text-lg font-semibold tracking-tight text-white">{site.name}</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-200">
