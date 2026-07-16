@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 export const metadata = pageMetadata({
   title: "About Us",
   description:
-    "Learn about TripReservations.co.uk — an independent UK travel reservation service providing professional, transparent hotel booking assistance for leisure, business and group travel.",
+    "Learn about TripReservations.co.uk — an independent UK travel reservation service providing professional, transparent flight, hotel and car rental booking assistance for leisure, business and group travel.",
   path: "/about",
 });
 
@@ -67,7 +67,7 @@ const WHY_CHOOSE: { icon: string; title: string; description: string }[] = [
     icon: "users",
     title: "Experienced Reservation Specialists",
     description:
-      "A team that understands accommodation options and how to match them to the way you travel.",
+      "A team that understands travel options and how to match them to the way you travel.",
   },
   {
     icon: "headset",
@@ -85,7 +85,7 @@ const WHY_CHOOSE: { icon: string; title: string; description: string }[] = [
     icon: "globe",
     title: "Worldwide Travel Assistance",
     description:
-      "Assistance with accommodation requests across a wide range of international and domestic destinations.",
+      "Assistance with travel requests across a wide range of international and domestic destinations.",
   },
   {
     icon: "file-check",
@@ -139,7 +139,7 @@ export default function AboutPage() {
             <div className="mt-6 space-y-4 text-base leading-relaxed text-navy-600 sm:text-[17px]">
               <p>
                 TripReservations.co.uk is an independent travel reservation company that helps
-                individuals, families and businesses plan their accommodation with confidence. We
+                individuals, families and businesses plan their travel with confidence. We
                 are not an airline, hotel chain or online travel agency; instead, we act as your
                 dedicated reservation assistant, taking the effort out of finding and arranging the
                 right place to stay.
@@ -147,8 +147,16 @@ export default function AboutPage() {
               <p>
                 Our purpose is straightforward — to simplify the reservation process. We provide
                 professional assistance for{" "}
+                <Link href="/flights" className="font-medium text-royal-700 underline-offset-4 hover:underline">
+                  flight reservations
+                </Link>
+                ,{" "}
                 <Link href="/hotels" className="font-medium text-royal-700 underline-offset-4 hover:underline">
                   hotel reservations
+                </Link>
+                ,{" "}
+                <Link href="/car-rentals" className="font-medium text-royal-700 underline-offset-4 hover:underline">
+                  car rental reservations
                 </Link>
                 ,{" "}
                 <Link href="/business-travel" className="font-medium text-royal-700 underline-offset-4 hover:underline">
@@ -163,14 +171,14 @@ export default function AboutPage() {
               </p>
               <p>
                 To do this well, we work with a network of trusted travel suppliers and reservation
-                partners. That reach allows us to present suitable accommodation options across a
+                partners. That reach allows us to present suitable travel options across a
                 wide range of destinations, while remaining transparent about supplier conditions,
                 availability and any applicable service fees.
               </p>
               <p>
                 Behind every enquiry is an experienced support team committed to responsive service
                 before, during and after the reservation process. Whether you are booking a single
-                night or arranging accommodation for a large group, we are here to help by
+                night or arranging travel for a large group, we are here to help by
                 telephone, email and our online enquiry form.
               </p>
             </div>
@@ -256,7 +264,7 @@ export default function AboutPage() {
         <SectionHeading
           eyebrow="Why choose us"
           title="Why customers choose us"
-          subtitle="Practical reasons travellers return to TripReservations.co.uk for their accommodation planning."
+          subtitle="Practical reasons travellers return to TripReservations.co.uk for their travel planning."
         />
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {WHY_CHOOSE.map((item, i) => (
@@ -306,7 +314,7 @@ export default function AboutPage() {
           </h2>
           <p className="mt-4 text-base leading-relaxed text-navy-100 sm:text-lg">
             Tell us where you are going and what you need. Our reservation specialists will follow
-            up with suitable accommodation options and a personalised quote.
+            up with suitable travel options and a personalised quote.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild variant="royal" size="lg">

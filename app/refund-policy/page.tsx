@@ -6,7 +6,7 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Refund & Cancellation Policy",
   description:
-    "How TripReservations.co.uk handles cancellation requests and refunds for hotel and accommodation reservation assistance, including supplier policies, processing times and chargebacks.",
+    "How TripReservations.co.uk handles cancellation requests and refunds for flight, hotel and car rental reservation assistance, including supplier policies, processing times and chargebacks.",
   path: "/refund-policy",
 });
 
@@ -30,7 +30,7 @@ export default function RefundPolicyPage() {
         <section>
           <h2>1. Our Commitment</h2>
           <p>
-            TripReservations.co.uk provides independent hotel and accommodation reservation
+            TripReservations.co.uk provides independent flight, hotel and car rental reservation
             assistance through a trusted network of travel suppliers. We are committed to handling
             every cancellation request and refund fairly, transparently and as promptly as the
             applicable supplier conditions allow. This policy sets out how we approach these
@@ -39,7 +39,7 @@ export default function RefundPolicyPage() {
           <p>
             Because we assist with reservations rather than provide the accommodation ourselves,
             the outcome of a cancellation or refund request often depends on the terms set by the
-            accommodation supplier, tour operator or other third party responsible for your
+            travel supplier, tour operator or other third party responsible for your
             booking. We will always explain those terms to you as clearly as we can and act on
             your behalf wherever it is within our ability to do so. This policy should be read
             together with our{" "}
@@ -55,7 +55,7 @@ export default function RefundPolicyPage() {
             best chance of minimising any charges that a supplier may apply.
           </p>
           <p>
-            All cancellations are subject to the policies of the relevant accommodation supplier
+            All cancellations are subject to the policies of the relevant travel supplier
             or tour operator, along with the fare rules, rate rules and booking conditions that
             applied when your reservation was confirmed. These conditions vary from one supplier
             and rate to another, and some cannot be cancelled or amended once confirmed. When you
@@ -75,7 +75,7 @@ export default function RefundPolicyPage() {
             terms attached to your reservation. Eligibility is determined by factors including:
           </p>
           <ul>
-            <li>The accommodation or hotel supplier&apos;s cancellation and refund policies.</li>
+            <li>The travel supplier&apos;s cancellation and refund policies.</li>
             <li>The policies of any tour operator or third party involved in the booking.</li>
             <li>The rate rules and booking conditions applicable to the reservation you selected.</li>
           </ul>
@@ -97,7 +97,7 @@ export default function RefundPolicyPage() {
             promptly to put things right when the fault lies with us.
           </p>
           <p>
-            Where the issue relates to the accommodation supplier or another third party — for
+            Where the issue relates to the travel supplier or another third party — for
             example, an overbooking, closure or change made by the property — we will assist you
             in communicating with the supplier and support your case to reach a fair resolution.
             Any refund in these circumstances remains subject to the supplier&apos;s own policies.
@@ -121,7 +121,7 @@ export default function RefundPolicyPage() {
         <section>
           <h2>6. Supplier Charges</h2>
           <p>
-            Accommodation suppliers, tour operators and other travel providers may apply their own
+            Travel suppliers, tour operators and other travel providers may apply their own
             charges when a reservation is cancelled or changed. These can include:
           </p>
           <ul>

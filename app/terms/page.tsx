@@ -32,8 +32,8 @@ export default function TermsPage() {
           <p>
             These Terms &amp; Conditions govern your use of the TripReservations.co.uk
             website and the travel reservation assistance we provide. TripReservations.co.uk
-            is an independent reservation assistance service that helps you request hotel and
-            accommodation bookings through a trusted network of travel suppliers. We are not an
+            is an independent reservation assistance service that helps you request flight, hotel
+            and car rental reservations through a trusted network of travel suppliers. We are not an
             airline, an online travel agent, a hotel chain or a vehicle rental company, and we do
             not claim any official partnership or accreditation with those organisations.
           </p>
@@ -47,28 +47,36 @@ export default function TermsPage() {
         <section>
           <h2>2. Our Services</h2>
           <p>
-            We provide reservation assistance with a focus on hotel and accommodation
-            arrangements. Working with our supplier network, our reservation specialists help you
-            find and request accommodation that suits your requirements. Our services include:
+            We provide travel reservation assistance across flights, hotels and car rentals.
+            Working with our supplier network, our reservation specialists help you find and request
+            travel arrangements that suit your requirements. Our services include:
           </p>
           <ul>
             <li>
-              <strong>Hotel reservations</strong> — assistance with individual accommodation
-              requests across a wide range of domestic and international destinations.
+              <strong>Flight reservations</strong> — assistance with domestic and international
+              flight requests, including one-way, return and multi-city itineraries.
             </li>
             <li>
-              <strong>Business travel accommodation</strong> — support for companies and business
-              travellers arranging hotel stays for work.
+              <strong>Hotel reservations</strong> — assistance with accommodation requests across a
+              wide range of domestic and international destinations.
             </li>
             <li>
-              <strong>Group travel accommodation</strong> — assistance with reservation requests
-              for corporate groups, families and other parties travelling together.
+              <strong>Car rental reservations</strong> — assistance with vehicle requests for
+              airport, city, weekend, long-term and business travel.
+            </li>
+            <li>
+              <strong>Business travel</strong> — support for companies and business travellers
+              arranging flights, accommodation and vehicles for work.
+            </li>
+            <li>
+              <strong>Group travel</strong> — assistance with reservation requests for corporate
+              groups, families and other parties travelling together.
             </li>
           </ul>
           <p>
-            All accommodation is provided by independent suppliers. Our role is to assist you with
-            your reservation request and to provide customer support; we do not own, operate or
-            control the accommodation itself.
+            All travel services are provided by independent suppliers. Our role is to assist you
+            with your reservation request and to provide customer support; we do not own, operate or
+            control the flights, accommodation or vehicles themselves.
           </p>
         </section>
 

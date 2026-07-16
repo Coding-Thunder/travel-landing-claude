@@ -11,7 +11,9 @@ type Route = {
 
 const routes: Route[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
+  { path: "/flights", priority: 0.9, changeFrequency: "weekly" },
   { path: "/hotels", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/car-rentals", priority: 0.9, changeFrequency: "weekly" },
   { path: "/business-travel", priority: 0.9, changeFrequency: "weekly" },
   { path: "/group-travel", priority: 0.9, changeFrequency: "weekly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },

@@ -13,6 +13,11 @@ import {
   MapPin,
   Clock,
   Mail,
+  Plane,
+  Car,
+  Building2,
+  Route,
+  CalendarCheck,
   type LucideIcon,
 } from "lucide-react";
 
@@ -31,6 +36,11 @@ const MAP: Record<string, LucideIcon> = {
   "map-pin": MapPin,
   clock: Clock,
   mail: Mail,
+  plane: Plane,
+  car: Car,
+  building: Building2,
+  route: Route,
+  "calendar-check": CalendarCheck,
 };
 
 export default function Icon({ name, className }: { name: string; className?: string }) {

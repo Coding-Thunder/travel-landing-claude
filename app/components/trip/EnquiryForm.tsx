@@ -9,7 +9,7 @@ import { submitEnquiry } from "@/app/actions/enquiry";
 import { site } from "@/config/site";
 import { cn } from "@/lib/cn";
 
-const SERVICES = ["Hotel Reservation", "Business Travel", "Group Travel", "Other"];
+const SERVICES = ["Flight Reservation", "Hotel Reservation", "Car Rental Reservation", "Business Travel", "Group Travel", "Other"];
 
 export default function EnquiryForm({
   heading = "Request a personalised quote",

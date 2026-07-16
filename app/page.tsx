@@ -20,13 +20,13 @@ import FaqAccordion from "@/app/components/trip/faq-accordion";
 import JsonLd from "@/app/components/trip/json-ld";
 
 export const metadata = pageMetadata({
-  title: "Professional Hotel Reservation Assistance",
+  title: "Flight, Hotel & Car Rental Reservation Assistance",
   description: site.seo.description,
   path: "/",
 });
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=80";
+  "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2000&q=80";
 
 const steps = [
   {
@@ -37,7 +37,7 @@ const steps = [
   {
     title: "We source suitable options",
     description:
-      "Our reservation specialists search our trusted supplier network for accommodation that fits your brief.",
+      "Our reservation specialists search our trusted supplier network for flights, hotels and vehicles that fit your brief.",
   },
   {
     title: "You review and confirm",
@@ -47,13 +47,11 @@ const steps = [
   {
     title: "We support you throughout",
     description:
-      "Dedicated assistance before, during and after your stay, including changes where the supplier's policy allows.",
+      "Dedicated assistance before, during and after your trip, including changes where the supplier's policy allows.",
   },
 ];
 
 export default function HomePage() {
-  const featured = site.hotelCategories[0];
-  const categories = site.hotelCategories.slice(1);
   const homeFaqs = site.faqs.slice(0, 6);
 
   return (
@@ -71,33 +69,27 @@ export default function HomePage() {
       <section className="relative isolate overflow-hidden bg-navy-900">
         <Image
           src={HERO_IMAGE}
-          alt="Interior of an elegant hotel suite in warm evening light"
+          alt="An aircraft wing above the clouds at golden hour"
           fill
           priority
           sizes="100vw"
           className="object-cover object-center opacity-40"
         />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/80 to-navy-900/50"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-r from-navy-950/70 via-navy-950/20 to-transparent"
-        />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/80 to-navy-900/50" />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-navy-950/70 via-navy-950/20 to-transparent" />
 
         <Container className="relative py-24 sm:py-28 lg:py-36">
           <Reveal className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-royal-300">
-              Hotel reservation assistance · Worldwide
+              Flight · Hotel · Car rental reservation assistance
             </p>
             <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl lg:leading-[1.05]">
-              Hotel reservations, handled with care.
+              Your whole trip, reserved with care.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-100">
-              Professional, independent assistance with your accommodation — sourced through a
-              trusted supplier network and supported by specialists who take the detail off your
-              hands.
+              Professional, independent assistance with your flights, hotels and car rental —
+              sourced through a trusted supplier network and supported by specialists who take the
+              detail off your hands.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -110,7 +102,7 @@ export default function HomePage() {
                 size="lg"
                 className="border-white/30 bg-transparent text-white hover:border-white hover:bg-white/10 hover:text-white"
               >
-                <Link href="/hotels">Explore hotel services</Link>
+                <Link href="#services">Explore our services</Link>
               </Button>
             </div>
 
@@ -128,76 +120,46 @@ export default function HomePage() {
       {/* 2 — Trust bar -------------------------------------------------- */}
       <TrustBar />
 
-      {/* 3 — Accommodation categories ---------------------------------- */}
-      <Section tone="white">
+      {/* 3 — Three services --------------------------------------------- */}
+      <Section id="services" tone="white">
         <SectionHeading
-          eyebrow="Accommodation"
-          title="Accommodation for every kind of trip"
-          subtitle="From value stays to five-star properties, we help you find accommodation that matches the purpose of your journey — leisure, business or something in between."
+          eyebrow="What we help with"
+          title="Three services, one dedicated team"
+          subtitle="Whether it is a single flight, a hotel for the weekend or a car for the week, we handle the reservation request from start to finish."
         />
 
-        <div className="mt-10 grid gap-5 lg:gap-6">
-          {/* Featured category */}
-          <Reveal>
-            <Link
-              href="/hotels"
-              className="group grid overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-sm transition hover:shadow-lg lg:grid-cols-2"
-            >
-              <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[22rem]">
-                <Image
-                  src={featured.image}
-                  alt={`Example of ${featured.name.toLowerCase()}`}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover transition duration-700 group-hover:scale-[1.04]"
-                />
-              </div>
-              <div className="flex flex-col justify-center gap-4 p-7 sm:p-9">
-                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-royal-600">
-                  Most requested
-                </span>
-                <h3 className="text-2xl font-semibold text-navy-900">{featured.name}</h3>
-                <p className="text-base leading-relaxed text-navy-600">{featured.description}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-royal-600">
-                  Explore options
-                  <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-                    →
+        <ul className="mt-10 grid gap-6 lg:grid-cols-3">
+          {site.services.map((svc, i) => (
+            <Reveal as="li" key={svc.name} delay={i * 0.07}>
+              <Link
+                href={svc.href}
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-sm transition hover:shadow-lg"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={svc.image}
+                    alt={`${svc.name} reservation assistance`}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    className="object-cover transition duration-700 group-hover:scale-[1.04]"
+                  />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy-950/40 to-transparent" />
+                  <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-navy-900 shadow-sm">
+                    {svc.name}
                   </span>
-                </span>
-              </div>
-            </Link>
-          </Reveal>
-
-          {/* Remaining categories */}
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-            {categories.map((cat, i) => (
-              <Reveal as="li" key={cat.name} delay={(i % 3) * 0.06}>
-                <Link
-                  href="/hotels"
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-sm transition hover:shadow-lg"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={cat.image}
-                      alt={`Example of ${cat.name.toLowerCase()}`}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                    />
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-gradient-to-t from-navy-950/35 to-transparent"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="text-lg font-semibold text-navy-900">{cat.name}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-navy-600">{cat.description}</p>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </ul>
-        </div>
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-xl font-semibold text-navy-900">{svc.name}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-600">{svc.description}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-royal-600">
+                    Explore {svc.name.toLowerCase()}
+                    <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </ul>
       </Section>
 
       {/* 4 — Why customers choose us (asymmetric, tint) ---------------- */}
@@ -205,16 +167,14 @@ export default function HomePage() {
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
             <Reveal className="lg:sticky lg:top-28">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-royal-600">
-                Why customers choose us
-              </p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-royal-600">Why customers choose us</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-navy-900 sm:text-4xl">
-                A calmer way to arrange your stay
+                A calmer way to arrange your travel
               </h2>
               <p className="mt-4 text-base leading-relaxed text-navy-600">
-                We are an independent reservation service, not an airline, hotel chain or online
-                travel agent. That means impartial recommendations, clear conditions and a real
-                person to help — with no pressure to book.
+                We are an independent reservation service, not an airline, hotel chain, car rental
+                company or online travel agent. That means impartial recommendations, clear
+                conditions and a real person to help — with no pressure to book.
               </p>
               <div className="mt-8">
                 <Button asChild variant="royal">
@@ -238,9 +198,7 @@ export default function HomePage() {
                   </span>
                   <div>
                     <h3 className="text-base font-semibold text-navy-900">{point.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-navy-600">
-                      {point.description}
-                    </p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-navy-600">{point.description}</p>
                   </div>
                 </Reveal>
               ))}
@@ -254,7 +212,7 @@ export default function HomePage() {
         <SectionHeading
           align="center"
           eyebrow="How it works"
-          title="From enquiry to check-out, in four simple steps"
+          title="From enquiry to confirmation, in four simple steps"
           subtitle="A straightforward process designed around your requirements — transparent at every stage."
         />
 
@@ -274,9 +232,7 @@ export default function HomePage() {
       {/* 6 — CTA band --------------------------------------------------- */}
       <Section tone="navy">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Ready to plan your stay?
-          </h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Ready to plan your trip?</h2>
           <p className="mt-4 text-base leading-relaxed text-navy-100 sm:text-lg">
             Tell us where you are heading and what you need. Our reservation specialists will be in
             touch during business hours with suitable options.
@@ -313,9 +269,7 @@ export default function HomePage() {
               <Link href="/faq">View all frequently asked questions</Link>
             </Button>
           </div>
-          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-navy-600">
-            {site.disclaimer}
-          </p>
+          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-navy-600">{site.disclaimer}</p>
         </div>
       </Section>
     </>
