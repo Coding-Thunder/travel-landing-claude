@@ -44,8 +44,17 @@ export function organizationSchema() {
     alternateName: site.name,
     url: site.url,
     email: site.company.supportEmail,
+    telephone: site.company.phoneHref || undefined,
     description: site.seo.description,
     areaServed: "Worldwide",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: site.company.address.street,
+      addressLocality: site.company.address.city,
+      addressRegion: site.company.address.region,
+      postalCode: site.company.address.postcode,
+      addressCountry: site.company.address.country,
+    },
   };
 }
 

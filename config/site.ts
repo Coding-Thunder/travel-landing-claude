@@ -25,7 +25,14 @@ export const site = {
   company: {
     registeredName: "[Registered company name]",
     companyNumber: "[Company registration number]",
-    registeredOffice: "[Registered office address]",
+    registeredOffice: "26 Zetland Place, Leeds, England, LS8 5PJ",
+    address: {
+      street: "26 Zetland Place",
+      city: "Leeds",
+      region: "England",
+      postcode: "LS8 5PJ",
+      country: "GB",
+    },
     supportEmail: "contact@tripreservations.co.uk",
     phone: "+44 7404 925908",
     phoneHref: "+447404925908",
