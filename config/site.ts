@@ -26,9 +26,9 @@ export const site = {
     registeredName: "[Registered company name]",
     companyNumber: "[Company registration number]",
     registeredOffice: "[Registered office address]",
-    supportEmail: "support@tripreservations.co.uk",
-    phone: "[Customer support telephone]",
-    phoneHref: "",
+    supportEmail: "contact@tripreservations.co.uk",
+    phone: "+44 7404 925908",
+    phoneHref: "+447404925908",
   },
 
   hours: [
