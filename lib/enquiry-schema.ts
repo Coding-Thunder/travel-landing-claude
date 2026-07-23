@@ -15,4 +15,3 @@ export const enquirySchema = z.object({
 });
 
 export type EnquiryValues = z.infer<typeof enquirySchema>;
-export type EnquiryResult = { ok: true } | { ok: false; error: string };

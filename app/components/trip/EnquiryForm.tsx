@@ -3,13 +3,37 @@
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { enquirySchema, type EnquiryValues } from "@/lib/enquiry-schema";
-import { submitEnquiry } from "@/app/actions/enquiry";
 import { site } from "@/config/site";
 import { cn } from "@/lib/cn";
 
 const SERVICES = ["Flight Reservation", "Business Travel", "Group Travel", "Other"];
+
+const telHref = `tel:${site.company.phoneHref || site.company.phone}`;
+
+/**
+ * Composes the enquiry as a mailto: link addressed to our inbox. There is no
+ * database or server mailer — submitting opens the visitor's own email app with
+ * every detail pre-filled, and they press send. Delivery is the visitor's mail
+ * client, so nothing is stored or processed server-side.
+ */
+function buildEnquiryMailto(v: EnquiryValues): string {
+  const body = [
+    `Name: ${v.fullName}`,
+    `Email: ${v.email}`,
+    `Phone: ${v.phone}`,
+    `Service: ${v.service || "—"}`,
+    `Route / destination: ${v.destination}`,
+    `Travel dates: ${v.travelDates || "—"}`,
+    `Travelers: ${v.travelers || "—"}`,
+    "",
+    "Message:",
+    v.message || "—",
+  ].join("\n");
+  const subject = `Flight enquiry${v.service ? ` — ${v.service}` : ""}${v.destination ? ` (${v.destination})` : ""}`;
+  return `mailto:${site.company.supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 
 export type EnquiryDefaults = {
   destination?: string;
@@ -27,8 +51,8 @@ export default function EnquiryForm({
   defaultService?: string;
   defaults?: EnquiryDefaults;
 }) {
-  const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [done, setDone] = useState(false);
+  const [mailtoHref, setMailtoHref] = useState("");
 
   const {
     register,
@@ -50,15 +74,18 @@ export default function EnquiryForm({
     },
   });
 
-  const onValid = async (values: EnquiryValues) => {
-    setStatus("submitting");
-    const res = await submitEnquiry(values);
-    if (res.ok) {
+  const onValid = (values: EnquiryValues) => {
+    // Honeypot filled → bot. Show success without composing anything.
+    if (values.companyWebsite) {
       setDone(true);
-      reset();
-    } else {
-      setStatus("error");
+      return;
     }
+    const href = buildEnquiryMailto(values);
+    setMailtoHref(href);
+    setDone(true);
+    reset();
+    // Open the visitor's own email app with the enquiry ready to send.
+    if (typeof window !== "undefined") window.location.assign(href);
   };
 
   if (done) {
@@ -67,16 +94,32 @@ export default function EnquiryForm({
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-royal-50 text-royal-600">
           <CheckCircle2 className="h-8 w-8" />
         </div>
-        <h3 className="mt-5 text-xl font-semibold text-navy-900">Thank you — your enquiry has been received</h3>
+        <h3 className="mt-5 text-xl font-semibold text-navy-900">Almost there — just press send</h3>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-navy-600">
-          One of our reservation specialists will review your request and respond during business hours. A copy of your
-          details has not been shared with any supplier without your instruction.
+          Your email app should have opened with your enquiry ready to go. Send it and one of our reservation
+          specialists will follow up during business hours.
+        </p>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-navy-500">
+          Didn&rsquo;t open?{" "}
+          {mailtoHref ? (
+            <>
+              <a href={mailtoHref} className="font-semibold text-royal-600 underline-offset-4 hover:underline">Open it again</a>
+              {" "}or email{" "}
+            </>
+          ) : (
+            "Email "
+          )}
+          <a href={`mailto:${site.company.supportEmail}`} className="font-semibold text-royal-600 underline-offset-4 hover:underline">
+            {site.company.supportEmail}
+          </a>
+          , or call{" "}
+          <a href={telHref} className="font-semibold text-royal-600 underline-offset-4 hover:underline">{site.company.phone}</a>.
         </p>
         <button
           type="button"
           onClick={() => {
             setDone(false);
-            setStatus("idle");
+            setMailtoHref("");
           }}
           className="mt-6 text-sm font-semibold text-royal-600 underline-offset-4 hover:underline"
         >
@@ -105,8 +148,8 @@ export default function EnquiryForm({
         <Field label="Phone number" error={errors.phone?.message} required>
           {(p) => <input type="tel" autoComplete="tel" placeholder="(555) 123-4567" {...register("phone")} {...p} />}
         </Field>
-        <Field label="Destination" error={errors.destination?.message} required>
-          {(p) => <input type="text" placeholder="City, region or country" {...register("destination")} {...p} />}
+        <Field label="Route or destination" error={errors.destination?.message} required>
+          {(p) => <input type="text" placeholder="e.g. New York → London" {...register("destination")} {...p} />}
         </Field>
         <Field label="Travel dates" hint="Approximate is fine">
           {(p) => <input type="text" placeholder="e.g. 12–18 August 2026" {...register("travelDates")} {...p} />}
@@ -125,7 +168,7 @@ export default function EnquiryForm({
           )}
         </Field>
         <Field label="Special requests" className="sm:col-span-2">
-          {(p) => <textarea rows={4} placeholder="Room preferences, accessibility needs, budget or anything else we should know." {...register("message")} {...p} />}
+          {(p) => <textarea rows={4} placeholder="Seating preferences, cabin class, budget or anything else we should know." {...register("message")} {...p} />}
         </Field>
       </div>
 
@@ -137,24 +180,16 @@ export default function EnquiryForm({
         </label>
       </div>
 
-      {status === "error" ? (
-        <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
-          Something went wrong while sending your enquiry. Please try again, or contact us directly.
-        </p>
-      ) : null}
+      <p className="mt-6 text-xs leading-relaxed text-navy-500">
+        Submitting opens your email app with these details ready to send to{" "}
+        <span className="font-medium text-navy-700">{site.company.supportEmail}</span> — just press send.
+      </p>
 
       <button
         type="submit"
-        disabled={status === "submitting"}
-        className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-royal-600 px-6 text-sm font-semibold text-white transition hover:bg-royal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-300 disabled:opacity-70"
+        className="mt-3 inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-royal-600 px-6 text-sm font-semibold text-white transition hover:bg-royal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-300"
       >
-        {status === "submitting" ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" /> Sending…
-          </>
-        ) : (
-          "Request a personalized quote"
-        )}
+        Send enquiry
       </button>
 
       <p className="mt-3 text-xs leading-relaxed text-navy-500">{site.disclaimer}</p>
