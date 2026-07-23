@@ -5,7 +5,6 @@
  * international, business and group air travel. We are NOT an airline or OTA, and
  * we do NOT claim IATA / ARC accreditation, official partnerships, price
  * guarantees or awards. All copy must stay consistent with that model.
- * Company identity fields below are REPLACEABLE PLACEHOLDERS.
  */
 
 export type NavItem = { label: string; href: string };
@@ -28,12 +27,12 @@ export const site = {
     registeredName: "Universal Tickets LLC",
     /** Wyoming Secretary of State filing / registration ID. */
     companyNumber: "2024-001512237",
-    registeredOffice: "[Business address]",
+    registeredOffice: "1309 Coffeen Ave, Ste 1200, Sheridan, WY 82801",
     address: {
-      street: "[Street address]",
-      city: "[City]",
+      street: "1309 Coffeen Ave, Ste 1200",
+      city: "Sheridan",
       region: "WY",
-      postcode: "[ZIP]",
+      postcode: "82801",
       country: "US",
     },
     supportEmail: "reservation@universalticketss.com",
