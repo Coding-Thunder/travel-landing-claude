@@ -23,14 +23,14 @@ const relatedServices = [
   {
     title: "Business travel",
     description:
-      "Accommodation planning for companies and individual travellers, with an emphasis on convenience, connectivity and consistency.",
+      "Accommodation planning for companies and individual travelers, with an emphasis on convenience, connectivity and consistency.",
     href: "/business-travel",
     icon: "briefcase",
   },
   {
     title: "Group travel",
     description:
-      "Coordinated reservation assistance for corporate groups, families and larger parties travelling together.",
+      "Coordinated reservation assistance for corporate groups, families and larger parties traveling together.",
     href: "/group-travel",
     icon: "users",
   },
@@ -38,7 +38,7 @@ const relatedServices = [
 
 const enquiryPointers = [
   "Destination, along with your approximate travel dates",
-  "The number of travellers and any room configuration you need",
+  "The number of travelers and any room configuration you need",
   "Preferred hotel category, location or budget guidance",
   "Any accessibility, dietary or special requirements",
 ];
@@ -77,7 +77,7 @@ export default function HotelsPage() {
         <div className="mt-6 grid max-w-3xl gap-4 text-base leading-relaxed text-navy-600">
           <Reveal as="div">
             <p>
-              TripReservations.co.uk is an independent travel reservation service focused on hotels and
+              UniversalTicketss is an independent travel reservation service focused on hotels and
               accommodation. We are not an airline, hotel chain or online travel agency; instead, we work with a
               trusted network of suppliers to help you find and secure suitable stays across a wide range of
               destinations worldwide.

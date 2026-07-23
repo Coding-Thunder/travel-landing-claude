@@ -7,7 +7,7 @@ import { site } from "@/config/site";
 export const metadata = pageMetadata({
   title: "Privacy Policy",
   description:
-    "How TripReservations.co.uk collects, uses, stores and protects your personal information when you use our website or request our hotel reservation assistance.",
+    "How UniversalTicketss collects, uses, stores and protects your personal information when you use our website or request our travel reservation assistance.",
   path: "/privacy",
 });
 
@@ -31,14 +31,14 @@ export default function PrivacyPolicyPage() {
         <h2>1. Introduction</h2>
         <p>
           {site.legalName} (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) provides independent
-          hotel reservation assistance through a trusted supplier network. We are not an airline, hotel
-          chain, online travel agent or car rental company, and we act as an intermediary that helps you
-          request and arrange accommodation reservations.
+          flight, hotel and car rental reservation assistance through a trusted supplier network. We are not
+          an airline, hotel chain, online travel agent or car rental company, and we act as an intermediary
+          that helps you request and arrange travel reservations.
         </p>
         <p>
           This policy applies to information collected through this website and when you contact us or ask
           us to assist with a reservation. We aim to handle your personal information in line with
-          applicable UK data protection law. Please read this policy alongside our{" "}
+          applicable federal and state privacy laws. Please read this policy alongside our{" "}
           <Link href="/terms">Terms &amp; Conditions</Link> and our{" "}
           <Link href="/cookie-policy">Cookie Policy</Link>.
         </p>
@@ -49,7 +49,7 @@ export default function PrivacyPolicyPage() {
           reservation. Depending on how you use our service, this may include:
         </p>
         <ul>
-          <li>Your name and the names of other travellers included in a reservation request</li>
+          <li>Your name and the names of other travelers included in a reservation request</li>
           <li>Contact details, such as your email address and telephone number</li>
           <li>Billing information needed to process a reservation payment</li>
           <li>Travel preferences, such as destinations, dates, room types and special requirements</li>
@@ -116,7 +116,7 @@ export default function PrivacyPolicyPage() {
         <h2>7. Data Security</h2>
         <p>
           We take the protection of your information seriously and use reasonable technical and
-          organisational measures designed to help keep it secure and to reduce the risk of unauthorised
+          organizational measures designed to help keep it secure and to reduce the risk of unauthorized
           access, loss or misuse. However, no method of transmission over the internet or method of
           electronic storage is completely secure, and we cannot guarantee absolute security. You share
           information with us at your own risk, and we encourage you to take care when sending sensitive
@@ -128,7 +128,7 @@ export default function PrivacyPolicyPage() {
           We keep your personal information only for as long as it is needed for the purposes described in
           this policy, including to provide our service, to maintain appropriate business records, and to
           meet our legal, accounting and regulatory obligations. When your information is no longer required,
-          we take reasonable steps to delete it or to anonymise it securely.
+          we take reasonable steps to delete it or to anonymize it securely.
         </p>
 
         <h2>9. Your Rights</h2>
@@ -146,9 +146,10 @@ export default function PrivacyPolicyPage() {
         <p>
           To exercise any of these rights, please <Link href="/contact">contact us</Link> or email{" "}
           <a href={`mailto:${site.company.supportEmail}`}>{site.company.supportEmail}</a>. We may need to
-          verify your identity before we act on a request. If you have concerns about how we handle your
-          information, you also have the right to complain to the UK Information Commissioner&rsquo;s Office
-          (ICO), although we would welcome the chance to resolve any concerns directly with you first.
+          verify your identity before we act on a request. Rights vary by state, and some may not apply to
+          you. If you have concerns about how we handle your information, you may also contact your state
+          attorney general or the Federal Trade Commission, although we would welcome the chance to resolve
+          any concerns directly with you first.
         </p>
 
         <h2>10. Third-Party Links</h2>

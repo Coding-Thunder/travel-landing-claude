@@ -57,7 +57,7 @@ export default function CarRentalsPage() {
         <SectionHeading
           eyebrow="Vehicles"
           title="Vehicle categories"
-          subtitle="Tell us how you are travelling and we will help you find a suitable vehicle from our supplier network."
+          subtitle="Tell us how you are traveling and we will help you find a suitable vehicle from our supplier network."
         />
         <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {site.carCategories.map((cat, i) => (

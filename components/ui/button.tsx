@@ -14,7 +14,7 @@ const buttonVariants = cva(
         subtle: "bg-paper-deep text-ink hover:bg-line",
         ghost: "text-ink hover:bg-paper-deep",
         link: "text-accent underline-offset-4 hover:underline",
-        /* Corporate (TripReservations) variants */
+        /* Corporate (UniversalTicketss) variants */
         royal: "bg-royal-600 text-white hover:bg-royal-700 focus-visible:ring-royal-300",
         navy: "bg-navy-900 text-white hover:bg-navy-800 focus-visible:ring-navy-200",
         navyOutline: "border border-navy-200 bg-white text-navy-800 hover:border-royal-400 hover:text-royal-700",

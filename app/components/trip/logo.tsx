@@ -1,22 +1,29 @@
 /**
- * TripReservations brand mark — a location pin (destinations / reservations)
- * on a royal-blue gradient tile. Used in the header, footer and favicons.
+ * UniversalTicketss brand mark — a paper plane (flights / send-off) on a royal
+ * gradient tile. Used in the header, footer and favicons.
  */
 export function LogoMark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} role="img" aria-label="TripReservations" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 64 64" className={className} role="img" aria-label="UniversalTicketss" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="tr-mark-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+        <linearGradient id="ut-mark-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
           <stop offset="0" stopColor="#3168ea" />
           <stop offset="1" stopColor="#1a3a89" />
         </linearGradient>
       </defs>
-      <rect width="64" height="64" rx="15" fill="url(#tr-mark-grad)" />
+      <rect width="64" height="64" rx="15" fill="url(#ut-mark-grad)" />
       <path
         fill="#ffffff"
-        d="M32 12c-8.8 0-15.5 6.8-15.5 15.4 0 10.7 13.6 22.2 14.9 23.2a1 1 0 0 0 1.2 0c1.3-1 14.9-12.5 14.9-23.2C47.5 18.8 40.8 12 32 12Z"
+        d="M52.4 12.2 12.9 27.9c-1.5.6-1.4 2.8.1 3.3l15.6 5 5 15.6c.5 1.5 2.7 1.6 3.3.1l15.7-39.5c.5-1.4-.8-2.7-2.2-2.2Z"
       />
-      <circle cx="32" cy="27" r="5.4" fill="url(#tr-mark-grad)" />
+      <path
+        fill="none"
+        stroke="#1a3a89"
+        strokeOpacity="0.35"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        d="m29.2 35.9 21.6-22.1"
+      />
     </svg>
   );
 }

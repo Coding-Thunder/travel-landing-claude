@@ -65,7 +65,7 @@ export function websiteSchema() {
     "@id": `${site.url}/#website`,
     name: site.name,
     url: site.url,
-    inLanguage: "en-GB",
+    inLanguage: "en-US",
     publisher: { "@id": `${site.url}/#organization` },
   };
 }

@@ -47,7 +47,7 @@ export default function ThankYouPage() {
             <p className="mt-5 text-base leading-relaxed text-navy-600 sm:text-lg">
               One of our reservation specialists will review your request and be in
               touch during business hours. We aim to respond as quickly as possible
-              with suitable accommodation options and the next steps for your
+              with suitable travel options and the next steps for your
               reservation.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-navy-500">
@@ -66,7 +66,7 @@ export default function ThankYouPage() {
                 <Link href="/">Back to home</Link>
               </Button>
               <Button asChild variant="navyOutline" size="lg">
-                <Link href="/hotels">Browse hotel reservations</Link>
+                <Link href="/flights">Browse flight reservations</Link>
               </Button>
             </div>
           </Reveal>

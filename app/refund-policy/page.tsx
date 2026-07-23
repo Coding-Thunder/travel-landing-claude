@@ -6,7 +6,7 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Refund & Cancellation Policy",
   description:
-    "How TripReservations.co.uk handles cancellation requests and refunds for flight, hotel and car rental reservation assistance, including supplier policies, processing times and chargebacks.",
+    "How UniversalTicketss handles cancellation requests and refunds for flight, hotel and car rental reservation assistance, including supplier policies, processing times and chargebacks.",
   path: "/refund-policy",
 });
 
@@ -30,7 +30,7 @@ export default function RefundPolicyPage() {
         <section>
           <h2>1. Our Commitment</h2>
           <p>
-            TripReservations.co.uk provides independent flight, hotel and car rental reservation
+            UniversalTicketss provides independent flight, hotel and car rental reservation
             assistance through a trusted network of travel suppliers. We are committed to handling
             every cancellation request and refund fairly, transparently and as promptly as the
             applicable supplier conditions allow. This policy sets out how we approach these
@@ -58,7 +58,7 @@ export default function RefundPolicyPage() {
             All cancellations are subject to the policies of the relevant travel supplier
             or tour operator, along with the fare rules, rate rules and booking conditions that
             applied when your reservation was confirmed. These conditions vary from one supplier
-            and rate to another, and some cannot be cancelled or amended once confirmed. When you
+            and rate to another, and some cannot be canceled or amended once confirmed. When you
             contact us we will:
           </p>
           <ul>
@@ -122,7 +122,7 @@ export default function RefundPolicyPage() {
           <h2>6. Supplier Charges</h2>
           <p>
             Travel suppliers, tour operators and other travel providers may apply their own
-            charges when a reservation is cancelled or changed. These can include:
+            charges when a reservation is canceled or changed. These can include:
           </p>
           <ul>
             <li>Cancellation charges applied under the supplier&apos;s policy.</li>

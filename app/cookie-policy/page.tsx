@@ -6,7 +6,7 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Cookie Policy",
   description:
-    "How TripReservations.co.uk uses cookies and similar technologies on this website, the categories of cookies we use and how you can manage them.",
+    "How UniversalTicketss uses cookies and similar technologies on this website, the categories of cookies we use and how you can manage them.",
   path: "/cookie-policy",
 });
 
@@ -35,7 +35,7 @@ export default function CookiePolicyPage() {
             make them work more efficiently and to provide information to the website owner.
           </p>
           <p>
-            A cookie allows a website to recognise your device and remember certain
+            A cookie allows a website to recognize your device and remember certain
             information about your visit, such as your preferences or the pages you have
             viewed. Similar technologies, including pixels, tags and local storage, perform
             comparable functions. In this policy we refer to all of these technologies
@@ -46,7 +46,7 @@ export default function CookiePolicyPage() {
         <section>
           <h2>2. We Use Cookies To</h2>
           <p>
-            We use cookies on TripReservations.co.uk to help our website operate reliably and
+            We use cookies on UniversalTicketss to help our website operate reliably and
             to improve the service we provide. In particular, we use cookies to:
           </p>
           <ul>
@@ -64,7 +64,7 @@ export default function CookiePolicyPage() {
               site.
             </li>
             <li>
-              <strong>Analyse traffic</strong> &mdash; understand how visitors find and use
+              <strong>Analyze traffic</strong> &mdash; understand how visitors find and use
               our website so that we can measure and improve its performance.
             </li>
             <li>
@@ -88,7 +88,7 @@ export default function CookiePolicyPage() {
             </li>
             <li>
               <strong>Functional cookies.</strong> These cookies allow the website to remember
-              choices you make and to provide enhanced, more personalised features, such as
+              choices you make and to provide enhanced, more personalized features, such as
               retaining information you have entered when requesting assistance.
             </li>
             <li>

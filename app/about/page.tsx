@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 export const metadata = pageMetadata({
   title: "About Us",
   description:
-    "Learn about TripReservations.co.uk — an independent UK travel reservation service providing professional, transparent flight, hotel and car rental booking assistance for leisure, business and group travel.",
+    "Learn about UniversalTicketss — an independent travel reservation service providing professional, transparent flight, hotel and car rental booking assistance for leisure, business and group travel.",
   path: "/about",
 });
 
@@ -95,7 +95,7 @@ const WHY_CHOOSE: { icon: string; title: string; description: string }[] = [
   },
   {
     icon: "sparkles",
-    title: "Personalised Travel Solutions",
+    title: "Personalized Travel Solutions",
     description:
       "Recommendations shaped around your preferences, budget and the specifics of your trip.",
   },
@@ -116,14 +116,14 @@ export default function AboutPage() {
 
       <PageHero
         eyebrow="About us"
-        title="About TripReservations.co.uk"
+        title="About UniversalTicketss"
         subtitle="Professional travel reservation assistance designed to make planning your journey simple, convenient and reliable."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "About", href: "/about" },
         ]}
         image="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80"
-        imageAlt="The refined lobby of a luxury hotel, representative of the accommodation TripReservations.co.uk helps arrange."
+        imageAlt="The refined lobby of a luxury hotel, representative of the accommodation UniversalTicketss helps arrange."
       />
 
       <TrustBar />
@@ -138,7 +138,7 @@ export default function AboutPage() {
             />
             <div className="mt-6 space-y-4 text-base leading-relaxed text-navy-600 sm:text-[17px]">
               <p>
-                TripReservations.co.uk is an independent travel reservation company that helps
+                UniversalTicketss is an independent travel reservation company that helps
                 individuals, families and businesses plan their travel with confidence. We
                 are not an airline, hotel chain or online travel agency; instead, we act as your
                 dedicated reservation assistant, taking the effort out of finding and arranging the
@@ -188,7 +188,7 @@ export default function AboutPage() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-navy-100 shadow-sm lg:aspect-[3/4]">
               <Image
                 src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"
-                alt="A stylish boutique hotel room, one of the many accommodation styles our reservation specialists help travellers arrange."
+                alt="A stylish boutique hotel room, one of the many accommodation styles our reservation specialists help travelers arrange."
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
@@ -264,7 +264,7 @@ export default function AboutPage() {
         <SectionHeading
           eyebrow="Why choose us"
           title="Why customers choose us"
-          subtitle="Practical reasons travellers return to TripReservations.co.uk for their travel planning."
+          subtitle="Practical reasons travelers return to UniversalTicketss for their travel planning."
         />
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {WHY_CHOOSE.map((item, i) => (
@@ -314,7 +314,7 @@ export default function AboutPage() {
           </h2>
           <p className="mt-4 text-base leading-relaxed text-navy-100 sm:text-lg">
             Tell us where you are going and what you need. Our reservation specialists will follow
-            up with suitable travel options and a personalised quote.
+            up with suitable travel options and a personalized quote.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild variant="royal" size="lg">

@@ -19,7 +19,7 @@ export const metadata = pageMetadata({
 });
 
 const whyChoose = [
-  { title: "Personalised reservation assistance", description: "Itineraries shaped around your dates, routing and preferences by experienced specialists.", icon: "sparkles" },
+  { title: "Personalized reservation assistance", description: "Itineraries shaped around your dates, routing and preferences by experienced specialists.", icon: "sparkles" },
   { title: "Competitive travel options", description: "A range of options presented from our supplier network so you can weigh cost against convenience.", icon: "route" },
   { title: "Flexible itinerary planning", description: "One-way, return, multi-city and open-jaw journeys handled as a single request.", icon: "calendar-check" },
   { title: "Dedicated customer support", description: "A responsive team by phone, email and enquiry form during business hours.", icon: "headset" },
@@ -41,7 +41,7 @@ export default function FlightsPage() {
       <PageHero
         eyebrow="Flight reservations"
         title="Professional Flight Reservation Assistance"
-        subtitle="We help travellers with domestic and international flight reservation requests through our trusted travel supplier network."
+        subtitle="We help travelers with domestic and international flight reservation requests through our trusted travel supplier network."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Flights", href: "/flights" },

@@ -47,7 +47,7 @@ const AUDIENCES: Audience[] = [
   { icon: "users", title: "Families and reunions", body: "Multi-generational trips, milestone birthdays and family gatherings that need several rooms of different sizes kept close together at one welcoming property." },
   { icon: "briefcase", title: "Corporate groups and off-sites", body: "Team away-days, training cohorts and conference delegations that call for consistent accommodation near the venue.", link: { href: "/business-travel", label: "See our business travel service" } },
   { icon: "map-pin", title: "Events and conferences", body: "Delegates, exhibitors and organisers who need a block of rooms within easy reach of a single venue across busy event dates." },
-  { icon: "sparkles", title: "Weddings and celebrations", body: "Room blocks for guests travelling to a wedding or celebration, coordinated so everyone can stay together over the weekend." },
+  { icon: "sparkles", title: "Weddings and celebrations", body: "Room blocks for guests traveling to a wedding or celebration, coordinated so everyone can stay together over the weekend." },
   { icon: "globe", title: "Sports teams and tours", body: "Squads, touring parties and their supporting staff needing practical, well-located accommodation across one or several stops." },
   { icon: "bed", title: "Extended group stays", body: "Longer projects, relocations and study trips where apartment-style or extended-stay rooms suit a group over an extended period." },
 ];
@@ -56,7 +56,7 @@ const ENQUIRY_CHECKLIST = [
   "Travel dates, including any flexibility around arrival and departure",
   "Destination or the venue your group needs to be near",
   "Approximate number of rooms and how they should be configured",
-  "Total number of travellers, noting any children or accessibility needs",
+  "Total number of travelers, noting any children or accessibility needs",
   "An indicative per-room budget so we can match suitable properties",
 ];
 
@@ -81,7 +81,7 @@ export default function GroupTravelPage() {
           { name: "Group Travel", href: "/group-travel" },
         ]}
         image={HERO_IMAGE}
-        imageAlt="A group of travellers gathered together in a bright, welcoming hotel setting"
+        imageAlt="A group of travelers gathered together in a bright, welcoming hotel setting"
       />
 
       {/* Intro */}
@@ -272,7 +272,7 @@ export default function GroupTravelPage() {
             </span>
             <h3 className="mt-4 text-lg font-semibold text-white">Business travel</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-100">
-              Accommodation planning for individual business travellers and companies, from single trips to
+              Accommodation planning for individual business travelers and companies, from single trips to
               recurring corporate stays.
             </p>
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-royal-300">

@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 export const metadata: Metadata = pageMetadata({
   title: "Contact Us",
   description:
-    "Get in touch with the TripReservations customer support team for help with reservation requests, booking enquiries and general travel questions. Reach us by email or online enquiry form during business hours.",
+    "Get in touch with the UniversalTicketss customer support team for help with reservation requests, booking enquiries and general travel questions. Reach us by email or online enquiry form during business hours.",
   path: "/contact",
 });
 
@@ -23,7 +23,10 @@ const phone = site.company.phone;
 const hasPhone = !phone.startsWith("[");
 const telHref = site.company.phoneHref || phone.replace(/[^\d+]/g, "");
 
-export default function ContactPage() {
+type SearchParams = Promise<{ destination?: string; dates?: string; travelers?: string; service?: string }>;
+
+export default async function ContactPage({ searchParams }: { searchParams: SearchParams }) {
+  const { destination, dates, travelers, service } = await searchParams;
   return (
     <>
       <JsonLd
@@ -111,14 +114,14 @@ export default function ContactPage() {
                 </div>
               </Reveal>
 
-              {/* Registered office */}
+              {/* Business address */}
               <Reveal as="li" delay={0.12}>
                 <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
                     <Icon name="map-pin" className="h-5 w-5" />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-navy-900">Registered office</p>
+                    <p className="text-sm font-semibold text-navy-900">Business address</p>
                     <address className="mt-0.5 text-sm font-medium not-italic leading-relaxed text-navy-700">
                       {site.company.registeredOffice}
                     </address>
@@ -138,8 +141,8 @@ export default function ContactPage() {
                   <h3 className="text-base font-semibold text-navy-900">Business hours</h3>
                 </div>
                 <p className="mt-2 text-xs leading-relaxed text-navy-500">
-                  All times are UK time (GMT/BST). Enquiries received outside these hours are answered on the next
-                  working day.
+                  All times are Eastern Time (ET). Enquiries received outside these hours are answered on the next
+                  business day.
                 </p>
                 <table className="mt-4 w-full text-sm">
                   <tbody className="divide-y divide-navy-100">
@@ -165,7 +168,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-sm font-semibold text-navy-900">Find us on the map</p>
                   <p className="mt-1 text-sm leading-relaxed text-navy-600">
-                    An interactive Google Map of our registered office will be added here once the address has been
+                    An interactive Google Map of our business address will be added here once the address has been
                     confirmed.
                   </p>
                 </div>
@@ -175,7 +178,10 @@ export default function ContactPage() {
 
           {/* RIGHT — enquiry form */}
           <div>
-            <EnquiryForm heading="Send us a message" />
+            <EnquiryForm
+              heading="Send us a message"
+              defaults={{ destination, travelDates: dates, travelers: travelers, service }}
+            />
           </div>
         </div>
 
@@ -190,14 +196,14 @@ export default function ContactPage() {
                   frequently asked questions
                 </Link>{" "}
                 page, or read more about{" "}
-                <Link href="/hotels" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  our hotel reservation service
+                <Link href="/flights" className="font-medium text-royal-700 underline-offset-4 hover:underline">
+                  our reservation services
                 </Link>
                 .
               </p>
             </div>
             <Button asChild variant="royal" size="lg" className="shrink-0">
-              <Link href="/hotels">Explore hotels</Link>
+              <Link href="/flights">Explore services</Link>
             </Button>
           </div>
         </Reveal>

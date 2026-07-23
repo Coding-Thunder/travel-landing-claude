@@ -6,7 +6,7 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Terms & Conditions",
   description:
-    "The Terms & Conditions governing your use of TripReservations.co.uk and our independent hotel and accommodation reservation assistance services.",
+    "The Terms & Conditions governing your use of UniversalTicketss and our independent flight, hotel and car rental reservation assistance services.",
   path: "/terms",
 });
 
@@ -30,12 +30,12 @@ export default function TermsPage() {
         <section>
           <h2>1. Introduction</h2>
           <p>
-            These Terms &amp; Conditions govern your use of the TripReservations.co.uk
-            website and the travel reservation assistance we provide. TripReservations.co.uk
+            These Terms &amp; Conditions govern your use of the UniversalTicketss
+            website and the travel reservation assistance we provide. UniversalTicketss
             is an independent reservation assistance service that helps you request flight, hotel
             and car rental reservations through a trusted network of travel suppliers. We are not an
             airline, an online travel agent, a hotel chain or a vehicle rental company, and we do
-            not claim any official partnership or accreditation with those organisations.
+            not claim any official partnership or accreditation with those organizations.
           </p>
           <p>
             By accessing this website or submitting an enquiry, you confirm that you have read,
@@ -65,12 +65,12 @@ export default function TermsPage() {
               airport, city, weekend, long-term and business travel.
             </li>
             <li>
-              <strong>Business travel</strong> — support for companies and business travellers
+              <strong>Business travel</strong> — support for companies and business travelers
               arranging flights, accommodation and vehicles for work.
             </li>
             <li>
               <strong>Group travel</strong> — assistance with reservation requests for corporate
-              groups, families and other parties travelling together.
+              groups, families and other parties traveling together.
             </li>
           </ul>
           <p>
@@ -121,7 +121,7 @@ export default function TermsPage() {
           <p>
             Payments are processed using secure technology intended to help protect your information
             during the transaction. You are responsible for ensuring that the payment details you
-            provide are accurate and that you are authorised to use the chosen payment method.
+            provide are accurate and that you are authorized to use the chosen payment method.
           </p>
         </section>
 
@@ -147,7 +147,7 @@ export default function TermsPage() {
           <h2>7. Customer Responsibilities</h2>
           <p>When requesting our services, you agree to:</p>
           <ul>
-            <li>Provide accurate, complete and up-to-date information for every traveller;</li>
+            <li>Provide accurate, complete and up-to-date information for every traveler;</li>
             <li>
               Review all reservation details, including names, dates and accommodation particulars,
               and notify us promptly of any errors;
@@ -238,7 +238,7 @@ export default function TermsPage() {
           <h2>13. Intellectual Property</h2>
           <p>
             All content on this website, including text, graphics, logos, images and layout, is owned
-            by or licensed to TripReservations.co.uk and is protected by applicable intellectual
+            by or licensed to UniversalTicketss and is protected by applicable intellectual
             property laws. You may not copy, reproduce, distribute or otherwise use any content from
             this website without our prior written permission, except as permitted for your personal,
             non-commercial use of our services.
@@ -248,7 +248,7 @@ export default function TermsPage() {
         <section>
           <h2>14. Limitation of Liability</h2>
           <p>
-            To the maximum extent permitted by law, TripReservations.co.uk shall not be liable for
+            To the maximum extent permitted by law, UniversalTicketss shall not be liable for
             any indirect, incidental or consequential loss arising from the acts or omissions of an
             accommodation supplier, from travel disruption, or from your use of this website or our
             services.

@@ -17,8 +17,8 @@ export default function SiteFooter() {
               <span className="text-lg font-semibold tracking-tight text-white">{site.name}</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-200">
-              Professional hotel reservation assistance for leisure, business and group travel through a trusted
-              supplier network.
+              Professional flight, hotel and car rental reservation assistance for leisure, business and group
+              travel through a trusted supplier network.
             </p>
             <ul className="mt-5 space-y-2.5 text-sm">
               <li className="flex items-start gap-2.5">

@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 export const metadata = pageMetadata({
   title: "Frequently Asked Questions",
   description:
-    "Answers to common questions about our hotel reservation assistance — from our services and how reservations work to payments, changes, cancellations and refunds.",
+    "Answers to common questions about our travel reservation assistance — from our services and how reservations work to payments, changes, cancellations and refunds.",
   path: "/faq",
 });
 
@@ -32,7 +32,7 @@ export default function FaqPage() {
       <PageHero
         eyebrow="Support"
         title="Frequently Asked Questions"
-        subtitle="Answers to common questions about our hotel reservation assistance."
+        subtitle="Answers to common questions about our travel reservation assistance."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "FAQ", href: "/faq" },

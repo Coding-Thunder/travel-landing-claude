@@ -12,7 +12,7 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Business Travel Accommodation",
   description:
-    "Corporate accommodation assistance for companies and business travellers — well-located business hotels, airport hotels and extended stays, with a single point of contact and supplier-issued invoicing.",
+    "Corporate accommodation assistance for companies and business travelers — well-located business hotels, airport hotels and extended stays, with a single point of contact and supplier-issued invoicing.",
   path: "/business-travel",
   image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
 });
@@ -22,7 +22,7 @@ const HOW_WE_HELP = [
     icon: "map-pin",
     title: "Well-located business hotels",
     description:
-      "Assistance finding accommodation close to your offices, meeting venues, conference centres and transport links, so travellers spend less time commuting and more time working.",
+      "Assistance finding accommodation close to your offices, meeting venues, conference centers and transport links, so travelers spend less time commuting and more time working.",
   },
   {
     icon: "clock",
@@ -40,25 +40,25 @@ const HOW_WE_HELP = [
     icon: "users",
     title: "Consistency for teams",
     description:
-      "Coordination of multiple travellers and repeat visits so colleagues experience a consistent standard of accommodation across trips and destinations.",
+      "Coordination of multiple travelers and repeat visits so colleagues experience a consistent standard of accommodation across trips and destinations.",
   },
   {
     icon: "headset",
     title: "A single point of contact",
     description:
-      "One reservation team to handle requests, questions and changes — reducing the administrative load on travellers and office managers alike.",
+      "One reservation team to handle requests, questions and changes — reducing the administrative load on travelers and office managers alike.",
   },
   {
     icon: "file-check",
     title: "Supplier-issued invoicing",
     description:
-      "Billing, confirmations and documentation are issued directly by the accommodation supplier, supporting clear record keeping and your organisation's duty-of-care considerations.",
+      "Billing, confirmations and documentation are issued directly by the accommodation supplier, supporting clear record keeping and your organization's duty-of-care considerations.",
   },
 ] as const;
 
 const ENQUIRY_TIPS = [
-  "Destination, or destinations, and the dates each traveller needs",
-  "Number of travellers and any room or single-occupancy preferences",
+  "Destination, or destinations, and the dates each traveler needs",
+  "Number of travelers and any room or single-occupancy preferences",
   "Proximity requirements — office, venue, airport or station",
   "Budget guidance and any preferred accommodation standard",
   "Billing and documentation needs for your finance or travel policy",
@@ -96,7 +96,7 @@ export default function BusinessTravelPage() {
       <PageHero
         eyebrow="For business"
         title="Business Travel Accommodation"
-        subtitle="Reliable accommodation planning for business trips — from a single overnight stay to a programme of travel for your whole team, coordinated by one dedicated reservation team."
+        subtitle="Reliable accommodation planning for business trips — from a single overnight stay to a program of travel for your whole team, coordinated by one dedicated reservation team."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Business Travel", href: "/business-travel" },
@@ -111,7 +111,7 @@ export default function BusinessTravelPage() {
           <SectionHeading
             eyebrow="Corporate accommodation, handled properly"
             title="Accommodation assistance built around how businesses actually travel"
-            subtitle="TripReservations provides independent reservation assistance for companies and business travellers through a trusted supplier network. We take the detail of finding and arranging suitable accommodation off your desk, so trips run smoothly and predictably."
+            subtitle="UniversalTicketss provides independent reservation assistance for companies and business travelers through a trusted supplier network. We take the detail of finding and arranging suitable accommodation off your desk, so trips run smoothly and predictably."
           />
           <Reveal className="rounded-2xl border border-navy-100 bg-navy-50 p-6 shadow-sm sm:p-8" delay={0.05}>
             <p className="text-sm leading-relaxed text-navy-700">
@@ -136,11 +136,11 @@ export default function BusinessTravelPage() {
         </div>
       </Section>
 
-      {/* How we help business travellers */}
+      {/* How we help business travelers */}
       <Section tone="tint">
         <SectionHeading
           eyebrow="What we do"
-          title="How we help business travellers"
+          title="How we help business travelers"
           subtitle="Practical support across the situations business trips throw up most often — from a single well-placed hotel to accommodation for an entire team."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

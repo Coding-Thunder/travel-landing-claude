@@ -40,7 +40,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en-US" className={`${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-white text-navy-900" suppressHydrationWarning>
         <SiteHeader />
         <main className="flex flex-1 flex-col">{children}</main>

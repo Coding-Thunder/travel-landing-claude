@@ -11,12 +11,21 @@ import { cn } from "@/lib/cn";
 
 const SERVICES = ["Flight Reservation", "Hotel Reservation", "Car Rental Reservation", "Business Travel", "Group Travel", "Other"];
 
+export type EnquiryDefaults = {
+  destination?: string;
+  travelDates?: string;
+  travelers?: string;
+  service?: string;
+};
+
 export default function EnquiryForm({
-  heading = "Request a personalised quote",
+  heading = "Request a personalized quote",
   defaultService,
+  defaults,
 }: {
   heading?: string;
   defaultService?: string;
+  defaults?: EnquiryDefaults;
 }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [done, setDone] = useState(false);
@@ -28,7 +37,17 @@ export default function EnquiryForm({
     formState: { errors },
   } = useForm<EnquiryValues>({
     resolver: zodResolver(enquirySchema),
-    defaultValues: { fullName: "", email: "", phone: "", destination: "", travelDates: "", travellers: "", service: defaultService ?? "", message: "", companyWebsite: "" },
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      destination: defaults?.destination ?? "",
+      travelDates: defaults?.travelDates ?? "",
+      travelers: defaults?.travelers ?? "",
+      service: defaults?.service ?? defaultService ?? "",
+      message: "",
+      companyWebsite: "",
+    },
   });
 
   const onValid = async (values: EnquiryValues) => {
@@ -81,10 +100,10 @@ export default function EnquiryForm({
           {(p) => <input type="text" autoComplete="name" placeholder="Jane Smith" {...register("fullName")} {...p} />}
         </Field>
         <Field label="Email address" error={errors.email?.message} required>
-          {(p) => <input type="email" autoComplete="email" placeholder="jane@example.co.uk" {...register("email")} {...p} />}
+          {(p) => <input type="email" autoComplete="email" placeholder="jane@example.com" {...register("email")} {...p} />}
         </Field>
         <Field label="Phone number" error={errors.phone?.message} required>
-          {(p) => <input type="tel" autoComplete="tel" placeholder="07123 456789" {...register("phone")} {...p} />}
+          {(p) => <input type="tel" autoComplete="tel" placeholder="(555) 123-4567" {...register("phone")} {...p} />}
         </Field>
         <Field label="Destination" error={errors.destination?.message} required>
           {(p) => <input type="text" placeholder="City, region or country" {...register("destination")} {...p} />}
@@ -92,8 +111,8 @@ export default function EnquiryForm({
         <Field label="Travel dates" hint="Approximate is fine">
           {(p) => <input type="text" placeholder="e.g. 12–18 August 2026" {...register("travelDates")} {...p} />}
         </Field>
-        <Field label="Number of travellers">
-          {(p) => <input type="text" inputMode="numeric" placeholder="e.g. 2 adults, 1 child" {...register("travellers")} {...p} />}
+        <Field label="Number of travelers">
+          {(p) => <input type="text" inputMode="numeric" placeholder="e.g. 2 adults, 1 child" {...register("travelers")} {...p} />}
         </Field>
         <Field label="Preferred service">
           {(p) => (
@@ -134,11 +153,11 @@ export default function EnquiryForm({
             <Loader2 className="h-4 w-4 animate-spin" /> Sending…
           </>
         ) : (
-          "Request a personalised quote"
+          "Request a personalized quote"
         )}
       </button>
 
-      <p className="mt-3 text-xs leading-relaxed text-navy-500">{site.hotelNotice}</p>
+      <p className="mt-3 text-xs leading-relaxed text-navy-500">{site.disclaimer}</p>
     </form>
   );
 }
