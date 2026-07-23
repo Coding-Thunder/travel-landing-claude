@@ -31,9 +31,8 @@ export default function PrivacyPolicyPage() {
         <h2>1. Introduction</h2>
         <p>
           {site.legalName} (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) provides independent
-          flight, hotel and car rental reservation assistance through a trusted supplier network. We are not
-          an airline, hotel chain, online travel agent or car rental company, and we act as an intermediary
-          that helps you request and arrange travel reservations.
+          flight reservation assistance through a trusted supplier network. We are not an airline or online
+          travel agent, and we act as an intermediary that helps you request and arrange flight reservations.
         </p>
         <p>
           This policy applies to information collected through this website and when you contact us or ask
@@ -52,8 +51,8 @@ export default function PrivacyPolicyPage() {
           <li>Your name and the names of other travelers included in a reservation request</li>
           <li>Contact details, such as your email address and telephone number</li>
           <li>Billing information needed to process a reservation payment</li>
-          <li>Travel preferences, such as destinations, dates, room types and special requirements</li>
-          <li>Reservation details relating to the accommodation you ask us to arrange</li>
+          <li>Travel preferences, such as destinations, dates, cabin class and special requirements</li>
+          <li>Reservation details relating to the flights you ask us to arrange</li>
           <li>The content of your enquiry messages and any correspondence with our team</li>
         </ul>
         <p>
@@ -87,7 +86,7 @@ export default function PrivacyPolicyPage() {
           required to do so. This may include disclosure to:
         </p>
         <ul>
-          <li>Travel and accommodation suppliers, to arrange and confirm the reservation you request</li>
+          <li>Airlines and travel suppliers, to arrange and confirm the reservation you request</li>
           <li>Payment providers, to process reservation payments securely</li>
           <li>Technology providers who help us operate our website and support our business</li>
           <li>Authorities, regulators or advisers where we are required to do so by law</li>
@@ -169,8 +168,8 @@ export default function PrivacyPolicyPage() {
 
         <h2>12. International Transfers</h2>
         <p>
-          To arrange accommodation with suppliers located in other countries, your information may be
-          transferred to, and processed in, locations outside the United Kingdom. Where this happens, we
+          To arrange flights with airlines and suppliers located in other countries, your information may be
+          transferred to, and processed in, locations outside the United States. Where this happens, we
           take steps to ensure that appropriate safeguards are in place where required by law, so that your
           information continues to be protected.
         </p>

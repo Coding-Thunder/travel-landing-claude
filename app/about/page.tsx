@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 export const metadata = pageMetadata({
   title: "About Us",
   description:
-    "Learn about UniversalTicketss — an independent travel reservation service providing professional, transparent flight, hotel and car rental booking assistance for leisure, business and group travel.",
+    "Learn about UniversalTicketss — an independent flight reservation service providing professional, transparent booking assistance for domestic, international, business and group air travel.",
   path: "/about",
 });
 
@@ -117,13 +117,13 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About us"
         title="About UniversalTicketss"
-        subtitle="Professional travel reservation assistance designed to make planning your journey simple, convenient and reliable."
+        subtitle="Professional flight reservation assistance designed to make planning your journey simple, convenient and reliable."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "About", href: "/about" },
         ]}
-        image="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80"
-        imageAlt="The refined lobby of a luxury hotel, representative of the accommodation UniversalTicketss helps arrange."
+        image="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80"
+        imageAlt="An aircraft wing above the clouds, representative of the flights UniversalTicketss helps arrange."
       />
 
       <TrustBar />
@@ -134,29 +134,21 @@ export default function AboutPage() {
           <div className="lg:col-span-7">
             <SectionHeading
               eyebrow="Our story"
-              title="An independent travel reservation company, built around you"
+              title="An independent flight reservation company, built around you"
             />
             <div className="mt-6 space-y-4 text-base leading-relaxed text-navy-600 sm:text-[17px]">
               <p>
-                UniversalTicketss is an independent travel reservation company that helps
-                individuals, families and businesses plan their travel with confidence. We
-                are not an airline, hotel chain or online travel agency; instead, we act as your
+                UniversalTicketss is an independent flight reservation company that helps
+                individuals, families and businesses plan their air travel with confidence. We
+                are not an airline or online travel agency; instead, we act as your
                 dedicated reservation assistant, taking the effort out of finding and arranging the
-                right place to stay.
+                right flights.
               </p>
               <p>
                 Our purpose is straightforward — to simplify the reservation process. We provide
                 professional assistance for{" "}
                 <Link href="/flights" className="font-medium text-royal-700 underline-offset-4 hover:underline">
                   flight reservations
-                </Link>
-                ,{" "}
-                <Link href="/hotels" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  hotel reservations
-                </Link>
-                ,{" "}
-                <Link href="/car-rentals" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  car rental reservations
                 </Link>
                 ,{" "}
                 <Link href="/business-travel" className="font-medium text-royal-700 underline-offset-4 hover:underline">
@@ -171,14 +163,14 @@ export default function AboutPage() {
               </p>
               <p>
                 To do this well, we work with a network of trusted travel suppliers and reservation
-                partners. That reach allows us to present suitable travel options across a
+                partners. That reach allows us to present suitable flight options across a
                 wide range of destinations, while remaining transparent about supplier conditions,
                 availability and any applicable service fees.
               </p>
               <p>
                 Behind every enquiry is an experienced support team committed to responsive service
                 before, during and after the reservation process. Whether you are booking a single
-                night or arranging travel for a large group, we are here to help by
+                one-way ticket or arranging flights for a large group, we are here to help by
                 telephone, email and our online enquiry form.
               </p>
             </div>
@@ -187,8 +179,8 @@ export default function AboutPage() {
           <Reveal delay={0.1} className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-navy-100 shadow-sm lg:aspect-[3/4]">
               <Image
-                src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"
-                alt="A stylish boutique hotel room, one of the many accommodation styles our reservation specialists help travelers arrange."
+                src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80"
+                alt="A passenger aircraft cabin interior, representative of the flights our reservation specialists help travelers arrange."
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
@@ -310,18 +302,18 @@ export default function AboutPage() {
             Ready when you are
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Let us help plan your next stay
+            Let us help plan your next flight
           </h2>
           <p className="mt-4 text-base leading-relaxed text-navy-100 sm:text-lg">
             Tell us where you are going and what you need. Our reservation specialists will follow
-            up with suitable travel options and a personalized quote.
+            up with suitable flight options and a personalized quote.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild variant="royal" size="lg">
               <Link href="/contact">Request a quote</Link>
             </Button>
             <Button asChild variant="navyOutline" size="lg">
-              <Link href="/hotels">Explore hotel options</Link>
+              <Link href="/flights">Explore flight options</Link>
             </Button>
           </div>
         </Reveal>

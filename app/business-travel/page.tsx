@@ -10,37 +10,37 @@ import { Button } from "@/components/ui/button";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Business Travel Accommodation",
+  title: "Business Travel Flights",
   description:
-    "Corporate accommodation assistance for companies and business travelers — well-located business hotels, airport hotels and extended stays, with a single point of contact and supplier-issued invoicing.",
+    "Corporate flight reservation assistance for companies and business travelers — flexible domestic and international itineraries, a single point of contact and clear, supplier-issued documentation.",
   path: "/business-travel",
   image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
 });
 
 const HOW_WE_HELP = [
   {
-    icon: "map-pin",
-    title: "Well-located business hotels",
+    icon: "plane",
+    title: "Flexible domestic & international fares",
     description:
-      "Assistance finding accommodation close to your offices, meeting venues, conference centers and transport links, so travelers spend less time commuting and more time working.",
+      "Assistance finding routes and fare types that suit the way your team works — from a next-day domestic hop to a multi-leg international schedule.",
   },
   {
     icon: "clock",
-    title: "Airport hotels for tight schedules",
+    title: "Schedules that fit tight itineraries",
     description:
-      "Options near major terminals for early departures, late arrivals and connecting journeys — helping teams stay rested and reliable around demanding itineraries.",
+      "Departure and connection options that keep travelers on time for meetings and rested for the work ahead, around demanding calendars.",
   },
   {
-    icon: "bed",
-    title: "Extended-stay accommodation",
+    icon: "route",
+    title: "Multi-city & open-jaw routing",
     description:
-      "Apartment-style and long-stay properties for secondments, project work and relocations, with the space and facilities that longer trips require.",
+      "Complex trips visiting several cities on one itinerary, planned as a single reservation request rather than a stack of separate bookings.",
   },
   {
     icon: "users",
     title: "Consistency for teams",
     description:
-      "Coordination of multiple travelers and repeat visits so colleagues experience a consistent standard of accommodation across trips and destinations.",
+      "Coordination of multiple travelers and repeat trips so colleagues experience a consistent standard across routes and destinations.",
   },
   {
     icon: "headset",
@@ -50,34 +50,34 @@ const HOW_WE_HELP = [
   },
   {
     icon: "file-check",
-    title: "Supplier-issued invoicing",
+    title: "Supplier-issued documentation",
     description:
-      "Billing, confirmations and documentation are issued directly by the accommodation supplier, supporting clear record keeping and your organization's duty-of-care considerations.",
+      "Tickets, confirmations and receipts are issued directly by the airline or travel supplier, supporting clear record keeping and your organization's duty-of-care considerations.",
   },
 ] as const;
 
 const ENQUIRY_TIPS = [
-  "Destination, or destinations, and the dates each traveler needs",
-  "Number of travelers and any room or single-occupancy preferences",
-  "Proximity requirements — office, venue, airport or station",
-  "Budget guidance and any preferred accommodation standard",
+  "Origin and destination airports, and the dates each traveler needs",
+  "Number of travelers and any cabin or seating preferences",
+  "Preferred departure and return times, and any schedule flexibility",
+  "Budget guidance and any preferred airlines or fare conditions",
   "Billing and documentation needs for your finance or travel policy",
 ];
 
 const RELATED = [
   {
-    href: "/hotels",
-    icon: "bed",
-    title: "Hotel reservation assistance",
+    href: "/flights",
+    icon: "plane",
+    title: "Flight reservation assistance",
     description:
-      "Explore how we support hotel and accommodation requests across a wide range of destinations for every type of trip.",
+      "Explore how we support domestic and international flight requests — one-way, round trip and multi-city itineraries.",
   },
   {
     href: "/group-travel",
     icon: "users",
-    title: "Group travel accommodation",
+    title: "Group travel flights",
     description:
-      "Planning for a conference, incentive trip or team offsite? See how we help coordinate accommodation for larger groups.",
+      "Traveling as a delegation or team? See how we coordinate flights for larger groups on a single itinerary.",
   },
 ] as const;
 
@@ -95,8 +95,8 @@ export default function BusinessTravelPage() {
 
       <PageHero
         eyebrow="For business"
-        title="Business Travel Accommodation"
-        subtitle="Reliable accommodation planning for business trips — from a single overnight stay to a program of travel for your whole team, coordinated by one dedicated reservation team."
+        title="Business Travel Flights"
+        subtitle="Reliable flight planning for business trips — from a single overnight round trip to a full program of travel for your whole team, coordinated by one dedicated reservation team."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Business Travel", href: "/business-travel" },
@@ -109,20 +109,21 @@ export default function BusinessTravelPage() {
       <Section tone="white">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <SectionHeading
-            eyebrow="Corporate accommodation, handled properly"
-            title="Accommodation assistance built around how businesses actually travel"
-            subtitle="UniversalTicketss provides independent reservation assistance for companies and business travelers through a trusted supplier network. We take the detail of finding and arranging suitable accommodation off your desk, so trips run smoothly and predictably."
+            eyebrow="Corporate flights, handled properly"
+            title="Flight assistance built around how businesses actually travel"
+            subtitle="UniversalTicketss provides independent flight reservation assistance for companies and business travelers through a trusted supplier network. We take the detail of finding and arranging suitable flights off your desk, so trips run smoothly and predictably."
           />
           <Reveal className="rounded-2xl border border-navy-100 bg-navy-50 p-6 shadow-sm sm:p-8" delay={0.05}>
             <p className="text-sm leading-relaxed text-navy-700">
-              Business travel rarely fits a template. A one-night stay before a client meeting, a fortnight on site for a
-              project team, or recurring visits to the same city each quarter all bring different requirements. Our role is
-              to understand those requirements and present suitable, well-located options — clearly and without pressure.
+              Business travel rarely fits a template. A same-day return before a client meeting, a fortnight
+              of on-site work for a project team, or recurring visits to the same city each quarter all bring
+              different requirements. Our role is to understand those requirements and present suitable,
+              well-timed flight options — clearly and without pressure.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-navy-700">
-              We are a reservation assistance service, not a hotel chain or online booking platform. Availability, pricing
-              and booking conditions are set by each accommodation supplier and confirmed with you before anything is
-              arranged.
+              We are a reservation assistance service, not an airline or online booking platform. Availability,
+              fares and booking conditions are set by each airline or travel supplier and confirmed with you
+              before anything is arranged.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="royal">
@@ -141,7 +142,7 @@ export default function BusinessTravelPage() {
         <SectionHeading
           eyebrow="What we do"
           title="How we help business travelers"
-          subtitle="Practical support across the situations business trips throw up most often — from a single well-placed hotel to accommodation for an entire team."
+          subtitle="Practical support across the situations business trips throw up most often — from a single well-timed flight to itineraries for an entire team."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {HOW_WE_HELP.map((item, i) => (
@@ -167,7 +168,7 @@ export default function BusinessTravelPage() {
             <SectionHeading
               eyebrow="Start a request"
               title="Tell us about your trip"
-              subtitle="Share a few details and one of our reservation specialists will come back with suitable business accommodation options during business hours."
+              subtitle="Share a few details and one of our reservation specialists will come back with suitable business flight options during business hours."
             />
             <Reveal delay={0.05}>
               <p className="mt-6 text-sm font-medium text-navy-800">Helpful details to include:</p>
@@ -180,8 +181,8 @@ export default function BusinessTravelPage() {
                 ))}
               </ul>
               <p className="mt-6 text-sm leading-relaxed text-navy-500">
-                There is no obligation in making an enquiry. We will only arrange a reservation once you have reviewed and
-                approved the options and any applicable conditions.
+                There is no obligation in making an enquiry. We will only arrange a reservation once you have
+                reviewed and approved the options and any applicable conditions.
               </p>
             </Reveal>
           </div>
@@ -198,7 +199,7 @@ export default function BusinessTravelPage() {
         <SectionHeading
           eyebrow="Related services"
           title="Explore more of how we can help"
-          subtitle="Business travel is one part of what we do. If your needs sit alongside general hotel bookings or larger groups, these pages may help."
+          subtitle="Business travel is one part of what we do. If your needs sit alongside individual flights or larger groups, these pages may help."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {RELATED.map((item, i) => (

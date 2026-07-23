@@ -3,7 +3,7 @@ import { site } from "@/config/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: site.legalName,
+    name: site.name,
     short_name: site.name,
     description: site.seo.description,
     start_url: "/",

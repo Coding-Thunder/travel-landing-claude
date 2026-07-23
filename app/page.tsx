@@ -16,7 +16,7 @@ import JsonLd from "@/app/components/trip/json-ld";
 import QuoteWidget from "@/app/components/trip/quote-widget";
 
 export const metadata = pageMetadata({
-  title: "Flight, Hotel & Car Rental Reservation Assistance",
+  title: "Flight Reservation Assistance",
   description: site.seo.description,
   path: "/",
 });
@@ -50,7 +50,7 @@ export default function HomePage() {
         <Container className="relative pb-36 pt-20 text-center sm:pb-40 sm:pt-24">
           <Reveal className="mx-auto max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-royal-300">
-              Flights · Hotels · Car rentals
+              Domestic · International · Business · Group
             </p>
             <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl lg:leading-[1.05]">
               Great fares, arranged by real people.
@@ -126,8 +126,8 @@ export default function HomePage() {
       <Section tone="tint">
         <SectionHeading
           eyebrow="What we help with"
-          title="Three services, one dedicated team"
-          subtitle="Whether it is a single flight, a hotel for the weekend or a car for the week, we handle the reservation request from start to finish."
+          title="Flights for every kind of trip"
+          subtitle="Whether it is a single domestic hop, a corporate itinerary or flights for a whole group, we handle the reservation request from start to finish."
         />
         <ul className="mt-10 grid gap-6 lg:grid-cols-3">
           {site.services.map((svc, i) => (
@@ -162,9 +162,9 @@ export default function HomePage() {
                 A calmer way to arrange your travel
               </h2>
               <p className="mt-4 text-base leading-relaxed text-navy-600">
-                {site.name} is an independent reservation service — not an airline, hotel chain, car rental
-                company or online travel agency. That means impartial recommendations, clear conditions and a
-                real person to help, with no pressure to book.
+                {site.name} is an independent flight reservation service — not an airline or online travel
+                agency. That means impartial recommendations, clear conditions and a real person to help,
+                with no pressure to book.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild variant="royal">

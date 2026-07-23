@@ -116,10 +116,10 @@ export default function FlightsPage() {
       {/* Cross-links + CTA */}
       <Section tone="navy">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Planning more than a flight?</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Traveling for work or as a group?</h2>
           <p className="mt-4 text-base leading-relaxed text-navy-100">
-            We also assist with <Link href="/hotels" className="font-semibold text-white underline-offset-4 hover:underline">hotel reservations</Link> and{" "}
-            <Link href="/car-rentals" className="font-semibold text-white underline-offset-4 hover:underline">car rental reservations</Link> — tell us about your whole trip.
+            We also assist with <Link href="/business-travel" className="font-semibold text-white underline-offset-4 hover:underline">business travel</Link> and{" "}
+            <Link href="/group-travel" className="font-semibold text-white underline-offset-4 hover:underline">group travel</Link> — tell us about your whole trip.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild variant="royal" size="lg"><Link href="/contact">Request a flight quote today</Link></Button>

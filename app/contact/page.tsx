@@ -53,7 +53,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
         <SectionHeading
           eyebrow="Get in touch"
           title="Contact our reservation team"
-          subtitle="Send us the details of your trip and we'll respond with suitable accommodation options. You can also reach us using the contact details below during business hours."
+          subtitle="Send us the details of your trip and we'll respond with suitable flight options. You can also reach us using the contact details below during business hours."
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-14">
@@ -126,7 +126,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
                       {site.company.registeredOffice}
                     </address>
                     <p className="mt-1 text-xs leading-relaxed text-navy-500">
-                      Correspondence address for {site.legalName}. Please note this is not a walk-in customer centre.
+                      Correspondence address for {site.legalName}. Please note this is not a walk-in customer center.
                     </p>
                   </div>
                 </div>

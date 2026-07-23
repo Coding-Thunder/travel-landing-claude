@@ -6,7 +6,7 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Refund & Cancellation Policy",
   description:
-    "How UniversalTicketss handles cancellation requests and refunds for flight, hotel and car rental reservation assistance, including supplier policies, processing times and chargebacks.",
+    "How UniversalTicketss handles cancellation requests and refunds for flight reservation assistance, including airline and supplier policies, processing times and chargebacks.",
   path: "/refund-policy",
 });
 
@@ -30,16 +30,16 @@ export default function RefundPolicyPage() {
         <section>
           <h2>1. Our Commitment</h2>
           <p>
-            UniversalTicketss provides independent flight, hotel and car rental reservation
+            UniversalTicketss provides independent flight reservation
             assistance through a trusted network of travel suppliers. We are committed to handling
             every cancellation request and refund fairly, transparently and as promptly as the
             applicable supplier conditions allow. This policy sets out how we approach these
             requests and what you can reasonably expect from us.
           </p>
           <p>
-            Because we assist with reservations rather than provide the accommodation ourselves,
+            Because we assist with reservations rather than operate the flights ourselves,
             the outcome of a cancellation or refund request often depends on the terms set by the
-            travel supplier, tour operator or other third party responsible for your
+            airline, travel supplier or other third party responsible for your
             booking. We will always explain those terms to you as clearly as we can and act on
             your behalf wherever it is within our ability to do so. This policy should be read
             together with our{" "}
@@ -97,8 +97,8 @@ export default function RefundPolicyPage() {
             promptly to put things right when the fault lies with us.
           </p>
           <p>
-            Where the issue relates to the travel supplier or another third party — for
-            example, an overbooking, closure or change made by the property — we will assist you
+            Where the issue relates to the airline, travel supplier or another third party — for
+            example, an overbooking, cancellation or schedule change made by the airline — we will assist you
             in communicating with the supplier and support your case to reach a fair resolution.
             Any refund in these circumstances remains subject to the supplier&apos;s own policies.
           </p>

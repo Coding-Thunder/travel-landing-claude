@@ -43,6 +43,7 @@ export function organizationSchema() {
     name: site.legalName,
     alternateName: site.name,
     url: site.url,
+    logo: `${site.url}/logo.svg`,
     email: site.company.supportEmail,
     telephone: site.company.phoneHref || undefined,
     description: site.seo.description,

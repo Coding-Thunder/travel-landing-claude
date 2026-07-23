@@ -54,7 +54,7 @@ export default function FaqPage() {
 
           <Reveal className="mt-8" delay={0.1}>
             <p className="text-center text-sm leading-relaxed text-navy-500">
-              {site.hotelNotice}
+              {site.flightNotice}
             </p>
           </Reveal>
         </div>
@@ -79,7 +79,7 @@ export default function FaqPage() {
               <Link href="/contact">Request a quote</Link>
             </Button>
             <Button asChild variant="navyOutline" size="lg">
-              <Link href="/hotels">Explore hotel assistance</Link>
+              <Link href="/flights">Explore flight assistance</Link>
             </Button>
           </div>
         </Reveal>

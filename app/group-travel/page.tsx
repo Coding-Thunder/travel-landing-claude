@@ -13,27 +13,27 @@ const HERO_IMAGE =
   "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2000&q=80";
 
 export const metadata = pageMetadata({
-  title: "Group Travel Accommodation",
+  title: "Group Travel Flights",
   description:
-    "Coordinate accommodation for families, corporate groups, events, weddings, sports teams and tours. One enquiry, handled by our reservation specialists across a trusted supplier network.",
+    "Coordinate flights for families, corporate groups, events, weddings, sports teams and tours. One enquiry, handled by our reservation specialists across a trusted supplier network.",
   path: "/group-travel",
   image: HERO_IMAGE,
 });
 
 const COORDINATE = [
-  { icon: "bed", title: "Multiple rooms and room types", body: "Twins, doubles and family rooms requested together so your whole party is accommodated at one property or nearby." },
-  { icon: "users", title: "Rooming lists and group blocks", body: "We pass your rooming list and any group name to the supplier, keeping allocations organised from the outset." },
-  { icon: "map-pin", title: "Rooms kept close together", body: "Connecting or adjacent rooms requested where families or colleagues would prefer to stay near one another." },
-  { icon: "credit-card", title: "Consistent rates across the party", body: "A single set of proposed rates for the group, with any applicable service fees explained before you confirm." },
-  { icon: "clock", title: "Staggered arrivals and departures", body: "Different check-in and check-out times noted for each part of the group and shared with the property in advance." },
-  { icon: "file-check", title: "Accessibility and special requests", body: "Step-free access, ground-floor rooms, dietary notes and other requirements submitted alongside your enquiry." },
+  { icon: "users", title: "Seats booked together", body: "Where possible, the whole party is ticketed on the same flights so your group travels together from departure to arrival." },
+  { icon: "file-check", title: "Passenger lists and group fares", body: "We pass your passenger list and any group reference to the airline or supplier, keeping the booking organized from the outset." },
+  { icon: "route", title: "Shared routing and connections", body: "Consistent routes and connections requested so families or colleagues move through each leg of the journey together." },
+  { icon: "credit-card", title: "Consistent fares across the party", body: "A single set of proposed fares for the group, with any applicable service fees explained before you confirm." },
+  { icon: "clock", title: "Staggered departures where needed", body: "Different departure points or times noted for each part of the group and coordinated onto a single plan." },
+  { icon: "shield-check", title: "Accessibility and special requests", body: "Mobility assistance, seating needs, dietary notes and other requirements submitted alongside your enquiry." },
 ];
 
 const STEPS = [
-  { n: "1", icon: "file-check", title: "Send us one brief", body: "Tell us your dates, destination, party size and approximate number of rooms. A single enquiry covers the entire group — there is no need to contact properties individually." },
-  { n: "2", icon: "sparkles", title: "Receive matched options", body: "A reservation specialist searches our trusted supplier network and returns accommodation that keeps your group together, near your event and within the budget you have set." },
-  { n: "3", icon: "shield-check", title: "Review and confirm", body: "We set out room allocation, supplier terms and any cancellation conditions in plain English so you can confirm the arrangement with everything visible up front." },
-  { n: "4", icon: "headset", title: "Support through the stay", body: "One point of contact remains available for adjustments, added rooms or questions before and during the trip, during our published business hours." },
+  { n: "1", icon: "file-check", title: "Send us one brief", body: "Tell us your dates, route, party size and approximate number of travelers. A single enquiry covers the entire group — there is no need to book seats individually." },
+  { n: "2", icon: "sparkles", title: "Receive matched options", body: "A reservation specialist searches our trusted supplier network and returns flight options that keep your group together and within the budget you have set." },
+  { n: "3", icon: "shield-check", title: "Review and confirm", body: "We set out the itinerary, supplier terms and any change or cancellation conditions in plain English so you can confirm with everything visible up front." },
+  { n: "4", icon: "headset", title: "Support through the trip", body: "One point of contact remains available for adjustments, added passengers or questions before and during travel, during our published business hours." },
 ];
 
 type Audience = {
@@ -44,20 +44,20 @@ type Audience = {
 };
 
 const AUDIENCES: Audience[] = [
-  { icon: "users", title: "Families and reunions", body: "Multi-generational trips, milestone birthdays and family gatherings that need several rooms of different sizes kept close together at one welcoming property." },
-  { icon: "briefcase", title: "Corporate groups and off-sites", body: "Team away-days, training cohorts and conference delegations that call for consistent accommodation near the venue.", link: { href: "/business-travel", label: "See our business travel service" } },
-  { icon: "map-pin", title: "Events and conferences", body: "Delegates, exhibitors and organisers who need a block of rooms within easy reach of a single venue across busy event dates." },
-  { icon: "sparkles", title: "Weddings and celebrations", body: "Room blocks for guests traveling to a wedding or celebration, coordinated so everyone can stay together over the weekend." },
-  { icon: "globe", title: "Sports teams and tours", body: "Squads, touring parties and their supporting staff needing practical, well-located accommodation across one or several stops." },
-  { icon: "bed", title: "Extended group stays", body: "Longer projects, relocations and study trips where apartment-style or extended-stay rooms suit a group over an extended period." },
+  { icon: "users", title: "Families and reunions", body: "Multi-generational trips, milestone birthdays and family gatherings that need several travelers ticketed together on the same flights." },
+  { icon: "briefcase", title: "Corporate groups and off-sites", body: "Team away-days, training cohorts and conference delegations that call for consistent flights to and from the venue city.", link: { href: "/business-travel", label: "See our business travel service" } },
+  { icon: "map-pin", title: "Events and conferences", body: "Delegates, exhibitors and organizers who need a block of seats arriving in good time across busy event dates." },
+  { icon: "sparkles", title: "Weddings and celebrations", body: "Flights for guests traveling to a wedding or celebration, coordinated so everyone can arrive and depart around the occasion." },
+  { icon: "globe", title: "Sports teams and tours", body: "Squads, touring parties and their supporting staff needing practical, well-timed flights across one or several destinations." },
+  { icon: "route", title: "Extended group itineraries", body: "Longer projects, relocations and study trips where multi-city or open-jaw routing suits a group traveling over an extended period." },
 ];
 
 const ENQUIRY_CHECKLIST = [
-  "Travel dates, including any flexibility around arrival and departure",
-  "Destination or the venue your group needs to be near",
-  "Approximate number of rooms and how they should be configured",
-  "Total number of travelers, noting any children or accessibility needs",
-  "An indicative per-room budget so we can match suitable properties",
+  "Travel dates, including any flexibility around departure and return",
+  "Origin and destination airports for the group",
+  "Approximate number of travelers and any cabin preferences",
+  "Any children, mobility or seating needs across the party",
+  "An indicative per-person budget so we can match suitable fares",
 ];
 
 export default function GroupTravelPage() {
@@ -74,14 +74,14 @@ export default function GroupTravelPage() {
 
       <PageHero
         eyebrow="For groups"
-        title="Group Travel Accommodation"
-        subtitle="From family gatherings to corporate off-sites, we coordinate multiple rooms and connected stays for groups of every size — all through a single enquiry handled by our reservation specialists."
+        title="Group Travel Flights"
+        subtitle="From family gatherings to corporate off-sites, we coordinate flights for groups of every size — all through a single enquiry handled by our reservation specialists."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Group Travel", href: "/group-travel" },
         ]}
         image={HERO_IMAGE}
-        imageAlt="A group of travelers gathered together in a bright, welcoming hotel setting"
+        imageAlt="A group of travelers gathered together in a bright airport terminal"
       />
 
       {/* Intro */}
@@ -89,31 +89,30 @@ export default function GroupTravelPage() {
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
-              eyebrow="Group accommodation, simplified"
+              eyebrow="Group flights, simplified"
               title="One point of contact for the whole party"
             />
             <div className="mt-6 space-y-4 text-base leading-relaxed text-navy-700">
               <p>
-                Arranging accommodation for a group is rarely as straightforward as booking for one.
-                Room counts shift as plans firm up, arrival times differ across the party, and everyone
-                has their own view on bedding, budget and how close they want to be to the action. Our
-                group service exists to take that coordination off your plate.
+                Arranging flights for a group is rarely as straightforward as booking for one.
+                Passenger counts shift as plans firm up, departure points differ across the party, and
+                everyone has their own view on timing, budget and where they want to sit. Our group
+                service exists to take that coordination off your plate.
               </p>
               <p>
-                Rather than juggling separate reservations, you send us a single brief describing your
+                Rather than juggling separate bookings, you send us a single brief describing your
                 group and your dates. A reservation specialist then works across our trusted supplier
                 network to put forward{" "}
-                <Link href="/hotels" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  hotel accommodation
+                <Link href="/flights" className="font-medium text-royal-700 underline-offset-4 hover:underline">
+                  flight options
                 </Link>{" "}
-                that keeps everyone together, near where you need to be and within the budget you have in
-                mind.
+                that keep everyone together and within the budget you have in mind.
               </p>
               <p>
-                We are an independent reservation assistance service — not a hotel chain or online travel
-                agent. Availability, room allocation and cancellation conditions remain with the
-                accommodation supplier, and we set those terms out clearly so nothing is confirmed before
-                you are comfortable with it.
+                We are an independent reservation assistance service — not an airline or online travel
+                agent. Availability, seat allocation and change conditions remain with the airline or
+                travel supplier, and we set those terms out clearly so nothing is confirmed before you
+                are comfortable with it.
               </p>
             </div>
           </div>
@@ -168,7 +167,7 @@ export default function GroupTravelPage() {
         <SectionHeading
           eyebrow="Who we help"
           title="Groups we assist"
-          subtitle="Different groups have different priorities. We tailor the accommodation search to the way your party actually travels."
+          subtitle="Different groups have different priorities. We tailor the flight search to the way your party actually travels."
         />
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {AUDIENCES.map((a, i) => (
@@ -199,7 +198,7 @@ export default function GroupTravelPage() {
         <SectionHeading
           eyebrow="Get started"
           title="Tell us about your group"
-          subtitle="Share a few details and a reservation specialist will respond during business hours with accommodation options to review — no obligation to proceed."
+          subtitle="Share a few details and a reservation specialist will respond during business hours with flight options to review — no obligation to proceed."
         />
         <div className="mt-10 grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
@@ -229,7 +228,7 @@ export default function GroupTravelPage() {
           </div>
 
           <EnquiryForm
-            heading="Request group accommodation assistance"
+            heading="Request group travel assistance"
             defaultService="Group Travel"
           />
         </div>
@@ -243,23 +242,23 @@ export default function GroupTravelPage() {
           invert
           eyebrow="Keep exploring"
           title="Related services"
-          subtitle="Group accommodation sits alongside the rest of our reservation assistance. Explore the services that pair naturally with a group stay."
+          subtitle="Group flights sit alongside the rest of our reservation assistance. Explore the services that pair naturally with a group trip."
         />
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           <Link
-            href="/hotels"
+            href="/flights"
             className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-royal-300/60 hover:bg-white/10"
           >
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-royal-300">
-              <Icon name="bed" className="h-5 w-5" />
+              <Icon name="plane" className="h-5 w-5" />
             </span>
-            <h3 className="mt-4 text-lg font-semibold text-white">Hotel reservations</h3>
+            <h3 className="mt-4 text-lg font-semibold text-white">Flight reservations</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-100">
-              Reservation assistance for individual stays across budget, business, luxury, family and
-              boutique accommodation worldwide.
+              Reservation assistance for individual journeys — domestic and international, one-way, round
+              trip and multi-city itineraries worldwide.
             </p>
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-royal-300">
-              Explore hotels <span aria-hidden className="transition group-hover:translate-x-0.5">→</span>
+              Explore flights <span aria-hidden className="transition group-hover:translate-x-0.5">→</span>
             </span>
           </Link>
 
@@ -272,8 +271,8 @@ export default function GroupTravelPage() {
             </span>
             <h3 className="mt-4 text-lg font-semibold text-white">Business travel</h3>
             <p className="mt-2 text-sm leading-relaxed text-navy-100">
-              Accommodation planning for individual business travelers and companies, from single trips to
-              recurring corporate stays.
+              Flight planning for individual business travelers and companies, from single trips to
+              recurring corporate itineraries.
             </p>
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-royal-300">
               Explore business travel <span aria-hidden className="transition group-hover:translate-x-0.5">→</span>

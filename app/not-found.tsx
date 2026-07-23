@@ -4,7 +4,7 @@ import Reveal from "@/app/components/trip/reveal";
 import { Button } from "@/components/ui/button";
 
 const QUICK_LINKS = [
-  { label: "Browse hotel categories", href: "/hotels" },
+  { label: "Flight reservation assistance", href: "/flights" },
   { label: "Frequently asked questions", href: "/faq" },
 ];
 
@@ -20,7 +20,7 @@ export default function NotFound() {
           <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-navy-600">
             The page you were looking for may have moved, or the link might be
             out of date. Our reservation team is on hand if you need help finding
-            the right stay.
+            the right flight.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">

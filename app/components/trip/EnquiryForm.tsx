@@ -9,7 +9,7 @@ import { submitEnquiry } from "@/app/actions/enquiry";
 import { site } from "@/config/site";
 import { cn } from "@/lib/cn";
 
-const SERVICES = ["Flight Reservation", "Hotel Reservation", "Car Rental Reservation", "Business Travel", "Group Travel", "Other"];
+const SERVICES = ["Flight Reservation", "Business Travel", "Group Travel", "Other"];
 
 export type EnquiryDefaults = {
   destination?: string;

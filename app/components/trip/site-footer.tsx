@@ -17,8 +17,8 @@ export default function SiteFooter() {
               <span className="text-lg font-semibold tracking-tight text-white">{site.name}</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-200">
-              Professional flight, hotel and car rental reservation assistance for leisure, business and group
-              travel through a trusted supplier network.
+              Professional flight reservation assistance for leisure, business and group travel through a
+              trusted supplier network.
             </p>
             <ul className="mt-5 space-y-2.5 text-sm">
               <li className="flex items-start gap-2.5">
@@ -58,7 +58,7 @@ export default function SiteFooter() {
           <p className="max-w-4xl text-xs leading-relaxed text-navy-300">{site.disclaimer}</p>
           <div className="mt-5 flex flex-col gap-3 text-xs text-navy-300 md:flex-row md:items-center md:justify-between">
             <p>
-              © {year} {site.company.registeredName} · Company No. {site.company.companyNumber}. All rights reserved.
+              © {year} {site.company.registeredName} · Wyoming Registration ID: {site.company.companyNumber}. All rights reserved.
             </p>
             <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">
               {site.legalLinks.map((l) => (

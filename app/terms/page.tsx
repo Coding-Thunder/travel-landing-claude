@@ -6,7 +6,7 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Terms & Conditions",
   description:
-    "The Terms & Conditions governing your use of UniversalTicketss and our independent flight, hotel and car rental reservation assistance services.",
+    "The Terms & Conditions governing your use of UniversalTicketss and our independent flight reservation assistance services.",
   path: "/terms",
 });
 
@@ -31,11 +31,11 @@ export default function TermsPage() {
           <h2>1. Introduction</h2>
           <p>
             These Terms &amp; Conditions govern your use of the UniversalTicketss
-            website and the travel reservation assistance we provide. UniversalTicketss
-            is an independent reservation assistance service that helps you request flight, hotel
-            and car rental reservations through a trusted network of travel suppliers. We are not an
-            airline, an online travel agent, a hotel chain or a vehicle rental company, and we do
-            not claim any official partnership or accreditation with those organizations.
+            website and the flight reservation assistance we provide. UniversalTicketss
+            is an independent reservation assistance service that helps you request flight
+            reservations through a trusted network of travel suppliers. We are not an
+            airline or an online travel agent, and we do not claim any official partnership or
+            accreditation with those organizations.
           </p>
           <p>
             By accessing this website or submitting an enquiry, you confirm that you have read,
@@ -47,49 +47,41 @@ export default function TermsPage() {
         <section>
           <h2>2. Our Services</h2>
           <p>
-            We provide travel reservation assistance across flights, hotels and car rentals.
+            We provide flight reservation assistance for domestic and international travel.
             Working with our supplier network, our reservation specialists help you find and request
-            travel arrangements that suit your requirements. Our services include:
+            flights that suit your requirements. Our services include:
           </p>
           <ul>
             <li>
               <strong>Flight reservations</strong> — assistance with domestic and international
-              flight requests, including one-way, return and multi-city itineraries.
+              flight requests, including one-way, round trip and multi-city itineraries.
             </li>
             <li>
-              <strong>Hotel reservations</strong> — assistance with accommodation requests across a
-              wide range of domestic and international destinations.
+              <strong>Business travel</strong> — flexible flight support for companies and business
+              travelers arranging domestic and international trips for work.
             </li>
             <li>
-              <strong>Car rental reservations</strong> — assistance with vehicle requests for
-              airport, city, weekend, long-term and business travel.
-            </li>
-            <li>
-              <strong>Business travel</strong> — support for companies and business travelers
-              arranging flights, accommodation and vehicles for work.
-            </li>
-            <li>
-              <strong>Group travel</strong> — assistance with reservation requests for corporate
-              groups, families and other parties traveling together.
+              <strong>Group travel</strong> — coordinated flight reservation requests for corporate
+              groups, families and other parties traveling together on a single itinerary.
             </li>
           </ul>
           <p>
-            All travel services are provided by independent suppliers. Our role is to assist you
-            with your reservation request and to provide customer support; we do not own, operate or
-            control the flights, accommodation or vehicles themselves.
+            All flights are provided by independent airlines and travel suppliers. Our role is to
+            assist you with your reservation request and to provide customer support; we do not own,
+            operate or control the flights themselves.
           </p>
         </section>
 
         <section>
           <h2>3. Reservation Requests</h2>
           <p>
-            When you submit an enquiry, you are asking us to assist you in requesting accommodation
+            When you submit an enquiry, you are asking us to assist you in requesting flights
             through our supplier network. Submitting an enquiry does not create a confirmed booking
             and does not guarantee availability, pricing or confirmation.
           </p>
           <p>
             All reservation requests are subject to supplier availability at the time the request
-            is processed. Accommodation, room types and rates that appear to be available when you
+            is processed. Flights, fare classes and fares that appear to be available when you
             enquire may no longer be available when we attempt to confirm your reservation.
           </p>
         </section>
@@ -98,12 +90,12 @@ export default function TermsPage() {
           <h2>4. Pricing</h2>
           <p>
             Prices quoted are indicative and may change until your reservation is confirmed by the
-            relevant supplier. Rates are determined by the accommodation supplier and are influenced
+            relevant supplier. Fares are determined by the airline or travel supplier and are influenced
             by availability, demand and the specific conditions of each reservation.
           </p>
           <ul>
             <li>Applicable taxes, supplier fees and charges may affect the final price.</li>
-            <li>Optional services and extras, where selected, are charged in addition to the room rate.</li>
+            <li>Optional services and extras, where selected, are charged in addition to the base fare.</li>
             <li>
               Any service fee we charge for our assistance will be communicated clearly before your
               reservation is confirmed.
@@ -133,11 +125,11 @@ export default function TermsPage() {
           </p>
           <ul>
             <li>Any required payment has been received;</li>
-            <li>The accommodation supplier has accepted the reservation request; and</li>
-            <li>A written confirmation has been issued to you.</li>
+            <li>The airline or travel supplier has accepted the reservation request; and</li>
+            <li>A written confirmation or ticket has been issued to you.</li>
           </ul>
           <p>
-            Until a confirmation has been issued, no contract for accommodation exists and the
+            Until a confirmation has been issued, no contract for travel exists and the
             reservation should not be treated as guaranteed. Please review your confirmation
             carefully as soon as you receive it.
           </p>
@@ -149,7 +141,7 @@ export default function TermsPage() {
           <ul>
             <li>Provide accurate, complete and up-to-date information for every traveler;</li>
             <li>
-              Review all reservation details, including names, dates and accommodation particulars,
+              Review all reservation details, including passenger names, dates and flight particulars,
               and notify us promptly of any errors;
             </li>
             <li>
@@ -168,7 +160,7 @@ export default function TermsPage() {
           <h2>8. Changes &amp; Cancellations</h2>
           <p>
             Requests to change or cancel a confirmed reservation are subject to the policies of the
-            relevant accommodation supplier. Some reservations are non-refundable or carry
+            relevant airline or travel supplier. Some fares are non-refundable or carry
             restrictions that limit changes.
           </p>
           <p>
@@ -182,7 +174,7 @@ export default function TermsPage() {
         <section>
           <h2>9. Refunds</h2>
           <p>
-            Refund eligibility is determined by the accommodation supplier&rsquo;s refund and
+            Refund eligibility is determined by the airline or travel supplier&rsquo;s refund and
             cancellation policy applicable to your reservation. Where a refund is due, we will assist
             you in requesting it from the supplier wherever possible.
           </p>
@@ -196,14 +188,14 @@ export default function TermsPage() {
         <section>
           <h2>10. Supplier Responsibility</h2>
           <p>
-            Accommodation is provided by independent third-party suppliers. Our role is to provide
-            reservation assistance and customer support; the delivery of the accommodation and the
-            standard of the stay are the responsibility of the supplier.
+            Flights are operated by independent airlines and third-party suppliers. Our role is to
+            provide reservation assistance and customer support; the operation of the flight and the
+            standard of service are the responsibility of the airline or supplier.
           </p>
           <p>
-            The supplier&rsquo;s own terms and conditions apply to your stay in addition to these
-            Terms. We recommend that you review the supplier&rsquo;s conditions carefully before
-            confirming any reservation.
+            The airline&rsquo;s or supplier&rsquo;s own terms and conditions of carriage apply to your
+            journey in addition to these Terms. We recommend that you review those conditions carefully
+            before confirming any reservation.
           </p>
         </section>
 
@@ -250,7 +242,7 @@ export default function TermsPage() {
           <p>
             To the maximum extent permitted by law, UniversalTicketss shall not be liable for
             any indirect, incidental or consequential loss arising from the acts or omissions of an
-            accommodation supplier, from travel disruption, or from your use of this website or our
+            airline or travel supplier, from travel disruption, or from your use of this website or our
             services.
           </p>
           <p>

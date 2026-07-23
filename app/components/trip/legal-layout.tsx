@@ -40,7 +40,7 @@ export default function LegalLayout({
 
         <div className="mt-12 max-w-3xl rounded-2xl border border-navy-100 bg-navy-50 p-6 text-sm text-navy-600 sm:p-8">
           <p className="font-semibold text-navy-900">{site.company.registeredName}</p>
-          <p className="mt-1">Company No. {site.company.companyNumber}</p>
+          <p className="mt-1">Wyoming Registration ID: {site.company.companyNumber}</p>
           <p className="mt-1">{site.company.registeredOffice}</p>
           <p className="mt-1">
             <a href={`mailto:${site.company.supportEmail}`} className="font-medium text-royal-700 hover:underline">{site.company.supportEmail}</a>
