@@ -115,14 +115,11 @@ export const site = {
   ] as ValuePoint[],
 
   trust: [
-    { title: "Secure Website", icon: "lock" },
-    { title: "SSL Protected", icon: "shield-check" },
-    { title: "Secure Online Payments", icon: "credit-card" },
-    { title: "Professional Reservation Specialists", icon: "users" },
-    { title: "Transparent Policies", icon: "file-check" },
-    { title: "Dedicated Customer Support", icon: "headset" },
-    { title: "Worldwide Travel Assistance", icon: "globe" },
-  ],
+    { icon: "headset", title: "Real specialists", detail: "Speak with an experienced reservation specialist — never a bot." },
+    { icon: "file-check", title: "No hidden costs", detail: "Fares, conditions and any service fee are explained before you confirm." },
+    { icon: "lock", title: "Secure by design", detail: "Enquiries and payments are handled over encrypted connections." },
+    { icon: "globe", title: "Worldwide flights", detail: "Domestic and international itineraries, one call away." },
+  ] as { icon: string; title: string; detail: string }[],
 
   faqs: [
     { q: "What services do you provide?", a: "We provide flight reservation assistance for domestic and international travel, including business travel and group travel itineraries." },
