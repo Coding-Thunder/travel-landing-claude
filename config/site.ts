@@ -26,8 +26,8 @@ export const site = {
 
   /** ---- Replace these placeholders with the real registered details ---- */
   company: {
-    registeredName: "[Registered company name]",
-    companyNumber: "[Company registration number]",
+    registeredName: "Trip Reservations Limited",
+    companyNumber: "17326762",
     registeredOffice: "26 Zetland Place, Leeds, England, LS8 5PJ",
     address: {
       street: "26 Zetland Place",
