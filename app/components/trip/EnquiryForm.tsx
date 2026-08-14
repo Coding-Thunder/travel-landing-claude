@@ -19,6 +19,7 @@ export default function EnquiryForm({
   defaultService?: string;
 }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [done, setDone] = useState(false);
 
   const {
@@ -33,12 +34,23 @@ export default function EnquiryForm({
 
   const onValid = async (values: EnquiryValues) => {
     setStatus("submitting");
-    const res = await submitEnquiry(values);
-    if (res.ok) {
-      setDone(true);
-      reset();
-    } else {
+    setErrorMessage(null);
+    try {
+      const res = await submitEnquiry(values);
+      if (res.ok) {
+        setDone(true);
+        reset();
+      } else {
+        setStatus("error");
+        setErrorMessage(res.error);
+      }
+    } catch {
+      // Network failure or a server error the action never got to handle — without
+      // this the form would sit on "Sending…" indefinitely.
       setStatus("error");
+      setErrorMessage(
+        `We could not reach our servers. Please try again, or contact us on ${site.company.phone} or ${site.company.supportEmail}.`
+      );
     }
   };
 
@@ -120,7 +132,7 @@ export default function EnquiryForm({
 
       {status === "error" ? (
         <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
-          Something went wrong while sending your enquiry. Please try again, or contact us directly.
+          {errorMessage ?? "Something went wrong while sending your enquiry. Please try again, or contact us directly."}
         </p>
       ) : null}
 

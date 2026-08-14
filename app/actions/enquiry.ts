@@ -1,11 +1,16 @@
 "use server";
 
 import { enquirySchema, type EnquiryResult } from "@/lib/enquiry-schema";
+import { sendEnquiryEmails } from "@/lib/email";
+import { site } from "@/config/site";
 
 /**
  * Handles an enquiry submission. Re-validates on the server, silently drops
- * honeypot-tripped submissions, and (integration point) forwards the enquiry to
- * your email/CRM provider. Returns a serialisable result for the client form.
+ * honeypot-tripped submissions, and emails the enquiry to the team (with a
+ * confirmation to the customer). Returns a serialisable result for the client form.
+ *
+ * A delivery failure is reported honestly rather than swallowed — the customer
+ * sees an error and our direct contact details instead of a false confirmation.
  */
 export async function submitEnquiry(input: unknown): Promise<EnquiryResult> {
   const parsed = enquirySchema.safeParse(input);
@@ -16,10 +21,19 @@ export async function submitEnquiry(input: unknown): Promise<EnquiryResult> {
   // Honeypot tripped: accept without processing so bots receive no signal.
   if (parsed.data.companyWebsite) return { ok: true };
 
-  // Integration point: forward `enquiry` to your email or CRM provider.
   const { companyWebsite: _honeypot, ...enquiry } = parsed.data;
   void _honeypot;
-  console.info("[enquiry received]", { destination: enquiry.destination, service: enquiry.service });
+
+  try {
+    await sendEnquiryEmails(enquiry);
+  } catch (error) {
+    // Log the full enquiry so a provider outage never costs us the lead.
+    console.error("[enquiry] delivery failed — enquiry not emailed", { enquiry, error });
+    return {
+      ok: false,
+      error: `We could not send your enquiry just now. Please try again, or contact us on ${site.company.phone} or ${site.company.supportEmail}.`,
+    };
+  }
 
   return { ok: true };
 }

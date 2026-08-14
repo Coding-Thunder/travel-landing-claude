@@ -10,8 +10,13 @@ export const enquirySchema = z.object({
   travellers: z.string().trim().max(40).optional().or(z.literal("")),
   service: z.string().trim().max(80).optional().or(z.literal("")),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
-  /** Honeypot — real users never fill this; bots often do. Must stay empty. */
-  companyWebsite: z.string().max(0).optional().or(z.literal("")),
+  /**
+   * Honeypot — real users never fill this; bots often do. Deliberately permissive:
+   * a filled honeypot must reach the server action so the submission can be
+   * silently accepted. Rejecting it here would show the bot a validation error
+   * and give away the trap.
+   */
+  companyWebsite: z.string().max(200).optional().or(z.literal("")),
 });
 
 export type EnquiryValues = z.infer<typeof enquirySchema>;
