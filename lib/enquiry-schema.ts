@@ -9,6 +9,8 @@ export const enquirySchema = z.object({
   travelDates: z.string().trim().max(120).optional().or(z.literal("")),
   travelers: z.string().trim().max(40).optional().or(z.literal("")),
   service: z.string().trim().max(80).optional().or(z.literal("")),
+  /** Existing customers referencing a booking they already hold. */
+  bookingRef: z.string().trim().max(40).optional().or(z.literal("")),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
   /** Honeypot — real users never fill this; bots often do. Must stay empty. */
   companyWebsite: z.string().max(0).optional().or(z.literal("")),

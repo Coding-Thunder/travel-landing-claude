@@ -7,7 +7,7 @@ import { site } from "@/config/site";
 export const metadata = pageMetadata({
   title: "Privacy Policy",
   description:
-    "How UniversalTicketss collects, uses, stores and protects your personal information when you use our website or request our travel reservation assistance.",
+    "How Flight Bizz, operated by GlobeVista LLC, collects, uses, stores and protects your personal information when you use our website or ask us to arrange travel.",
   path: "/privacy",
 });
 
@@ -30,13 +30,14 @@ export default function PrivacyPolicyPage() {
       >
         <h2>1. Introduction</h2>
         <p>
-          {site.legalName} (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) provides independent
-          flight reservation assistance through a trusted supplier network. We are not an airline or online
-          travel agent, and we act as an intermediary that helps you request and arrange flight reservations.
+          {site.legalName} (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;), trading as{" "}
+          {site.name}, operates a multi-service online travel platform. We are not an airline, hotel,
+          rental company or activity operator; we act as an intermediary that helps you search for and
+          arrange travel services supplied by third parties.
         </p>
         <p>
           This policy applies to information collected through this website and when you contact us or ask
-          us to assist with a reservation. We aim to handle your personal information in line with
+          us to arrange travel. We aim to handle your personal information in line with
           applicable federal and state privacy laws. Please read this policy alongside our{" "}
           <Link href="/terms">Terms &amp; Conditions</Link> and our{" "}
           <Link href="/cookie-policy">Cookie Policy</Link>.
@@ -44,15 +45,15 @@ export default function PrivacyPolicyPage() {
 
         <h2>2. Information We Collect</h2>
         <p>
-          We collect the information you give us so that we can respond to your enquiry and assist with a
-          reservation. Depending on how you use our service, this may include:
+          We collect the information you give us so that we can respond to your enquiry and arrange
+          your travel. Depending on how you use our service, this may include:
         </p>
         <ul>
-          <li>Your name and the names of other travelers included in a reservation request</li>
+          <li>Your name and the names of other travellers included in a booking request</li>
           <li>Contact details, such as your email address and telephone number</li>
-          <li>Billing information needed to process a reservation payment</li>
+          <li>Billing information needed to process a booking payment</li>
           <li>Travel preferences, such as destinations, dates, cabin class and special requirements</li>
-          <li>Reservation details relating to the flights you ask us to arrange</li>
+          <li>Booking details relating to the travel services you ask us to arrange</li>
           <li>The content of your enquiry messages and any correspondence with our team</li>
         </ul>
         <p>

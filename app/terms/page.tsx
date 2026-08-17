@@ -2,11 +2,12 @@ import Link from "next/link";
 import LegalLayout from "@/app/components/trip/legal-layout";
 import JsonLd from "@/app/components/trip/json-ld";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
+import { site } from "@/config/site";
 
 export const metadata = pageMetadata({
   title: "Terms & Conditions",
   description:
-    "The Terms & Conditions governing your use of UniversalTicketss and our independent flight reservation assistance services.",
+    "The Terms & Conditions governing your use of the Flight Bizz online travel platform, operated by GlobeVista LLC.",
   path: "/terms",
 });
 
@@ -25,17 +26,22 @@ export default function TermsPage() {
       <LegalLayout
         title="Terms & Conditions"
         updated="July 2026"
-        intro="By using our website or requesting our travel reservation services, you agree to these Terms & Conditions."
+        intro="By using this website or requesting travel services from us, you agree to these Terms & Conditions."
       >
         <section>
           <h2>1. Introduction</h2>
           <p>
-            These Terms &amp; Conditions govern your use of the UniversalTicketss
-            website and the flight reservation assistance we provide. UniversalTicketss
-            is an independent reservation assistance service that helps you request flight
-            reservations through a trusted network of travel suppliers. We are not an
-            airline or an online travel agent, and we do not claim any official partnership or
-            accreditation with those organizations.
+            These Terms &amp; Conditions govern your use of the {site.name} website and the
+            travel services we arrange. {site.operatedBy} {site.name} is a trading brand of{" "}
+            {site.legalName} and not a separate legal entity.
+          </p>
+          <p>
+            {site.name} is a multi-service online travel platform. We help you search, compare and
+            arrange travel services that are supplied and fulfilled by third parties. We are not an
+            airline, hotel, rental company or activity operator. We do not hold IATA or ARC
+            accreditation, we are not an accredited ticketing agency or an authorized agent of any
+            airline, and we make no claim to any certification, government approval, award or
+            supplier partnership that we do not hold.
           </p>
           <p>
             By accessing this website or submitting an enquiry, you confirm that you have read,
@@ -47,28 +53,42 @@ export default function TermsPage() {
         <section>
           <h2>2. Our Services</h2>
           <p>
-            We provide flight reservation assistance for domestic and international travel.
-            Working with our supplier network, our reservation specialists help you find and request
-            flights that suit your requirements. Our services include:
+            We arrange travel services across six categories. Working with our supplier network,
+            our travel specialists help you find and arrange options that suit your requirements.
+            Our services include:
           </p>
           <ul>
             <li>
-              <strong>Flight reservations</strong> — assistance with domestic and international
-              flight requests, including one-way, round trip and multi-city itineraries.
+              <strong>Flights</strong> — domestic and international air travel, including one way,
+              round trip and multi-city itineraries across all cabin classes.
             </li>
             <li>
-              <strong>Business travel</strong> — flexible flight support for companies and business
-              travelers arranging domestic and international trips for work.
+              <strong>Hotels &amp; stays</strong> — rooms, apartments and resorts, including
+              extended and group stays.
             </li>
             <li>
-              <strong>Group travel</strong> — coordinated flight reservation requests for corporate
-              groups, families and other parties traveling together on a single itinerary.
+              <strong>Car rentals</strong> — vehicle hire from third-party rental suppliers at
+              airport and city locations.
+            </li>
+            <li>
+              <strong>Airport transfers</strong> — private and shared transfers operated by
+              third-party transport providers.
+            </li>
+            <li>
+              <strong>Tours &amp; activities</strong> — experiences, attractions and day trips run
+              by third-party operators.
+            </li>
+            <li>
+              <strong>Vacation packages</strong> — combinations of the above arranged together,
+              including business and group travel programmes.
             </li>
           </ul>
           <p>
-            All flights are provided by independent airlines and travel suppliers. Our role is to
-            assist you with your reservation request and to provide customer support; we do not own,
-            operate or control the flights themselves.
+            All travel services are provided by independent third-party suppliers. Our role is to
+            arrange the booking and provide customer support; we do not own, operate or control the
+            aircraft, properties, vehicles or experiences themselves. Where different services
+            cannot be combined into a single transaction, they are arranged and confirmed separately
+            rather than as one package booking.
           </p>
         </section>
 
@@ -139,7 +159,7 @@ export default function TermsPage() {
           <h2>7. Customer Responsibilities</h2>
           <p>When requesting our services, you agree to:</p>
           <ul>
-            <li>Provide accurate, complete and up-to-date information for every traveler;</li>
+            <li>Provide accurate, complete and up-to-date information for every traveller;</li>
             <li>
               Review all reservation details, including passenger names, dates and flight particulars,
               and notify us promptly of any errors;
@@ -188,14 +208,15 @@ export default function TermsPage() {
         <section>
           <h2>10. Supplier Responsibility</h2>
           <p>
-            Flights are operated by independent airlines and third-party suppliers. Our role is to
-            provide reservation assistance and customer support; the operation of the flight and the
-            standard of service are the responsibility of the airline or supplier.
+            {site.supplierDisclosure} Our role is to arrange the booking and provide customer
+            support; the operation of the service and the standard delivered are the responsibility
+            of the supplier.
           </p>
           <p>
-            The airline&rsquo;s or supplier&rsquo;s own terms and conditions of carriage apply to your
-            journey in addition to these Terms. We recommend that you review those conditions carefully
-            before confirming any reservation.
+            The supplier&rsquo;s own terms and conditions — including an airline&rsquo;s conditions
+            of carriage, a property&rsquo;s house rules or a rental agreement — apply to your travel in
+            addition to these Terms. We recommend that you review those conditions carefully before
+            confirming any booking.
           </p>
         </section>
 
@@ -230,7 +251,7 @@ export default function TermsPage() {
           <h2>13. Intellectual Property</h2>
           <p>
             All content on this website, including text, graphics, logos, images and layout, is owned
-            by or licensed to UniversalTicketss and is protected by applicable intellectual
+            by or licensed to {site.legalName} and is protected by applicable intellectual
             property laws. You may not copy, reproduce, distribute or otherwise use any content from
             this website without our prior written permission, except as permitted for your personal,
             non-commercial use of our services.
@@ -240,10 +261,9 @@ export default function TermsPage() {
         <section>
           <h2>14. Limitation of Liability</h2>
           <p>
-            To the maximum extent permitted by law, UniversalTicketss shall not be liable for
-            any indirect, incidental or consequential loss arising from the acts or omissions of an
-            airline or travel supplier, from travel disruption, or from your use of this website or our
-            services.
+            To the maximum extent permitted by law, {site.legalName} shall not be liable for any
+            indirect, incidental or consequential loss arising from the acts or omissions of a travel
+            supplier, from travel disruption, or from your use of this website or our services.
           </p>
           <p>
             Nothing in these Terms excludes or limits our liability where it would be unlawful to do

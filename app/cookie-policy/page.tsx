@@ -2,11 +2,12 @@ import Link from "next/link";
 import LegalLayout from "@/app/components/trip/legal-layout";
 import JsonLd from "@/app/components/trip/json-ld";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
+import { site } from "@/config/site";
 
 export const metadata = pageMetadata({
   title: "Cookie Policy",
   description:
-    "How UniversalTicketss uses cookies and similar technologies on this website, the categories of cookies we use and how you can manage them.",
+    "How Flight Bizz uses cookies and similar technologies on this website, the categories of cookies we use and how you can manage them. Operated by GlobeVista LLC.",
   path: "/cookie-policy",
 });
 
@@ -46,7 +47,7 @@ export default function CookiePolicyPage() {
         <section>
           <h2>2. We Use Cookies To</h2>
           <p>
-            We use cookies on UniversalTicketss to help our website operate reliably and
+            We use cookies on {site.name} to help our website operate reliably and
             to improve the service we provide. In particular, we use cookies to:
           </p>
           <ul>

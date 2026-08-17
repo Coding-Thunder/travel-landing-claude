@@ -1,29 +1,53 @@
+import { cn } from "@/lib/cn";
+import { site } from "@/config/site";
+
 /**
- * UniversalTicketss brand mark — a paper plane (flights / send-off) on a royal
- * gradient tile. Used in the header, footer and favicons.
+ * Flight Bizz brand mark — a compass star on a midnight tile, ringed in gold.
+ *
+ * Deliberately navigational rather than aeronautical: Flight Bizz is a travel
+ * platform covering six categories, not an airline, so the mark must not read
+ * as aircraft livery.
  */
 export function LogoMark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} role="img" aria-label="UniversalTicketss" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 64 64" className={className} role="img" aria-label={site.name} xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="ut-mark-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#3168ea" />
-          <stop offset="1" stopColor="#1a3a89" />
+        <linearGradient id="fb-tile" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#21404c" />
+          <stop offset="1" stopColor="#0c1c24" />
+        </linearGradient>
+        <linearGradient id="fb-star" x1="18" y1="10" x2="46" y2="54" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#ffa084" />
+          <stop offset="1" stopColor="#d2401f" />
         </linearGradient>
       </defs>
-      <rect width="64" height="64" rx="15" fill="url(#ut-mark-grad)" />
-      <path
-        fill="#ffffff"
-        d="M52.4 12.2 12.9 27.9c-1.5.6-1.4 2.8.1 3.3l15.6 5 5 15.6c.5 1.5 2.7 1.6 3.3.1l15.7-39.5c.5-1.4-.8-2.7-2.2-2.2Z"
-      />
-      <path
-        fill="none"
-        stroke="#1a3a89"
-        strokeOpacity="0.35"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        d="m29.2 35.9 21.6-22.1"
-      />
+      <rect width="64" height="64" rx="16" fill="url(#fb-tile)" />
+      <circle cx="32" cy="32" r="22.5" fill="none" stroke="#d0a955" strokeOpacity="0.45" strokeWidth="1.2" />
+      <path fill="url(#fb-star)" d="M32 10.5 36.2 27.8 53.5 32 36.2 36.2 32 53.5 27.8 36.2 10.5 32 27.8 27.8Z" />
+      <circle cx="32" cy="32" r="2.6" fill="#0c1c24" fillOpacity="0.55" />
     </svg>
+  );
+}
+
+/**
+ * Full brand lockup: mark + wordmark. `tone` switches the wordmark for use on
+ * light chrome (header) or the midnight footer.
+ */
+export function Logo({
+  className,
+  markClassName,
+  tone = "light",
+}: {
+  className?: string;
+  markClassName?: string;
+  tone?: "light" | "dark";
+}) {
+  return (
+    <span className={cn("flex shrink-0 items-center gap-2.5", className)}>
+      <LogoMark className={cn("h-9 w-9", markClassName)} />
+      <span className={cn("text-lg font-semibold tracking-tight", tone === "dark" ? "text-white" : "text-navy-900")}>
+        Flight <span className={tone === "dark" ? "text-royal-300" : "text-royal-600"}>Bizz</span>
+      </span>
+    </span>
   );
 }

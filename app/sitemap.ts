@@ -11,12 +11,26 @@ type Route = {
 
 const routes: Route[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
-  { path: "/flights", priority: 0.9, changeFrequency: "weekly" },
-  { path: "/business-travel", priority: 0.9, changeFrequency: "weekly" },
-  { path: "/group-travel", priority: 0.9, changeFrequency: "weekly" },
+
+  // The six travel categories
+  ...site.services.map((s) => ({
+    path: s.href,
+    priority: 0.9,
+    changeFrequency: "weekly" as ChangeFrequency,
+  })),
+
+  // Planning and specialist request types
+  { path: "/trip-planner", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/business-travel", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/group-travel", priority: 0.8, changeFrequency: "monthly" },
+
+  // Company and support
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/callback", priority: 0.6, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
+
+  // Legal
   { path: "/terms", priority: 0.4, changeFrequency: "yearly" },
   { path: "/privacy", priority: 0.4, changeFrequency: "yearly" },
   { path: "/refund-policy", priority: 0.4, changeFrequency: "yearly" },

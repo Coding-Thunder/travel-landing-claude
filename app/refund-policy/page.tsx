@@ -2,11 +2,12 @@ import Link from "next/link";
 import LegalLayout from "@/app/components/trip/legal-layout";
 import JsonLd from "@/app/components/trip/json-ld";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
+import { site } from "@/config/site";
 
 export const metadata = pageMetadata({
   title: "Refund & Cancellation Policy",
   description:
-    "How UniversalTicketss handles cancellation requests and refunds for flight reservation assistance, including airline and supplier policies, processing times and chargebacks.",
+    "How Flight Bizz handles cancellation requests and refunds, including supplier policies, processing times and chargebacks. Operated by GlobeVista LLC.",
   path: "/refund-policy",
 });
 
@@ -30,19 +31,17 @@ export default function RefundPolicyPage() {
         <section>
           <h2>1. Our Commitment</h2>
           <p>
-            UniversalTicketss provides independent flight reservation
-            assistance through a trusted network of travel suppliers. We are committed to handling
-            every cancellation request and refund fairly, transparently and as promptly as the
-            applicable supplier conditions allow. This policy sets out how we approach these
-            requests and what you can reasonably expect from us.
+            {site.name} is a multi-service online travel platform operated by {site.legalName}. We
+            are committed to handling every cancellation request and refund fairly, transparently and
+            as promptly as the applicable supplier conditions allow. This policy sets out how we
+            approach these requests and what you can reasonably expect from us.
           </p>
           <p>
-            Because we assist with reservations rather than operate the flights ourselves,
-            the outcome of a cancellation or refund request often depends on the terms set by the
-            airline, travel supplier or other third party responsible for your
-            booking. We will always explain those terms to you as clearly as we can and act on
-            your behalf wherever it is within our ability to do so. This policy should be read
-            together with our{" "}
+            Because we arrange travel rather than operate the services ourselves, the outcome of a
+            cancellation or refund request depends on the terms set by the airline, hotel, rental
+            company, activity operator or other supplier responsible for your booking. We will always
+            explain those terms to you as clearly as we can and act on your behalf wherever it is
+            within our ability to do so. This policy should be read together with our{" "}
             <Link href="/terms">Terms &amp; Conditions</Link>.
           </p>
         </section>
@@ -50,14 +49,14 @@ export default function RefundPolicyPage() {
         <section>
           <h2>2. Cancellation Requests</h2>
           <p>
-            If you need to cancel a reservation, please contact our customer support team as soon
+            If you need to cancel a booking, please contact our customer support team as soon
             as possible. Cancellation requests are time-sensitive, and acting early gives you the
             best chance of minimising any charges that a supplier may apply.
           </p>
           <p>
             All cancellations are subject to the policies of the relevant travel supplier
             or tour operator, along with the fare rules, rate rules and booking conditions that
-            applied when your reservation was confirmed. These conditions vary from one supplier
+            applied when your booking was confirmed. These conditions vary from one supplier
             and rate to another, and some cannot be canceled or amended once confirmed. When you
             contact us we will:
           </p>

@@ -2,69 +2,84 @@
 @import "tw-animate-css";
 
 /* ============================================================================
-   Design language — "Terminal": editorial, travel, premium.
-   Warm neutral paper · charcoal ink · restrained cobalt accent · hairline rules.
-   Blue is an ACCENT, not a flood. Most surfaces are neutral.
+   FLIGHT BIZZ — brand design language
+   Operated by GlobeVista LLC.
+
+   Deep petrol midnight · warm coral signature · sand neutrals · gold hairlines.
+   Serif display headlines over an Inter UI. Premium, international, travel.
+
+   The `navy-*` and `royal-*` scale names are retained from the previous build so
+   that ~280 existing utility classes across working components keep resolving —
+   only the VALUES change, which is what carries the new identity. Read them as:
+     navy-*  → Flight Bizz midnight (deep petrol blue-teal)
+     royal-* → Flight Bizz coral (the signature accent)
 ============================================================================ */
 @theme inline {
   --font-sans: var(--font-inter);
   --font-display: var(--font-fraunces);
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Warm neutral system */
-  --color-paper: #faf8f4;
-  --color-paper-deep: #f2efe8;
+  /* Warm neutral system — shared UI primitives (sheet, select, popover, …) */
+  --color-paper: #faf7f2;
+  --color-paper-deep: #f2ede4;
   --color-surface: #ffffff;
-  --color-ink: #17150f;
-  --color-ink-soft: #4b4842;
-  --color-ink-muted: #7c786e;
-  --color-line: #e7e2d7;
-  --color-line-strong: #d8d2c4;
+  --color-ink: #10201f;
+  --color-ink-soft: #3d5158;
+  --color-ink-muted: #74898f;
+  --color-line: #e5e0d5;
+  --color-line-strong: #d5cec0;
 
-  /* Restrained accent (used sparingly) */
-  --color-accent: #1f3a8a;
-  --color-accent-bright: #2650e6;
-  --color-accent-soft: #eef1fb;
+  /* Restrained accent used by focus rings and the shared primitives */
+  --color-accent: #ae3318;
+  --color-accent-bright: #d2401f;
+  --color-accent-soft: #fff4f0;
 
-  /* Corporate palette — UniversalTicketss (navy / royal blue / white) */
-  --color-navy-50: #f2f5fa;
-  --color-navy-100: #e3e9f4;
-  --color-navy-200: #c6d3e8;
-  --color-navy-600: #24365c;
-  --color-navy-700: #1b2946;
-  --color-navy-800: #131f38;
-  --color-navy-900: #0d1729;
-  --color-navy-950: #070e1c;
-  --color-royal-50: #eef3ff;
-  --color-royal-100: #dce7ff;
-  --color-royal-200: #bcd0fd;
-  --color-royal-300: #90b0fb;
-  --color-royal-500: #3d6ff0;
-  --color-royal-600: #2456d6;
-  --color-royal-700: #1c44ad;
-  --color-royal-800: #1a3a89;
+  /* ---- Flight Bizz midnight (deep petrol) ---------------------------- */
+  --color-navy-50: #f3f7f8;
+  --color-navy-100: #dfeaee;
+  --color-navy-200: #bed6dd;
+  --color-navy-300: #91b8c4;
+  /* navy-400 is the lightest tone used on WHITE — kept at >=4.5:1 for placeholders
+     and muted text. navy-300 and lighter are for dark surfaces only. */
+  --color-navy-400: #4a7886;
+  --color-navy-500: #3d7080;
+  --color-navy-600: #2c5563;
+  --color-navy-700: #21404c;
+  --color-navy-800: #172d37;
+  --color-navy-900: #0c1c24;
+  --color-navy-950: #05121a;
 
-  /* Legacy brand scale — retained during page-by-page migration */
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
+  /* ---- Flight Bizz coral (signature accent) -------------------------- */
+  --color-royal-50: #fff4f0;
+  --color-royal-100: #ffe4db;
+  --color-royal-200: #ffc7b5;
+  --color-royal-300: #ffa084;
+  --color-royal-400: #fb7350;
+  --color-royal-500: #ec5228;
+  --color-royal-600: #d2401f;
+  --color-royal-700: #ae3318;
+  --color-royal-800: #8c2b15;
 
-  --radius: 0.375rem;
+  /* ---- Warm sand — section tints and premium surfaces ---------------- */
+  --color-sand-50: #fbf8f3;
+  --color-sand-100: #f4ede1;
+  --color-sand-200: #e8dcc8;
+  --color-sand-300: #d8c6a6;
+
+  /* ---- Gold — hairline and badge micro-accent only ------------------- */
+  --color-gold-300: #e3c27e;
+  --color-gold-400: #d0a955;
+  --color-gold-500: #b48d3c;
+
+  --radius: 0.5rem;
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #17150f;
+  --foreground: #10201f;
 
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
-  --shadow-lift: 0 8px 24px -8px rgba(15, 23, 42, 0.12), 0 24px 48px -24px rgba(37, 99, 235, 0.18);
+  --shadow-card: 0 1px 2px rgba(12, 28, 36, 0.04), 0 8px 24px -12px rgba(12, 28, 36, 0.14);
+  --shadow-lift: 0 8px 24px -8px rgba(12, 28, 36, 0.14), 0 24px 48px -24px rgba(210, 64, 31, 0.18);
 }
 
 html {
@@ -81,11 +96,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Editorial display type helper */
+/* Display serif for marketing headlines only. Functional UI stays in Inter:
+   card titles (h3), form labels and controls are deliberately excluded. */
+h1,
+h2,
 .font-display {
   font-family: var(--font-display), Georgia, "Times New Roman", serif;
   font-optical-sizing: auto;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 /* Small uppercase overline used across editorial sections */
@@ -95,6 +113,11 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-ink-muted);
+}
+
+/* Gold hairline used under brand lockups and premium badges */
+.rule-gold {
+  background-image: linear-gradient(90deg, var(--color-gold-400), transparent);
 }
 
 /* Accessible focus ring */

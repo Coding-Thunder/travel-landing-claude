@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { site } from "@/config/site";
+import { Phone } from "lucide-react";
+import { site, telHref, mailtoHref } from "@/config/site";
 import { pageMetadata, organizationSchema, breadcrumbSchema } from "@/lib/seo";
 import PageHero from "@/app/components/trip/page-hero";
 import { Section, SectionHeading } from "@/app/components/trip/section";
@@ -9,24 +10,27 @@ import Icon from "@/app/components/trip/lucide-icon";
 import EnquiryForm from "@/app/components/trip/EnquiryForm";
 import TrustBar from "@/app/components/trip/trust-bar";
 import JsonLd from "@/app/components/trip/json-ld";
+import SupplierDisclosure from "@/app/components/trip/supplier-disclosure";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact Us",
+  title: "Contact Flight Bizz",
   description:
-    "Get in touch with the UniversalTicketss customer support team for help with reservation requests, booking enquiries and general travel questions. Reach us by email or online enquiry form during business hours.",
+    "Contact the Flight Bizz support team about a new booking, an existing booking, a change, cancellation or refund. Call, email, or request a callback during our published support hours.",
   path: "/contact",
 });
 
-const email = site.company.supportEmail;
-const phone = site.company.phone;
-const hasPhone = !phone.startsWith("[");
-const telHref = site.company.phoneHref || phone.replace(/[^\d+]/g, "");
-
-type SearchParams = Promise<{ destination?: string; dates?: string; travelers?: string; service?: string }>;
+type SearchParams = Promise<{
+  destination?: string;
+  dates?: string;
+  travelers?: string;
+  service?: string;
+  notes?: string;
+}>;
 
 export default async function ContactPage({ searchParams }: { searchParams: SearchParams }) {
-  const { destination, dates, travelers, service } = await searchParams;
+  const { destination, dates, travelers, service, notes } = await searchParams;
+
   return (
     <>
       <JsonLd
@@ -41,8 +45,8 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
 
       <PageHero
         eyebrow="Contact"
-        title="We're here to help"
-        subtitle="Our customer support team is available to assist you with reservation requests, booking enquiries and general travel questions."
+        title="Contact Flight Bizz"
+        subtitle="Whether you are planning a trip or need help with a booking you already have, our support team is here during the hours below."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Contact", href: "/contact" },
@@ -52,96 +56,88 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
       <Section tone="white">
         <SectionHeading
           eyebrow="Get in touch"
-          title="Contact our reservation team"
-          subtitle="Send us the details of your trip and we'll respond with suitable flight options. You can also reach us using the contact details below during business hours."
+          title="Talk to our support team"
+          subtitle="Send your details and we will respond with real options and clear conditions — or reach us directly using the details below."
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-14">
           {/* LEFT — contact information */}
           <div className="space-y-6">
-            <Reveal>
-              <h3 className="text-lg font-semibold text-navy-900">Contact details</h3>
-              <p className="mt-1 text-sm leading-relaxed text-navy-600">
-                Prefer to contact us directly? Use the details below and a member of our team will be glad to help.
-              </p>
-            </Reveal>
-
             <ul className="space-y-4">
-              {/* Email */}
-              <Reveal as="li" delay={0.04}>
-                <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
-                    <Icon name="mail" className="h-5 w-5" />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-navy-900">Email</p>
-                    <a
-                      href={`mailto:${email}`}
-                      className="mt-0.5 block break-words text-sm font-medium text-royal-700 underline-offset-4 hover:underline"
-                    >
-                      {email}
-                    </a>
-                    <p className="mt-1 text-xs leading-relaxed text-navy-500">
-                      The quickest way to reach us. We aim to reply as soon as possible during business hours.
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-
-              {/* Telephone */}
-              <Reveal as="li" delay={0.08}>
-                <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
-                    <Icon name="phone" className="h-5 w-5" />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-navy-900">Telephone</p>
-                    {hasPhone ? (
+              {site.contact.hasEmail ? (
+                <Reveal as="li" delay={0.04}>
+                  <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
+                      <Icon name="mail" className="h-5 w-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-navy-900">Email</p>
                       <a
-                        href={`tel:${telHref}`}
+                        href={mailtoHref}
+                        className="mt-0.5 block break-words text-sm font-medium text-royal-700 underline-offset-4 hover:underline"
+                      >
+                        {site.company.supportEmail}
+                      </a>
+                      <p className="mt-1 text-xs leading-relaxed text-navy-500">
+                        Best for anything with detail attached. We reply during support hours.
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              ) : null}
+
+              {site.contact.hasPhone ? (
+                <Reveal as="li" delay={0.08}>
+                  <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
+                      <Icon name="phone" className="h-5 w-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-navy-900">Telephone</p>
+                      <a
+                        href={telHref}
                         className="mt-0.5 block text-sm font-medium text-royal-700 underline-offset-4 hover:underline"
                       >
-                        {phone}
+                        {site.company.phone}
                       </a>
-                    ) : (
-                      <p className="mt-0.5 text-sm font-medium text-navy-700">Available during business hours</p>
-                    )}
-                    <p className="mt-1 text-xs leading-relaxed text-navy-500">
-                      Lines are open during the hours listed below. Outside these times, please email us or use the
-                      enquiry form.
-                    </p>
+                      <p className="mt-1 text-xs leading-relaxed text-navy-500">
+                        Lines are open during the hours below. Outside them, request a callback or email us.
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </Reveal>
+                </Reveal>
+              ) : null}
 
-              {/* Business address */}
-              <Reveal as="li" delay={0.12}>
-                <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
-                    <Icon name="map-pin" className="h-5 w-5" />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-navy-900">Business address</p>
-                    <address className="mt-0.5 text-sm font-medium not-italic leading-relaxed text-navy-700">
-                      {site.company.registeredOffice}
-                    </address>
-                    <p className="mt-1 text-xs leading-relaxed text-navy-500">
-                      Correspondence address for {site.legalName}. Please note this is not a walk-in customer center.
-                    </p>
+              {site.contact.hasAddress ? (
+                <Reveal as="li" delay={0.12}>
+                  <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
+                      <Icon name="map-pin" className="h-5 w-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-navy-900">Business address</p>
+                      <address className="mt-0.5 text-sm font-medium not-italic leading-relaxed text-navy-700">
+                        {site.company.registeredOffice}
+                      </address>
+                      <p className="mt-1 text-xs leading-relaxed text-navy-500">
+                        Registered address for {site.legalName}. This is a correspondence address, not a walk-in
+                        customer centre.
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </Reveal>
+                </Reveal>
+              ) : null}
             </ul>
 
-            {/* Business hours */}
+            {/* Support hours */}
             <Reveal delay={0.16}>
               <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-sm">
                 <div className="flex items-center gap-2.5">
                   <Icon name="clock" className="h-5 w-5 text-royal-600" />
-                  <h3 className="text-base font-semibold text-navy-900">Business hours</h3>
+                  <h3 className="text-base font-semibold text-navy-900">Support hours</h3>
                 </div>
                 <p className="mt-2 text-xs leading-relaxed text-navy-500">
-                  All times are Eastern Time (ET). Enquiries received outside these hours are answered on the next
+                  All times are {site.hoursLabel}. Messages received outside these hours are answered on the next
                   business day.
                 </p>
                 <table className="mt-4 w-full text-sm">
@@ -159,19 +155,37 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
               </div>
             </Reveal>
 
-            {/* Map placeholder — no fake map/address embedded */}
+            {/* Callback */}
             <Reveal delay={0.2}>
-              <div className="flex items-start gap-4 rounded-2xl border border-dashed border-navy-200 bg-navy-50 p-6">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-navy-500 ring-1 ring-navy-100">
-                  <Icon name="map-pin" className="h-5 w-5" />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold text-navy-900">Find us on the map</p>
-                  <p className="mt-1 text-sm leading-relaxed text-navy-600">
-                    An interactive Google Map of our business address will be added here once the address has been
-                    confirmed.
-                  </p>
+              <div className="rounded-2xl border border-navy-100 bg-navy-50 p-6">
+                <h3 className="text-base font-semibold text-navy-900">Prefer us to call you?</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-navy-600">
+                  Leave your number and a preferred time, and a travel specialist will call you back during support
+                  hours.
+                </p>
+                <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild variant="royal">
+                    <Link href="/callback">{site.cta.callback}</Link>
+                  </Button>
+                  {site.contact.hasPhone ? (
+                    <Button asChild variant="navyOutline">
+                      <a href={telHref}>
+                        <Phone className="h-4 w-4" />
+                        {site.company.phone}
+                      </a>
+                    </Button>
+                  ) : null}
                 </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.24}>
+              <div className="rounded-2xl border border-dashed border-navy-200 p-5">
+                <p className="text-sm font-semibold text-navy-900">Payment security</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-navy-600">
+                  Never send full card numbers, CVV codes or passwords through this form or by email. {site.name}{" "}
+                  will never ask you for them this way.
+                </p>
               </div>
             </Reveal>
           </div>
@@ -180,7 +194,8 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
           <div>
             <EnquiryForm
               heading="Send us a message"
-              defaults={{ destination, travelDates: dates, travelers: travelers, service }}
+              showBookingRef
+              defaults={{ destination, travelDates: dates, travelers, service, notes }}
             />
           </div>
         </div>
@@ -195,23 +210,22 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
                 <Link href="/faq" className="font-medium text-royal-700 underline-offset-4 hover:underline">
                   frequently asked questions
                 </Link>{" "}
-                page, or read more about{" "}
-                <Link href="/flights" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  our reservation services
-                </Link>
-                .
+                page, or start a{" "}
+                <Link href="/#search" className="font-medium text-royal-700 underline-offset-4 hover:underline">
+                  travel search
+                </Link>{" "}
+                instead.
               </p>
             </div>
             <Button asChild variant="royal" size="lg" className="shrink-0">
-              <Link href="/flights">Explore services</Link>
+              <Link href="/#search">{site.cta.primary}</Link>
             </Button>
           </div>
         </Reveal>
-
-        <p className="mt-8 text-xs leading-relaxed text-navy-500">{site.disclaimer}</p>
       </Section>
 
       <TrustBar />
+      <SupplierDisclosure />
     </>
   );
 }

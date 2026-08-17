@@ -6,13 +6,15 @@ import Icon from "@/app/components/trip/lucide-icon";
 import TrustBar from "@/app/components/trip/trust-bar";
 import EnquiryForm from "@/app/components/trip/EnquiryForm";
 import JsonLd from "@/app/components/trip/json-ld";
+import SupplierDisclosure from "@/app/components/trip/supplier-disclosure";
 import { Button } from "@/components/ui/button";
+import { site } from "@/config/site";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Business Travel Flights",
+  title: "Business Travel",
   description:
-    "Corporate flight reservation assistance for companies and business travelers — flexible domestic and international itineraries, a single point of contact and clear, supplier-issued documentation.",
+    "Corporate travel arranged by Flight Bizz — flights, hotels, cars and transfers for companies and business travellers, with a single point of contact and clear, supplier-issued documentation. Operated by GlobeVista LLC.",
   path: "/business-travel",
   image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
 });
@@ -57,9 +59,10 @@ const HOW_WE_HELP = [
 ] as const;
 
 const ENQUIRY_TIPS = [
-  "Origin and destination airports, and the dates each traveler needs",
-  "Number of travelers and any cabin or seating preferences",
+  "Origin and destination airports, and the dates each traveller needs",
+  "Number of travellers and any cabin or seating preferences",
   "Preferred departure and return times, and any schedule flexibility",
+  "Hotels, car rental or airport transfers needed alongside the flights",
   "Budget guidance and any preferred airlines or fare conditions",
   "Billing and documentation needs for your finance or travel policy",
 ];
@@ -68,16 +71,23 @@ const RELATED = [
   {
     href: "/flights",
     icon: "plane",
-    title: "Flight reservation assistance",
+    title: "Flights",
     description:
-      "Explore how we support domestic and international flight requests — one-way, round trip and multi-city itineraries.",
+      "One way, round trip and multi-city itineraries across every cabin, with fare conditions explained before booking.",
+  },
+  {
+    href: "/hotels",
+    icon: "bed",
+    title: "Hotels & Stays",
+    description:
+      "Properties matched to where the work actually is, with total price and cancellation terms stated up front.",
   },
   {
     href: "/group-travel",
     icon: "users",
-    title: "Group travel flights",
+    title: "Group Travel",
     description:
-      "Traveling as a delegation or team? See how we coordinate flights for larger groups on a single itinerary.",
+      "Travelling as a delegation or team? See how we coordinate travel for larger groups on a single itinerary.",
   },
 ] as const;
 
@@ -95,8 +105,8 @@ export default function BusinessTravelPage() {
 
       <PageHero
         eyebrow="For business"
-        title="Business Travel Flights"
-        subtitle="Reliable flight planning for business trips — from a single overnight round trip to a full program of travel for your whole team, coordinated by one dedicated reservation team."
+        title="Business Travel"
+        subtitle="Reliable planning for business trips — from a single overnight round trip to a full programme of travel for your whole team, coordinated by one dedicated team."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Business Travel", href: "/business-travel" },
@@ -109,9 +119,9 @@ export default function BusinessTravelPage() {
       <Section tone="white">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <SectionHeading
-            eyebrow="Corporate flights, handled properly"
-            title="Flight assistance built around how businesses actually travel"
-            subtitle="UniversalTicketss provides independent flight reservation assistance for companies and business travelers through a trusted supplier network. We take the detail of finding and arranging suitable flights off your desk, so trips run smoothly and predictably."
+            eyebrow="Corporate travel, handled properly"
+            title="Travel arranged around how businesses actually work"
+            subtitle={`${site.name} arranges business travel end to end — flights, hotels, cars and airport transfers — through one point of contact. We take the detail off your desk so trips run smoothly and predictably.`}
           />
           <Reveal className="rounded-2xl border border-navy-100 bg-navy-50 p-6 shadow-sm sm:p-8" delay={0.05}>
             <p className="text-sm leading-relaxed text-navy-700">
@@ -121,9 +131,8 @@ export default function BusinessTravelPage() {
               well-timed flight options — clearly and without pressure.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-navy-700">
-              We are a reservation assistance service, not an airline or online booking platform. Availability,
-              fares and booking conditions are set by each airline or travel supplier and confirmed with you
-              before anything is arranged.
+              We are a travel platform, not an airline or a hotel group. Availability, prices and booking
+              conditions are set by each supplier and confirmed with you before anything is arranged.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="royal">
@@ -199,9 +208,9 @@ export default function BusinessTravelPage() {
         <SectionHeading
           eyebrow="Related services"
           title="Explore more of how we can help"
-          subtitle="Business travel is one part of what we do. If your needs sit alongside individual flights or larger groups, these pages may help."
+          subtitle="Business travel is one part of what we do. If the trip also needs stays, ground transport or coordination for a larger group, these pages may help."
         />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="mt-12 grid gap-5 sm:grid-cols-3">
           {RELATED.map((item, i) => (
             <Reveal key={item.href} delay={(i % 2) * 0.06}>
               <Link
@@ -222,6 +231,8 @@ export default function BusinessTravelPage() {
           ))}
         </div>
       </Section>
+
+      <SupplierDisclosure />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/config/site";
+import { Phone } from "lucide-react";
+import { site, telHref } from "@/config/site";
 import { pageMetadata, organizationSchema, breadcrumbSchema } from "@/lib/seo";
 import PageHero from "@/app/components/trip/page-hero";
 import { Section, SectionHeading } from "@/app/components/trip/section";
@@ -8,96 +9,52 @@ import Reveal from "@/app/components/trip/reveal";
 import Icon from "@/app/components/trip/lucide-icon";
 import TrustBar from "@/app/components/trip/trust-bar";
 import JsonLd from "@/app/components/trip/json-ld";
+import SupplierDisclosure from "@/app/components/trip/supplier-disclosure";
 import { Button } from "@/components/ui/button";
 
 export const metadata = pageMetadata({
-  title: "About Us",
+  title: "About Flight Bizz",
   description:
-    "Learn about UniversalTicketss — an independent flight reservation service providing professional, transparent booking assistance for domestic, international, business and group air travel.",
+    "Flight Bizz is a multi-service online travel platform operated by GlobeVista LLC, helping travellers search, compare and arrange flights, hotels, cars, transfers, activities and packages.",
   path: "/about",
 });
 
 const CORE_VALUES: { icon: string; title: string; description: string }[] = [
   {
-    icon: "users",
-    title: "Customer First",
-    description:
-      "Your requirements guide every recommendation we make and every reservation request we handle.",
-  },
-  {
-    icon: "briefcase",
-    title: "Professional Service",
-    description:
-      "A courteous, knowledgeable team that treats each enquiry with genuine care and attention to detail.",
-  },
-  {
     icon: "file-check",
     title: "Transparency",
     description:
-      "Clear communication of supplier conditions and any applicable service fees before you confirm anything.",
+      "The total price, every fee, and the cancellation terms are put in front of you before you are asked to decide anything.",
   },
   {
     icon: "shield-check",
-    title: "Integrity",
+    title: "Honesty about what we are",
     description:
-      "Honest advice and straightforward answers, with no pressure and no hidden surprises.",
+      "We are a travel platform. We do not claim accreditation, partnerships or capabilities we do not have, and we say so plainly.",
   },
-  {
-    icon: "clock",
-    title: "Reliability",
-    description:
-      "Dependable support you can count on before, during and after the reservation process.",
-  },
-  {
-    icon: "lock",
-    title: "Privacy Protection",
-    description:
-      "Your personal information is handled carefully and protected using secure technology.",
-  },
-  {
-    icon: "sparkles",
-    title: "Continuous Improvement",
-    description:
-      "We keep refining our service so that your booking experience becomes smoother over time.",
-  },
-];
-
-const WHY_CHOOSE: { icon: string; title: string; description: string }[] = [
   {
     icon: "users",
-    title: "Experienced Reservation Specialists",
+    title: "Customer first",
     description:
-      "A team that understands travel options and how to match them to the way you travel.",
+      "Your requirements drive the recommendations. Calling is always an option and never a requirement.",
+  },
+  {
+    icon: "building",
+    title: "Named suppliers",
+    description:
+      "You always know which airline, hotel, rental company or operator will fulfil your booking, and whose terms apply.",
   },
   {
     icon: "headset",
-    title: "Responsive Customer Support",
+    title: "Support that continues",
     description:
-      "Help by telephone, email and our online enquiry form throughout our business hours.",
+      "Changes, cancellations and refund requests are handled by the same team that arranged the trip.",
   },
   {
     icon: "lock",
-    title: "Secure Reservation Process",
+    title: "Careful with your data",
     description:
-      "Secure technology helps protect your details at every stage of the reservation process.",
-  },
-  {
-    icon: "globe",
-    title: "Worldwide Travel Assistance",
-    description:
-      "Assistance with travel requests across a wide range of international and domestic destinations.",
-  },
-  {
-    icon: "file-check",
-    title: "Transparent Communication",
-    description:
-      "Conditions, supplier policies and any fees are explained clearly before a reservation is confirmed.",
-  },
-  {
-    icon: "sparkles",
-    title: "Personalized Travel Solutions",
-    description:
-      "Recommendations shaped around your preferences, budget and the specifics of your trip.",
+      "We collect what is needed to arrange your travel and nothing more, and we never ask for card details by email.",
   },
 ];
 
@@ -116,62 +73,50 @@ export default function AboutPage() {
 
       <PageHero
         eyebrow="About us"
-        title="About UniversalTicketss"
-        subtitle="Professional flight reservation assistance designed to make planning your journey simple, convenient and reliable."
+        title="About Flight Bizz"
+        subtitle="A multi-service online travel platform built to make arranging a whole trip straightforward — with nothing hidden between the search and the booking."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "About", href: "/about" },
         ]}
-        image="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80"
-        imageAlt="An aircraft wing above the clouds, representative of the flights UniversalTicketss helps arrange."
+        image="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80"
+        imageAlt="A traveller looking out over a coastal city at golden hour"
       />
 
       <TrustBar />
 
-      {/* Our story */}
+      {/* Who we are */}
       <Section tone="white">
         <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
-            <SectionHeading
-              eyebrow="Our story"
-              title="An independent flight reservation company, built around you"
-            />
+            <SectionHeading eyebrow="Who we are" title="One platform for the whole journey" />
             <div className="mt-6 space-y-4 text-base leading-relaxed text-navy-600 sm:text-[17px]">
               <p>
-                UniversalTicketss is an independent flight reservation company that helps
-                individuals, families and businesses plan their air travel with confidence. We
-                are not an airline or online travel agency; instead, we act as your
-                dedicated reservation assistant, taking the effort out of finding and arranging the
-                right flights.
+                {site.name} is a multi-service online travel platform operated by {site.legalName}. Our platform
+                helps travellers search, compare, and arrange available travel services through a convenient online
+                experience — or by phone, if that suits you better.
               </p>
               <p>
-                Our purpose is straightforward — to simplify the reservation process. We provide
-                professional assistance for{" "}
-                <Link href="/flights" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  flight reservations
-                </Link>
-                ,{" "}
-                <Link href="/business-travel" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  business travel
-                </Link>{" "}
-                and{" "}
-                <Link href="/group-travel" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  group travel
-                </Link>
-                , coordinating the details so that you can focus on the journey itself rather than
-                the logistics behind it.
+                Across six categories —{" "}
+                {site.services.map((s, i) => (
+                  <span key={s.key}>
+                    <Link href={s.href} className="font-medium text-royal-700 underline-offset-4 hover:underline">
+                      {s.name.toLowerCase()}
+                    </Link>
+                    {i < site.services.length - 1 ? (i === site.services.length - 2 ? " and " : ", ") : ""}
+                  </span>
+                ))}{" "}
+                — the same team handles the request from first enquiry through to booking and beyond.
               </p>
               <p>
-                To do this well, we work with a network of trusted travel suppliers and reservation
-                partners. That reach allows us to present suitable flight options across a
-                wide range of destinations, while remaining transparent about supplier conditions,
-                availability and any applicable service fees.
+                We are not an airline, a hotel group, a rental company or an activity operator. Fulfilment always
+                sits with the supplier identified during the booking process, and their terms apply to your travel.
+                Our job is to find the right options, explain them properly and stay with you afterwards.
               </p>
               <p>
-                Behind every enquiry is an experienced support team committed to responsive service
-                before, during and after the reservation process. Whether you are booking a single
-                one-way ticket or arranging flights for a large group, we are here to help by
-                telephone, email and our online enquiry form.
+                That also means being straightforward about what we are not. {site.name} does not hold IATA or ARC
+                accreditation, and we make no claim to certifications, awards or airline partnerships we do not
+                have. We would rather earn trust through clear pricing and honest terms.
               </p>
             </div>
           </div>
@@ -179,8 +124,8 @@ export default function AboutPage() {
           <Reveal delay={0.1} className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-navy-100 shadow-sm lg:aspect-[3/4]">
               <Image
-                src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80"
-                alt="A passenger aircraft cabin interior, representative of the flights our reservation specialists help travelers arrange."
+                src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80"
+                alt="An aircraft wing above the clouds"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
@@ -190,48 +135,54 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Mission & vision */}
+      {/* Business identity (§28, §39) */}
       <Section tone="tint">
         <SectionHeading
           align="center"
-          eyebrow="Our purpose"
-          title="Mission and vision"
-          subtitle="Two commitments guide how we work and where we are heading."
+          eyebrow="Business identity"
+          title="Who operates Flight Bizz"
+          subtitle="Flight Bizz is a trading brand, not a separate legal entity. Here is the relationship in full."
         />
-        <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-2">
-          <Reveal>
-            <article className="h-full rounded-2xl border border-navy-100 bg-white p-8 shadow-sm">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-50 text-royal-600 ring-1 ring-navy-100">
-                <Icon name="map-pin" className="h-5 w-5" />
-              </span>
-              <h3 className="mt-5 text-lg font-semibold text-navy-900">Our mission</h3>
-              <p className="mt-2 text-base leading-relaxed text-navy-600">
-                To provide professional, transparent and reliable travel reservation assistance
-                while delivering excellent customer support and a smooth booking experience.
-              </p>
-            </article>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <article className="h-full rounded-2xl border border-navy-100 bg-white p-8 shadow-sm">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-50 text-royal-600 ring-1 ring-navy-100">
-                <Icon name="globe" className="h-5 w-5" />
-              </span>
-              <h3 className="mt-5 text-lg font-semibold text-navy-900">Our vision</h3>
-              <p className="mt-2 text-base leading-relaxed text-navy-600">
-                To become a trusted international travel reservation company known for
-                professionalism, transparency and customer satisfaction.
-              </p>
-            </article>
-          </Reveal>
-        </div>
+        <Reveal className="mx-auto mt-10 max-w-3xl">
+          <dl className="grid gap-px overflow-hidden rounded-2xl border border-navy-100 bg-navy-100 sm:grid-cols-2">
+            <div className="bg-white p-6">
+              <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy-500">Brand</dt>
+              <dd className="mt-2 text-lg font-semibold text-navy-900">{site.name}</dd>
+            </div>
+            <div className="bg-white p-6">
+              <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy-500">Legal entity</dt>
+              <dd className="mt-2 text-lg font-semibold text-navy-900">{site.legalName}</dd>
+            </div>
+            <div className="bg-white p-6">
+              <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy-500">Relationship</dt>
+              <dd className="mt-2 text-base font-medium text-navy-700">{site.operatedBy}</dd>
+            </div>
+            <div className="bg-white p-6">
+              <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy-500">Business activity</dt>
+              <dd className="mt-2 text-base font-medium text-navy-700">
+                Online travel platform — flights, hotels, cars, transfers, activities and packages.
+              </dd>
+            </div>
+            {site.contact.hasAddress ? (
+              <div className="bg-white p-6 sm:col-span-2">
+                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy-500">
+                  Registered address
+                </dt>
+                <dd className="mt-2 text-base font-medium not-italic text-navy-700">
+                  <address className="not-italic">{site.company.registeredOffice}</address>
+                </dd>
+              </div>
+            ) : null}
+          </dl>
+        </Reveal>
       </Section>
 
-      {/* Core values */}
+      {/* Values */}
       <Section tone="white">
         <SectionHeading
           eyebrow="What we value"
-          title="Our core values"
-          subtitle="The principles that shape every enquiry we handle and every recommendation we make."
+          title="How we work"
+          subtitle="The principles behind every option we put in front of a customer."
         />
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {CORE_VALUES.map((value, i) => (
@@ -239,9 +190,9 @@ export default function AboutPage() {
               as="li"
               key={value.title}
               delay={(i % 3) * 0.06}
-              className="h-full rounded-2xl border border-navy-100 bg-white p-6 shadow-sm transition hover:border-navy-200 hover:shadow-md"
+              className="h-full rounded-2xl border border-navy-100 bg-white p-6 shadow-sm transition hover:border-royal-200 hover:shadow-md"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-50 text-royal-600 ring-1 ring-navy-100">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
                 <Icon name={value.icon} className="h-5 w-5" />
               </span>
               <h3 className="mt-5 text-base font-semibold text-navy-900">{value.title}</h3>
@@ -251,73 +202,38 @@ export default function AboutPage() {
         </ul>
       </Section>
 
-      {/* Why customers choose us */}
-      <Section tone="tint">
-        <SectionHeading
-          eyebrow="Why choose us"
-          title="Why customers choose us"
-          subtitle="Practical reasons travelers return to UniversalTicketss for their travel planning."
-        />
-        <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {WHY_CHOOSE.map((item, i) => (
-            <Reveal
-              as="li"
-              key={item.title}
-              delay={(i % 3) * 0.06}
-              className="h-full rounded-2xl border border-navy-100 bg-white p-6 shadow-sm"
-            >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-50 text-royal-600 ring-1 ring-navy-100">
-                <Icon name={item.icon} className="h-5 w-5" />
-              </span>
-              <h3 className="mt-5 text-base font-semibold text-navy-900">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-navy-600">{item.description}</p>
-            </Reveal>
-          ))}
-        </ul>
-      </Section>
-
-      {/* Business disclaimer */}
-      <Section tone="white">
-        <Reveal className="mx-auto max-w-3xl">
-          <div className="rounded-2xl border border-navy-100 bg-navy-50 p-6 sm:p-8">
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-royal-600 ring-1 ring-navy-100">
-                <Icon name="file-check" className="h-[18px] w-[18px]" />
-              </span>
-              <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-navy-700">
-                Business disclaimer
-              </h2>
-            </div>
-            <p className="mt-4 text-sm leading-relaxed text-navy-600 sm:text-[15px]">
-              {site.disclaimer}
-            </p>
-          </div>
-        </Reveal>
-      </Section>
-
       {/* Final CTA */}
       <Section tone="navy">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-royal-300">
-            Ready when you are
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-royal-300">Ready when you are</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Let us help plan your next flight
+            Let us help plan your next trip
           </h2>
           <p className="mt-4 text-base leading-relaxed text-navy-100 sm:text-lg">
-            Tell us where you are going and what you need. Our reservation specialists will follow
-            up with suitable flight options and a personalized quote.
+            Search online whenever it suits you, or talk it through with a travel specialist.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild variant="royal" size="lg">
-              <Link href="/contact">Request a quote</Link>
+              <Link href="/#search">{site.cta.primary}</Link>
             </Button>
-            <Button asChild variant="navyOutline" size="lg">
-              <Link href="/flights">Explore flight options</Link>
-            </Button>
+            {site.contact.hasPhone ? (
+              <Button
+                asChild
+                variant="navyOutline"
+                size="lg"
+                className="border-white/30 bg-transparent text-white hover:border-white hover:bg-white/10 hover:text-white"
+              >
+                <a href={telHref}>
+                  <Phone className="h-5 w-5" />
+                  {site.cta.secondary}
+                </a>
+              </Button>
+            ) : null}
           </div>
         </Reveal>
       </Section>
+
+      <SupplierDisclosure />
     </>
   );
 }

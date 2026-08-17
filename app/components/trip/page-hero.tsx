@@ -36,7 +36,7 @@ export default function PageHero({
               const last = i === breadcrumbs.length - 1;
               return (
                 <li key={c.href} className="flex items-center gap-1.5">
-                  {i > 0 ? <span className={dark ? "text-white/40" : "text-navy-300"}>/</span> : null}
+                  {i > 0 ? <span className={dark ? "text-white/40" : "text-navy-400"}>/</span> : null}
                   {last ? (
                     <span aria-current="page" className={dark ? "font-medium text-white" : "font-medium text-navy-700"}>{c.name}</span>
                   ) : (
