@@ -3,30 +3,36 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/cn";
 
+/**
+ * One button system. `default` is the single dominant action on a surface;
+ * everything else steps down through outline, secondary, ghost and link.
+ */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[background-color,color,border-color,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright/40 disabled:pointer-events-none disabled:opacity-50 active:translate-y-px [&_svg]:shrink-0",
+  [
+    "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md",
+    "text-sm font-medium transition-colors",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+    "disabled:pointer-events-none disabled:opacity-50",
+    "[&_svg]:size-4 [&_svg]:shrink-0",
+  ].join(" "),
   {
     variants: {
       variant: {
-        ink: "bg-ink text-paper hover:bg-ink/90",
-        accent: "bg-accent-bright text-white hover:bg-accent",
-        outline: "border border-line-strong bg-transparent text-ink hover:border-ink/40 hover:bg-paper-deep",
-        subtle: "bg-paper-deep text-ink hover:bg-line",
-        ghost: "text-ink hover:bg-paper-deep",
-        link: "text-accent underline-offset-4 hover:underline",
-        /* Flight Bizz brand variants — royal = signature coral, navy = midnight */
-        royal: "bg-royal-600 text-white hover:bg-royal-700 focus-visible:ring-royal-300",
-        navy: "bg-navy-900 text-white hover:bg-navy-800 focus-visible:ring-navy-200",
-        navyOutline: "border border-navy-200 bg-white text-navy-800 hover:border-royal-400 hover:text-royal-700",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       },
       size: {
-        sm: "h-9 px-3.5 text-[13px]",
-        default: "h-11 px-5",
-        lg: "h-[52px] px-7 text-[15px]",
-        icon: "h-10 w-10",
+        sm: "h-9 gap-1.5 px-3",
+        default: "h-10 px-4",
+        lg: "h-11 px-6",
+        icon: "size-10",
       },
     },
-    defaultVariants: { variant: "ink", size: "default" },
+    defaultVariants: { variant: "default", size: "default" },
   }
 );
 

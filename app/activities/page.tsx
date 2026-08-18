@@ -6,10 +6,10 @@ import ServicePage from "@/app/components/trip/service-page";
 const service = serviceByKey.activities;
 
 const DESCRIPTION =
-  "Explore experiences with Flight Bizz — city tours, attractions, museums, adventure, family activities, food experiences, cruises and day trips, with operator, inclusions and cancellation rules confirmed before booking. Operated by GlobeVista LLC.";
+  "Explore experiences with Flight Bizz: city tours, attractions, museums, adventure, family activities, food experiences, cruises and day trips, with operator, inclusions and cancellation rules confirmed before booking. Operated by GlobeVista LLC.";
 
 export const metadata = pageMetadata({
-  title: "Tours & Activities — Explore Experiences",
+  title: "Tours & Activities: Explore Experiences",
   description: DESCRIPTION,
   path: "/activities",
   image: service.image,
@@ -30,38 +30,32 @@ export default function ActivitiesPage() {
 
       <ServicePage
         service={service}
-        eyebrow="Tours & Activities"
         title="Explore experiences"
-        subtitle="City tours, museums, day trips and food experiences — with the operator named, the inclusions listed and the cancellation rules stated before you book."
+        description="City tours, museums, day trips and food experiences, with the operator named, the inclusions listed and the cancellation rules stated before you book."
+        tags={["City tours", "Attractions", "Museums", "Adventure", "Family", "Food", "Cruises", "Day trips"]}
         enquiryHeading="Request experience options"
         arrange={[
           {
-            icon: "map-pin",
             title: "Matched to your dates",
             body: "We check what actually runs while you are there, including seasonal and weekday-only departures.",
           },
           {
-            icon: "users",
             title: "Right for your party",
             body: "Age limits, mobility requirements, difficulty level and family suitability confirmed before booking.",
           },
           {
-            icon: "file-check",
             title: "Inclusions and exclusions",
-            body: "Entry tickets, guide, meals and transport listed per option — and, just as clearly, what is not included.",
+            body: "Entry tickets, guide, meals and transport listed per option, and just as clearly what is not included.",
           },
           {
-            icon: "clock",
             title: "Duration and meeting point",
             body: "Start time, total duration and exactly where to meet, so the day around it can be planned properly.",
           },
           {
-            icon: "shield-check",
             title: "Cancellation rules",
             body: "The operator's cancellation window and weather policy stated before you commit.",
           },
           {
-            icon: "building",
             title: "Named operators",
             body: "You always know which operator is running the experience and whose terms apply to it.",
           },

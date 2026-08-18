@@ -2,130 +2,146 @@
 @import "tw-animate-css";
 
 /* ============================================================================
-   FLIGHT BIZZ — brand design language
-   Operated by GlobeVista LLC.
+   Flight Bizz design system, operated by GlobeVista LLC.
 
-   Deep petrol midnight · warm coral signature · sand neutrals · gold hairlines.
-   Serif display headlines over an Inter UI. Premium, international, travel.
+   One token layer, shadcn conventions. Components address semantic tokens
+   (background, card, muted, primary, border, ring) and never raw palette
+   values, so hierarchy stays consistent and a palette change is a one file
+   change.
 
-   The `navy-*` and `royal-*` scale names are retained from the previous build so
-   that ~280 existing utility classes across working components keep resolving —
-   only the VALUES change, which is what carries the new identity. Read them as:
-     navy-*  → Flight Bizz midnight (deep petrol blue-teal)
-     royal-* → Flight Bizz coral (the signature accent)
+   Palette: deep petrol neutrals carry the interface, coral is reserved for
+   the single primary action on a surface. Coral is hierarchy, not decoration.
 ============================================================================ */
+
+:root {
+  /* Surfaces */
+  --background: #ffffff;
+  --foreground: #0c1c24;
+  --card: #ffffff;
+  --card-foreground: #0c1c24;
+  --popover: #ffffff;
+  --popover-foreground: #0c1c24;
+
+  /* Primary action. Coral on white is 4.67:1, so it carries white text. */
+  --primary: #c93c1c;
+  --primary-foreground: #ffffff;
+
+  /* Quiet surfaces and quiet text */
+  --secondary: #eef3f5;
+  --secondary-foreground: #21404c;
+  --muted: #f4f7f8;
+  --muted-foreground: #456b78;
+
+  /* shadcn `accent` is the subtle hover surface, not the brand accent. */
+  --accent: #eef3f5;
+  --accent-foreground: #16303a;
+
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+
+  --border: #dde7ea;
+  --input: #71909d;
+  --ring: #c93c1c;
+
+  --radius: 0.5rem;
+}
+
+/* Inverted scope for the footer. Same token names, dark values, so the same
+   components render correctly without a parallel set of colour classes. */
+.dark {
+  --background: #0c1c24;
+  --foreground: #f4f7f8;
+  --card: #12262f;
+  --card-foreground: #f4f7f8;
+  --popover: #12262f;
+  --popover-foreground: #f4f7f8;
+  --primary: #ff8a63;
+  --primary-foreground: #0c1c24;
+  --secondary: #1a343f;
+  --secondary-foreground: #dfeaee;
+  --muted: #16303a;
+  --muted-foreground: #9fbcc6;
+  --accent: #1a343f;
+  --accent-foreground: #f4f7f8;
+  --border: #24414d;
+  --input: #24414d;
+  --ring: #ff8a63;
+}
+
 @theme inline {
   --font-sans: var(--font-inter);
   --font-display: var(--font-fraunces);
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Warm neutral system — shared UI primitives (sheet, select, popover, …) */
-  --color-paper: #faf7f2;
-  --color-paper-deep: #f2ede4;
-  --color-surface: #ffffff;
-  --color-ink: #10201f;
-  --color-ink-soft: #3d5158;
-  --color-ink-muted: #74898f;
-  --color-line: #e5e0d5;
-  --color-line-strong: #d5cec0;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-  /* Restrained accent used by focus rings and the shared primitives */
-  --color-accent: #ae3318;
-  --color-accent-bright: #d2401f;
-  --color-accent-soft: #fff4f0;
-
-  /* ---- Flight Bizz midnight (deep petrol) ---------------------------- */
-  --color-navy-50: #f3f7f8;
-  --color-navy-100: #dfeaee;
-  --color-navy-200: #bed6dd;
-  --color-navy-300: #91b8c4;
-  /* navy-400 is the lightest tone used on WHITE — kept at >=4.5:1 for placeholders
-     and muted text. navy-300 and lighter are for dark surfaces only. */
-  --color-navy-400: #4a7886;
-  --color-navy-500: #3d7080;
-  --color-navy-600: #2c5563;
-  --color-navy-700: #21404c;
-  --color-navy-800: #172d37;
-  --color-navy-900: #0c1c24;
-  --color-navy-950: #05121a;
-
-  /* ---- Flight Bizz coral (signature accent) -------------------------- */
-  --color-royal-50: #fff4f0;
-  --color-royal-100: #ffe4db;
-  --color-royal-200: #ffc7b5;
-  --color-royal-300: #ffa084;
-  --color-royal-400: #fb7350;
-  --color-royal-500: #ec5228;
-  --color-royal-600: #d2401f;
-  --color-royal-700: #ae3318;
-  --color-royal-800: #8c2b15;
-
-  /* ---- Warm sand — section tints and premium surfaces ---------------- */
-  --color-sand-50: #fbf8f3;
-  --color-sand-100: #f4ede1;
-  --color-sand-200: #e8dcc8;
-  --color-sand-300: #d8c6a6;
-
-  /* ---- Gold — hairline and badge micro-accent only ------------------- */
-  --color-gold-300: #e3c27e;
-  --color-gold-400: #d0a955;
-  --color-gold-500: #b48d3c;
-
-  --radius: 0.5rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #10201f;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
 
-  --shadow-card: 0 1px 2px rgba(12, 28, 36, 0.04), 0 8px 24px -12px rgba(12, 28, 36, 0.14);
-  --shadow-lift: 0 8px 24px -8px rgba(12, 28, 36, 0.14), 0 24px 48px -24px rgba(210, 64, 31, 0.18);
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), system-ui, -apple-system, Arial, sans-serif;
+    font-feature-settings: "cv02", "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Focus is always visible and always the ring token. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, Arial, sans-serif;
-  font-feature-settings: "cv02", "cv11", "ss01";
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-/* Display serif for marketing headlines only. Functional UI stays in Inter:
-   card titles (h3), form labels and controls are deliberately excluded. */
-h1,
-h2,
+/* Fraunces is reserved for the one H1 that opens a page. Section headings stay
+   in Inter so the interface reads as a product rather than an editorial. */
 .font-display {
   font-family: var(--font-display), Georgia, "Times New Roman", serif;
   font-optical-sizing: auto;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
-/* Small uppercase overline used across editorial sections */
-.overline {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
 }
-
-/* Gold hairline used under brand lockups and premium badges */
-.rule-gold {
-  background-image: linear-gradient(90deg, var(--color-gold-400), transparent);
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
 }
-
-/* Accessible focus ring */
-:where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-accent-bright);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
+.animate-accordion-down { animation: accordion-down 0.2s ease-out; }
+.animate-accordion-up { animation: accordion-up 0.2s ease-out; }
 
 @media (prefers-reduced-motion: reduce) {
   html {

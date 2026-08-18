@@ -1,8 +1,18 @@
 import Link from "next/link";
 import Container from "./container";
+import PageHeader from "./page-hero";
 import { site } from "@/config/site";
+import { Separator } from "@/components/ui/separator";
 
-/** Shared wrapper for legal pages: header band, readable prose, and legal footer. */
+/**
+ * Shared wrapper for legal pages: header, readable prose, standing disclosures.
+ *
+ * MAINTAINER NOTE, deliberately not rendered: these policies reflect how Flight
+ * Bizz operates and are written in good faith, but they have not been reviewed
+ * by counsel for GlobeVista LLC. Have them reviewed, and updated to match the
+ * jurisdictions, payment arrangements and supplier contracts actually in force,
+ * before relying on them.
+ */
 export default function LegalLayout({
   title,
   updated,
@@ -15,74 +25,68 @@ export default function LegalLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white">
-      <section className="border-b border-navy-100 bg-navy-50">
-        <Container className="py-12 sm:py-16">
-          <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-1.5 text-xs text-navy-500">
-              <li>
-                <Link href="/" className="hover:text-royal-700">
-                  Home
-                </Link>
-              </li>
-              <li className="text-navy-400">/</li>
-              <li aria-current="page" className="font-medium text-navy-700">
-                {title}
-              </li>
-            </ol>
-          </nav>
-          <h1 className="mt-4 text-3xl font-semibold tracking-tight text-navy-900 sm:text-4xl">{title}</h1>
-          <p className="mt-3 text-sm text-navy-500">Last updated: {updated}</p>
-          {intro ? <p className="mt-4 max-w-3xl text-base leading-relaxed text-navy-700">{intro}</p> : null}
-        </Container>
-      </section>
+    <>
+      <PageHeader
+        title={title}
+        description={intro}
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: title, href: "#" },
+        ]}
+      />
 
-      <Container className="py-12 sm:py-16">
-        <article className="max-w-3xl space-y-6 text-[15px] leading-relaxed text-navy-700 [&_a]:font-medium [&_a]:text-royal-700 [&_a:hover]:underline [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-navy-900 [&_h3]:mt-6 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-navy-900 [&_p]:mt-3 [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-6">
+      <Container className="py-10 sm:py-12">
+        <p className="text-sm text-muted-foreground">Last updated: {updated}</p>
+
+        <article className="mt-6 max-w-3xl space-y-6 text-[15px] leading-relaxed [&_a]:font-medium [&_a]:text-primary [&_a:hover]:underline [&_h2]:mt-8 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mt-6 [&_h3]:text-base [&_h3]:font-semibold [&_p]:mt-3 [&_p]:text-muted-foreground [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-6 [&_ul]:text-muted-foreground">
           {children}
         </article>
 
-        {/* Standing disclosures repeated on every legal page */}
-        <div className="mt-12 max-w-3xl space-y-3 rounded-2xl border border-navy-100 bg-navy-50 p-6 text-sm text-navy-600 sm:p-8">
-          <p className="text-base font-semibold text-navy-900">{site.name}</p>
-          <p className="font-medium text-navy-800">{site.operatedBy}</p>
-          <p className="text-xs leading-relaxed">{site.supplierDisclosure}</p>
-          <p className="text-xs leading-relaxed">{site.accreditationNotice}</p>
+        <div className="mt-12 max-w-3xl rounded-lg border bg-muted/40 p-5 text-sm">
+          <p className="font-medium">{site.name}</p>
+          <p className="mt-1 text-muted-foreground">{site.operatedBy}</p>
 
-          <div className="!mt-5 border-t border-navy-200 pt-4 text-sm">
-            <p className="font-semibold text-navy-900">{site.company.registeredName}</p>
-            {site.contact.hasCompanyNumber ? (
-              <p className="mt-1">Registration ID: {site.company.companyNumber}</p>
-            ) : null}
-            {site.contact.hasAddress ? <p className="mt-1">{site.company.registeredOffice}</p> : null}
-            <p className="mt-1">
-              {site.contact.hasEmail ? (
-                <a href={`mailto:${site.company.supportEmail}`} className="font-medium text-royal-700 hover:underline">
-                  {site.company.supportEmail}
-                </a>
-              ) : null}
-              {site.contact.hasEmail && site.contact.hasPhone ? " · " : null}
-              {site.contact.hasPhone ? site.company.phone : null}
-            </p>
+          <Separator className="my-4" />
+
+          <div className="space-y-2 text-xs leading-relaxed text-muted-foreground">
+            <p>{site.supplierDisclosure}</p>
+            <p>{site.accreditationNotice}</p>
           </div>
 
-          <ul className="!mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs font-medium text-navy-600">
+          <Separator className="my-4" />
+
+          <div className="text-sm">
+            <p className="font-medium">{site.company.registeredName}</p>
+            {site.contact.hasCompanyNumber ? (
+              <p className="mt-1 text-muted-foreground">Registration ID: {site.company.companyNumber}</p>
+            ) : null}
+            {site.contact.hasAddress ? (
+              <p className="mt-1 text-muted-foreground">{site.company.registeredOffice}</p>
+            ) : null}
+            {site.contact.hasEmail ? (
+              <p className="mt-1">
+                <a href={`mailto:${site.company.supportEmail}`} className="font-medium text-primary hover:underline">
+                  {site.company.supportEmail}
+                </a>
+                {site.contact.hasPhone ? (
+                  <span className="text-muted-foreground">{` and ${site.company.phone}`}</span>
+                ) : null}
+              </p>
+            ) : null}
+          </div>
+
+          <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs">
             {site.legalLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="underline-offset-4 hover:text-royal-700 hover:underline">
+                <Link href={l.href} className="text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
                   {l.label}
                 </Link>
               </li>
             ))}
           </ul>
 
-          <p className="!mt-5 text-xs leading-relaxed text-navy-500">
-            These policies are provided in good faith and reflect how {site.name} operates. They should be reviewed
-            by qualified legal counsel for {site.legalName} before launch, and updated to reflect the jurisdictions,
-            payment arrangements and supplier contracts actually in force.
-          </p>
         </div>
       </Container>
-    </div>
+    </>
   );
 }

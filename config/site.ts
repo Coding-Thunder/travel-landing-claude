@@ -1,26 +1,26 @@
 /**
- * Flight Bizz — single source of truth for brand, legal identity and content.
+ * Flight Bizz: single source of truth for brand, legal identity and content.
  *
  * BRAND:         Flight Bizz
  * LEGAL ENTITY:  GlobeVista LLC
  * RELATIONSHIP:  Flight Bizz is operated by GlobeVista LLC.
  *
- * BUSINESS MODEL: a multi-service online travel platform. Travellers describe
+ * BUSINESS MODEL: a multi-service online travel platform. Travelers describe
  * the trip they want across flights, hotels, cars, transfers, activities and
  * packages; a Flight Bizz travel specialist sources options from the supplier
  * network and confirms availability, price and conditions before anything is
  * booked. Fulfilment is by the airline, hotel, rental company, activity
  * operator or other supplier identified during booking.
  *
- * COMPLIANCE — all copy must stay consistent with the model above:
+ * COMPLIANCE. All copy must stay consistent with the model above:
  *   • Flight Bizz is NOT an airline.
- *   • Flight Bizz holds NO IATA or ARC accreditation — never imply otherwise.
+ *   • Flight Bizz holds NO IATA or ARC accreditation. Never imply otherwise.
  *   • No invented partnerships, certifications, awards, reviews, trust badges,
  *     government approvals, inventory or availability.
  *   • No live inventory is displayed anywhere on this site.
  *
  * CONFIGURATION: every customer-facing brand and business value lives in this
- * file — change it here and it changes everywhere. A value still wrapped in
+ * file, so changing it here changes it everywhere. A value still wrapped in
  * `[Brackets]` has not been supplied yet; the UI omits it rather than printing
  * a placeholder or inventing one (see `contact.hasPhone` / `hasEmail` /
  * `hasAddress` / `hasCompanyNumber`).
@@ -52,9 +52,11 @@ export type ValuePoint = { title: string; description: string; icon: string };
 
 /** One of the six travel categories the platform covers. */
 export type Service = {
-  /** Stable key — also the search-module tab id. Internal identifier. */
+  /** Stable key, also the search-module tab id. Internal identifier. */
   key: "flights" | "hotels" | "cars" | "transfers" | "activities" | "packages";
   name: string;
+  /** Compact label for tabs, nav and breadcrumbs where the full name is long. */
+  shortName: string;
   href: string;
   icon: string;
   /** One-line summary used on cards and category tiles. */
@@ -103,11 +105,11 @@ export const site = {
 
   /** Published support hours. Times are US Eastern. */
   hours: [
-    { day: "Monday – Friday", time: "9:00 AM – 8:00 PM" },
-    { day: "Saturday", time: "10:00 AM – 6:00 PM" },
+    { day: "Monday to Friday", time: "9:00 AM to 8:00 PM" },
+    { day: "Saturday", time: "10:00 AM to 6:00 PM" },
     { day: "Sunday", time: "Closed" },
   ],
-  /** IANA zone the hours above are published in — used for the after-hours state. */
+  /** IANA zone the hours above are published in, used for the after-hours state. */
   hoursTimeZone: "America/New_York",
   hoursLabel: "Eastern Time (ET)",
   /** Machine-readable opening hours, keyed by JS `getDay()` (0 = Sunday). */
@@ -123,7 +125,7 @@ export const site = {
 
   /** ---- Standing disclosures (§27, §29, §7 of the brand specification) ---- */
 
-  /** Supplier disclosure — shown on service, booking and legal surfaces. */
+  /** Supplier disclosure, shown on service, booking and legal surfaces. */
   supplierDisclosure:
     "Flight Bizz provides an online platform for searching and booking travel services. Depending on the selected service, fulfillment may be provided by an airline, hotel, rental company, activity operator, travel supplier, booking provider, or other third-party service provider. Applicable supplier terms and conditions may apply.",
 
@@ -135,7 +137,7 @@ export const site = {
   pricingNotice:
     "Prices and availability are subject to change until the applicable booking is confirmed.",
 
-  /** How the platform actually works — prevents any implied instant-booking claim. */
+  /** How the platform actually works. Prevents any implied instant-booking claim. */
   bookingNotice:
     "Flight Bizz does not display live supplier inventory on this website. Tell us what you need and a travel specialist sources current options, then confirms availability, the total price and the cancellation terms with you before any booking is made.",
 
@@ -165,16 +167,18 @@ export const site = {
   services: [
     {
       key: "flights",
+      shortName: "Flights",
       name: "Flights",
       href: "/flights",
       icon: "plane",
-      description: "Domestic and international air travel — one way, round trip and multi-city.",
+      description: "Domestic and international air travel: one way, round trip and multi-city.",
       intro:
-        "Tell us your route, dates and cabin, and a travel specialist sources current fares across the supplier network — including flexible dates, nearby airports and direct-only options where they help.",
+        "Tell us your route, dates and cabin, and a travel specialist sources current fares across the supplier network, including flexible dates, nearby airports and direct-only options where they help.",
       image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80",
     },
     {
       key: "hotels",
+      shortName: "Hotels",
       name: "Hotels & Stays",
       href: "/hotels",
       icon: "bed",
@@ -185,16 +189,18 @@ export const site = {
     },
     {
       key: "cars",
+      shortName: "Cars",
       name: "Car Rentals",
       href: "/cars",
       icon: "car",
-      description: "Rental vehicles at airports and in city centres, worldwide.",
+      description: "Rental vehicles at airports and in city centers, worldwide.",
       intro:
         "Give us your pickup and drop-off points, dates and driver age. We return vehicle options with the supplier, transmission, mileage terms, deposit and insurance details confirmed before you commit.",
       image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80",
     },
     {
       key: "transfers",
+      shortName: "Transfers",
       name: "Airport Transfers",
       href: "/transfers",
       icon: "route",
@@ -205,16 +211,18 @@ export const site = {
     },
     {
       key: "activities",
+      shortName: "Activities",
       name: "Tours & Activities",
       href: "/activities",
       icon: "sparkles",
       description: "City tours, attractions, day trips and food and culture experiences.",
       intro:
-        "From museum entry to a full day trip, tell us who is travelling and what they enjoy. Each option comes back with the operator, duration, what is included and excluded, and the cancellation rules.",
+        "From museum entry to a full day trip, tell us who is traveling and what they enjoy. Each option comes back with the operator, duration, what is included and excluded, and the cancellation rules.",
       image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80",
     },
     {
       key: "packages",
+      shortName: "Packages",
       name: "Vacation Packages",
       href: "/packages",
       icon: "briefcase",
@@ -246,7 +254,7 @@ export const site = {
     { name: "Cabin Class Options", description: "Economy, Premium Economy, Business and First, with the fare conditions for each explained." },
   ] as ServiceCategory[],
 
-  /** Genuine reasons to choose the platform — no accreditation or award claims. */
+  /** Genuine reasons to choose the platform. No accreditation or award claims. */
   whyChooseUs: [
     { title: "Everything in one place", description: "Flights, hotels, cars, transfers, activities and packages arranged through a single point of contact.", icon: "globe" },
     { title: "Transparent pricing", description: "The total price, taxes, fees and any service charge are set out before you are asked to confirm anything.", icon: "file-check" },
@@ -256,7 +264,7 @@ export const site = {
     { title: "Named suppliers", description: "You always know which airline, hotel, rental company or operator is fulfilling your booking.", icon: "building" },
   ] as ValuePoint[],
 
-  /** Trust bar — legitimate assurances only (§29). */
+  /** Trust bar. Legitimate assurances only (§29). */
   trust: [
     { icon: "file-check", title: "Transparent pricing", detail: "Total price, taxes, fees and any service charge shown before you confirm." },
     { icon: "shield-check", title: "Clear cancellation terms", detail: "Supplier change, cancellation and refund conditions stated up front." },
@@ -264,11 +272,11 @@ export const site = {
     { icon: "building", title: "Named suppliers", detail: "You always know who is fulfilling your booking before it is made." },
   ] as { icon: string; title: string; detail: string }[],
 
-  /** FAQ — the specification answers, kept truthful (§30). */
+  /** FAQ. The specification answers, kept truthful (§30). */
   faqs: [
     {
       q: "What is Flight Bizz?",
-      a: "Flight Bizz is a multi-service online travel platform operated by GlobeVista LLC. We help travellers search, compare and arrange flights, hotels, car rentals, airport transfers, tours and activities, and vacation packages.",
+      a: "Flight Bizz is a multi-service online travel platform operated by GlobeVista LLC. We help travelers search, compare and arrange flights, hotels, car rentals, airport transfers, tours and activities, and vacation packages.",
     },
     {
       q: "What can I book?",
@@ -328,38 +336,44 @@ export const site = {
     },
   ] as Faq[],
 
-  /** Footer navigation (§33). */
+  /** Footer navigation, grouped into four columns. */
   footerColumns: [
     {
-      title: "Travel Services",
+      title: "Services",
       links: [
         { label: "Flights", href: "/flights" },
         { label: "Hotels", href: "/hotels" },
-        { label: "Cars", href: "/cars" },
-        { label: "Transfers", href: "/transfers" },
-        { label: "Activities", href: "/activities" },
-        { label: "Packages", href: "/packages" },
-      ],
-    },
-    {
-      title: "Plan & Support",
-      links: [
-        { label: "Build Your Trip", href: "/trip-planner" },
-        { label: "Business Travel", href: "/business-travel" },
-        { label: "Group Travel", href: "/group-travel" },
-        { label: "Request a Callback", href: "/callback" },
-        { label: "FAQ", href: "/faq" },
+        { label: "Car rentals", href: "/cars" },
+        { label: "Airport transfers", href: "/transfers" },
+        { label: "Tours and activities", href: "/activities" },
+        { label: "Vacation packages", href: "/packages" },
       ],
     },
     {
       title: "Company",
       links: [
         { label: "About Flight Bizz", href: "/about" },
-        { label: "Contact", href: "/contact" },
-        { label: "Terms & Conditions", href: "/terms" },
-        { label: "Privacy Policy", href: "/privacy" },
-        { label: "Refunds & Cancellation", href: "/refund-policy" },
-        { label: "Cookie Policy", href: "/cookie-policy" },
+        { label: "Business travel", href: "/business-travel" },
+        { label: "Group travel", href: "/group-travel" },
+        { label: "Build your trip", href: "/trip-planner" },
+      ],
+    },
+    {
+      title: "Support",
+      links: [
+        { label: "Contact us", href: "/contact" },
+        { label: "Request a callback", href: "/callback" },
+        { label: "Help and FAQ", href: "/faq" },
+        { label: "Refunds and cancellation", href: "/refund-policy" },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { label: "Terms and conditions", href: "/terms" },
+        { label: "Privacy policy", href: "/privacy" },
+        { label: "Refund policy", href: "/refund-policy" },
+        { label: "Cookie policy", href: "/cookie-policy" },
       ],
     },
   ] as FooterColumn[],

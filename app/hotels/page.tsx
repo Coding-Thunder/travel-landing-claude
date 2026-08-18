@@ -6,10 +6,10 @@ import ServicePage from "@/app/components/trip/service-page";
 const service = serviceByKey.hotels;
 
 const DESCRIPTION =
-  "Search and book hotels and stays with Flight Bizz — rooms, apartments and resorts worldwide, with room type, taxes, fees and cancellation conditions confirmed before booking. Operated by GlobeVista LLC.";
+  "Search and book hotels and stays with Flight Bizz: rooms, apartments and resorts worldwide, with room type, taxes, fees and cancellation conditions confirmed before booking. Operated by GlobeVista LLC.";
 
 export const metadata = pageMetadata({
-  title: "Hotels & Stays — Search & Book Accommodation",
+  title: "Hotels & Stays: Search & Book Accommodation",
   description: DESCRIPTION,
   path: "/hotels",
   image: service.image,
@@ -30,38 +30,32 @@ export default function HotelsPage() {
 
       <ServicePage
         service={service}
-        eyebrow="Hotels & Stays"
         title="Somewhere to stay, on terms you can see"
-        subtitle="Rooms, apartments and resorts — with what is included, what it really costs and how late you can cancel, all stated before you book."
+        description="Rooms, apartments and resorts, with what is included, what it really costs and how late you can cancel, all stated before you book."
+        tags={["City hotels", "Resorts", "Apartments", "Airport hotels", "Boutique", "Extended stay"]}
         enquiryHeading="Request hotel options"
         arrange={[
           {
-            icon: "map-pin",
             title: "Location that actually works",
-            body: "We match properties to where you need to be — near the venue, the beach, the station — not just to a city name.",
+            body: "We match properties to where you need to be (near the venue, the beach, the station), not just to a city name.",
           },
           {
-            icon: "bed",
             title: "The right room type",
             body: "Bed configuration, occupancy, connecting rooms and accessibility needs confirmed with the property before booking.",
           },
           {
-            icon: "file-check",
             title: "Total price, not a teaser rate",
             body: "Resort fees, city taxes and other charges are included in the figure we quote, so the total does not move at check-in.",
           },
           {
-            icon: "shield-check",
             title: "Cancellation terms up front",
             body: "Free-cancellation deadlines and non-refundable rates are flagged clearly so you can weigh flexibility against price.",
           },
           {
-            icon: "sparkles",
             title: "What is included",
-            body: "Breakfast, Wi-Fi, parking, resort access — stated per option, so comparisons are like for like.",
+            body: "Breakfast, Wi-Fi, parking and resort access, stated per option so comparisons are like for like.",
           },
           {
-            icon: "headset",
             title: "Changes handled for you",
             body: "Date changes, room changes and cancellations raised with the property and tracked until resolved.",
           },

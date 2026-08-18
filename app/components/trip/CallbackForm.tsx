@@ -1,21 +1,29 @@
 "use client";
 
 import { useId, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2, Clock } from "lucide-react";
+import { Check } from "lucide-react";
 import { callbackSchema, type CallbackValues } from "@/lib/callback-schema";
 import { site, mailtoHref } from "@/config/site";
 import { useSupportStatus } from "@/lib/use-support-status";
 import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 
 const SERVICES = [...site.services.map((s) => s.name), "Custom Trip", "Existing booking", "Other"];
 
 const PREFERRED_TIMES = [
   "As soon as possible",
-  "Morning (9:00 AM – 12:00 PM)",
-  "Afternoon (12:00 PM – 5:00 PM)",
-  "Evening (5:00 PM – 8:00 PM)",
+  "Morning, 9:00 AM to 12:00 PM",
+  "Afternoon, 12:00 PM to 5:00 PM",
+  "Evening, 5:00 PM to 8:00 PM",
 ];
 
 function buildCallbackMailto(v: CallbackValues): string {
@@ -25,23 +33,22 @@ function buildCallbackMailto(v: CallbackValues): string {
     `Name: ${v.fullName}`,
     `Phone: ${v.phone}`,
     `Email: ${v.email}`,
-    `Travel service: ${v.service || "—"}`,
-    `Destination: ${v.destination || "—"}`,
-    `Preferred callback time: ${v.preferredTime || "—"}`,
+    `Travel service: ${v.service || "Not given"}`,
+    `Destination: ${v.destination || "Not given"}`,
+    `Preferred callback time: ${v.preferredTime || "No preference"}`,
     "",
     "Message:",
-    v.message || "—",
+    v.message || "Not given",
     "",
-    `— Sent from ${site.domain}`,
+    `Sent from ${site.domain}`,
   ].join("\n");
-  const subject = `Callback request — ${v.fullName}${v.service ? ` (${v.service})` : ""}`;
+  const subject = `Callback request: ${v.fullName}${v.service ? ` (${v.service})` : ""}`;
   return `mailto:${site.company.supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 /**
- * Callback request (§17). Uses the same mailto hand-off as the enquiry form —
- * there is no server mailer or database behind this site — and states the real
- * support hours rather than promising an instant or 24/7 response.
+ * Callback request. Uses the same mailto hand-off as the enquiry form, and
+ * states the real support hours rather than promising instant or 24/7 contact.
  */
 export default function CallbackForm({ heading = site.cta.callback }: { heading?: string }) {
   const [done, setDone] = useState(false);
@@ -50,6 +57,7 @@ export default function CallbackForm({ heading = site.cta.callback }: { heading?
 
   const {
     register,
+    control,
     handleSubmit,
     reset,
     formState: { errors },
@@ -81,117 +89,125 @@ export default function CallbackForm({ heading = site.cta.callback }: { heading?
 
   if (done) {
     return (
-      <div
-        className="rounded-2xl border border-navy-100 bg-white p-8 text-center shadow-sm"
-        role="status"
-        aria-live="polite"
-      >
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-royal-50 text-royal-600">
-          <CheckCircle2 className="h-8 w-8" />
+      <Card className="p-6" role="status" aria-live="polite">
+        <div className="flex items-start gap-3">
+          <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+          <div>
+            <h3 className="text-base font-semibold">Thank you, press send to complete it</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+              Your email app should have opened with the callback request ready to go. Once you send it, a{" "}
+              {site.name} representative will contact you during the stated support hours.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Did not open?{" "}
+              {mailtoLink ? (
+                <>
+                  <a href={mailtoLink} className="font-medium text-primary underline-offset-4 hover:underline">
+                    Open it again
+                  </a>{" "}
+                  or email{" "}
+                </>
+              ) : (
+                "Email "
+              )}
+              <a href={mailtoHref} className="font-medium text-primary underline-offset-4 hover:underline">
+                {site.company.supportEmail}
+              </a>
+              .
+            </p>
+          </div>
         </div>
-        <h3 className="mt-5 text-xl font-semibold text-navy-900">Thank you — press send to complete it</h3>
-        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-navy-600">
-          Your email app should have opened with the callback request ready to go. Once you send it, a {site.name}{" "}
-          representative will contact you during the stated support hours.
-        </p>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-navy-500">
-          Didn&rsquo;t open?{" "}
-          {mailtoLink ? (
-            <>
-              <a href={mailtoLink} className="font-semibold text-royal-700 underline-offset-4 hover:underline">
-                Open it again
-              </a>{" "}
-              or email{" "}
-            </>
-          ) : (
-            "Email "
-          )}
-          <a href={mailtoHref} className="font-semibold text-royal-700 underline-offset-4 hover:underline">
-            {site.company.supportEmail}
-          </a>
-          .
-        </p>
-      </div>
+      </Card>
     );
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onValid)}
-      noValidate
-      className="rounded-2xl border border-navy-100 bg-white p-6 shadow-sm sm:p-8"
-    >
-      <h3 className="text-lg font-semibold text-navy-900">{heading}</h3>
-      <p className="mt-1 text-sm text-navy-600">
+    <form onSubmit={handleSubmit(onValid)} noValidate className="rounded-lg border bg-card p-5 sm:p-6">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h3 className="text-base font-semibold">{heading}</h3>
+        {status ? (
+          <Badge variant={status.open ? "secondary" : "muted"}>{status.open ? "Support open" : "Support closed"}</Badge>
+        ) : null}
+      </div>
+      <p className="mt-1 text-sm text-muted-foreground">
         Leave your number and a travel specialist will call you back during support hours.
       </p>
 
-      {status ? (
-        <p
-          className={cn(
-            "mt-4 flex items-start gap-2 rounded-lg px-3.5 py-2.5 text-xs leading-relaxed",
-            status.open ? "bg-royal-50 text-royal-800" : "bg-navy-50 text-navy-700"
-          )}
-        >
-          <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          <span>
-            {status.open
-              ? `Our support desk is open now — ${site.hoursLabel}.`
-              : `Our support team is currently unavailable${status.nextOpen ? `. We are back ${status.nextOpen}` : ""}. Requests sent now are picked up when we reopen.`}
-          </span>
-        </p>
+      {status && !status.open ? (
+        <Alert variant="muted" className="mt-4 text-xs">
+          <AlertDescription>
+            Our support team is currently unavailable
+            {status.nextOpen ? `. We are back ${status.nextOpen}` : ""}. Requests sent now are picked up when we
+            reopen.
+          </AlertDescription>
+        </Alert>
       ) : null}
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
         <Field label="Name" error={errors.fullName?.message} required>
-          {(p) => <input type="text" autoComplete="name" placeholder="Jane Smith" {...register("fullName")} {...p} />}
+          {(p) => <Input {...p} autoComplete="name" placeholder="Jane Smith" {...register("fullName")} />}
         </Field>
         <Field label="Phone" error={errors.phone?.message} required>
-          {(p) => <input type="tel" autoComplete="tel" placeholder="(555) 123-4567" {...register("phone")} {...p} />}
+          {(p) => <Input {...p} type="tel" autoComplete="tel" placeholder="(555) 123-4567" {...register("phone")} />}
         </Field>
         <Field label="Email" error={errors.email?.message} required>
-          {(p) => <input type="email" autoComplete="email" placeholder="jane@example.com" {...register("email")} {...p} />}
+          {(p) => <Input {...p} type="email" autoComplete="email" placeholder="jane@example.com" {...register("email")} />}
         </Field>
         <Field label="Travel service">
           {(p) => (
-            <select {...register("service")} {...p}>
-              <option value="">Select a service</option>
-              {SERVICES.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
+            <Controller
+              name="service"
+              control={control}
+              render={({ field }) => (
+                <Select value={field.value || ""} onValueChange={field.onChange}>
+                  <SelectTrigger {...p} className="h-10">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICES.map((s) => (
+                      <SelectItem key={s} value={s}>
+                        {s}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
           )}
         </Field>
         <Field label="Destination">
-          {(p) => <input type="text" placeholder="Where are you heading?" {...register("destination")} {...p} />}
+          {(p) => <Input {...p} placeholder="Where are you heading?" {...register("destination")} />}
         </Field>
         <Field label="Preferred callback time">
           {(p) => (
-            <select {...register("preferredTime")} {...p}>
-              <option value="">No preference</option>
-              {PREFERRED_TIMES.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
+            <Controller
+              name="preferredTime"
+              control={control}
+              render={({ field }) => (
+                <Select value={field.value || ""} onValueChange={field.onChange}>
+                  <SelectTrigger {...p} className="h-10">
+                    <SelectValue placeholder="No preference" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {PREFERRED_TIMES.map((t) => (
+                      <SelectItem key={t} value={t}>
+                        {t}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
           )}
         </Field>
         <Field label="Message" className="sm:col-span-2">
           {(p) => (
-            <textarea
-              rows={4}
-              placeholder="Anything that would help us prepare before we call."
-              {...register("message")}
-              {...p}
-            />
+            <Textarea {...p} rows={4} placeholder="Anything that would help us prepare before we call." {...register("message")} />
           )}
         </Field>
       </div>
 
-      {/* Honeypot — visually hidden, off keyboard + a11y tree */}
+      {/* Honeypot: visually hidden, off the keyboard and the a11y tree. */}
       <div className="absolute h-0 w-0 overflow-hidden" aria-hidden="true">
         <label>
           Company website
@@ -199,14 +215,11 @@ export default function CallbackForm({ heading = site.cta.callback }: { heading?
         </label>
       </div>
 
-      <button
-        type="submit"
-        className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-royal-600 px-6 text-sm font-semibold text-white transition hover:bg-royal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-300"
-      >
+      <Button type="submit" className="mt-5 w-full">
         {site.cta.callback}
-      </button>
+      </Button>
 
-      <p className="mt-3 text-xs leading-relaxed text-navy-500">
+      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
         Callbacks are made during the support hours shown on this page. We do not offer 24/7 or guaranteed instant
         callbacks. Never include full card numbers in this form.
       </p>
@@ -214,11 +227,12 @@ export default function CallbackForm({ heading = site.cta.callback }: { heading?
   );
 }
 
-type FieldChildProps = {
+type ControlProps = {
   id: string;
+  required?: boolean;
+  "aria-required"?: boolean;
   "aria-invalid"?: boolean;
   "aria-describedby"?: string;
-  className: string;
 };
 
 function Field({
@@ -232,28 +246,28 @@ function Field({
   error?: string;
   required?: boolean;
   className?: string;
-  children: (props: FieldChildProps) => React.ReactNode;
+  children: (props: ControlProps) => React.ReactNode;
 }) {
   const id = useId();
-  const controlClass = cn(
-    "w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-navy-400 transition focus:outline-none focus:ring-2 focus:ring-royal-200",
-    error ? "border-red-400 focus:border-red-500" : "border-navy-200 focus:border-royal-500"
-  );
-
   return (
-    <div className={className}>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-navy-800">
+    <div className={cn("space-y-1.5", className)}>
+      <Label htmlFor={id}>
         {label}
-        {required ? <span className="ml-0.5 text-royal-600">*</span> : null}
-      </label>
+        {required ? (
+          <span className="ml-0.5 text-destructive" aria-hidden>
+            *
+          </span>
+        ) : null}
+      </Label>
       {children({
         id,
+        // The asterisk is decorative; assistive tech needs the real attribute.
+        ...(required ? { required: true, "aria-required": true } : {}),
         "aria-invalid": error ? true : undefined,
         "aria-describedby": error ? `${id}-error` : undefined,
-        className: controlClass,
       })}
       {error ? (
-        <p id={`${id}-error`} className="mt-1 text-xs font-medium text-red-600">
+        <p id={`${id}-error`} role="alert" className="text-xs font-medium text-destructive">
           {error}
         </p>
       ) : null}

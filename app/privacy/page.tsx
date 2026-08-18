@@ -49,7 +49,7 @@ export default function PrivacyPolicyPage() {
           your travel. Depending on how you use our service, this may include:
         </p>
         <ul>
-          <li>Your name and the names of other travellers included in a booking request</li>
+          <li>Your name and the names of other travelers included in a booking request</li>
           <li>Contact details, such as your email address and telephone number</li>
           <li>Billing information needed to process a booking payment</li>
           <li>Travel preferences, such as destinations, dates, cabin class and special requirements</li>

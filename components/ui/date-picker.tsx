@@ -15,6 +15,7 @@ type DatePickerProps = {
   id?: string;
   invalid?: boolean;
   "aria-label"?: string;
+  "aria-describedby"?: string;
 };
 
 export function DatePicker({ value, onChange, placeholder = "Add date", minDate, id, invalid, ...rest }: DatePickerProps) {
@@ -27,13 +28,14 @@ export function DatePicker({ value, onChange, placeholder = "Add date", minDate,
           type="button"
           id={id}
           className={cn(
-            "flex h-11 w-full items-center gap-2 rounded-md border bg-surface px-3 text-left text-sm outline-none transition",
-            invalid ? "border-red-400" : "border-line-strong hover:border-ink/40 focus:border-ink",
-            value ? "text-ink" : "text-ink-muted"
+            "flex h-10 w-full items-center gap-2 rounded-md border bg-background px-3 text-left text-sm transition-colors",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            invalid ? "border-destructive" : "border-input hover:border-ring",
+            value ? "text-foreground" : "text-muted-foreground"
           )}
           {...rest}
         >
-          <CalendarIcon className="h-4 w-4 shrink-0 text-ink-muted" />
+          <CalendarIcon className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden />
           <span className="truncate">{value ? format(value, "EEE, MMM d") : placeholder}</span>
         </button>
       </PopoverTrigger>

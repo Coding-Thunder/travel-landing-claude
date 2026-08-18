@@ -7,7 +7,7 @@ type PageMetaInput = {
   path: string;
   image?: string;
   noIndex?: boolean;
-  /** Bypass the "%s | Flight Bizz" template — used by the home page. */
+  /** Bypass the "%s | Flight Bizz" template. Used by the home page. */
   absoluteTitle?: string;
 };
 
@@ -41,7 +41,7 @@ export function pageMetadata({ title, description, path, image, noIndex, absolut
 /**
  * Organization schema for GlobeVista LLC, with Flight Bizz as the brand it
  * trades under. Deliberately carries no award, accreditation, rating or review
- * properties — none are held (§2).
+ * properties, because none are held (§2).
  */
 export function organizationSchema() {
   return {
@@ -90,7 +90,7 @@ export function websiteSchema() {
     "@type": "WebSite",
     "@id": `${site.url}/#website`,
     name: site.name,
-    alternateName: `${site.name} — ${site.tagline}`,
+    alternateName: `${site.name}: ${site.tagline}`,
     url: site.url,
     inLanguage: "en-US",
     publisher: { "@id": `${site.url}/#organization` },
@@ -99,19 +99,28 @@ export function websiteSchema() {
 
 /**
  * Schema for one of the six travel categories. Describes the service offered,
- * never specific inventory, prices or availability — none of which this site
+ * never specific inventory, prices or availability, none of which this site
  * publishes.
  */
 export function serviceSchema({ name, description, path }: { name: string; description: string; path: string }) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: `${name} — ${site.name}`,
+    name: `${name}, ${site.name}`,
     description,
     serviceType: name,
     url: `${site.url}${path}`,
     areaServed: "Worldwide",
-    provider: { "@id": `${site.url}/#organization` },
+    // Inlined rather than referenced by @id: the Organization node is only
+    // emitted on /, /about and /contact, so an @id reference would dangle on
+    // every service page that renders this schema.
+    provider: {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.legalName,
+      alternateName: site.name,
+      url: site.url,
+    },
   };
 }
 

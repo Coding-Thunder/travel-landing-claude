@@ -37,7 +37,7 @@ function subscribe(onChange: () => void): () => void {
 /**
  * Support-desk open/closed state, resolved on the client only.
  *
- * Returns `null` during SSR and the first hydration pass — callers must treat
+ * Returns `null` during SSR and the first hydration pass, so callers must treat
  * that as "not yet known" rather than "closed", so the UI never flickers
  * between two destinations or wrongly tells a visitor we are shut.
  */

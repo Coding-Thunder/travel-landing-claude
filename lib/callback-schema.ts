@@ -9,7 +9,7 @@ export const callbackSchema = z.object({
   destination: z.string().trim().max(120).optional().or(z.literal("")),
   preferredTime: z.string().trim().max(120).optional().or(z.literal("")),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
-  /** Honeypot — real users never fill this; bots often do. Must stay empty. */
+  /** Honeypot. Real users never fill this, bots often do. Must stay empty. */
   companyWebsite: z.string().max(0).optional().or(z.literal("")),
 });
 

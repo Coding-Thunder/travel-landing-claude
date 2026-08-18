@@ -10,7 +10,11 @@ const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
 >(({ className, ...props }, ref) => (
-  <TabsPrimitive.List ref={ref} className={cn("flex items-center gap-1", className)} {...props} />
+  <TabsPrimitive.List
+    ref={ref}
+    className={cn("inline-flex items-center gap-1 rounded-md bg-muted p-1 text-muted-foreground", className)}
+    {...props}
+  />
 ));
 TabsList.displayName = "TabsList";
 
@@ -21,7 +25,9 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-navy-600 transition outline-none hover:text-navy-900 focus-visible:ring-2 focus-visible:ring-royal-300 data-[state=active]:bg-navy-900 data-[state=active]:text-white",
+      "inline-flex shrink-0 items-center gap-2 rounded-sm px-3 py-1.5 text-sm font-medium transition-colors",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
+      "hover:text-foreground data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
       className
     )}
     {...props}
@@ -33,7 +39,15 @@ const TabsContent = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
 >(({ className, ...props }, ref) => (
-  <TabsPrimitive.Content ref={ref} className={cn("outline-none", className)} {...props} />
+  <TabsPrimitive.Content
+    ref={ref}
+    className={cn(
+      // Radix renders the panel with tabIndex={0}, so it is a real tab stop.
+      "rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      className
+    )}
+    {...props}
+  />
 ));
 TabsContent.displayName = "TabsContent";
 

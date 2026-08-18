@@ -1,60 +1,53 @@
 import Container from "./container";
-import Reveal from "./reveal";
 import { cn } from "@/lib/cn";
 
+/**
+ * Vertical rhythm for page sections. Two tones only: the page surface and a
+ * quiet tinted band used sparingly to separate one region from the next.
+ */
 export function Section({
   id,
   children,
-  tone = "white",
+  tone = "default",
   className,
 }: {
   id?: string;
   children: React.ReactNode;
-  tone?: "white" | "tint" | "navy";
+  tone?: "default" | "muted";
   className?: string;
 }) {
-  const tones = {
-    white: "bg-white",
-    tint: "bg-navy-50",
-    navy: "bg-navy-900 text-white",
-  } as const;
   return (
-    <section id={id} className={cn("scroll-mt-24 py-16 sm:py-20 lg:py-24", tones[tone], className)}>
+    <section
+      id={id}
+      className={cn("scroll-mt-20 py-14 sm:py-16", tone === "muted" && "border-y bg-muted/40", className)}
+    >
       <Container>{children}</Container>
     </section>
   );
 }
 
+/**
+ * Section heading. Deliberately no eyebrow and no centring by default: those
+ * two habits are most of what makes a page read as a marketing template.
+ */
 export function SectionHeading({
-  eyebrow,
   title,
-  subtitle,
-  align = "left",
-  invert = false,
+  description,
+  actions,
   className,
 }: {
-  eyebrow?: string;
   title: React.ReactNode;
-  subtitle?: React.ReactNode;
-  align?: "left" | "center";
-  invert?: boolean;
+  description?: React.ReactNode;
+  actions?: React.ReactNode;
   className?: string;
 }) {
   return (
-    <Reveal className={cn(align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl", className)}>
-      {eyebrow ? (
-        <p className={cn("text-xs font-semibold uppercase tracking-[0.16em]", invert ? "text-royal-300" : "text-royal-600")}>
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2 className={cn("mt-3 text-3xl font-semibold tracking-tight sm:text-4xl", invert ? "text-white" : "text-navy-900")}>
-        {title}
-      </h2>
-      {subtitle ? (
-        <p className={cn("mt-4 text-base leading-relaxed sm:text-lg", invert ? "text-navy-100" : "text-navy-600")}>
-          {subtitle}
-        </p>
-      ) : null}
-    </Reveal>
+    <div className={cn("flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between", className)}>
+      <div className="max-w-2xl">
+        <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">{title}</h2>
+        {description ? <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p> : null}
+      </div>
+      {actions ? <div className="flex shrink-0 items-center gap-2">{actions}</div> : null}
+    </div>
   );
 }

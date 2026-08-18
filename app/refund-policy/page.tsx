@@ -51,7 +51,7 @@ export default function RefundPolicyPage() {
           <p>
             If you need to cancel a booking, please contact our customer support team as soon
             as possible. Cancellation requests are time-sensitive, and acting early gives you the
-            best chance of minimising any charges that a supplier may apply.
+            best chance of minimizing any charges that a supplier may apply.
           </p>
           <p>
             All cancellations are subject to the policies of the relevant travel supplier
@@ -96,8 +96,8 @@ export default function RefundPolicyPage() {
             promptly to put things right when the fault lies with us.
           </p>
           <p>
-            Where the issue relates to the airline, travel supplier or another third party — for
-            example, an overbooking, cancellation or schedule change made by the airline — we will assist you
+            Where the issue relates to the airline, travel supplier or another third party, for
+            example, an overbooking, cancellation or schedule change made by the airline, we will assist you
             in communicating with the supplier and support your case to reach a fair resolution.
             Any refund in these circumstances remains subject to the supplier&apos;s own policies.
           </p>

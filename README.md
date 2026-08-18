@@ -1,6 +1,6 @@
 # Flight Bizz
 
-Multi-service online travel platform — **operated by GlobeVista LLC**.
+Multi-service online travel platform, **operated by GlobeVista LLC**.
 
 > Flight Bizz is a trading brand of GlobeVista LLC, not a separate legal entity.
 
@@ -18,7 +18,7 @@ npm run lint
 ## Brand configuration
 
 **[`config/site.ts`](config/site.ts) is the single source of truth** for every customer-facing
-brand, legal, contact and content value. Change it there and it changes everywhere —
+brand, legal, contact and content value. Change it there and it changes everywhere:
 header, footer, metadata, structured data, sitemap, manifest, forms and legal pages all
 read from it.
 
@@ -30,7 +30,7 @@ The values at the top of that file are the ones most likely to change:
 | `SUPPORT_PHONE` | `+1 (551) 414-2067` |
 | `SUPPORT_EMAIL` | `reservation@flightbizz.com` |
 | `BUSINESS_ADDRESS` | `1309 Coffeen Ave, Ste 1200, Sheridan, WY 82801` |
-| `COMPANY_NUMBER` | **not supplied** — see below |
+| `COMPANY_NUMBER` | **not supplied**, see below |
 
 Any value written as a `[Bracketed placeholder]` is treated as *not supplied*: the UI omits
 it entirely rather than printing a placeholder or inventing one. The `site.contact.*` flags
@@ -43,7 +43,7 @@ registration line is omitted from the footer and legal pages until a real value 
 
 ## Compliance rules baked into the content
 
-These are not stylistic preferences — the copy in `config/site.ts` and across the pages is
+These are not stylistic preferences. The copy in `config/site.ts` and across the pages is
 written to hold these true. Please keep them true when editing:
 
 - Flight Bizz is a **travel platform**, never presented as an airline, hotel or operator.
@@ -69,7 +69,7 @@ repository. It is a marketing and lead-capture front end:
 
 ```
 app/
-  page.tsx                    Home — hero, unified search, services, FAQ
+  page.tsx                    Home: hero, unified search, services, FAQ
   flights|hotels|cars|        The six travel categories, all rendered by the
     transfers|activities|       shared ServicePage template
     packages/
@@ -78,7 +78,7 @@ app/
   business-travel/            Specialist request types, retained from the
   group-travel/                 previous build and rebranded
   about|contact|faq/
-  terms|privacy|              Legal — reviewed content, still requires sign-off
+  terms|privacy|              Legal: reviewed content, still requires sign-off
     refund-policy|              by qualified counsel before launch
     cookie-policy/
   components/trip/            Brand components (header, footer, search, forms)
@@ -89,9 +89,22 @@ lib/                          seo, schemas, support-hours
 
 ## Design language
 
-Defined in [`app/globals.css`](app/globals.css): deep petrol midnight, a warm coral signature
-accent, sand neutrals and gold hairlines, with Fraunces for display headlines over Inter for UI.
+Defined in [`app/globals.css`](app/globals.css) as a single shadcn token layer. Components
+address semantic tokens only (`background`, `card`, `muted`, `primary`, `border`, `ring`) and
+never raw palette values, so hierarchy stays consistent and a palette change is a one file
+change.
 
-The Tailwind scales are still named `navy-*` and `royal-*` (retained so ~280 existing utility
-classes keep resolving) but hold the Flight Bizz values — `navy-*` is the midnight scale,
-`royal-*` is the coral signature. The mapping is documented at the top of `globals.css`.
+- **Neutrals** carry the interface: deep petrol `foreground` on white, with `muted` for quiet
+  surfaces and `muted-foreground` for secondary text.
+- **`primary` is coral, and it is rationed.** One dominant action per surface. Coral
+  communicates hierarchy, not decoration.
+- **The footer runs in a `.dark` scope**, which swaps the token values so the same components
+  render on the midnight surface without a parallel set of colour classes.
+- **Radius**: `rounded-md` for controls, `rounded-lg` for cards and overlays. `rounded-xl` is
+  reserved for the search module, the one primary interaction surface. `rounded-full` is
+  reserved for badges.
+- **Shadows** mark real elevation only: dropdowns, dialogs, sheets, the floating support
+  control and the search module.
+- **Type**: Inter throughout, with Fraunces reserved for the single H1 that opens a page.
+
+All token pairs meet WCAG AA in both the light and dark scopes.

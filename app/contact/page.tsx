@@ -3,18 +3,18 @@ import Link from "next/link";
 import { Phone } from "lucide-react";
 import { site, telHref, mailtoHref } from "@/config/site";
 import { pageMetadata, organizationSchema, breadcrumbSchema } from "@/lib/seo";
-import PageHero from "@/app/components/trip/page-hero";
-import { Section, SectionHeading } from "@/app/components/trip/section";
-import Reveal from "@/app/components/trip/reveal";
-import Icon from "@/app/components/trip/lucide-icon";
+import PageHeader from "@/app/components/trip/page-hero";
+import { Section } from "@/app/components/trip/section";
 import EnquiryForm from "@/app/components/trip/EnquiryForm";
 import TrustBar from "@/app/components/trip/trust-bar";
 import JsonLd from "@/app/components/trip/json-ld";
 import SupplierDisclosure from "@/app/components/trip/supplier-disclosure";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact Flight Bizz",
+  title: "Contact Us",
   description:
     "Contact the Flight Bizz support team about a new booking, an existing booking, a change, cancellation or refund. Call, email, or request a callback during our published support hours.",
   path: "/contact",
@@ -43,155 +43,101 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
         ]}
       />
 
-      <PageHero
-        eyebrow="Contact"
+      <PageHeader
         title="Contact Flight Bizz"
-        subtitle="Whether you are planning a trip or need help with a booking you already have, our support team is here during the hours below."
+        description="Planning a trip, or need help with a booking you already have? Our support team is here during the hours below."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Contact", href: "/contact" },
         ]}
+        actions={
+          site.contact.hasPhone ? (
+            <Button asChild variant="outline">
+              <a href={telHref}>
+                <Phone aria-hidden />
+                {site.company.phone}
+              </a>
+            </Button>
+          ) : undefined
+        }
       />
 
-      <Section tone="white">
-        <SectionHeading
-          eyebrow="Get in touch"
-          title="Talk to our support team"
-          subtitle="Send your details and we will respond with real options and clear conditions — or reach us directly using the details below."
-        />
+      <Section>
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <h2 className="text-xl font-semibold tracking-tight">Reach us directly</h2>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-14">
-          {/* LEFT — contact information */}
-          <div className="space-y-6">
-            <ul className="space-y-4">
+            <dl className="mt-5 divide-y border-y text-sm">
               {site.contact.hasEmail ? (
-                <Reveal as="li" delay={0.04}>
-                  <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
-                      <Icon name="mail" className="h-5 w-5" />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-navy-900">Email</p>
-                      <a
-                        href={mailtoHref}
-                        className="mt-0.5 block break-words text-sm font-medium text-royal-700 underline-offset-4 hover:underline"
-                      >
-                        {site.company.supportEmail}
-                      </a>
-                      <p className="mt-1 text-xs leading-relaxed text-navy-500">
-                        Best for anything with detail attached. We reply during support hours.
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
+                <div className="flex items-baseline justify-between gap-4 py-3">
+                  <dt className="font-medium">Email</dt>
+                  <dd>
+                    <a href={mailtoHref} className="break-all text-primary underline-offset-4 hover:underline">
+                      {site.company.supportEmail}
+                    </a>
+                  </dd>
+                </div>
               ) : null}
-
               {site.contact.hasPhone ? (
-                <Reveal as="li" delay={0.08}>
-                  <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
-                      <Icon name="phone" className="h-5 w-5" />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-navy-900">Telephone</p>
-                      <a
-                        href={telHref}
-                        className="mt-0.5 block text-sm font-medium text-royal-700 underline-offset-4 hover:underline"
-                      >
-                        {site.company.phone}
-                      </a>
-                      <p className="mt-1 text-xs leading-relaxed text-navy-500">
-                        Lines are open during the hours below. Outside them, request a callback or email us.
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
+                <div className="flex items-baseline justify-between gap-4 py-3">
+                  <dt className="font-medium">Telephone</dt>
+                  <dd>
+                    <a href={telHref} className="text-primary underline-offset-4 hover:underline">
+                      {site.company.phone}
+                    </a>
+                  </dd>
+                </div>
               ) : null}
-
               {site.contact.hasAddress ? (
-                <Reveal as="li" delay={0.12}>
-                  <div className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-royal-100">
-                      <Icon name="map-pin" className="h-5 w-5" />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-navy-900">Business address</p>
-                      <address className="mt-0.5 text-sm font-medium not-italic leading-relaxed text-navy-700">
-                        {site.company.registeredOffice}
-                      </address>
-                      <p className="mt-1 text-xs leading-relaxed text-navy-500">
-                        Registered address for {site.legalName}. This is a correspondence address, not a walk-in
-                        customer centre.
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
+                <div className="flex items-baseline justify-between gap-4 py-3">
+                  <dt className="shrink-0 font-medium">Address</dt>
+                  <dd className="text-right text-muted-foreground">
+                    <address className="not-italic">{site.company.registeredOffice}</address>
+                  </dd>
+                </div>
               ) : null}
-            </ul>
+            </dl>
 
-            {/* Support hours */}
-            <Reveal delay={0.16}>
-              <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-sm">
-                <div className="flex items-center gap-2.5">
-                  <Icon name="clock" className="h-5 w-5 text-royal-600" />
-                  <h3 className="text-base font-semibold text-navy-900">Support hours</h3>
+            {site.contact.hasAddress ? (
+              <p className="mt-2 text-xs text-muted-foreground">
+                Registered address for {site.legalName}. Correspondence only, not a walk-in center.
+              </p>
+            ) : null}
+
+            <h2 className="mt-8 text-xl font-semibold tracking-tight">Support hours</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              All times are {site.hoursLabel}. Messages received outside these hours are answered on the next
+              business day.
+            </p>
+            <dl className="mt-4 divide-y border-y text-sm">
+              {site.hours.map((h) => (
+                <div key={h.day} className="flex items-center justify-between py-2.5">
+                  <dt className="font-medium">{h.day}</dt>
+                  <dd className="text-muted-foreground">{h.time}</dd>
                 </div>
-                <p className="mt-2 text-xs leading-relaxed text-navy-500">
-                  All times are {site.hoursLabel}. Messages received outside these hours are answered on the next
-                  business day.
-                </p>
-                <table className="mt-4 w-full text-sm">
-                  <tbody className="divide-y divide-navy-100">
-                    {site.hours.map((h) => (
-                      <tr key={h.day}>
-                        <th scope="row" className="py-2.5 text-left font-medium text-navy-700">
-                          {h.day}
-                        </th>
-                        <td className="py-2.5 text-right text-navy-600">{h.time}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </Reveal>
+              ))}
+            </dl>
 
-            {/* Callback */}
-            <Reveal delay={0.2}>
-              <div className="rounded-2xl border border-navy-100 bg-navy-50 p-6">
-                <h3 className="text-base font-semibold text-navy-900">Prefer us to call you?</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-navy-600">
-                  Leave your number and a preferred time, and a travel specialist will call you back during support
-                  hours.
-                </p>
-                <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                  <Button asChild variant="royal">
-                    <Link href="/callback">{site.cta.callback}</Link>
-                  </Button>
-                  {site.contact.hasPhone ? (
-                    <Button asChild variant="navyOutline">
-                      <a href={telHref}>
-                        <Phone className="h-4 w-4" />
-                        {site.company.phone}
-                      </a>
-                    </Button>
-                  ) : null}
-                </div>
-              </div>
-            </Reveal>
+            <Separator className="my-8" />
 
-            <Reveal delay={0.24}>
-              <div className="rounded-2xl border border-dashed border-navy-200 p-5">
-                <p className="text-sm font-semibold text-navy-900">Payment security</p>
-                <p className="mt-1.5 text-sm leading-relaxed text-navy-600">
-                  Never send full card numbers, CVV codes or passwords through this form or by email. {site.name}{" "}
-                  will never ask you for them this way.
-                </p>
-              </div>
-            </Reveal>
+            <h3 className="text-[15px] font-medium">Prefer us to call you?</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+              Leave your number and a preferred time and a specialist will call back during support hours.
+            </p>
+            <Button asChild variant="outline" className="mt-4">
+              <Link href="/callback">{site.cta.callback}</Link>
+            </Button>
+
+            <Alert variant="muted" className="mt-8">
+              <AlertTitle>Payment security</AlertTitle>
+              <AlertDescription className="text-xs">
+                Never send full card numbers, CVV codes or passwords through this form or by email. {site.name} will
+                never ask for them this way.
+              </AlertDescription>
+            </Alert>
           </div>
 
-          {/* RIGHT — enquiry form */}
-          <div>
+          <div className="lg:col-span-7">
             <EnquiryForm
               heading="Send us a message"
               showBookingRef
@@ -199,29 +145,6 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
             />
           </div>
         </div>
-
-        {/* Related links */}
-        <Reveal delay={0.1}>
-          <div className="mt-12 flex flex-col items-start gap-4 rounded-2xl border border-navy-100 bg-navy-50 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
-            <div>
-              <h3 className="text-base font-semibold text-navy-900">Have a general question?</h3>
-              <p className="mt-1 text-sm leading-relaxed text-navy-600">
-                You may find an immediate answer on our{" "}
-                <Link href="/faq" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  frequently asked questions
-                </Link>{" "}
-                page, or start a{" "}
-                <Link href="/#search" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  travel search
-                </Link>{" "}
-                instead.
-              </p>
-            </div>
-            <Button asChild variant="royal" size="lg" className="shrink-0">
-              <Link href="/#search">{site.cta.primary}</Link>
-            </Button>
-          </div>
-        </Reveal>
       </Section>
 
       <TrustBar />

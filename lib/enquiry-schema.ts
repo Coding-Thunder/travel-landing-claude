@@ -12,7 +12,7 @@ export const enquirySchema = z.object({
   /** Existing customers referencing a booking they already hold. */
   bookingRef: z.string().trim().max(40).optional().or(z.literal("")),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
-  /** Honeypot — real users never fill this; bots often do. Must stay empty. */
+  /** Honeypot. Real users never fill this, bots often do. Must stay empty. */
   companyWebsite: z.string().max(0).optional().or(z.literal("")),
 });
 

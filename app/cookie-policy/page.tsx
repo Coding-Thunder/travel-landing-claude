@@ -45,95 +45,70 @@ export default function CookiePolicyPage() {
         </section>
 
         <section>
-          <h2>2. We Use Cookies To</h2>
+          <h2>2. Cookies This Website Currently Sets</h2>
           <p>
-            We use cookies on {site.name} to help our website operate reliably and
-            to improve the service we provide. In particular, we use cookies to:
+            At present {site.name} does not set analytics, advertising, performance or
+            third-party tracking cookies on this website, and does not use pixels, tags or
+            similar tracking technologies. We do not profile visitors and we do not sell personal information.
+          </p>
+          <p>
+            The site uses your browser&rsquo;s local storage for one purpose only: to remember
+            that you have dismissed the on-page offer of telephone assistance, so that it is
+            not shown to you again. That value is stored on your own device, is not a cookie,
+            is not transmitted to us, and contains no personal information. Clearing your
+            browsing data removes it.
+          </p>
+          <p>
+            If a strictly necessary cookie becomes required in future, for example to operate a
+            booking or payment flow, this policy will be updated before that cookie is set.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Categories We Would Use</h2>
+          <p>
+            If cookies are introduced later, they would fall into the categories below. This
+            section is included so the policy is complete, and it describes what each category
+            would do rather than anything the site does today.
           </p>
           <ul>
             <li>
-              <strong>Improve performance</strong> &mdash; help our website load and run
-              efficiently across different devices and browsers.
+              <strong>Strictly necessary.</strong> Required for the website to function, for
+              example to operate a secure booking or payment flow. These cannot be switched off
+              without breaking the service.
             </li>
             <li>
-              <strong>Remember your preferences</strong> &mdash; recall choices you have made,
-              such as previously entered details, so you do not have to re-enter them.
+              <strong>Functional.</strong> Used to remember choices you have made, such as
+              details you entered when requesting assistance.
             </li>
             <li>
-              <strong>Enhance security</strong> &mdash; help protect our website and your
-              information, and support the safe handling of enquiries submitted through the
-              site.
-            </li>
-            <li>
-              <strong>Analyze traffic</strong> &mdash; understand how visitors find and use
-              our website so that we can measure and improve its performance.
-            </li>
-            <li>
-              <strong>Improve your experience</strong> &mdash; make the website easier to
-              navigate and more relevant to the way our visitors use it.
+              <strong>Analytics.</strong> Used to understand which pages are visited most often,
+              in aggregate, so we can improve the site.
             </li>
           </ul>
         </section>
 
         <section>
-          <h2>3. Types of Cookies We Use</h2>
+          <h2>4. Managing Cookies And Local Storage</h2>
           <p>
-            The cookies used on this website fall into the following broad categories:
-          </p>
-          <ul>
-            <li>
-              <strong>Essential cookies.</strong> These cookies are necessary for the website
-              to function correctly. They enable core features such as page navigation, form
-              submission and access to secure areas of the site. Without these cookies, parts
-              of the website cannot work as intended.
-            </li>
-            <li>
-              <strong>Functional cookies.</strong> These cookies allow the website to remember
-              choices you make and to provide enhanced, more personalized features, such as
-              retaining information you have entered when requesting assistance.
-            </li>
-            <li>
-              <strong>Analytics cookies.</strong> These cookies collect information about how
-              visitors use our website, for example which pages are visited most often. The
-              information is aggregated and used to help us improve the way the website works.
-            </li>
-            <li>
-              <strong>Performance cookies.</strong> These cookies help us monitor and improve
-              the performance of the website, for example by measuring loading times and
-              identifying errors so that we can resolve them.
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>4. Managing Cookies</h2>
-          <p>
-            You can control and manage cookies in several ways. Most web browsers allow you to
-            view the cookies stored on your device, to delete individual cookies, to block
-            cookies from particular websites and to block cookies altogether. The options
-            available to you are usually found within your browser&rsquo;s settings or
-            preferences menu.
+            Most browsers let you view stored cookies and local storage, delete them
+            individually, block them for particular websites, or block them altogether. The
+            options are usually under your browser&rsquo;s settings or preferences menu.
           </p>
           <p>
-            Please note that if you choose to disable or block cookies, some parts of this
-            website may not function correctly. In particular, disabling essential cookies may
-            affect features such as submitting an enquiry, and disabling functional cookies may
-            mean the site is unable to remember your preferences.
+            Because this site sets no cookies today, blocking cookies will not affect how it
+            works. Clearing local storage will simply mean the offer of telephone assistance can
+            appear again.
           </p>
         </section>
 
         <section>
           <h2>5. Third-Party Services</h2>
           <p>
-            Some cookies on this website may be set by trusted third-party providers that
-            support the operation and measurement of our site, such as analytics and security
-            services. Where this is the case, those providers may use cookies in accordance
-            with their own privacy and cookie policies, over which we have no direct control.
-          </p>
-          <p>
-            We recommend reviewing the relevant provider&rsquo;s policies to understand how
-            they use cookies and the information collected through them. We do not use cookies
-            to sell your personal information.
+            This website loads photography from a third-party image host and web fonts through
+            our hosting provider. Those requests are needed to display the page and are not used
+            to track you across other websites. We do not embed advertising networks, social
+            media trackers or analytics providers.
           </p>
         </section>
 

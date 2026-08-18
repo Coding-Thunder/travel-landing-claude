@@ -1,64 +1,45 @@
 import Link from "next/link";
+import { Phone } from "lucide-react";
+import { site, telHref } from "@/config/site";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
-import PageHero from "@/app/components/trip/page-hero";
+import PageHeader from "@/app/components/trip/page-hero";
 import { Section, SectionHeading } from "@/app/components/trip/section";
-import Reveal from "@/app/components/trip/reveal";
-import Icon from "@/app/components/trip/lucide-icon";
 import TrustBar from "@/app/components/trip/trust-bar";
 import EnquiryForm from "@/app/components/trip/EnquiryForm";
 import JsonLd from "@/app/components/trip/json-ld";
 import SupplierDisclosure from "@/app/components/trip/supplier-disclosure";
 import { Button } from "@/components/ui/button";
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2000&q=80";
-
 export const metadata = pageMetadata({
   title: "Group Travel",
   description:
     "Coordinate travel for families, corporate groups, events, weddings, sports teams and tours with Flight Bizz. One enquiry, handled by our travel specialists across the supplier network. Operated by GlobeVista LLC.",
   path: "/group-travel",
-  image: HERO_IMAGE,
 });
 
 const COORDINATE = [
-  { icon: "users", title: "Seats booked together", body: "Where possible, the whole party is ticketed on the same flights so your group travels together from departure to arrival." },
-  { icon: "file-check", title: "Passenger lists and group fares", body: "We pass your passenger list and any group reference to the airline or supplier, keeping the booking organised from the outset." },
-  { icon: "route", title: "Shared routing and connections", body: "Consistent routes and connections requested so families or colleagues move through each leg of the journey together." },
-  { icon: "credit-card", title: "Consistent fares across the party", body: "A single set of proposed prices for the group, with any applicable service fee explained before you confirm." },
-  { icon: "clock", title: "Staggered departures where needed", body: "Different departure points or times noted for each part of the group and coordinated onto a single plan." },
-  { icon: "shield-check", title: "Accessibility and special requests", body: "Mobility assistance, seating needs, dietary notes and other requirements submitted alongside your enquiry." },
+  { title: "Seats booked together", body: "Where possible the whole party is ticketed on the same flights, so the group travels together throughout." },
+  { title: "Passenger lists and group fares", body: "Your passenger list and any group reference go to the supplier, keeping the booking organized from the outset." },
+  { title: "Shared routing and connections", body: "Consistent routes and connections so families or colleagues move through each leg together." },
+  { title: "Consistent pricing across the party", body: "A single set of proposed prices for the group, with any service fee explained before you confirm." },
+  { title: "Staggered departures where needed", body: "Different departure points or times noted for each part of the group and coordinated onto one plan." },
+  { title: "Accessibility and special requests", body: "Mobility assistance, seating needs, dietary notes and other requirements submitted alongside the enquiry." },
 ];
 
 const STEPS = [
-  { n: "1", icon: "file-check", title: "Send us one brief", body: "Tell us your dates, route, party size and approximate number of travellers. A single enquiry covers the entire group — there is no need to book seats individually." },
-  { n: "2", icon: "sparkles", title: "Receive matched options", body: "A travel specialist searches the supplier network and returns options that keep your group together and within the budget you have set." },
-  { n: "3", icon: "shield-check", title: "Review and confirm", body: "We set out the itinerary, supplier terms and any change or cancellation conditions in plain English so you can confirm with everything visible up front." },
-  { n: "4", icon: "headset", title: "Support through the trip", body: "One point of contact remains available for adjustments, added passengers or questions before and during travel, during our published support hours." },
+  { title: "Send one brief", body: "Dates, route, party size and traveler count. A single enquiry covers the whole group." },
+  { title: "Receive matched options", body: "A specialist searches the supplier network for options that keep the group together and on budget." },
+  { title: "Review and confirm", body: "Itinerary, supplier terms and any change or cancellation conditions, set out in plain English." },
+  { title: "Support through the trip", body: "One point of contact for adjustments, added passengers and questions, during support hours." },
 ];
 
-type Audience = {
-  icon: string;
-  title: string;
-  body: string;
-  link?: { href: string; label: string };
-};
-
-const AUDIENCES: Audience[] = [
-  { icon: "users", title: "Families and reunions", body: "Multi-generational trips, milestone birthdays and family gatherings that need several travelers ticketed together on the same flights." },
-  { icon: "briefcase", title: "Corporate groups and off-sites", body: "Team away-days, training cohorts and conference delegations that call for consistent flights to and from the venue city.", link: { href: "/business-travel", label: "See our business travel service" } },
-  { icon: "map-pin", title: "Events and conferences", body: "Delegates, exhibitors and organizers who need a block of seats arriving in good time across busy event dates." },
-  { icon: "sparkles", title: "Weddings and celebrations", body: "Flights for guests traveling to a wedding or celebration, coordinated so everyone can arrive and depart around the occasion." },
-  { icon: "globe", title: "Sports teams and tours", body: "Squads, touring parties and their supporting staff needing practical, well-timed travel across one or several destinations." },
-  { icon: "route", title: "Extended group itineraries", body: "Longer projects, relocations and study trips where multi-city or open-jaw routing suits a group traveling over an extended period." },
-];
-
-const ENQUIRY_CHECKLIST = [
-  "Travel dates, including any flexibility around departure and return",
-  "Origin and destination airports for the group",
-  "Approximate number of travellers and any cabin preferences",
-  "Any children, mobility or seating needs across the party",
-  "An indicative per-person budget so we can match suitable fares",
+const AUDIENCES = [
+  { title: "Families and reunions", body: "Multi-generational trips and milestone celebrations needing several travelers on the same flights." },
+  { title: "Corporate groups and off-sites", body: "Team away-days, training cohorts and conference delegations traveling to one venue city." },
+  { title: "Events and conferences", body: "Delegates, exhibitors and organizers needing a block of seats arriving in good time." },
+  { title: "Weddings and celebrations", body: "Flights for guests, coordinated so everyone can arrive and depart around the occasion." },
+  { title: "Sports teams and tours", body: "Squads, touring parties and supporting staff needing well-timed travel across one or several destinations." },
+  { title: "Extended group itineraries", body: "Longer projects, relocations and study trips where multi-city routing suits a group traveling over time." },
 ];
 
 export default function GroupTravelPage() {
@@ -73,223 +54,125 @@ export default function GroupTravelPage() {
         ]}
       />
 
-      <PageHero
-        eyebrow="For groups"
-        title="Group Travel"
-        subtitle="From family gatherings to corporate off-sites, we coordinate travel for groups of every size — flights, stays and transfers — through a single enquiry handled by our travel specialists."
+      <PageHeader
+        title="Group travel"
+        description="From family gatherings to corporate off-sites, we coordinate travel for groups of every size through a single enquiry."
         breadcrumbs={[
           { name: "Home", href: "/" },
-          { name: "Group Travel", href: "/group-travel" },
+          { name: "Group travel", href: "/group-travel" },
         ]}
-        image={HERO_IMAGE}
-        imageAlt="A group of travelers gathered together in a bright airport terminal"
+        actions={
+          site.contact.hasPhone ? (
+            <Button asChild variant="outline">
+              <a href={telHref}>
+                <Phone aria-hidden />
+                {site.cta.secondary}
+              </a>
+            </Button>
+          ) : undefined
+        }
       />
 
-      {/* Intro */}
-      <Section tone="white">
-        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <SectionHeading
-              eyebrow="Group flights, simplified"
-              title="One point of contact for the whole party"
-            />
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-navy-700">
-              <p>
-                Arranging flights for a group is rarely as straightforward as booking for one.
-                Passenger counts shift as plans firm up, departure points differ across the party, and
-                everyone has their own view on timing, budget and where they want to sit. Our group
-                service exists to take that coordination off your plate.
-              </p>
-              <p>
-                Rather than juggling separate bookings, you send us a single brief describing your
-                group and your dates. A travel specialist then works across the supplier
-                network to put forward{" "}
-                <Link href="/flights" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  flight options
-                </Link>{" "}
-                that keep everyone together and within the budget you have in mind.
-              </p>
-              <p>
-                We are an online travel platform — not an airline. Availability, seat allocation and
-                change conditions remain with the airline or travel supplier, and we set those terms
-                out clearly so nothing is confirmed before you are comfortable with it.
-              </p>
-            </div>
-          </div>
-
-          <Reveal className="rounded-2xl border border-navy-100 bg-navy-50 p-6 shadow-sm sm:p-8">
-            <h3 className="text-base font-semibold text-navy-900">What we help coordinate</h3>
-            <ul className="mt-5 grid gap-5 sm:grid-cols-2">
-              {COORDINATE.map((c) => (
-                <li key={c.title} className="flex gap-3">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-royal-600 ring-1 ring-navy-100">
-                    <Icon name={c.icon} className="h-[18px] w-[18px]" />
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold text-navy-900">{c.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-navy-600">{c.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* How group assistance works */}
-      <Section tone="tint">
-        <SectionHeading
-          align="center"
-          eyebrow="How it works"
-          title="How group assistance works"
-          subtitle="A simple, transparent process that replaces dozens of separate enquiries with one coordinated request."
-        />
-        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {STEPS.map((s, i) => (
-            <Reveal as="li" key={s.n} delay={i * 0.06}>
-              <div className="flex h-full flex-col rounded-2xl border border-navy-100 bg-white p-6 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-royal-600 text-sm font-semibold text-white">
-                    {s.n}
-                  </span>
-                  <Icon name={s.icon} className="h-5 w-5 text-royal-600" />
-                </div>
-                <h3 className="mt-4 text-base font-semibold text-navy-900">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-600">{s.body}</p>
-              </div>
-            </Reveal>
-          ))}
-        </ul>
-      </Section>
-
-      {/* Who it's for */}
-      <Section tone="white">
-        <SectionHeading
-          eyebrow="Who we help"
-          title="Groups we assist"
-          subtitle="Different groups have different priorities. We tailor the flight search to the way your party actually travels."
-        />
-        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {AUDIENCES.map((a, i) => (
-            <Reveal as="li" key={a.title} delay={(i % 3) * 0.06}>
-              <div className="flex h-full flex-col rounded-2xl border border-navy-100 bg-white p-6 shadow-sm">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-royal-50 text-royal-600 ring-1 ring-navy-100">
-                  <Icon name={a.icon} className="h-5 w-5" />
-                </span>
-                <h3 className="mt-4 text-base font-semibold text-navy-900">{a.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-600">{a.body}</p>
-                {a.link ? (
-                  <Link
-                    href={a.link.href}
-                    className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-royal-700 underline-offset-4 hover:underline"
-                  >
-                    {a.link.label}
-                    <span aria-hidden>→</span>
-                  </Link>
-                ) : null}
-              </div>
-            </Reveal>
-          ))}
-        </ul>
-      </Section>
-
-      {/* Two-column enquiry */}
-      <Section tone="tint">
-        <SectionHeading
-          eyebrow="Get started"
-          title="Tell us about your group"
-          subtitle="Share a few details and a travel specialist will respond during support hours with options to review — no obligation to proceed."
-        />
-        <div className="mt-10 grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <h3 className="text-base font-semibold text-navy-900">To help us respond quickly, include</h3>
-            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-navy-700">
-              {ENQUIRY_CHECKLIST.map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-royal-500" aria-hidden />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-sm leading-relaxed text-navy-600">
-              The more context you can give, the more closely we can match your requirements on the first
-              response. We never confirm anything on your behalf until you have seen the supplier&rsquo;s
-              terms and are happy to go ahead.
+      <Section>
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">One point of contact for the party</h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Passenger counts shift as plans firm up, departure points differ, and everyone has a view on timing and
+              budget. Our group service takes that coordination off your plate.
             </p>
-            <div className="mt-6 rounded-2xl border border-navy-100 bg-white p-5 shadow-sm">
-              <p className="text-sm leading-relaxed text-navy-700">
-                Prefer to talk it through first? Our{" "}
-                <Link href="/contact" className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  contact team
-                </Link>{" "}
-                can help scope a larger or more complex group before you submit a full enquiry.
-              </p>
-            </div>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              We are a travel platform, not an airline. Availability, seat allocation and change conditions remain
+              with the supplier, and we set those terms out before anything is confirmed.
+            </p>
           </div>
-
-          <EnquiryForm
-            heading="Request group travel options"
-            defaultService="Group Travel"
-          />
+          <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:col-span-8">
+            {COORDINATE.map((c) => (
+              <div key={c.title} className="border-t pt-4">
+                <dt className="text-[15px] font-medium">{c.title}</dt>
+                <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.body}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
+      </Section>
+
+      <Section tone="muted">
+        <SectionHeading title="How group booking works" description="One coordinated request in place of dozens of separate enquiries." />
+        <ol className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((s, i) => (
+            <li key={s.title} className="border-t pt-4">
+              <span className="text-xs font-medium tabular-nums text-muted-foreground">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-2 text-[15px] font-medium">{s.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Section>
+        <SectionHeading title="Groups we assist" description="Different groups have different priorities, so we tailor the search to how your party travels." />
+        <dl className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+          {AUDIENCES.map((a) => (
+            <div key={a.title} className="border-t pt-4">
+              <dt className="text-[15px] font-medium">{a.title}</dt>
+              <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{a.body}</dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
+      <Section tone="muted" id="enquiry">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Tell us about your group</h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              A specialist will respond during support hours with options to review. There is no obligation to
+              proceed, and nothing is confirmed until you have seen the supplier terms.
+            </p>
+            <h3 className="mt-6 text-sm font-medium">To help us respond quickly, include</h3>
+            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+              {[
+                "Travel dates, including any flexibility around departure and return",
+                "Origin and destination airports for the group",
+                "Approximate number of travelers and any cabin preferences",
+                "Any children, mobility or seating needs across the party",
+                "An indicative per-person budget so we can match suitable options",
+              ].map((item) => (
+                <li key={item} className="border-t pt-2">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="lg:col-span-7">
+            <EnquiryForm heading="Request group travel options" defaultService="Group Travel" />
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHeading title="Related services" />
+        <ul className="mt-5 flex flex-wrap gap-2">
+          {[
+            { label: "Flights", href: "/flights" },
+            { label: "Hotels", href: "/hotels" },
+            { label: "Airport transfers", href: "/transfers" },
+            { label: "Vacation packages", href: "/packages" },
+            { label: "Business travel", href: "/business-travel" },
+          ].map((item) => (
+            <li key={item.href}>
+              <Button asChild variant="outline" size="sm">
+                <Link href={item.href}>{item.label}</Link>
+              </Button>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <TrustBar />
-
-      {/* Related services */}
-      <Section tone="navy">
-        <SectionHeading
-          invert
-          eyebrow="Keep exploring"
-          title="Related services"
-          subtitle="Group travel sits alongside the rest of the platform. Explore the services that pair naturally with a group trip."
-        />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          <Link
-            href="/flights"
-            className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-royal-300/60 hover:bg-white/10"
-          >
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-royal-300">
-              <Icon name="plane" className="h-5 w-5" />
-            </span>
-            <h3 className="mt-4 text-lg font-semibold text-white">Flights</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-100">
-              Individual journeys — domestic and international, one way, round trip and multi-city
-              itineraries worldwide.
-            </p>
-            <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-royal-300">
-              Explore flights <span aria-hidden className="transition group-hover:translate-x-0.5">→</span>
-            </span>
-          </Link>
-
-          <Link
-            href="/business-travel"
-            className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-royal-300/60 hover:bg-white/10"
-          >
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-royal-300">
-              <Icon name="briefcase" className="h-5 w-5" />
-            </span>
-            <h3 className="mt-4 text-lg font-semibold text-white">Business travel</h3>
-            <p className="mt-2 text-sm leading-relaxed text-navy-100">
-              Travel planning for individual business travellers and companies, from single trips to
-              recurring corporate programmes.
-            </p>
-            <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-royal-300">
-              Explore business travel <span aria-hidden className="transition group-hover:translate-x-0.5">→</span>
-            </span>
-          </Link>
-        </div>
-
-        <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <Button asChild variant="royal" size="lg">
-            <Link href="/contact">Request group options</Link>
-          </Button>
-          <p className="text-sm text-navy-100">
-            Ready when you are — a specialist will be in touch during support hours.
-          </p>
-        </div>
-      </Section>
-
       <SupplierDisclosure />
     </>
   );

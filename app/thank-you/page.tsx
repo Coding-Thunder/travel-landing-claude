@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, Phone } from "lucide-react";
+import { Check, Phone } from "lucide-react";
 import { site, telHref, mailtoHref } from "@/config/site";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 import Container from "@/app/components/trip/container";
-import Reveal from "@/app/components/trip/reveal";
 import JsonLd from "@/app/components/trip/json-ld";
 import { Button } from "@/components/ui/button";
 
@@ -27,63 +26,62 @@ export default function ThankYouPage() {
         ]}
       />
 
-      <section className="bg-navy-50">
-        <Container className="flex min-h-[70vh] items-center justify-center py-20 sm:py-28">
-          <Reveal className="mx-auto max-w-xl text-center">
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-royal-50 ring-1 ring-royal-100">
-              <CheckCircle2 className="h-11 w-11 text-royal-600" strokeWidth={1.75} aria-hidden="true" />
-            </div>
+      <Container className="py-20 sm:py-24">
+        <div className="max-w-xl">
+          <div className="flex items-center gap-2 text-sm font-medium text-primary">
+            <Check className="h-4 w-4" aria-hidden />
+            Thanks for getting in touch
+          </div>
+          <h1 className="mt-3 font-display text-3xl tracking-tight sm:text-4xl">Thank you</h1>
+          <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+            Once your message reaches us, a {site.name} travel specialist will reply during support hours with
+            options, the total price and the conditions that apply. Nothing is booked until you confirm.
+          </p>
+          <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+            Our forms open your own email app rather than submitting to us directly, so please check the message
+            actually sent from your outbox.
+          </p>
 
-            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.16em] text-royal-600">Request received</p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-navy-900 sm:text-4xl">
-              Thank you — your request has been received
-            </h1>
-            <p className="mt-5 text-base leading-relaxed text-navy-600 sm:text-lg">
-              A {site.name} travel specialist will review it and be in touch during support hours with real
-              options, the total price and the conditions that apply. Nothing is booked until you confirm.
-            </p>
-
-            {site.contact.hasEmail ? (
-              <p className="mt-4 text-sm leading-relaxed text-navy-500">
-                If your request is urgent, reach our team directly at{" "}
-                <a href={mailtoHref} className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                  {site.company.supportEmail}
-                </a>
-                {site.contact.hasPhone ? (
-                  <>
-                    {" "}
-                    or call{" "}
-                    <a href={telHref} className="font-medium text-royal-700 underline-offset-4 hover:underline">
-                      {site.company.phone}
-                    </a>
-                  </>
-                ) : null}
-                .
-              </p>
-            ) : null}
-
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button asChild variant="royal" size="lg">
-                <Link href="/">Back to home</Link>
-              </Button>
+          {site.contact.hasEmail ? (
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              If it is urgent, reach us at{" "}
+              <a href={mailtoHref} className="font-medium text-primary underline-offset-4 hover:underline">
+                {site.company.supportEmail}
+              </a>
               {site.contact.hasPhone ? (
-                <Button asChild variant="navyOutline" size="lg">
-                  <a href={telHref}>
-                    <Phone className="h-4 w-4" />
-                    {site.cta.secondary}
+                <>
+                  {" "}
+                  or call{" "}
+                  <a href={telHref} className="font-medium text-primary underline-offset-4 hover:underline">
+                    {site.company.phone}
                   </a>
-                </Button>
-              ) : (
-                <Button asChild variant="navyOutline" size="lg">
-                  <Link href="/callback">{site.cta.callback}</Link>
-                </Button>
-              )}
-            </div>
+                </>
+              ) : null}
+              .
+            </p>
+          ) : null}
 
-            <p className="mt-10 text-xs leading-relaxed text-navy-500">{site.operatedBy}</p>
-          </Reveal>
-        </Container>
-      </section>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <Button asChild>
+              <Link href="/">Back to home</Link>
+            </Button>
+            {site.contact.hasPhone ? (
+              <Button asChild variant="outline">
+                <a href={telHref}>
+                  <Phone aria-hidden />
+                  {site.cta.secondary}
+                </a>
+              </Button>
+            ) : (
+              <Button asChild variant="outline">
+                <Link href="/callback">{site.cta.callback}</Link>
+              </Button>
+            )}
+          </div>
+
+          <p className="mt-10 text-xs text-muted-foreground">{site.operatedBy}</p>
+        </div>
+      </Container>
     </>
   );
 }

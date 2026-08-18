@@ -7,7 +7,8 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/thank-you",
+        // /thank-you is intentionally NOT disallowed: it serves `noindex, nofollow`,
+        // and blocking the fetch would stop crawlers ever reading that directive.
       },
     ],
     sitemap: `${site.url}/sitemap.xml`,

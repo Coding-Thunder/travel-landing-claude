@@ -16,14 +16,14 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-11 w-full items-center justify-between gap-2 rounded-md border border-line-strong bg-surface px-3 text-sm text-ink outline-none transition hover:border-ink/40 focus:border-ink data-[placeholder]:text-ink-muted disabled:cursor-not-allowed disabled:opacity-50 [&>span]:truncate",
+      "flex h-11 w-full items-center justify-between gap-2 rounded-md border border-input bg-popover px-3 text-sm text-popover-foreground outline-none transition hover:border-ring focus:border-ring data-[placeholder]:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 [&>span]:truncate",
       className
     )}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-4 w-4 shrink-0 text-ink-muted" />
+      <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -38,7 +38,7 @@ const SelectContent = React.forwardRef<
       ref={ref}
       position={position}
       className={cn(
-        "relative z-50 max-h-72 min-w-[8rem] overflow-hidden rounded-xl border border-line bg-surface text-ink shadow-[0_24px_60px_-24px_rgba(23,21,15,0.28)] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0",
+        "relative z-50 max-h-72 min-w-[8rem] overflow-hidden rounded-lg border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0",
         position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
         className
       )}
@@ -59,7 +59,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-pointer select-none items-center rounded-md py-2 pl-3 pr-8 text-sm text-ink-soft outline-none data-[highlighted]:bg-paper-deep data-[highlighted]:text-ink data-[state=checked]:font-medium data-[state=checked]:text-ink",
+      "relative flex w-full cursor-pointer select-none items-center rounded-md py-2 pl-3 pr-8 text-sm text-muted-foreground outline-none data-[highlighted]:bg-accent data-[highlighted]:text-popover-foreground data-[state=checked]:font-medium data-[state=checked]:text-popover-foreground",
       className
     )}
     {...props}
@@ -67,7 +67,7 @@ const SelectItem = React.forwardRef<
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     <span className="absolute right-2.5 flex items-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="h-4 w-4 text-accent" />
+        <Check className="h-4 w-4 text-primary" />
       </SelectPrimitive.ItemIndicator>
     </span>
   </SelectPrimitive.Item>

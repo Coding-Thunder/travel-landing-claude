@@ -59,28 +59,28 @@ export default function TermsPage() {
           </p>
           <ul>
             <li>
-              <strong>Flights</strong> — domestic and international air travel, including one way,
+              <strong>Flights</strong>: domestic and international air travel, including one way,
               round trip and multi-city itineraries across all cabin classes.
             </li>
             <li>
-              <strong>Hotels &amp; stays</strong> — rooms, apartments and resorts, including
+              <strong>Hotels &amp; stays</strong>: rooms, apartments and resorts, including
               extended and group stays.
             </li>
             <li>
-              <strong>Car rentals</strong> — vehicle hire from third-party rental suppliers at
+              <strong>Car rentals</strong>: vehicle hire from third-party rental suppliers at
               airport and city locations.
             </li>
             <li>
-              <strong>Airport transfers</strong> — private and shared transfers operated by
+              <strong>Airport transfers</strong>: private and shared transfers operated by
               third-party transport providers.
             </li>
             <li>
-              <strong>Tours &amp; activities</strong> — experiences, attractions and day trips run
+              <strong>Tours &amp; activities</strong>: experiences, attractions and day trips run
               by third-party operators.
             </li>
             <li>
-              <strong>Vacation packages</strong> — combinations of the above arranged together,
-              including business and group travel programmes.
+              <strong>Vacation packages</strong>: combinations of the above arranged together,
+              including business and group travel programs.
             </li>
           </ul>
           <p>
@@ -93,16 +93,23 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2>3. Reservation Requests</h2>
+          <h2>3. Booking Requests</h2>
           <p>
-            When you submit an enquiry, you are asking us to assist you in requesting flights
-            through our supplier network. Submitting an enquiry does not create a confirmed booking
-            and does not guarantee availability, pricing or confirmation.
+            When you submit a search or enquiry, you are asking us to source travel services:
+            flights, accommodation, car rental, transfers, activities, packages or a combination of
+            them, through our supplier network. Submitting a request does not create a confirmed
+            booking and does not guarantee availability, pricing or confirmation.
           </p>
           <p>
-            All reservation requests are subject to supplier availability at the time the request
-            is processed. Flights, fare classes and fares that appear to be available when you
-            enquire may no longer be available when we attempt to confirm your reservation.
+            This website does not display live supplier inventory. We do not show prices,
+            availability, ratings or reviews on these pages; a travel specialist checks current
+            options with the relevant supplier and confirms them with you before any booking is
+            made.
+          </p>
+          <p>
+            All booking requests remain subject to supplier availability at the time the request is
+            processed. Fares, rates, vehicles, departures and allocations quoted to you may cease to
+            be available before we are able to confirm the booking.
           </p>
         </section>
 
@@ -159,7 +166,7 @@ export default function TermsPage() {
           <h2>7. Customer Responsibilities</h2>
           <p>When requesting our services, you agree to:</p>
           <ul>
-            <li>Provide accurate, complete and up-to-date information for every traveller;</li>
+            <li>Provide accurate, complete and up-to-date information for every traveler;</li>
             <li>
               Review all reservation details, including passenger names, dates and flight particulars,
               and notify us promptly of any errors;
@@ -213,8 +220,8 @@ export default function TermsPage() {
             of the supplier.
           </p>
           <p>
-            The supplier&rsquo;s own terms and conditions — including an airline&rsquo;s conditions
-            of carriage, a property&rsquo;s house rules or a rental agreement — apply to your travel in
+            The supplier&rsquo;s own terms and conditions, including an airline&rsquo;s conditions
+            of carriage, a property&rsquo;s house rules or a rental agreement, apply to your travel in
             addition to these Terms. We recommend that you review those conditions carefully before
             confirming any booking.
           </p>

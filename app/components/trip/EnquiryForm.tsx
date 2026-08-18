@@ -1,14 +1,21 @@
 "use client";
 
 import { useId, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2 } from "lucide-react";
+import { Check } from "lucide-react";
 import { enquirySchema, type EnquiryValues } from "@/lib/enquiry-schema";
 import { site, telHref, mailtoHref } from "@/config/site";
 import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Card } from "@/components/ui/card";
 
-/** Selectable services — the six categories plus the specialist request types. */
+/** The six categories plus the specialist request types. */
 const SERVICES = [
   ...site.services.map((s) => s.name),
   "Custom Trip",
@@ -19,28 +26,28 @@ const SERVICES = [
 ];
 
 /**
- * Composes the enquiry as a mailto: link addressed to our support inbox. There
- * is no database or server mailer — submitting opens the visitor's own email
- * app with every detail pre-filled, and they press send. Delivery is the
- * visitor's mail client, so nothing is stored or processed server-side.
+ * Composes the enquiry as a mailto: link to the support inbox. There is no
+ * database or server mailer: submitting opens the visitor's own email app with
+ * every detail pre-filled and they press send, so nothing is stored or
+ * processed server side.
  */
 function buildEnquiryMailto(v: EnquiryValues): string {
   const body = [
     `Name: ${v.fullName}`,
     `Email: ${v.email}`,
     `Phone: ${v.phone}`,
-    `Service: ${v.service || "—"}`,
-    `Destination / route: ${v.destination}`,
-    `Travel dates: ${v.travelDates || "—"}`,
-    `Travellers: ${v.travelers || "—"}`,
+    `Service: ${v.service || "Not given"}`,
+    `Destination or route: ${v.destination}`,
+    `Travel dates: ${v.travelDates || "Not given"}`,
+    `Travelers: ${v.travelers || "Not given"}`,
     ...(v.bookingRef ? [`Booking reference: ${v.bookingRef}`] : []),
     "",
     "Message:",
-    v.message || "—",
+    v.message || "Not given",
     "",
-    `— Sent from ${site.domain}`,
+    `Sent from ${site.domain}`,
   ].join("\n");
-  const subject = `${site.name} enquiry${v.service ? ` — ${v.service}` : ""}${
+  const subject = `${site.name} enquiry${v.service ? `: ${v.service}` : ""}${
     v.destination ? ` (${v.destination})` : ""
   }`;
   return `mailto:${site.company.supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -51,7 +58,7 @@ export type EnquiryDefaults = {
   travelDates?: string;
   travelers?: string;
   service?: string;
-  /** Structured extras carried over from the search module (cabin, options, …). */
+  /** Structured extras carried over from the search module. */
   notes?: string;
 };
 
@@ -71,6 +78,7 @@ export default function EnquiryForm({
 
   const {
     register,
+    control,
     handleSubmit,
     reset,
     formState: { errors },
@@ -85,15 +93,15 @@ export default function EnquiryForm({
       travelers: defaults?.travelers ?? "",
       service: defaults?.service ?? defaultService ?? "",
       bookingRef: "",
-      // Search-module selections arrive as notes and seed the message so the
-      // specialist receives the full brief without the visitor retyping it.
+      // Search selections arrive as notes and seed the message, so the
+      // specialist gets the full brief without the visitor retyping it.
       message: defaults?.notes ? `${defaults.notes}\n\n` : "",
       companyWebsite: "",
     },
   });
 
   const onValid = (values: EnquiryValues) => {
-    // Honeypot filled → bot. Show success without composing anything.
+    // Honeypot filled means a bot. Report success without composing anything.
     if (values.companyWebsite) {
       setDone(true);
       return;
@@ -102,125 +110,128 @@ export default function EnquiryForm({
     setMailtoLink(href);
     setDone(true);
     reset();
-    // Open the visitor's own email app with the enquiry ready to send.
     if (typeof window !== "undefined") window.location.assign(href);
   };
 
   if (done) {
     return (
-      <div
-        className="rounded-2xl border border-navy-100 bg-white p-8 text-center shadow-sm"
-        role="status"
-        aria-live="polite"
-      >
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-royal-50 text-royal-600">
-          <CheckCircle2 className="h-8 w-8" />
-        </div>
-        <h3 className="mt-5 text-xl font-semibold text-navy-900">Almost there — just press send</h3>
-        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-navy-600">
-          Your email app should have opened with your request ready to go. Send it and a {site.name} travel
-          specialist will follow up during support hours with real options.
-        </p>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-navy-500">
-          Didn&rsquo;t open?{" "}
-          {mailtoLink ? (
-            <>
-              <a href={mailtoLink} className="font-semibold text-royal-700 underline-offset-4 hover:underline">
-                Open it again
-              </a>{" "}
-              or email{" "}
-            </>
-          ) : (
-            "Email "
-          )}
-          <a href={mailtoHref} className="font-semibold text-royal-700 underline-offset-4 hover:underline">
-            {site.company.supportEmail}
-          </a>
-          {site.contact.hasPhone ? (
-            <>
-              , or call{" "}
-              <a href={telHref} className="font-semibold text-royal-700 underline-offset-4 hover:underline">
-                {site.company.phone}
+      <Card className="p-6" role="status" aria-live="polite">
+        <div className="flex items-start gap-3">
+          <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+          <div>
+            <h3 className="text-base font-semibold">Almost there, just press send</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+              Your email app should have opened with the request ready to go. Send it and a {site.name} travel
+              specialist will follow up during support hours with real options.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Did not open?{" "}
+              {mailtoLink ? (
+                <>
+                  <a href={mailtoLink} className="font-medium text-primary underline-offset-4 hover:underline">
+                    Open it again
+                  </a>{" "}
+                  or email{" "}
+                </>
+              ) : (
+                "Email "
+              )}
+              <a href={mailtoHref} className="font-medium text-primary underline-offset-4 hover:underline">
+                {site.company.supportEmail}
               </a>
-            </>
-          ) : null}
-          .
-        </p>
-        <button
-          type="button"
-          onClick={() => {
-            setDone(false);
-            setMailtoLink("");
-          }}
-          className="mt-6 text-sm font-semibold text-royal-700 underline-offset-4 hover:underline"
-        >
-          Send another request
-        </button>
-      </div>
+              {site.contact.hasPhone ? (
+                <>
+                  , or call{" "}
+                  <a href={telHref} className="font-medium text-primary underline-offset-4 hover:underline">
+                    {site.company.phone}
+                  </a>
+                </>
+              ) : null}
+              .
+            </p>
+            <Button
+              variant="outline"
+              size="sm"
+              className="mt-4"
+              onClick={() => {
+                setDone(false);
+                setMailtoLink("");
+              }}
+            >
+              Send another request
+            </Button>
+          </div>
+        </div>
+      </Card>
     );
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onValid)}
-      noValidate
-      className="rounded-2xl border border-navy-100 bg-white p-6 shadow-sm sm:p-8"
-    >
-      <h3 className="text-lg font-semibold text-navy-900">{heading}</h3>
-      <p className="mt-1 text-sm text-navy-600">
-        Tell us what you need and a travel specialist will come back with options, prices and the conditions that
-        apply.
+    <form onSubmit={handleSubmit(onValid)} noValidate className="rounded-lg border bg-card p-5 sm:p-6">
+      <h3 className="text-base font-semibold">{heading}</h3>
+      <p className="mt-1 text-sm text-muted-foreground">
+        A travel specialist will reply with options, prices and the conditions that apply.
       </p>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
         <Field label="Full name" error={errors.fullName?.message} required>
-          {(p) => <input type="text" autoComplete="name" placeholder="Jane Smith" {...register("fullName")} {...p} />}
+          {(p) => <Input {...p} autoComplete="name" placeholder="Jane Smith" {...register("fullName")} />}
         </Field>
         <Field label="Email address" error={errors.email?.message} required>
-          {(p) => <input type="email" autoComplete="email" placeholder="jane@example.com" {...register("email")} {...p} />}
+          {(p) => <Input {...p} type="email" autoComplete="email" placeholder="jane@example.com" {...register("email")} />}
         </Field>
         <Field label="Phone number" error={errors.phone?.message} required>
-          {(p) => <input type="tel" autoComplete="tel" placeholder="(555) 123-4567" {...register("phone")} {...p} />}
+          {(p) => <Input {...p} type="tel" autoComplete="tel" placeholder="(555) 123-4567" {...register("phone")} />}
         </Field>
         <Field label="Destination or route" error={errors.destination?.message} required>
-          {(p) => <input type="text" placeholder="e.g. New York → London" {...register("destination")} {...p} />}
+          {(p) => <Input {...p} placeholder="e.g. New York to London" {...register("destination")} />}
         </Field>
         <Field label="Travel dates" hint="Approximate is fine">
-          {(p) => <input type="text" placeholder="e.g. 12–18 August 2026" {...register("travelDates")} {...p} />}
+          {(p) => <Input {...p} placeholder="e.g. 12 to 18 August 2026" {...register("travelDates")} />}
         </Field>
-        <Field label="Travellers">
-          {(p) => <input type="text" placeholder="e.g. 2 adults, 1 child" {...register("travelers")} {...p} />}
+        <Field label="Travelers">
+          {(p) => <Input {...p} placeholder="e.g. 2 adults, 1 child" {...register("travelers")} />}
         </Field>
         <Field label="Travel service" className={showBookingRef ? undefined : "sm:col-span-2"}>
           {(p) => (
-            <select {...register("service")} {...p}>
-              <option value="">Select a service</option>
-              {SERVICES.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
+            <Controller
+              name="service"
+              control={control}
+              render={({ field }) => (
+                <Select value={field.value || ""} onValueChange={field.onChange}>
+                  <SelectTrigger {...p} className="h-10">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICES.map((s) => (
+                      <SelectItem key={s} value={s}>
+                        {s}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
           )}
         </Field>
         {showBookingRef ? (
           <Field label="Booking reference" hint="Only if you already have a booking with us">
-            {(p) => <input type="text" placeholder="e.g. FB-123456" {...register("bookingRef")} {...p} />}
+            {(p) => <Input {...p} placeholder="e.g. FB-123456" {...register("bookingRef")} />}
           </Field>
         ) : null}
         <Field label="Anything else we should know" className="sm:col-span-2">
           {(p) => (
-            <textarea
+            <Textarea
+              {...p}
               rows={5}
               placeholder="Cabin or room preferences, budget, accessibility needs, or anything else that shapes the trip."
               {...register("message")}
-              {...p}
             />
           )}
         </Field>
       </div>
 
-      {/* Honeypot — visually hidden, off keyboard + a11y tree */}
+      {/* Honeypot: visually hidden, off the keyboard and the a11y tree. */}
       <div className="absolute h-0 w-0 overflow-hidden" aria-hidden="true">
         <label>
           Company website
@@ -228,29 +239,29 @@ export default function EnquiryForm({
         </label>
       </div>
 
-      <p className="mt-6 text-xs leading-relaxed text-navy-500">
-        Submitting opens your email app with these details ready to send to{" "}
-        <span className="font-medium text-navy-700">{site.company.supportEmail}</span> — just press send. Never send
-        full card numbers by email; we will never ask for them this way.
-      </p>
+      <Alert variant="muted" className="mt-5 text-xs">
+        <AlertDescription>
+          Submitting opens your email app with these details ready to send to{" "}
+          <span className="font-medium text-foreground">{site.company.supportEmail}</span>. Never send full card
+          numbers by email. We will never ask for them this way.
+        </AlertDescription>
+      </Alert>
 
-      <button
-        type="submit"
-        className="mt-3 inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-royal-600 px-6 text-sm font-semibold text-white transition hover:bg-royal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-300"
-      >
+      <Button type="submit" className="mt-4 w-full">
         Send request
-      </button>
+      </Button>
 
-      <p className="mt-3 text-xs leading-relaxed text-navy-500">{site.disclaimer}</p>
+      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{site.disclaimer}</p>
     </form>
   );
 }
 
-type FieldChildProps = {
+type ControlProps = {
   id: string;
+  required?: boolean;
+  "aria-required"?: boolean;
   "aria-invalid"?: boolean;
   "aria-describedby"?: string;
-  className: string;
 };
 
 function Field({
@@ -266,28 +277,34 @@ function Field({
   hint?: string;
   required?: boolean;
   className?: string;
-  children: (props: FieldChildProps) => React.ReactNode;
+  children: (props: ControlProps) => React.ReactNode;
 }) {
   const id = useId();
-  const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
-  const controlClass = cn(
-    "w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-navy-400 transition focus:outline-none focus:ring-2 focus:ring-royal-200",
-    error ? "border-red-400 focus:border-red-500" : "border-navy-200 focus:border-royal-500"
-  );
+  const messageId = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
 
   return (
-    <div className={className}>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-navy-800">
+    <div className={cn("space-y-1.5", className)}>
+      <Label htmlFor={id}>
         {label}
-        {required ? <span className="ml-0.5 text-royal-600">*</span> : null}
-      </label>
-      {children({ id, "aria-invalid": error ? true : undefined, "aria-describedby": describedBy, className: controlClass })}
+        {required ? (
+          <span className="ml-0.5 text-destructive" aria-hidden>
+            *
+          </span>
+        ) : null}
+      </Label>
+      {children({
+        id,
+        // The asterisk is decorative; assistive tech needs the real attribute.
+        ...(required ? { required: true, "aria-required": true } : {}),
+        "aria-invalid": error ? true : undefined,
+        "aria-describedby": messageId,
+      })}
       {error ? (
-        <p id={`${id}-error`} className="mt-1 text-xs font-medium text-red-600">
+        <p id={messageId} role="alert" className="text-xs font-medium text-destructive">
           {error}
         </p>
       ) : hint ? (
-        <p id={`${id}-hint`} className="mt-1 text-xs text-navy-500">
+        <p id={messageId} className="text-xs text-muted-foreground">
           {hint}
         </p>
       ) : null}
