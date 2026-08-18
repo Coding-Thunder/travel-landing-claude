@@ -28,7 +28,7 @@ The values at the top of that file are the ones most likely to change:
 | --- | --- |
 | `SITE_URL` | `https://flightbizz.com` |
 | `SUPPORT_PHONE` | `+1 (551) 414-2067` |
-| `SUPPORT_EMAIL` | `reservation@flightbizz.com` |
+| `SUPPORT_EMAIL` | `contact@flightbizz.com` |
 | `BUSINESS_ADDRESS` | `1309 Coffeen Ave, Ste 1200, Sheridan, WY 82801` |
 | `COMPANY_NUMBER` | **not supplied**, see below |
 

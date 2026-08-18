@@ -31,7 +31,7 @@ const isPlaceholder = (v: string) => v.trim().startsWith("[");
 
 const SITE_URL = "https://flightbizz.com";
 const SUPPORT_PHONE = "+1 (551) 414-2067";
-const SUPPORT_EMAIL = "reservation@flightbizz.com";
+const SUPPORT_EMAIL = "contact@flightbizz.com";
 const BUSINESS_ADDRESS = "1309 Coffeen Ave, Ste 1200, Sheridan, WY 82801";
 /**
  * GlobeVista LLC's own state filing / registration ID.
