@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
  * Blog index card.
  *
  * The whole card is one link target. Hover is a surface tint rather than a lift
- * and a shadow — the hairline border already carries the card's edge, so the
+ * and a shadow. The hairline border already carries the card's edge, so the
  * grid stays flat and the eye is not pulled around by six competing panels.
  */
 export default function PostCard({ post }: { post: PostSummary }) {

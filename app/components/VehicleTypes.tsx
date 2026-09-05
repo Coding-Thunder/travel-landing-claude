@@ -11,7 +11,7 @@ export default function VehicleTypes() {
       <SectionHeading
         eyebrow="Vehicle categories"
         title="A car for every kind of trip"
-        subtitle="Economy runabouts to seven-seat minivans and luxury sedans. Explore a class for models, pricing and tips — then call for your best rate."
+        subtitle="Economy runabouts to seven-seat minivans and luxury sedans. Explore a class for models, pricing and tips. Then call for your best rate."
         actions={
           <Button asChild variant="ghost" size="sm">
             <Link href="/vehicles">

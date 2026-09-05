@@ -38,7 +38,7 @@ export const vehicleCategories: VehicleCategory[] = [
     transmission: "Automatic",
     image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1200&q=80",
     gradient: "from-sky-500 to-blue-600",
-    blurb: "The cheapest way to get where you're going — light on gas, easy to park.",
+    blurb: "The cheapest way to get where you're going: light on gas, easy to park.",
     intro: [
       "Economy cars are the default for a reason: they're the least expensive to rent, the cheapest to fuel, and the simplest to park in a crowded city or a tight airport garage. For solo travelers and couples with a couple of bags, they hit the sweet spot of price and practicality.",
       "Don't mistake 'economy' for 'bare-bones.' Today's economy fleet comes with automatic transmissions, Bluetooth, backup cameras and 35+ MPG, so a week of errands or a city break costs a fraction of a larger class without feeling like a penalty box.",
@@ -60,13 +60,13 @@ export const vehicleCategories: VehicleCategory[] = [
       { term: "Monthly", price: "from $620/month", note: "Ask about long-term discounts by phone." },
     ],
     tips: [
-      "Book economy early — it's the first class to sell out at busy airports.",
+      "Book economy early. It's the first class to sell out at busy airports.",
       "If you'll have three or more passengers plus luggage, size up to compact or mid-size for comfort.",
       "Confirm the fuel policy; full-to-full is almost always cheaper than prepaid on a small tank.",
       "Ask about unlimited mileage if you're planning any day trips.",
     ],
     faqs: [
-      { q: "How many bags fit in an economy rental?", a: "Most economy cars hold two large suitcases plus a couple of carry-ons. If you're close to the limit, ask your agent — a compact or mid-size adds real trunk space for only a little more." },
+      { q: "How many bags fit in an economy rental?", a: "Most economy cars hold two large suitcases plus a couple of carry-ons. If you're close to the limit, ask your agent. A compact or mid-size adds real trunk space for only a little more." },
       { q: "Is an economy car good for highway driving?", a: "Yes. Modern economy cars cruise comfortably at highway speeds and return excellent mileage. For long multi-hour drives with passengers, a mid-size adds comfort, but economy is perfectly capable." },
       { q: "Why is economy sometimes unavailable?", a: "Economy is the most-requested class, so it sells out first at busy airports. Booking ahead by phone locks in both the car and the rate." },
     ],
@@ -110,7 +110,7 @@ export const vehicleCategories: VehicleCategory[] = [
     faqs: [
       { q: "What's the difference between economy and compact?", a: "Compact cars are slightly larger, with a bit more trunk and rear-seat room and a more stable highway ride. Economy is cheaper and easier to park; compact is the comfort upgrade for a few dollars more." },
       { q: "Can a compact fit a car seat?", a: "Yes, a compact comfortably fits one car seat with room for passengers. For two car seats plus luggage, a mid-size or SUV is more comfortable. Reserve a child seat on the call if you need one." },
-      { q: "Is a compact good for a road trip?", a: "Absolutely — compacts are efficient and comfortable for two to three people on a road trip. For four adults with luggage over several days, size up to mid-size or full-size." },
+      { q: "Is a compact good for a road trip?", a: "Absolutely. Compacts are efficient and comfortable for two to three people on a road trip. For four adults with luggage over several days, size up to mid-size or full-size." },
     ],
   },
   {
@@ -124,7 +124,7 @@ export const vehicleCategories: VehicleCategory[] = [
     gradient: "from-blue-600 to-indigo-700",
     blurb: "The all-rounder: room for four adults, comfortable for long drives.",
     intro: [
-      "Mid-size sedans are the Goldilocks class — big enough for four adults and a weekend's worth of luggage, small enough to stay efficient and easy to handle. It's the class business travelers and small families reach for when comfort matters but an SUV is overkill.",
+      "Mid-size sedans are the Goldilocks class: big enough for four adults and a weekend's worth of luggage, small enough to stay efficient and easy to handle. It's the class business travelers and small families reach for when comfort matters but an SUV is overkill.",
       "Expect a quiet highway ride, cruise control, ample trunk space and enough rear legroom that nobody draws the short straw. For multi-day trips with passengers, the mid-size earns its keep.",
     ],
     bestFor: [
@@ -145,14 +145,14 @@ export const vehicleCategories: VehicleCategory[] = [
     ],
     tips: [
       "Best value when you have four passengers and want highway comfort.",
-      "Trunks easily swallow multiple large suitcases — ideal for airport pickups.",
+      "Trunks easily swallow multiple large suitcases, ideal for airport pickups.",
       "Ask about all-wheel-drive variants for winter or mountain travel.",
       "For five-plus passengers or lots of gear, move up to an SUV or minivan.",
     ],
     faqs: [
       { q: "How many people fit comfortably in a mid-size?", a: "A mid-size seats five, and unlike smaller classes it's genuinely comfortable for four adults on a long drive. Five adults fit for shorter trips; for five with luggage, consider an SUV." },
-      { q: "Is a mid-size good for business travel?", a: "It's the classic business-travel class — quiet, comfortable, with a big trunk for roller bags and a professional look for client pickups. Many corporate travelers default to mid-size." },
-      { q: "Mid-size vs SUV — which should I pick?", a: "Choose mid-size for comfort and efficiency with up to four passengers; choose an SUV for extra cargo, higher seating, all-weather capability or five-plus passengers. Our agents will help you decide on the call." },
+      { q: "Is a mid-size good for business travel?", a: "It's the classic business-travel class: quiet, comfortable, with a big trunk for roller bags and a professional look for client pickups. Many corporate travelers default to mid-size." },
+      { q: "Mid-size vs SUV: which should I pick?", a: "Choose mid-size for comfort and efficiency with up to four passengers; choose an SUV for extra cargo, higher seating, all-weather capability or five-plus passengers. Our agents will help you decide on the call." },
     ],
   },
   {
@@ -188,11 +188,11 @@ export const vehicleCategories: VehicleCategory[] = [
     tips: [
       "The big trunk makes full-size the easy pick for airport pickups with checked bags.",
       "Choose full-size over an SUV when you want comfort and efficiency over cargo height.",
-      "Great for tall drivers — front and rear legroom is generous.",
+      "Great for tall drivers: front and rear legroom is generous.",
       "For seven passengers, step up to a minivan instead.",
     ],
     faqs: [
-      { q: "How much luggage fits in a full-size?", a: "A full-size trunk typically holds four large suitcases plus carry-ons — enough for a family of four's checked bags. It's one of the most luggage-friendly car classes short of an SUV or minivan." },
+      { q: "How much luggage fits in a full-size?", a: "A full-size trunk typically holds four large suitcases plus carry-ons, enough for a family of four's checked bags. It's one of the most luggage-friendly car classes short of an SUV or minivan." },
       { q: "Is a full-size worth the extra cost?", a: "If you're driving long distances, carrying luggage for four or five, or you're a taller driver, the added space and comfort are well worth it. For short city trips, a smaller class saves money." },
       { q: "Full-size sedan or SUV for a road trip?", a: "A full-size sedan rides comfortably and uses less fuel; an SUV adds cargo height, ground clearance and all-weather traction. For pavement road trips with luggage, the sedan is often the better value." },
     ],
@@ -228,13 +228,13 @@ export const vehicleCategories: VehicleCategory[] = [
       { term: "Monthly", price: "from $1,050/month", note: "Long-term SUV rates by phone." },
     ],
     tips: [
-      "Confirm two-row vs three-row seating — 'SUV' spans compact crossovers to full-size haulers.",
+      "Confirm two-row vs three-row seating. 'SUV' spans compact crossovers to full-size haulers.",
       "Ask specifically for all-wheel drive if you'll face snow or unpaved roads.",
       "SUVs use more fuel; if you don't need the cargo or traction, a mid-size saves money.",
-      "Reserve early around ski season and school holidays — SUVs sell out fast.",
+      "Reserve early around ski season and school holidays. SUVs sell out fast.",
     ],
     faqs: [
-      { q: "Do all SUV rentals have all-wheel drive?", a: "No — many SUVs are front-wheel drive by default. If you need AWD or 4WD for snow or unpaved roads, tell your agent when you call and we'll confirm a properly equipped vehicle." },
+      { q: "Do all SUV rentals have all-wheel drive?", a: "No. Many SUVs are front-wheel drive by default. If you need AWD or 4WD for snow or unpaved roads, tell your agent when you call and we'll confirm a properly equipped vehicle." },
       { q: "How many people fit in an SUV rental?", a: "Compact and mid-size SUVs seat five; full-size, three-row SUVs seat seven or eight. Let us know your group size and cargo and we'll match the right SUV." },
       { q: "SUV or minivan for a big family?", a: "A three-row SUV offers ground clearance and a rugged feel; a minivan offers easier access, sliding doors and the most usable interior space. For pure people-and-luggage capacity, minivans often win." },
     ],
@@ -270,10 +270,10 @@ export const vehicleCategories: VehicleCategory[] = [
       { term: "Monthly", price: "from $2,200/month", note: "Executive long-term rates by phone." },
     ],
     tips: [
-      "Book luxury well ahead — inventory is limited and specific models sell out.",
+      "Book luxury well ahead. Inventory is limited and specific models sell out.",
       "Ask about the exact model and trim; 'luxury' covers a wide range.",
       "Many luxury cars require a credit card (not debit) and a higher minimum age.",
-      "Confirm insurance and protection options — premium vehicles carry higher coverage.",
+      "Confirm insurance and protection options. Premium vehicles carry higher coverage.",
     ],
     faqs: [
       { q: "Can I request a specific luxury model?", a: "You can request a preferred make and model and we'll do our best to confirm it, though guaranteed-model bookings depend on availability. Call and we'll tell you exactly what's available for your dates." },
@@ -312,14 +312,14 @@ export const vehicleCategories: VehicleCategory[] = [
       { term: "Monthly", price: "from $1,450/month", note: "Long-term group rates by phone." },
     ],
     tips: [
-      "Reserve early for holidays and summer — minivans are limited and popular.",
+      "Reserve early for holidays and summer. Minivans are limited and popular.",
       "Sliding doors make car-seat loading far easier than an SUV in tight spaces.",
       "Ask about built-in versus rental car seats if you're traveling with little ones.",
       "Fold-flat seats mean you can prioritize passengers or cargo trip by trip.",
     ],
     faqs: [
       { q: "How many people fit in a minivan rental?", a: "Most minivans seat seven, and some seat eight. With all seats up they still offer solid cargo space, and folding the rear seats creates a huge flat load area." },
-      { q: "Are car seats easy to install in a minivan?", a: "Yes — sliding doors and a tall roofline make minivans the easiest class for installing and accessing car seats, especially in tight parking lots. Reserve seats on the call if you need them." },
+      { q: "Are car seats easy to install in a minivan?", a: "Yes. Sliding doors and a tall roofline make minivans the easiest class for installing and accessing car seats, especially in tight parking lots. Reserve seats on the call if you need them." },
       { q: "Minivan or full-size SUV?", a: "Minivans offer more usable interior space, easier access and better fuel economy; full-size SUVs offer ground clearance, towing and a rugged feel. For pure people-and-luggage capacity, the minivan usually wins." },
     ],
   },

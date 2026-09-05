@@ -19,7 +19,7 @@ type CtaButtonProps = {
 
 /**
  * The universal "soft" conversion CTA. Any high-intent action that is not a
- * direct dial — Check Availability, Get Rental Information, Reserve by Phone —
+ * direct dial (Check Availability, Get Rental Information, Reserve by Phone)
  * renders this, which opens the call/callback popup.
  */
 export default function CtaButton({

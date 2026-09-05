@@ -7,7 +7,7 @@ import CtaButton from "./call/CtaButton";
  * The reusable phone-first conversion band for content pages.
  *
  * One dominant action (the number), one step down (the callback), and nothing
- * else competing — which is the whole point of a band that repeats on every
+ * else competing, which is the whole point of a band that repeats on every
  * commercial page.
  */
 export default function CallBand({

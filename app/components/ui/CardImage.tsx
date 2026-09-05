@@ -2,7 +2,7 @@ import Image from "next/image";
 
 type CardImageProps = {
   src: string;
-  /** Empty string marks the image decorative — correct when the card's own text already names the subject. */
+  /** Empty string marks the image decorative, correct when the card's own text already names the subject. */
   alt: string;
   gradient: string;
   sizes: string;

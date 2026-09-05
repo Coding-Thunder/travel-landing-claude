@@ -51,7 +51,7 @@ type Values = z.infer<typeof schema>;
  *
  * There is no live inventory behind this site, so the form's job is to collect
  * a complete brief and hand it to an agent. It therefore forwards EVERY field
- * into the call popup as `notes` — the previous version discarded the dates,
+ * into the call popup as `notes`. The previous version discarded the dates,
  * times and driver age the visitor had just filled in, which meant they had to
  * repeat all of it on the phone.
  */
@@ -224,7 +224,7 @@ export default function BookingForm({ airports }: { airports: BookingAirport[] }
       </div>
 
       <p className="mt-3 text-[13px] text-muted-foreground">
-        We confirm your best all-in rate by phone — no card required to search.
+        We confirm your best all-in rate by phone, no card required to search.
       </p>
     </form>
   );
@@ -235,7 +235,7 @@ export default function BookingForm({ airports }: { airports: BookingAirport[] }
  *
  * Passes id / aria-invalid / aria-describedby down to the control via a render
  * prop, so a Radix trigger button is genuinely named by its label and its error
- * is genuinely associated — a wrapping `<label>` does neither for a button.
+ * is genuinely associated. A wrapping `<label>` does neither for a button.
  */
 function Field({
   label,
@@ -356,7 +356,7 @@ function AirportCombobox({
             <CommandEmpty>No airports found.</CommandEmpty>
             <CommandGroup heading="Popular airports">
               {airports.map((a) => {
-                const label = `${a.iata} — ${a.city}`;
+                const label = `${a.iata}, ${a.city}`;
                 return (
                   <CommandItem
                     key={a.iata}

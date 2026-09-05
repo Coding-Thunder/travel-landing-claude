@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/config/siteConfig";
 
-export const alt = `${siteConfig.name} — Rent a Car Anywhere in the USA`;
+export const alt = `${siteConfig.name}, Rent a Car Anywhere in the USA`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -24,7 +24,7 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          {/* The real brand mark, not an initial — the card is the first thing
+          {/* The real brand mark, not an initial: the card is the first thing
               a shared link shows, so it has to match the favicon and header. */}
           <svg width="64" height="64" viewBox="0 0 64 64" style={{ display: "flex" }}>
             <rect width="64" height="64" rx="14" fill="#2563eb" />

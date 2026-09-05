@@ -50,7 +50,7 @@ type HeadingProps = {
  * Section heading.
  *
  * Left aligned with the description beneath and any action pinned to the
- * right — a page of centred eyebrow-title-subtitle stacks is most of what makes
+ * right. A page of centred eyebrow-title-subtitle stacks is most of what makes
  * a site read as a marketing template rather than a product. The `eyebrow` prop
  * is still accepted and rendered, but quietly, as a label rather than a banner.
  *

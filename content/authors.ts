@@ -11,7 +11,7 @@ export const authors: Record<string, Author> = {
     slug: "editorial-team",
     name: "Editorial Team",
     role: "Travel & rental desk",
-    bio: "Our editorial desk pairs working rental agents with travel writers to publish guides that reflect how renting a car actually works — pickup logistics, honest pricing and the small decisions that save real money.",
+    bio: "Our editorial desk pairs working rental agents with travel writers to publish guides that reflect how renting a car actually works: pickup logistics, honest pricing and the small decisions that save real money.",
     avatar: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=200&q=80",
   },
   "maya-torres": {
@@ -25,7 +25,7 @@ export const authors: Record<string, Author> = {
     slug: "daniel-reed",
     name: "Daniel Reed",
     role: "Rental operations lead",
-    bio: "Daniel spent years behind rental counters before moving to operations. He explains the fine print — insurance, fees, fuel policies — in plain English.",
+    bio: "Daniel spent years behind rental counters before moving to operations. He explains the fine print (insurance, fees, fuel policies) in plain English.",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
   },
 };

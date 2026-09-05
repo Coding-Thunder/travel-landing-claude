@@ -10,14 +10,14 @@ import { adsEnabled, ga4Enabled, gtmEnabled, trackEvent, trackPhoneCall } from "
  *
  * Three independent tags, each gated on its own ID being configured, so a brand
  * with no IDs ships no third-party script:
- *   • Google Ads (gtag) — the conversion account.
- *   • GA4 (same gtag instance) — behavioural reporting.
- *   • Google Tag Manager — optional; when present it can take over entirely,
+ *   • Google Ads (gtag): the conversion account.
+ *   • GA4 (same gtag instance): behavioural reporting.
+ *   • Google Tag Manager: optional; when present it can take over entirely,
  *     since every event is also pushed to `window.dataLayer`.
  *
  * A single delegated listener captures the two things that matter on a
  * phone-first site: every `tel:` tap anywhere in the document, and every
- * element marked `data-cta`. Delegation is deliberate — per-component handlers
+ * element marked `data-cta`. Delegation is deliberate: per-component handlers
  * are how a phone link added later silently stops being measured.
  */
 export default function GoogleTag() {

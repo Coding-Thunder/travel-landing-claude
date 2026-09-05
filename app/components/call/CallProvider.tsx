@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
  *
  * CallProvider wraps every route, so a statically imported CallModal put Radix
  * Dialog, the form controls and the callback form into the shared bundle on all
- * 79 pages — for a component that renders nothing until someone asks for a
+ * 79 pages, for a component that renders nothing until someone asks for a
  * callback. Loading it on first open costs a fetch at a moment the user is
  * already waiting for a panel; loading it eagerly costs every visitor on every
  * route.
@@ -68,7 +68,7 @@ export default function CallProvider({ children }: { children: React.ReactNode }
 
   const close = useCallback(() => setIsOpen(false), []);
 
-  // Auto-triggers: exit-intent + 50% scroll depth — once per session, and never
+  // Auto-triggers: exit-intent + 50% scroll depth, once per session, and never
   // if the visitor has already submitted a callback request.
   useEffect(() => {
     try {

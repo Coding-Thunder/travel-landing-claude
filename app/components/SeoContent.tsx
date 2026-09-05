@@ -13,7 +13,7 @@ export default function SeoContent() {
       <SectionHeading
         eyebrow="Rental guides"
         title="Everything you need to know about renting a car"
-        subtitle="Straight answers on how renting works, what you need, and the rentals we specialize in — so you can call ready to drive."
+        subtitle="Straight answers on how renting works, what you need, and the rentals we specialize in, so you can call ready to drive."
       />
 
       <div className="mt-6 grid gap-px overflow-hidden rounded-lg border bg-border md:grid-cols-2">

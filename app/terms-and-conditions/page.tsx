@@ -4,14 +4,14 @@ import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
-  description: `Terms and conditions for ${siteConfig.legalName} — phone-based nationwide car rental reservations and support.`,
+  description: `Terms and conditions for ${siteConfig.legalName}: phone-based nationwide car rental reservations and support.`,
   alternates: { canonical: "/terms-and-conditions" },
   robots: { index: true, follow: true },
 };
 
 /**
  * Inline links inside legal prose stay underlined rather than relying on the
- * primary colour alone — colour is not enough to mark a link in body text.
+ * primary colour alone. Colour is not enough to mark a link in body text.
  * Matches the blog's `PostBody` link treatment.
  */
 const LINK =

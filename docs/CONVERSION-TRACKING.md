@@ -53,7 +53,7 @@ ads: {
 }
 ```
 
-### 1. GA4 — `ga4Id`  **[SET BEFORE LAUNCH]**
+### 1. GA4, `ga4Id`  **[SET BEFORE LAUNCH]**
 
 Create the GA4 property, copy the `G-XXXXXXXXXX` measurement ID in. Until this is
 set, **GA4 does not load at all** and only the Ads conversion fires. There is no
@@ -79,7 +79,7 @@ different amounts:
 | Phone call click | website `tel:` tap | One |
 | Callback request | form submit | One |
 
-### 3. Call reporting — the gap that matters most
+### 3. Call reporting, the gap that matters most
 
 **A `tel:` click is not a call.** It measures intent, not connection. On mobile
 a meaningful share of taps never connect, ring out, or hang up in two seconds.
@@ -105,7 +105,7 @@ what is measured:
   v2 with `denied` defaults and update on acceptance. Expect a drop in reported
   conversions; that is the correct number, not a regression.
 
-### 5. GTM — optional
+### 5. GTM, optional
 
 Set `gtmId` to route everything through a container instead. No other change is
 needed: the `dataLayer` pushes are already there.
@@ -114,7 +114,7 @@ needed: the `dataLayer` pushes are already there.
 
 ## Recommended Google Ads campaign structure
 
-Responsive Search Ads plus **call assets** — not Call-Only campaigns, per the
+Responsive Search Ads plus **call assets**, not Call-Only campaigns, per the
 brief. Landing pages below all exist today.
 
 | Campaign | Ad group | Keyword theme | Landing page |

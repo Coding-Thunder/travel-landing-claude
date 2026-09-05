@@ -10,7 +10,7 @@ type CounterProps = {
  *
  * Previously this counted up on scroll via framer-motion. The count-up was
  * removed rather than reimplemented: it made a server-rendered number arrive as
- * "0" in the HTML — bad for crawlers and a visible flash for everyone else —
+ * "0" in the HTML (bad for crawlers and a visible flash for everyone else),
  * and it pulled an animation runtime into the home page for four numbers.
  */
 export default function Counter({ value, decimals = 0, prefix = "", suffix = "" }: CounterProps) {

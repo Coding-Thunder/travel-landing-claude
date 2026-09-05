@@ -4,14 +4,14 @@ import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
   title: "Refund & Cancellation Policy",
-  description: `Refund and cancellation policy for ${siteConfig.legalName} — free cancellation and transparent refunds for phone-based car rentals.`,
+  description: `Refund and cancellation policy for ${siteConfig.legalName}: free cancellation and transparent refunds for phone-based car rentals.`,
   alternates: { canonical: "/refund-and-cancellation" },
   robots: { index: true, follow: true },
 };
 
 /**
  * Inline links inside legal prose stay underlined rather than relying on the
- * primary colour alone — colour is not enough to mark a link in body text.
+ * primary colour alone. Colour is not enough to mark a link in body text.
  * Matches the Cookie Policy and the blog's `PostBody` link treatment.
  */
 const LINK =
@@ -56,7 +56,7 @@ export default function RefundPage() {
           If you do not arrive for your scheduled pickup and do not contact us
           in advance, the reservation will be marked as a no-show and the
           vehicle will be released. Because no payment is collected during the
-          phone reservation, no refund is required — but we appreciate a quick
+          phone reservation, no refund is required, but we appreciate a quick
           call so we can help other travelers.
         </p>
       </section>
@@ -119,7 +119,7 @@ export default function RefundPage() {
         <h2>8. Disputes</h2>
         <p>
           If you believe a charge is incorrect or a refund has not been
-          processed, please contact us first — most issues are resolved the
+          processed, please contact us first. Most issues are resolved the
           same day with a quick phone call. You can reach us at{" "}
           <a href={`tel:${siteConfig.phone}`} className={LINK}>
             {siteConfig.phoneDisplay}

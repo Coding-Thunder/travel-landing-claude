@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const tag = getTag(slug);
   if (!tag) return {};
   return {
-    title: `${tag.label} — Car Rental Articles`,
+    title: `${tag.label}: Car Rental Articles`,
     description: `Articles tagged "${tag.label}" from the ${siteConfig.name} car rental blog.`,
     alternates: { canonical: `/blog/tag/${tag.slug}` },
     openGraph: { title: `${tag.label} articles | ${siteConfig.name}`, url: `/blog/tag/${tag.slug}`, type: "website" },

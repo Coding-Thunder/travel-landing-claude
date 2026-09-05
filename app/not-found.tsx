@@ -17,7 +17,7 @@ const LINKS = [
  *
  * The status code is demoted to the eyebrow and the sentence carries the page,
  * which is the same header hierarchy every interior route uses. Below it the
- * two real exits — home and the phone — then the quiet route list, so a dead
+ * two real exits (home and the phone), then the quiet route list, so a dead
  * URL still ends in a call rather than a dead end.
  */
 export default function NotFound() {

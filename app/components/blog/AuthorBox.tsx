@@ -7,7 +7,7 @@ import Avatar from "../ui/Avatar";
  *
  * A quiet muted surface rather than a card, so it reads as an aside to the
  * article instead of competing with the prev/next cards that follow it. The
- * role sits above the name as a label, not a coloured banner — blue is reserved
+ * role sits above the name as a label, not a coloured banner. Blue is reserved
  * for the call action.
  */
 export default function AuthorBox({ author }: { author: Author }) {

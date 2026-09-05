@@ -15,7 +15,7 @@ export const adsEnabled = Boolean(gtagId);
 export const ga4Enabled = Boolean(ga4Id);
 /** A Tag Manager container is configured for this brand. */
 export const gtmEnabled = Boolean(gtmId);
-/** Any measurement at all — used to decide whether the cookie notice matters. */
+/** Any measurement at all, used to decide whether the cookie notice matters. */
 export const analyticsEnabled = adsEnabled || ga4Enabled || gtmEnabled;
 
 /**

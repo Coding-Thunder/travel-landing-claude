@@ -28,7 +28,7 @@ export default function CookieNotice() {
     try {
       acknowledged = window.localStorage.getItem(STORAGE_KEY);
     } catch {
-      /* storage unavailable — fall through and show the notice */
+      /* storage unavailable: fall through and show the notice */
     }
     if (acknowledged) return;
     const t = window.setTimeout(() => setVisible(true), 800);

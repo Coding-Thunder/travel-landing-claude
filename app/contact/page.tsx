@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { breadcrumbSchema, localBusinessSchema, organizationSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Contact Us — 24/7 Phone Reservations & Support",
+  title: "Contact Us: 24/7 Phone Reservations & Support",
   description: `Contact ${siteConfig.name} for car rental reservations and support. Call ${siteConfig.phoneDisplay} 24/7, request a callback, or email ${siteConfig.email}. Nationwide coverage across all 50 US states.`,
   alternates: { canonical: "/contact" },
   openGraph: {
@@ -69,7 +69,7 @@ export default function ContactPage() {
 
       <PageHero
         eyebrow="Contact us"
-        title="We're here 24/7 — just call"
+        title="We're here 24/7. Just call"
         subtitle={`Speak with a live US-based ${name} agent any time, day or night. Call for the best rate, request a callback, or send us a message.`}
         breadcrumbs={[
           { name: "Home", href: "/" },
@@ -78,7 +78,7 @@ export default function ContactPage() {
       />
 
       <Container className="py-14 sm:py-16">
-        {/* Primary call CTA — the number is the dominant action, the callback steps down. */}
+        {/* Primary call CTA: the number is the dominant action, the callback steps down. */}
         <div className="rounded-lg border bg-muted/50 p-6 sm:p-7">
           <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -108,7 +108,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Contact methods — one hairline grid rather than four floating cards. */}
+        {/* Contact methods: one hairline grid rather than four floating cards. */}
         <ul className="mt-8 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {methods.map((m) => {
             const inner = (

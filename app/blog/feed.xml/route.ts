@@ -33,7 +33,7 @@ export function GET(): Response {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${esc(siteConfig.name)} — Car Rental Blog</title>
+    <title>${esc(siteConfig.name)}: Car Rental Blog</title>
     <link>${base}/blog</link>
     <description>Practical car rental guides and travel tips from ${esc(siteConfig.name)}.</description>
     <language>en-US</language>

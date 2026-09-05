@@ -1,4 +1,4 @@
-# SEO recommendations — proposed, not implemented
+# SEO recommendations: proposed, not implemented
 
 Everything in this file was **deliberately left undone**. Each item changes the
 site's content, dataset or information architecture, and those are the client's
@@ -18,14 +18,14 @@ they can neither rank nor be used as an Ads destination.
 | Intent | Suggested route | Why it is worth a page |
 |---|---|---|
 | cheap / affordable car rental | `/cheap-car-rental` | Highest-volume modifier in the set |
-| one-way car rental | `/one-way-car-rental` | Already covered by a blog post — `/blog/one-way-car-rental-guide` — with no commercial page behind it |
+| one-way car rental | `/one-way-car-rental` | Already covered by a blog post (`/blog/one-way-car-rental-guide`) with no commercial page behind it |
 | weekly car rental | `/weekly-car-rental` | Currently one row in a pricing table on 7 pages |
 | monthly car rental | `/monthly-car-rental` | Same; long rentals are the highest-value bookings |
 | same-day car rental | `/same-day-car-rental` | Named in `siteConfig.whyChooseUs` with nowhere to send the click |
 | car rental \<city\> | `/car-rental/[city]` | See §2 |
 
 **Do not** create these as templated stubs. Each needs content that only that
-page can carry — the drop-fee mechanics for one-way, the weekly/monthly rate
+page can carry: the drop-fee mechanics for one-way, the weekly/monthly rate
 break for long rentals, what "same day" actually depends on. A set of pages that
 differ only by a heading is a doorway network and Google treats it as one.
 
@@ -38,7 +38,7 @@ with the home page's own primary intent.
 
 This is the single largest structural opportunity on the site: the content
 already exists and is good. Promoting each to `/car-rental/<city>` gives
-*"cheap car rental Miami"* — explicitly named in the brief — a real target,
+*"cheap car rental Miami"* (explicitly named in the brief) a real target,
 and gives the airport pages a natural sibling to link to.
 
 ## 3. Vehicle classes promised but not built
@@ -50,7 +50,7 @@ have no page.
 This is already causing a concrete defect: `content/posts.ts:674` links to
 `/vehicles/electric`, which does not exist. **A temporary 307 redirect to
 `/vehicles` has been added** in `next.config.ts` so the link in that indexed
-article no longer 404s — that is a stopgap, not the fix. The fix is either a
+article no longer 404s. That is a stopgap, not the fix. The fix is either a
 real `/vehicles/electric` and `/vehicles/pickup-truck`, or removing the two
 vehicles from the featured list.
 
@@ -69,7 +69,7 @@ the five category pages. This concentrates authority on the articles themselves.
 ## 5. Only 6 of 12 blog posts are reachable from `/blog`
 
 `app/components/blog/BlogExplorer.tsx` paginates in client state. The server
-renders page one — six posts. The other six are in the sitemap but have **no
+renders page one: six posts. The other six are in the sitemap but have **no
 crawlable link from the blog hub**.
 
 Fix: render all posts server-side, or add real paginated routes
@@ -81,7 +81,7 @@ Fix: render all posts server-side, or add real paginated routes
   vehicle class or to its own matching blog guide, though eight of the twelve
   posts are airport guides. `/airports/lax` and `/blog/lax-car-rental-guide`
   currently do not link to each other in either direction.
-- **`/about` and `/contact` contain no internal links at all** — neither file
+- **`/about` and `/contact` contain no internal links at all**: neither file
   imports `next/link`. Both are dead ends.
 - **The homepage "Rental guides" section links to no guides.** Its six cards are
   static text. `/blog` is reachable from the home page only through the header
@@ -110,8 +110,8 @@ these numbers is written but never read.
 | `/airports/lax` | 52 ✓ | 183 |
 | `/airports` | 60 ✓ | 179 |
 
-The home page is the worst case: the final ~80 characters — *free cancellation,
-instant confirmation, all 50 states* — never appear in a search result. They are
+The home page is the worst case: the final ~80 characters (*free cancellation,
+instant confirmation, all 50 states*) never appear in a search result. They are
 also three of the claims listed in `VERIFY-BEFORE-PUBLISHING.md`, so shortening
 the description resolves both problems at once.
 
@@ -119,7 +119,7 @@ Several airport and vehicle descriptions are also templated near-duplicates that
 differ only by the place or class name.
 
 Separately, the **airport meta descriptions quote a starting price** with no
-qualifier attached — unlike the vehicle pages, which carry an "indicative
+qualifier attached, unlike the vehicle pages, which carry an "indicative
 pricing" note on the page. A price in a SERP snippet has no such qualifier
 attached to it. See `docs/VERIFY-BEFORE-PUBLISHING.md` §5.
 
@@ -128,8 +128,8 @@ export, which is why they were left for the client rather than reworded here.
 
 ## 8. Homepage section order
 
-Fourteen stacked sections. The head-term content — the "Rental guides" block,
-the city block and the About block — sits at positions 10, 11 and 14, **below**
+Fourteen stacked sections. The head-term content (the "Rental guides" block,
+the city block and the About block) sits at positions 10, 11 and 14, **below**
 the testimonials and the final CTA. Whether to reorder is a judgement call about
 the conversion path, which is why it was not changed; but the content most
 relevant to *"car rental"* as a query is currently the content furthest down the
@@ -153,7 +153,7 @@ These were code defects rather than content decisions, and have been repaired:
 - `robots.txt` emitted an invalid `Host:` directive containing a full URL.
   Removed.
 - JSON-LD `publisher` / `seller` referenced `#organization` by `@id` on blog and
-  vehicle pages, where that node is never emitted — a dangling reference. The
+  vehicle pages, where that node is never emitted, a dangling reference. The
   organisation is now inlined.
 - `AggregateOffer` asserted `availability: InStock` on pages with no purchase
   path. Removed.

@@ -14,7 +14,7 @@ export default function FeaturedVehicles() {
         subtitle="Late-model cars with unlimited miles on most rates. Call to check live availability in your city."
       />
 
-      <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {siteConfig.featuredVehicles.map((v) => (
           <li key={v.name} className="flex">
             <article className="flex w-full flex-col overflow-hidden rounded-lg border bg-card">
@@ -23,7 +23,7 @@ export default function FeaturedVehicles() {
                   src={v.image}
                   alt={`${v.name}, ${v.type} rental car`}
                   gradient={v.gradient}
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                 />
                 {v.tag ? (
                   <Badge variant="default" className="absolute left-2.5 top-2.5">
@@ -48,7 +48,7 @@ export default function FeaturedVehicles() {
                   <Spec icon="users" label={`${v.specs.seats} seats`} />
                   <Spec icon="luggage" label={`${v.specs.bags} bags`} />
                   <Spec icon="car" label={v.specs.transmission} />
-                  <Spec icon="mileage" label={v.specs.efficiency} />
+                  {v.specs.efficiency ? <Spec icon="mileage" label={v.specs.efficiency} /> : null}
                 </dl>
 
                 <ul className="mt-4 flex flex-1 flex-wrap content-start gap-1.5">
@@ -78,9 +78,9 @@ export default function FeaturedVehicles() {
 
 function Spec({ icon, label }: { icon: Parameters<typeof Icon>[0]["name"]; label: string }) {
   return (
-    <div className="flex items-center gap-1.5">
-      <Icon name={icon} className="h-4 w-4 shrink-0" />
-      <span className="truncate">{label}</span>
+    <div className="flex items-start gap-1.5">
+      <Icon name={icon} className="mt-0.5 h-4 w-4 shrink-0" />
+      <span className="leading-snug">{label}</span>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import Icon from "../ui/Icon";
  * Article share row.
  *
  * Secondary chrome, so every control is an `outline` button at the system's own
- * sizes — the row sits beside the byline and must never out-shout the page's one
+ * sizes. The row sits beside the byline and must never out-shout the page's one
  * primary action. The share targets are links (they open a real URL), the copy
  * control is a button, and both are the same 40px so the row reads as one strip.
  */

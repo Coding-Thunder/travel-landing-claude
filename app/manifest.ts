@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/siteConfig";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${siteConfig.name} — Car Rental`,
+    name: `${siteConfig.name}, Car Rental`,
     short_name: siteConfig.shortName,
     description: siteConfig.seo.description,
     start_url: "/",

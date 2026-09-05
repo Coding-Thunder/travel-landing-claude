@@ -1,6 +1,6 @@
 /**
  * JSON-LD structured-data builders.
- * All values are derived from the active brand via siteConfig — never hardcoded.
+ * All values are derived from the active brand via siteConfig, never hardcoded.
  */
 import { siteConfig } from "@/config/siteConfig";
 

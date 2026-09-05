@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const category = getCategory(slug);
   if (!category) return {};
   return {
-    title: `${category.label} — Car Rental Guides`,
+    title: `${category.label}: Car Rental Guides`,
     description: `${category.label} car rental articles and guides from ${siteConfig.name}. Practical, honest advice to help you rent smarter.`,
     alternates: { canonical: `/blog/category/${category.slug}` },
     openGraph: { title: `${category.label} guides | ${siteConfig.name}`, url: `/blog/category/${category.slug}`, type: "website" },

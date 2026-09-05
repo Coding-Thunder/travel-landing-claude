@@ -65,7 +65,7 @@ const CHASSIS = <path d="M3.5 16.5h1.6M8.9 16.5h6.2M18.9 16.5h1.6" />;
 /**
  * Airport, drawn as a terminal and control tower rather than an aircraft.
  *
- * This site sells car rental, so an aeroplane in the icon set is off-brand —
+ * This site sells car rental, so an aeroplane in the icon set is off-brand,
  * and this glyph only ever labels "Airport Pickup", "Airport convenience" and
  * "Airport car rentals", where the word does the naming and the mark supports
  * it. Shared by the `airport` key and the legacy `plane` key that `siteConfig`

@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   // No `alternates.canonical` here on purpose. A canonical declared in the root
-  // layout is inherited by every route that does not set its own — including
-  // not-found and error — which stamps them with a canonical pointing at the
+  // layout is inherited by every route that does not set its own (including
+  // not-found and error), which stamps them with a canonical pointing at the
   // home page. Each page sets its own.
   description: siteConfig.seo.description,
   keywords: [...siteConfig.seo.keywords],

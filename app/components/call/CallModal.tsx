@@ -27,7 +27,7 @@ type CallModalProps = {
  *
  * Built on Radix Dialog rather than a hand-rolled overlay: that gives a real
  * focus trap, focus restore on close, Escape handling, scroll lock and correct
- * `aria-modal` semantics for free — all of which the previous implementation
+ * `aria-modal` semantics for free, all of which the previous implementation
  * only partially had.
  */
 export default function CallModal({ open, onClose, pickup = "", notes = "", source = "manual" }: CallModalProps) {
@@ -49,7 +49,7 @@ export default function CallModal({ open, onClose, pickup = "", notes = "", sour
     try {
       sessionStorage.setItem(LEAD_KEY, "1");
     } catch {
-      /* storage unavailable — the once-per-session gate still applies */
+      /* storage unavailable: the once-per-session gate still applies */
     }
     // NOTE: there is no lead backend wired up. See docs/CONVERSION-TRACKING.md.
     trackEvent("callback_submit", {

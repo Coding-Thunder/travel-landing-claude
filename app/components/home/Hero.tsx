@@ -10,7 +10,7 @@ import BookingForm from "../booking/BookingForm";
  * The hero backdrop: an ordinary full-size SUV on an open American road.
  *
  * The previous backdrop was an aircraft wing, left over from the travel site
- * this codebase grew out of — the wrong subject entirely for a car rental
+ * this codebase grew out of: the wrong subject entirely for a car rental
  * brand. The replacement is deliberately an unbadged, everyday rental-class
  * vehicle rather than a luxury car: this brand is called My Budget Car, and a
  * recognisable premium marque in the hero works against that. Composition
@@ -61,7 +61,7 @@ export default function Hero() {
             </h1>
             <p className="mt-3 max-w-xl text-base leading-relaxed text-muted-foreground">
               Premium vehicles at every major US airport, confirmed in a single call. No hidden fees, free
-              cancellation, and a real person on the line — around the clock.
+              cancellation, and a real person on the line, around the clock.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">

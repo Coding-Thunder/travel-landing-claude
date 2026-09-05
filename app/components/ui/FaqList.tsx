@@ -1,5 +1,5 @@
 /**
- * The one FAQ presentation on the site — home page, airport pages, vehicle
+ * The one FAQ presentation on the site: home page, airport pages, vehicle
  * pages and blog posts all render this.
  *
  * Built on native `<details>` rather than a JS accordion, for one specific

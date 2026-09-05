@@ -47,7 +47,7 @@ One semantic token layer in `app/globals.css`. Components address tokens
 (`background`, `card`, `muted`, `primary`, `border`, `ring`) and never raw
 palette values, so a palette change is a one-file change.
 
-- **Colour** is My Budget Car's own brand blue `#2563eb` on slate neutrals — the
+- **Colour** is My Budget Car's own brand blue `#2563eb` on slate neutrals, the
   same value as `app/icon.svg` and the PWA theme colour. Blue is reserved for the
   single primary action on a surface, which on this site is almost always the
   call CTA.
@@ -61,7 +61,7 @@ palette values, so a palette change is a one-file change.
 
 Contrast is verified: foreground 17.9:1, muted-foreground 7.6:1 and primary
 5.2:1 on the page surface; 16.6:1, 8.3:1 and 8.0:1 inverted. `--border` is a
-decorative hairline — `--input` (3.5:1) carries the 3:1 boundary on controls.
+decorative hairline. `--input` (3.5:1) carries the 3:1 boundary on controls.
 
 ### Icons
 
@@ -85,8 +85,8 @@ component.
 
 Read these in order:
 
-1. **`docs/VERIFY-BEFORE-PUBLISHING.md`** — unverifiable claims currently on the
+1. **`docs/VERIFY-BEFORE-PUBLISHING.md`**: unverifiable claims currently on the
    site. Open; nothing has been changed. This gates any Google Ads spend.
-2. **`docs/CONVERSION-TRACKING.md`** — what is wired up, and the IDs that must be
+2. **`docs/CONVERSION-TRACKING.md`**: what is wired up, and the IDs that must be
    set before launch.
-3. **`docs/SEO-RECOMMENDATIONS.md`** — proposed content and IA work, not done.
+3. **`docs/SEO-RECOMMENDATIONS.md`**: proposed content and IA work, not done.

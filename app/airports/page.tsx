@@ -12,7 +12,7 @@ import JsonLd from "../components/seo/JsonLd";
 import { breadcrumbSchema, localBusinessSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Airport Car Rental Locations — Book by Phone",
+  title: "Airport Car Rental Locations: Book by Phone",
   description: `Rent a car at LAX, JFK, MCO, MIA, LAS, DFW, ATL and ORD with ${siteConfig.name}. Counter and curbside airport pickup, transparent all-in pricing, live agents 24/7. Call ${siteConfig.phoneDisplay}.`,
   alternates: { canonical: "/airports" },
   openGraph: {
@@ -39,7 +39,7 @@ export default function AirportsIndexPage() {
       <PageHero
         eyebrow="Airport car rentals"
         title="Rent a car at the airport"
-        subtitle="Counter and curbside pickup at the busiest airports in the country. Choose your airport for local pickup logistics, rental tips and nearby drives — then call to lock your best all-in rate."
+        subtitle="Counter and curbside pickup at the busiest airports in the country. Choose your airport for local pickup logistics, rental tips and nearby drives. Then call to lock your best all-in rate."
         actions={
           <Button asChild data-cta="airports-index-call">
             <a href={`tel:${siteConfig.phone}`}>

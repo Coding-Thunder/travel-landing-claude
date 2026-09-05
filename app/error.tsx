@@ -9,8 +9,8 @@ import Icon from "./components/ui/Icon";
 /**
  * Root error boundary.
  *
- * Same typographic register as the interior page header — a display h1 over a
- * quiet lead — so a failure still looks like part of the site rather than a
+ * Same typographic register as the interior page header, a display h1 over a
+ * quiet lead, so a failure still looks like part of the site rather than a
  * system dialog. Two actions only: retry, and the phone number, which is the
  * one route to a human when retrying will not help.
  */

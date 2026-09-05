@@ -4,8 +4,8 @@
  * Every `next/image` source on this site is a remote Unsplash URL that already
  * carries its own `w` and `q` parameters, so Unsplash has already produced a
  * sized, compressed image. Routing those through Next's built-in optimizer made
- * the app server re-download each file and re-encode it with sharp — the most
- * expensive thing this otherwise static site does — and the optimizer's cache
+ * the app server re-download each file and re-encode it with sharp (the most
+ * expensive thing this otherwise static site does), and the optimizer's cache
  * lives on ephemeral disk, so every deploy paid that cost again.
  *
  * This asks the image host for the width we actually want instead. It adds no

@@ -16,7 +16,7 @@ type RevealProps = {
  * into every route that showed a list. It is now a server component using a CSS
  * scroll-driven animation (see `.rise-in` in globals.css), so it costs nothing
  * at runtime, and in browsers without scroll-driven animation support the
- * content is simply visible — which is the correct failure mode for content
+ * content is simply visible, which is the correct failure mode for content
  * that must be crawlable.
  */
 export default function Reveal({ children, className, delay = 0, as = "div" }: RevealProps) {

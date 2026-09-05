@@ -122,7 +122,7 @@ export default async function AirportPage({ params }: Params) {
         </div>
 
         <div className="mt-12">
-          <CallBand heading={`Best ${airport.iata} rate — by phone`} />
+          <CallBand heading={`Best ${airport.iata} rate, by phone`} />
         </div>
 
         {/* Pickup logistics */}
@@ -170,7 +170,7 @@ export default async function AirportPage({ params }: Params) {
           </div>
         </section>
 
-        {/* Related airports — internal linking */}
+        {/* Related airports: internal linking */}
         <section className="mt-14">
           <SectionHeading
             title="More airport locations"

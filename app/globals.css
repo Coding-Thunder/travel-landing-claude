@@ -12,7 +12,7 @@
    Colour is My Budget Car's own: the existing brand blue (#2563eb, the same
    value in app/icon.svg and the PWA theme colour) on slate neutrals, which is
    what the site already used. Blue is reserved for the single primary action on
-   a surface — on a phone-first site that is nearly always the call CTA. Blue is
+   a surface: on a phone-first site that is nearly always the call CTA. Blue is
    hierarchy, not decoration.
 
    Contrast (verified): foreground 17.9:1, muted-foreground 7.6:1 and primary
@@ -30,7 +30,7 @@
   --popover: #ffffff;
   --popover-foreground: #0f172a;
 
-  /* Primary action — My Budget Car brand blue. Carries white text at 5.2:1. */
+  /* Primary action: My Budget Car brand blue. Carries white text at 5.2:1. */
   --primary: #2563eb;
   --primary-foreground: #ffffff;
 

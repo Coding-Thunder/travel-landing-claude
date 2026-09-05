@@ -37,7 +37,7 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <Logo />
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Licensed, insured car rentals nationwide. Reserve by phone with a live US-based agent — no
+              Licensed, insured car rentals nationwide. Reserve by phone with a live US-based agent: no
               hidden fees, free cancellation, instant confirmation.
             </p>
 
@@ -126,7 +126,7 @@ export default function Footer() {
         <p className="max-w-4xl text-xs leading-relaxed text-muted-foreground">
           Vehicle images are illustrative. Rates from ${siteConfig.hero.priceFrom}/day are based on
           availability and confirmed by phone. This site uses cookies and third-party analytics
-          (including Google Analytics &amp; Google Ads) to measure performance — see our{" "}
+          (including Google Analytics &amp; Google Ads) to measure performance. See our{" "}
           <Link href="/privacy-policy" className="underline underline-offset-4 hover:text-foreground">
             Privacy Policy
           </Link>

@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const v = getVehicleCategory(slug);
   if (!v) return {};
 
-  const title = `${v.name} Car Rental — Models, Pricing & Tips`;
+  const title = `${v.name} Car Rental: Models, Pricing & Tips`;
   const description = `Rent a ${v.name.toLowerCase()} car from $${v.priceFrom}/day with ${siteConfig.name}. Popular models, indicative daily/weekly/monthly pricing, and rental tips. Call ${siteConfig.phoneDisplay} for your best rate.`;
 
   return {
@@ -48,8 +48,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
  *
  * Built from the shared `Section` rhythm rather than one long container of
  * hand-spaced blocks, so the page alternates quiet and page-surface bands the
- * same way the home page does. Every region is a hairline set — the bordered
- * grid for tips, the divided list for models, one table for pricing — which
+ * same way the home page does. Every region is a hairline set (the bordered
+ * grid for tips, the divided list for models, one table for pricing), which
  * keeps a long content page reading as one document instead of a stack of
  * floating cards.
  */
@@ -127,7 +127,7 @@ export default async function VehiclePage({ params }: Params) {
         </div>
 
         <div className="mt-12">
-          <CallBand heading={`Best ${v.name.toLowerCase()} rate — by phone`} />
+          <CallBand heading={`Best ${v.name.toLowerCase()} rate, by phone`} />
         </div>
       </Section>
 

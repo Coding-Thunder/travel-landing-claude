@@ -5,7 +5,7 @@ import Icon from "./ui/Icon";
 /**
  * The five standing assurances.
  *
- * Plain text on a quiet band with a single small glyph each — no icon
+ * Plain text on a quiet band with a single small glyph each: no icon
  * medallions and no card wrappers, because neither would add information and
  * both are what make a trust strip read as decoration.
  */

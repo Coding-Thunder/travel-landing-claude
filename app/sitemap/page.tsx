@@ -10,7 +10,7 @@ import JsonLd from "../components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Sitemap — All Pages",
+  title: "Sitemap: All Pages",
   description: `Browse every page on ${siteConfig.name}: airport rentals, vehicle categories, blog guides, and company and legal information.`,
   alternates: { canonical: "/sitemap" },
 };

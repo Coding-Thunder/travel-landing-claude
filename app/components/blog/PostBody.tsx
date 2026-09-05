@@ -29,7 +29,7 @@ const CALLOUT: Record<
 const BODY = "text-[15px] leading-7 text-muted-foreground";
 
 /**
- * Inline links stay underlined rather than relying on blue alone — colour is
+ * Inline links stay underlined rather than relying on blue alone. Colour is
  * not enough to mark a link inside a paragraph of body text.
  */
 const LINK =
@@ -115,7 +115,7 @@ export default function PostBody({ blocks }: { blocks: PostBlock[] }) {
             return (
               <blockquote key={i} className="border-l-2 pl-5 text-base font-medium italic leading-7">
                 {renderInline(block.text)}
-                {block.cite ? <cite className="mt-2 block text-sm not-italic text-muted-foreground">— {block.cite}</cite> : null}
+                {block.cite ? <cite className="mt-2 block text-sm not-italic text-muted-foreground">{block.cite}</cite> : null}
               </blockquote>
             );
         }

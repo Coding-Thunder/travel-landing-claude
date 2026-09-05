@@ -8,7 +8,7 @@ import JsonLd from "../components/seo/JsonLd";
 import { breadcrumbSchema, websiteSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Car Rental Blog — Guides, Tips & Airport Advice",
+  title: "Car Rental Blog: Guides, Tips & Airport Advice",
   description: `Practical car rental guides from ${siteConfig.name}: saving money on airport rentals, insurance explained in plain English, destination road-trip tips and more.`,
   alternates: {
     canonical: "/blog",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `Car Rental Blog | ${siteConfig.name}`,
-    description: "Guides and tips to rent smarter — airport pickup, saving money, insurance and road trips.",
+    description: "Guides and tips to rent smarter: airport pickup, saving money, insurance and road trips.",
     url: "/blog",
     type: "website",
   },
@@ -40,7 +40,7 @@ export default function BlogIndexPage() {
       <PageHero
         eyebrow="The blog"
         title="Car rental guides & travel tips"
-        subtitle="Honest, practical advice from working rental agents and travel writers — how to save money, navigate airport pickup, understand the fine print and plan the drive."
+        subtitle="Honest, practical advice from working rental agents and travel writers: how to save money, navigate airport pickup, understand the fine print and plan the drive."
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Blog", href: "/blog" },

@@ -4,14 +4,14 @@ import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: `Privacy policy for ${siteConfig.legalName} — how we handle personal information, cookies, and advertising identifiers for phone-based car rentals.`,
+  description: `Privacy policy for ${siteConfig.legalName}: how we handle personal information, cookies, and advertising identifiers for phone-based car rentals.`,
   alternates: { canonical: "/privacy-policy" },
   robots: { index: true, follow: true },
 };
 
 /**
  * Inline links inside legal prose stay underlined rather than relying on the
- * primary colour alone — colour is not enough to mark a link in body text.
+ * primary colour alone. Colour is not enough to mark a link in body text.
  * Matches the cookie policy and the blog's `PostBody` link treatment.
  */
 const LINK =
@@ -110,24 +110,24 @@ export default function PrivacyPage() {
         </p>
         <ul>
           <li>
-            <strong>Google Analytics</strong> — to understand how visitors use
+            <strong>Google Analytics</strong>: to understand how visitors use
             this site (pages viewed, time on page, traffic sources) so we can
             improve our content and user experience.
           </li>
           <li>
-            <strong>Google Ads &amp; conversion tracking</strong> — to measure
+            <strong>Google Ads &amp; conversion tracking</strong>: to measure
             the effectiveness of our advertising campaigns on Google and
             partner networks, including tracking clicks on the &ldquo;Call&rdquo;
             button as conversion events.
           </li>
           <li>
-            <strong>Google Ads remarketing</strong> — to show relevant ads to
+            <strong>Google Ads remarketing</strong>: to show relevant ads to
             people who have previously visited this site, across the Google
             Display Network and partner sites, where permitted by applicable
             law.
           </li>
           <li>
-            <strong>Strictly necessary cookies</strong> — to remember your
+            <strong>Strictly necessary cookies</strong>: to remember your
             cookie notice preference and keep the website functioning
             correctly.
           </li>

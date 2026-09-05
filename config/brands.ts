@@ -7,7 +7,7 @@
  *
  * To launch a new brand on its own branch/repo:
  *   1. Add (or edit) a preset below.
- *   2. Point the active brand at it — set `NEXT_PUBLIC_BRAND` in the environment,
+ *   2. Point the active brand at it: set `NEXT_PUBLIC_BRAND` in the environment,
  *      or change `ACTIVE_BRAND_ID` in `config/brand.ts`.
  * No component code ever needs to change.
  */
@@ -16,15 +16,15 @@ export type BrandId = "my-budget-car" | "budget-travel" | "rental-confirmation";
 
 export type BrandConfig = {
   id: BrandId;
-  /** Display brand name — used for logo text, headings, meta, copyright, schema. */
+  /** Display brand name: used for logo text, headings, meta, copyright, schema. */
   brandName: string;
-  /** Legal entity name — used for legal pages, copyright and structured data. */
+  /** Legal entity name: used for legal pages, copyright and structured data. */
   legalName: string;
   /** Primary phone, digits only. Powers tel:, WhatsApp and display formatting. */
   phoneNumber: string;
   /** Optional dedicated support line; falls back to `phoneNumber`. */
   supportNumber?: string;
-  /** Primary domain (no protocol) — used for canonical URLs, OG and email. */
+  /** Primary domain (no protocol): used for canonical URLs, OG and email. */
   domain: string;
   /** Contact email. */
   email: string;

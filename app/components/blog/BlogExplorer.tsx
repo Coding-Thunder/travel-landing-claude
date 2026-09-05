@@ -14,8 +14,8 @@ const PER_PAGE = 6;
  *
  * Filtering is a toolbar, not a hero: one row of category pills and one search
  * field on a single line, so the articles start immediately below. The pills
- * are `aria-pressed` toggles rather than tabs — they narrow one list in place,
- * they do not swap panels — and each one is 44px tall on touch before it
+ * are `aria-pressed` toggles rather than tabs (they narrow one list in place,
+ * they do not swap panels) and each one is 44px tall on touch before it
  * settles to desktop density.
  */
 export default function BlogExplorer({ posts, categories }: { posts: PostSummary[]; categories: Taxon[] }) {
@@ -124,7 +124,7 @@ export default function BlogExplorer({ posts, categories }: { posts: PostSummary
 
 /**
  * Category pill. Selected is the filled primary, unselected the hairline
- * outline — the only two steps needed for a set this small.
+ * outline, the only two steps needed for a set this small.
  */
 function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (

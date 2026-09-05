@@ -5,14 +5,14 @@ import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
-  description: `Cookie policy for ${siteConfig.legalName} — the cookies and analytics we use (including Google Analytics and Google Ads), why we use them, and how to control them.`,
+  description: `Cookie policy for ${siteConfig.legalName}: the cookies and analytics we use (including Google Analytics and Google Ads), why we use them, and how to control them.`,
   alternates: { canonical: "/cookie-policy" },
   robots: { index: true, follow: true },
 };
 
 /**
  * Inline links inside legal prose stay underlined rather than relying on the
- * primary colour alone — colour is not enough to mark a link in body text.
+ * primary colour alone. Colour is not enough to mark a link in body text.
  * Matches the blog's `PostBody` link treatment.
  */
 const LINK =
@@ -29,8 +29,8 @@ export default function CookiePolicyPage() {
         <h2>1. What cookies are</h2>
         <p>
           Cookies are small text files placed on your device when you visit a website. They let a site
-          remember your actions and preferences, measure how the site is used, and — with your consent
-          where required — measure the performance of advertising. Similar technologies such as pixels,
+          remember your actions and preferences, measure how the site is used, and, with your consent
+          where required, measure the performance of advertising. Similar technologies such as pixels,
           local storage and device identifiers work in comparable ways, and we refer to all of them as
           &ldquo;cookies&rdquo; in this policy.
         </p>
@@ -41,7 +41,7 @@ export default function CookiePolicyPage() {
         <p>We group the cookies on this site into three categories:</p>
         <ul>
           <li>
-            <strong>Strictly necessary.</strong> Required for the site to function — for example,
+            <strong>Strictly necessary.</strong> Required for the site to function, for example,
             remembering that you have dismissed our cookie notice. These do not track you across sites and
             cannot be switched off through our banner.
           </li>

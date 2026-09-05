@@ -12,7 +12,7 @@ type LegalLayoutProps = {
 /**
  * Shell for the policy pages.
  *
- * A typographic header over a narrow reading measure — legal copy is read, not
+ * A typographic header over a narrow reading measure: legal copy is read, not
  * scanned, so the column stays at max-w-3xl and the prose styles are declared
  * once here rather than repeated on every heading in four page files.
  */
