@@ -10,15 +10,6 @@ type AvatarProps = {
   className?: string;
 };
 
-const GRADIENTS = [
-  "from-blue-500 to-indigo-600",
-  "from-emerald-500 to-teal-600",
-  "from-rose-500 to-orange-600",
-  "from-violet-500 to-purple-600",
-  "from-cyan-500 to-sky-600",
-  "from-amber-500 to-red-600",
-];
-
 function initials(name: string) {
   return name
     .split(" ")
@@ -35,17 +26,14 @@ function initials(name: string) {
  */
 export default function Avatar({ src, name, size = 48, className = "" }: AvatarProps) {
   const [errored, setErrored] = useState(false);
-  const gradient = GRADIENTS[name.length % GRADIENTS.length];
 
   return (
     <span
-      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full ring-2 ring-white ${className}`}
+      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full ${className}`}
       style={{ width: size, height: size }}
     >
       {errored ? (
-        <span
-          className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${gradient} text-sm font-bold text-white`}
-        >
+        <span className="flex h-full w-full items-center justify-center bg-secondary text-xs font-medium text-secondary-foreground">
           {initials(name)}
         </span>
       ) : (

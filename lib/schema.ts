@@ -7,6 +7,20 @@ import { siteConfig } from "@/config/siteConfig";
 const url = siteConfig.url;
 const telephoneE164 = `+1${siteConfig.phone}`;
 
+/**
+ * Minimal Organization node, inlined wherever a schema needs a publisher or a
+ * seller. Referencing `#organization` by @id only resolves on the three routes
+ * that emit the full Organization graph; everywhere else the reference dangled,
+ * which Google reads as an unresolved node rather than a publisher.
+ */
+const organizationRef = {
+  "@type": "Organization",
+  "@id": `${url}/#organization`,
+  name: siteConfig.legalName,
+  alternateName: siteConfig.name,
+  url,
+};
+
 const postalAddress = {
   "@type": "PostalAddress",
   streetAddress: siteConfig.addressLine,
@@ -114,8 +128,9 @@ export function vehicleSchema(v: { name: string; slug: string; priceFrom: number
       "@type": "AggregateOffer",
       priceCurrency: "USD",
       lowPrice: v.priceFrom,
-      availability: "https://schema.org/InStock",
-      seller: { "@id": `${url}/#organization` },
+      // No `availability`: there is no online purchase path on this site, so a
+      // stock status would be an assertion the page cannot support.
+      seller: organizationRef,
     },
   };
 }
@@ -131,15 +146,16 @@ export function articleSchema(input: {
 }) {
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: input.title,
     description: input.description,
     image: input.image,
     author: { "@type": "Person", name: input.author },
-    publisher: { "@id": `${url}/#organization` },
+    publisher: organizationRef,
     datePublished: input.publishedAt,
     dateModified: input.updatedAt,
-    mainEntityOfPage: `${url}/blog/${input.slug}`,
+    inLanguage: "en-US",
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${url}/blog/${input.slug}` },
     url: `${url}/blog/${input.slug}`,
   };
 }

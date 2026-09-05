@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Hero from "./components/home/Hero";
 import TrustBar from "./components/TrustBar";
 import VehicleTypes from "./components/VehicleTypes";
@@ -21,9 +22,18 @@ import {
   breadcrumbSchema,
 } from "@/lib/schema";
 
+/**
+ * The home page is the only route that does not declare its own canonical
+ * through a shared helper, and the root layout deliberately no longer declares
+ * one globally (that stamped every 404 with a canonical pointing here).
+ */
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col pb-20 sm:pb-0">
+    <div className="flex flex-1 flex-col">
       <JsonLd
         data={[
           organizationSchema(),

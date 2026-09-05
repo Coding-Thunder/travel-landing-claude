@@ -2,13 +2,28 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/siteConfig";
 import { airports } from "@/config/airports";
 import { vehicleCategories } from "@/config/vehicles";
-import { allPosts, categories, tags } from "@/lib/blog";
+import { allPosts, categories, tags, postsByCategory, postsByTag } from "@/lib/blog";
+
+type Entry = {
+  path: string;
+  priority: number;
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+  /** ISO date. Omit to fall back to the build date. */
+  lastModified?: string;
+};
+
+/** Newest `updatedAt` in a set of posts, so a hub reports its freshest child. */
+function newest(posts: { updatedAt: string }[]): string | undefined {
+  if (!posts.length) return undefined;
+  return posts.reduce((a, p) => (p.updatedAt > a ? p.updatedAt : a), posts[0].updatedAt);
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
-  const now = new Date();
+  const buildDate = new Date();
+  const newestPost = newest(allPosts);
 
-  const routes: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
+  const routes: Entry[] = [
     { path: "", priority: 1, changeFrequency: "weekly" },
     { path: "/airports", priority: 0.9, changeFrequency: "weekly" },
     ...airports.map((a) => ({
@@ -22,21 +37,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       changeFrequency: "monthly" as const,
     })),
-    { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
+    // Blog freshness is real data, so report it rather than stamping every URL
+    // with the build time. A sitemap that claims 69 pages changed on every
+    // deploy teaches Googlebot to stop trusting the field entirely.
+    { path: "/blog", priority: 0.8, changeFrequency: "weekly", lastModified: newestPost },
     ...allPosts.map((p) => ({
       path: `/blog/${p.slug}`,
       priority: 0.7,
       changeFrequency: "monthly" as const,
+      lastModified: p.updatedAt,
     })),
     ...categories().map((c) => ({
       path: `/blog/category/${c.slug}`,
       priority: 0.5,
       changeFrequency: "weekly" as const,
+      lastModified: newest(postsByCategory(c.slug)),
     })),
     ...tags().map((t) => ({
       path: `/blog/tag/${t.slug}`,
       priority: 0.4,
       changeFrequency: "monthly" as const,
+      lastModified: newest(postsByTag(t.slug)),
     })),
     { path: "/about", priority: 0.8, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
@@ -49,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes.map((r) => ({
     url: `${base}${r.path}`,
-    lastModified: now,
+    lastModified: r.lastModified ? new Date(r.lastModified) : buildDate,
     changeFrequency: r.changeFrequency,
     priority: r.priority,
   }));

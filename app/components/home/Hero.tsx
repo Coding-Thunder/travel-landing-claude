@@ -1,66 +1,103 @@
 import Image from "next/image";
 import { airports } from "@/config/airports";
 import { siteConfig } from "@/config/siteConfig";
+import { Button } from "@/components/ui/button";
+import Container from "../ui/Container";
+import Icon from "../ui/Icon";
 import BookingForm from "../booking/BookingForm";
 
+/**
+ * The hero backdrop: an ordinary full-size SUV on an open American road.
+ *
+ * The previous backdrop was an aircraft wing, left over from the travel site
+ * this codebase grew out of — the wrong subject entirely for a car rental
+ * brand. The replacement is deliberately an unbadged, everyday rental-class
+ * vehicle rather than a luxury car: this brand is called My Budget Car, and a
+ * recognisable premium marque in the hero works against that. Composition
+ * keeps the vehicle right of centre so the headline sits over open sky.
+ */
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2400&q=80";
+  "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1920&q=60";
 
 const TRUST = ["No hidden fees", "Free cancellation", "24/7 support", "Licensed & insured"];
 
+/**
+ * Home page hero.
+ *
+ * Deliberately short: the search module is the focal point, so the copy above
+ * it earns its space or comes out. `dark` swaps the token scope, which is how
+ * this renders on the deep surface without a single raw colour value.
+ *
+ * The phone number is a real button here, not a text link. On a site whose
+ * primary conversion is a call, the dial has to be a first-class control above
+ * the fold rather than a sentence someone has to find.
+ */
 export default function Hero() {
   const { phone, phoneVanity } = siteConfig;
   const heroAirports = airports.map((a) => ({ iata: a.iata, city: a.city }));
 
   return (
-    <section className="relative isolate overflow-hidden bg-ink text-white">
-      <Image
-        src={HERO_IMAGE}
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-center opacity-[0.5]"
-      />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/25" />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/30 to-transparent" />
+    <>
+      <section className="dark relative isolate border-b bg-background text-foreground">
+        <Image
+          src={HERO_IMAGE}
+          alt=""
+          aria-hidden
+          fill
+          preload
+          quality={55}
+          sizes="(max-width: 640px) 100vw, 960px"
+          className="object-cover object-[70%_center] opacity-30"
+        />
+        <div aria-hidden className="absolute inset-0 bg-background/70" />
 
-      <div className="relative mx-auto flex min-h-[640px] max-w-[1240px] flex-col justify-between gap-12 px-5 pb-10 pt-16 sm:px-8 lg:min-h-[740px] lg:pb-14 lg:pt-24">
-        <div className="max-w-2xl animate-in fade-in slide-in-from-bottom-3 duration-700">
-          <p className="overline text-white/55">Airport car rental · 300+ US locations</p>
-          <h1 className="mt-5 font-display text-[2.7rem] font-medium leading-[1.02] tracking-tight sm:text-6xl lg:text-[4.25rem]">
-            Rent a car the
-            <br className="hidden sm:block" /> moment you land.
-          </h1>
-          <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/75">
-            Premium vehicles at every major US airport, confirmed in a single call. No hidden fees, free
-            cancellation, and a real person on the line — around the clock.
-          </p>
-          <div className="mt-7 flex items-center gap-4 text-sm text-white/70">
-            <span className="h-px w-8 bg-white/30" />
-            <span>
-              Prefer to talk?{" "}
-              <a href={`tel:${phone}`} className="font-semibold text-white underline-offset-4 hover:underline">
-                Call {phoneVanity}
-              </a>
-            </span>
-          </div>
-        </div>
+        <Container className="relative pb-10 pt-12 sm:pb-12 sm:pt-16">
+          <div className="max-w-2xl">
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Airport car rental · 300+ US locations
+            </p>
+            <h1 className="mt-3 font-display text-3xl leading-tight tracking-tight sm:text-4xl lg:text-[2.75rem]">
+              Rent a car the moment you land.
+            </h1>
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-muted-foreground">
+              Premium vehicles at every major US airport, confirmed in a single call. No hidden fees, free
+              cancellation, and a real person on the line — around the clock.
+            </p>
 
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div className="rounded-2xl border border-line/70 bg-paper p-4 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.55)] sm:p-5">
-            <BookingForm airports={heroAirports} />
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Button asChild size="lg" data-cta="hero-call">
+                <a href={`tel:${phone}`}>
+                  <Icon name="phone" />
+                  Call {phoneVanity}
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <a href="#search">
+                  <Icon name="search" />
+                  Check availability
+                </a>
+              </Button>
+            </div>
+
+            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] text-muted-foreground">
+              {TRUST.map((t) => (
+                <li key={t} className="flex items-center gap-1.5">
+                  <Icon name="check" className="h-3.5 w-3.5 shrink-0 text-primary" />
+                  {t}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-1.5 text-[13px] text-white/65">
-            {TRUST.map((t) => (
-              <li key={t} className="flex items-center gap-2">
-                <span aria-hidden className="h-1 w-1 rounded-full bg-white/40" />
-                {t}
-              </li>
-            ))}
-          </ul>
+        </Container>
+      </section>
+
+      {/* The search module, lifted over the hero edge so it reads as the
+          primary interaction surface rather than another content band. */}
+      <Container id="search" className="relative z-10 -mt-6 scroll-mt-20">
+        <div className="rounded-lg border bg-card p-4 shadow-md sm:p-5">
+          <BookingForm airports={heroAirports} />
         </div>
-      </div>
-    </section>
+      </Container>
+    </>
   );
 }

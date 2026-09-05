@@ -3,6 +3,8 @@ import { vehicleCategories } from "@/config/vehicles";
 import { siteConfig } from "@/config/siteConfig";
 import Container from "../components/ui/Container";
 import PageHero from "../components/PageHero";
+import Icon from "../components/ui/Icon";
+import { Button } from "@/components/ui/button";
 import VehicleCard from "../components/VehicleCard";
 import CallBand from "../components/CallBand";
 import Reveal from "../components/ui/Reveal";
@@ -38,6 +40,14 @@ export default function VehiclesIndexPage() {
         eyebrow="Vehicle categories"
         title="Find the right rental car class"
         subtitle="From economy runabouts to seven-seat minivans and luxury sedans, every class has its sweet spot. Explore each for popular models, pricing and tips — then call to lock your rate."
+        actions={
+          <Button asChild data-cta="vehicles-index-call">
+            <a href={`tel:${siteConfig.phone}`}>
+              <Icon name="phone" />
+              Call {siteConfig.phoneVanity}
+            </a>
+          </Button>
+        }
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Vehicles", href: "/vehicles" },
@@ -45,7 +55,8 @@ export default function VehiclesIndexPage() {
       />
 
       <Container className="py-14 sm:py-16">
-        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+        <h2 className="sr-only">Rental car classes</h2>
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {vehicleCategories.map((v, i) => (
             <Reveal key={v.slug} delay={(i % 4) * 0.05}>
               <VehicleCard vehicle={v} />

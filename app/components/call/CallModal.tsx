@@ -1,239 +1,202 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import * as Dialog from "@radix-ui/react-dialog";
 import { siteConfig } from "@/config/siteConfig";
-import { trackContactConversion } from "@/lib/analytics";
+import { trackEvent } from "@/lib/analytics";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import Icon from "../ui/Icon";
 import StarRating from "../ui/StarRating";
 
-const easeOut = [0.22, 1, 0.36, 1] as const;
-const LEAD_KEY = "bt-lead-submitted";
+const LEAD_KEY = "mbc-lead-submitted";
 
 type CallModalProps = {
   open: boolean;
   onClose: () => void;
   pickup?: string;
+  /** The rest of a search brief (dates, times, driver age), carried from a CTA. */
+  notes?: string;
   source?: string;
 };
 
-export default function CallModal({ open, onClose, pickup = "", source = "manual" }: CallModalProps) {
+/**
+ * The callback popup.
+ *
+ * Built on Radix Dialog rather than a hand-rolled overlay: that gives a real
+ * focus trap, focus restore on close, Escape handling, scroll lock and correct
+ * `aria-modal` semantics for free — all of which the previous implementation
+ * only partially had.
+ */
+export default function CallModal({ open, onClose, pickup = "", notes = "", source = "manual" }: CallModalProps) {
   const { phone, phoneVanity, callResponse, callModal, trust, destinations } = siteConfig;
   const [name, setName] = useState("");
   const [phoneVal, setPhoneVal] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
-  // Pickup is an uncontrolled field: `key={pickup}` remounts it with the
-  // CTA-provided default, while the user can still edit it freely.
+  // Pickup is uncontrolled: `key={pickup}` remounts it with the CTA-provided
+  // default while leaving the visitor free to edit it.
   const pickupRef = useRef<HTMLInputElement>(null);
 
-  // Manage body scroll lock, focus and Escape-to-close while open.
   useEffect(() => {
-    if (!open) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const t = window.setTimeout(() => panelRef.current?.focus(), 50);
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = prevOverflow;
-      document.removeEventListener("keydown", onKey);
-      window.clearTimeout(t);
-    };
-  }, [open, onClose]);
+    if (open) trackEvent("callback_open", { cta_source: source });
+  }, [open, source]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !phoneVal.trim()) return;
-    // Demo lead capture (no backend). In production, POST to your CRM here.
     try {
       sessionStorage.setItem(LEAD_KEY, "1");
     } catch {
-      /* ignore */
+      /* storage unavailable — the once-per-session gate still applies */
     }
-    const pickupValue = pickupRef.current?.value ?? "";
-    console.info("[lead] callback request", { name, phone: phoneVal, pickup: pickupValue, source });
-    trackContactConversion();
+    // NOTE: there is no lead backend wired up. See docs/CONVERSION-TRACKING.md.
+    trackEvent("callback_submit", {
+      cta_source: source,
+      pickup_location: pickupRef.current?.value ?? "",
+      trip_details: notes,
+    });
     setSubmitted(true);
   };
 
   return (
-    <AnimatePresence onExitComplete={() => setSubmitted(false)}>
-      {open && (
-        <motion.div
-          className="fixed inset-0 z-[60] flex items-end justify-center bg-slate-950/70 p-4 backdrop-blur-sm sm:items-center"
-          onClick={onClose}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <motion.div
-            ref={panelRef}
-            tabIndex={-1}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="callmodal-title"
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl outline-none"
-            initial={{ opacity: 0, y: 28, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 18, scale: 0.98 }}
-            transition={{ duration: 0.32, ease: easeOut }}
+    <Dialog.Root
+      open={open}
+      onOpenChange={(next) => {
+        if (!next) {
+          onClose();
+          // Reset only after the close transition, so the success state does
+          // not flash back to the form on the way out.
+          window.setTimeout(() => setSubmitted(false), 200);
+        }
+      }}
+    >
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-foreground/50 data-[state=open]:animate-in data-[state=open]:fade-in-0" />
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 flex max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 flex-col overflow-y-auto overscroll-contain rounded-lg border bg-card shadow-lg data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95">
+          <Dialog.Close
+            className="absolute right-3 top-3 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label="Close"
           >
-            {/* Close */}
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Close"
-              className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            <Icon name="close" className="h-4 w-4" />
+          </Dialog.Close>
 
-            {/* Header band */}
-            <div className="bg-gradient-to-br from-brand-700 via-brand-600 to-brand-700 px-6 pb-6 pt-7 text-white sm:px-8">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider backdrop-blur">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-300" />
+          <div className="p-6">
+            <Dialog.Title className="pr-8 text-lg font-semibold tracking-tight">
+              {callModal.headline}
+            </Dialog.Title>
+            <Dialog.Description className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {callModal.subtitle}
+            </Dialog.Description>
+
+            {submitted ? (
+              <div className="mt-6 text-center">
+                <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-success">
+                  <Icon name="check" className="h-6 w-6" />
                 </span>
-                {siteConfig.hero.eyebrow}
-              </div>
-              <h2 id="callmodal-title" className="mt-3 text-2xl font-extrabold leading-tight tracking-tight sm:text-[1.75rem]">
-                {callModal.headline}
-              </h2>
-              <p className="mt-2 text-sm text-white/85">{callModal.subtitle}</p>
-            </div>
-
-            <div className="px-6 py-6 sm:px-8">
-              {submitted ? (
-                <div className="text-center">
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
-                    <Icon name="check" className="h-7 w-7" />
-                  </div>
-                  <h3 className="mt-4 text-xl font-bold text-slate-900">Request received</h3>
-                  <p className="mt-2 text-sm text-slate-600">{callModal.success}</p>
-                  <p className="mt-1 text-xs font-medium text-emerald-600">{callModal.response}</p>
-                  <a
-                    href={`tel:${phone}`}
-                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.55)] transition hover:bg-brand-700"
-                  >
-                    <Icon name="phone" className="h-5 w-5" />
+                <h3 className="mt-4 text-base font-semibold">Request received</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{callModal.success}</p>
+                <p className="mt-1 text-xs font-medium text-success">{callModal.response}</p>
+                <Button asChild className="mt-5 w-full" data-cta="modal-success-call">
+                  <a href={`tel:${phone}`}>
+                    <Icon name="phone" />
                     Or call now · {phoneVanity}
                   </a>
-                </div>
-              ) : (
-                <>
-                  {/* Primary: tap to call */}
-                  <a
-                    href={`tel:${phone}`}
-                    className="group flex items-center justify-between gap-3 rounded-2xl border border-brand-100 bg-brand-50 p-4 transition hover:border-brand-200 hover:bg-brand-100/70"
-                  >
-                    <span className="flex items-center gap-3">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-600 text-white shadow-[0_8px_20px_-8px_rgba(37,99,235,0.7)]">
-                        <Icon name="phone" className="h-6 w-6" />
-                      </span>
-                      <span className="text-left">
-                        <span className="block text-[11px] font-semibold uppercase tracking-wider text-brand-700">
-                          {callModal.callCta} · 24/7
-                        </span>
-                        <span className="block text-xl font-extrabold tracking-tight text-slate-900">
-                          {phoneVanity}
-                        </span>
-                        <span className="block text-xs text-slate-500">{callResponse}</span>
-                      </span>
+                </Button>
+              </div>
+            ) : (
+              <>
+                {/* Primary: tap to call. */}
+                <a
+                  href={`tel:${phone}`}
+                  data-cta="modal-call"
+                  className="mt-5 flex items-center justify-between gap-3 rounded-lg border bg-muted/60 p-4 transition-colors hover:bg-accent"
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                      <Icon name="phone" className="h-5 w-5" />
                     </span>
-                    <span className="hidden shrink-0 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-bold text-white transition group-hover:bg-brand-700 sm:inline-block">
-                      Call
+                    <span className="text-left">
+                      <span className="block text-xs font-medium text-muted-foreground">
+                        {callModal.callCta} · {siteConfig.hours}
+                      </span>
+                      <span className="block text-lg font-semibold tracking-tight">{phoneVanity}</span>
+                      <span className="block text-xs text-muted-foreground">{callResponse}</span>
                     </span>
-                  </a>
+                  </span>
+                  <Icon name="chevronRight" className="h-4 w-4 shrink-0 text-muted-foreground" />
+                </a>
 
-                  {/* Divider */}
-                  <div className="my-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    <span className="h-px flex-1 bg-slate-200" />
-                    {callModal.callbackTitle}
-                    <span className="h-px flex-1 bg-slate-200" />
+                <div className="my-5 flex items-center gap-3">
+                  <Separator className="flex-1" />
+                  <span className="text-xs font-medium text-muted-foreground">{callModal.callbackTitle}</span>
+                  <Separator className="flex-1" />
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-3" noValidate>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="cb-name">{callModal.fields.name}</Label>
+                    <Input
+                      id="cb-name"
+                      required
+                      autoComplete="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Jane Doe"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="cb-phone">{callModal.fields.phone}</Label>
+                    <Input
+                      id="cb-phone"
+                      type="tel"
+                      required
+                      autoComplete="tel"
+                      value={phoneVal}
+                      onChange={(e) => setPhoneVal(e.target.value)}
+                      placeholder="(555) 123-4567"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="cb-loc">{callModal.fields.location}</Label>
+                    <Input
+                      key={pickup}
+                      ref={pickupRef}
+                      id="cb-loc"
+                      list="cb-cities"
+                      defaultValue={pickup}
+                      placeholder="City or airport"
+                    />
+                    <datalist id="cb-cities">
+                      {destinations.map((d) => (
+                        <option key={d.city} value={`${d.city}, ${d.state}`} />
+                      ))}
+                    </datalist>
                   </div>
 
-                  {/* Callback form */}
-                  <form onSubmit={handleSubmit} className="space-y-3" noValidate>
-                    <Field label={callModal.fields.name} htmlFor="cb-name">
-                      <input
-                        id="cb-name"
-                        type="text"
-                        required
-                        autoComplete="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Jane Doe"
-                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-[15px] text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
-                      />
-                    </Field>
-                    <Field label={callModal.fields.phone} htmlFor="cb-phone">
-                      <input
-                        id="cb-phone"
-                        type="tel"
-                        required
-                        autoComplete="tel"
-                        value={phoneVal}
-                        onChange={(e) => setPhoneVal(e.target.value)}
-                        placeholder="(555) 123-4567"
-                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-[15px] text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
-                      />
-                    </Field>
-                    <Field label={callModal.fields.location} htmlFor="cb-loc">
-                      <input
-                        key={pickup}
-                        ref={pickupRef}
-                        id="cb-loc"
-                        type="text"
-                        list="cb-cities"
-                        defaultValue={pickup}
-                        placeholder="City or airport"
-                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-[15px] text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
-                      />
-                      <datalist id="cb-cities">
-                        {destinations.map((d) => (
-                          <option key={d.city} value={`${d.city}, ${d.state}`} />
-                        ))}
-                      </datalist>
-                    </Field>
+                  {notes ? (
+                    <p className="rounded-md bg-muted px-3 py-2 text-xs leading-relaxed text-muted-foreground">
+                      <span className="font-medium text-foreground">We&apos;ll bring this to the call:</span> {notes}
+                    </p>
+                  ) : null}
 
-                    <button
-                      type="submit"
-                      className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-base font-bold text-white transition hover:bg-slate-800"
-                    >
-                      {callModal.callbackCta}
-                    </button>
-                  </form>
-                </>
-              )}
+                  <Button type="submit" className="w-full">
+                    {callModal.callbackCta}
+                  </Button>
+                </form>
+              </>
+            )}
 
-              {/* Trust footer */}
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 border-t border-slate-100 pt-4 text-xs font-medium text-slate-500">
-                <StarRating rating={Number(trust.rating)} starClassName="h-3.5 w-3.5" />
-                <span className="font-bold text-slate-900">{trust.rating}</span>
-                <span className="text-slate-300">·</span>
-                <span>{trust.highlights.join(" · ")}</span>
-              </div>
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 border-t pt-4 text-xs text-muted-foreground">
+              <StarRating rating={Number(trust.rating)} starClassName="h-3.5 w-3.5" />
+              <span className="font-medium text-foreground">{trust.rating}</span>
+              <span aria-hidden>·</span>
+              <span>{trust.highlights.join(" · ")}</span>
             </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
-
-function Field({ label, htmlFor, children }: { label: string; htmlFor: string; children: React.ReactNode }) {
-  return (
-    <label htmlFor={htmlFor} className="block">
-      <span className="mb-1 block text-xs font-semibold text-slate-600">{label}</span>
-      {children}
-    </label>
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }

@@ -83,14 +83,21 @@ export default function HtmlSitemapPage() {
         ]}
       />
       <Container className="py-14 sm:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Each group opens on a hairline rule rather than sitting in a card:
+            an index should read as one set of columns, not a wall of panels. */}
+        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {groups.map((group) => (
-            <nav key={group.title} aria-label={group.title}>
-              <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-500">{group.title}</h2>
-              <ul className="mt-4 space-y-2.5 text-sm">
+            <nav key={group.title} aria-label={group.title} className="border-t pt-4">
+              <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                {group.title}
+              </h2>
+              <ul className="mt-3 space-y-2.5 text-sm">
                 {group.links.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="text-slate-700 transition hover:text-brand-700">
+                    <Link
+                      href={l.href}
+                      className="rounded-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
                       {l.label}
                     </Link>
                   </li>

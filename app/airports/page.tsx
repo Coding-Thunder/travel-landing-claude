@@ -3,6 +3,8 @@ import { airports } from "@/config/airports";
 import { siteConfig } from "@/config/siteConfig";
 import Container from "../components/ui/Container";
 import PageHero from "../components/PageHero";
+import Icon from "../components/ui/Icon";
+import { Button } from "@/components/ui/button";
 import AirportCard from "../components/AirportCard";
 import CallBand from "../components/CallBand";
 import Reveal from "../components/ui/Reveal";
@@ -38,6 +40,14 @@ export default function AirportsIndexPage() {
         eyebrow="Airport car rentals"
         title="Rent a car at the airport"
         subtitle="Counter and curbside pickup at the busiest airports in the country. Choose your airport for local pickup logistics, rental tips and nearby drives — then call to lock your best all-in rate."
+        actions={
+          <Button asChild data-cta="airports-index-call">
+            <a href={`tel:${siteConfig.phone}`}>
+              <Icon name="phone" />
+              Call {siteConfig.phoneVanity}
+            </a>
+          </Button>
+        }
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Airports", href: "/airports" },
@@ -45,7 +55,8 @@ export default function AirportsIndexPage() {
       />
 
       <Container className="py-14 sm:py-16">
-        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+        <h2 className="sr-only">Airport locations</h2>
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {airports.map((a, i) => (
             <Reveal key={a.iata} delay={(i % 4) * 0.05}>
               <AirportCard airport={a} />

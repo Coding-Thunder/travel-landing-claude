@@ -20,12 +20,12 @@ export default function StarRating({
         const fill = Math.max(0, Math.min(1, rating - i));
         return (
           <span key={i} className={`relative inline-block ${starClassName}`}>
-            <Star className="absolute inset-0 text-slate-300" />
+            <Star className="absolute inset-0 text-border" />
             <span
               className="absolute inset-0 overflow-hidden"
               style={{ width: `${fill * 100}%` }}
             >
-              <Star className="text-amber-400" />
+              <Star className="text-rating" />
             </span>
           </span>
         );
@@ -37,7 +37,8 @@ export default function StarRating({
 function Star({ className }: { className: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={`h-full w-full ${className}`} aria-hidden="true">
-      <path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z" />
+      {/* Same geometry as the `star` glyph in the icon family. */}
+      <path d="M12 3.3l2.29 5.55 5.98.46-4.56 3.9 1.4 5.83L12 15.9l-5.11 3.14 1.4-5.83-4.56-3.9 5.98-.46Z" />
     </svg>
   );
 }

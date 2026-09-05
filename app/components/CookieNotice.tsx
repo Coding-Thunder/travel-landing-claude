@@ -3,34 +3,43 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/siteConfig";
+import { analyticsEnabled } from "@/lib/analytics";
+import { Button } from "@/components/ui/button";
+import Icon from "./ui/Icon";
 
 const STORAGE_KEY = "mcr-cookie-ack-v1";
 
+/**
+ * Cookie notice.
+ *
+ * Renders nothing at all when the active brand has no measurement configured,
+ * because a notice about analytics that are not running is noise.
+ *
+ * It sits above the mobile call bar rather than over it: the phone CTA is the
+ * conversion and must never be covered.
+ */
 export default function CookieNotice() {
   const [visible, setVisible] = useState(false);
   const { cookieNotice } = siteConfig;
 
   useEffect(() => {
+    if (!analyticsEnabled) return;
+    let acknowledged: string | null = null;
     try {
-      const acknowledged = window.localStorage.getItem(STORAGE_KEY);
-      if (!acknowledged) {
-        // Small delay so it doesn't collide with the hero entrance animation
-        const t = window.setTimeout(() => setVisible(true), 800);
-        return () => window.clearTimeout(t);
-      }
+      acknowledged = window.localStorage.getItem(STORAGE_KEY);
     } catch {
-      // localStorage unavailable — show the notice on the next tick to avoid
-      // a synchronous setState inside the effect body.
-      const t = window.setTimeout(() => setVisible(true), 0);
-      return () => window.clearTimeout(t);
+      /* storage unavailable — fall through and show the notice */
     }
+    if (acknowledged) return;
+    const t = window.setTimeout(() => setVisible(true), 800);
+    return () => window.clearTimeout(t);
   }, []);
 
   const dismiss = () => {
     try {
       window.localStorage.setItem(STORAGE_KEY, "1");
     } catch {
-      // ignore
+      /* ignore */
     }
     setVisible(false);
   };
@@ -41,56 +50,25 @@ export default function CookieNotice() {
     <div
       role="region"
       aria-label="Cookie notice"
-      className="fixed inset-x-3 bottom-[84px] z-[45] mx-auto max-w-xl rounded-2xl border border-slate-200 bg-white/98 p-4 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.35)] backdrop-blur sm:inset-x-auto sm:left-5 sm:right-auto sm:bottom-6 sm:p-5"
-      style={{
-        paddingBottom: "max(1rem, env(safe-area-inset-bottom))",
-      }}
+      // On mobile this docks directly above the sticky call bar rather than
+      // over the page: the call bar is the primary conversion and must never be
+      // covered, and the previous position floated this card across the hero
+      // search form.
+      className="fixed inset-x-0 bottom-[var(--call-bar-h)] z-[45] border-y bg-card/98 backdrop-blur sm:inset-x-auto sm:bottom-6 sm:left-6 sm:max-w-md sm:rounded-lg sm:border sm:shadow-lg"
     >
-      <div className="flex items-start gap-3">
-        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-slate-900 text-white">
-          <svg
-            className="h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 2a10 10 0 10 10 10 4 4 0 01-5-5 4 4 0 01-5-5zM8 14h.01M14 16h.01M16 11h.01"
-            />
-          </svg>
-        </div>
-        <div className="flex-1 text-[13px] leading-relaxed text-slate-700">
-          <p>
-            {cookieNotice.message.replace(" See our Privacy Policy for details.", "")}{" "}
-            See our{" "}
-            <Link
-              href="/privacy-policy"
-              className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-            >
-              {cookieNotice.learnMore}
-            </Link>{" "}
-            for details.
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={dismiss}
-              className="inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-xs font-bold text-white transition hover:bg-slate-800"
-            >
-              {cookieNotice.accept}
-            </button>
-            <Link
-              href="/privacy-policy"
-              className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
-            >
+      <div className="mx-auto flex max-w-6xl items-start gap-3 p-3 sm:p-4">
+        <Icon name="lock" className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+        <div className="min-w-0 flex-1">
+          <p className="text-[13px] leading-relaxed text-muted-foreground sm:text-sm">
+            {cookieNotice.message}{" "}
+            <Link href="/privacy-policy" className="underline underline-offset-4 hover:text-foreground">
               {cookieNotice.learnMore}
             </Link>
-          </div>
+          </p>
         </div>
+        <Button size="sm" className="shrink-0" onClick={dismiss}>
+          {cookieNotice.accept}
+        </Button>
       </div>
     </div>
   );

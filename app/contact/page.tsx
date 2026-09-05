@@ -5,6 +5,7 @@ import Icon from "../components/ui/Icon";
 import PageHero from "../components/PageHero";
 import CtaButton from "../components/call/CtaButton";
 import JsonLd from "../components/seo/JsonLd";
+import { Button } from "@/components/ui/button";
 import { breadcrumbSchema, localBusinessSchema, organizationSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -31,14 +32,14 @@ export default function ContactPage() {
       href: `tel:${phone}`,
     },
     {
-      icon: "headset" as const,
+      icon: "mail" as const,
       label: "Email us",
       value: email,
       sub: "We reply within one business day",
       href: `mailto:${email}`,
     },
     {
-      icon: "map" as const,
+      icon: "pin" as const,
       label: "Mailing address",
       value: `${addressCity}, ${addressRegionCode} ${addressPostal}`,
       sub: addressLine,
@@ -77,70 +78,74 @@ export default function ContactPage() {
       />
 
       <Container className="py-14 sm:py-16">
-        {/* Primary call CTA */}
-        <div className="rounded-3xl border border-brand-100 bg-brand-50 p-6 sm:p-8">
+        {/* Primary call CTA — the number is the dominant action, the callback steps down. */}
+        <div className="rounded-lg border bg-muted/50 p-6 sm:p-7">
           <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand-700">
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 Reservations &amp; support · 24/7
               </p>
               <a
                 href={`tel:${phone}`}
-                className="mt-1 block text-3xl font-extrabold tracking-tight text-slate-900 hover:text-brand-700 sm:text-4xl"
+                className="mt-1 block text-2xl font-semibold tracking-tight transition-colors hover:text-primary sm:text-3xl"
               >
                 {phoneVanity}
               </a>
-              <p className="mt-1 text-sm text-slate-600">{phoneDisplay} · {callResponse}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{phoneDisplay} · {callResponse}</p>
             </div>
-            <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row">
-              <a
-                href={`tel:${phone}`}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.55)] transition hover:bg-brand-700"
-              >
-                <Icon name="phone" className="h-5 w-5" />
-                Call Now
-              </a>
-              <CtaButton source="contact-callback" variant="secondary" size="lg">
-                <Icon name="headset" className="h-5 w-5 text-brand-600" />
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+              <Button asChild size="lg">
+                <a href={`tel:${phone}`}>
+                  <Icon name="phone" />
+                  Call Now
+                </a>
+              </Button>
+              <CtaButton source="contact-callback" variant="outline" size="lg">
+                <Icon name="headset" />
                 Request a Callback
               </CtaButton>
             </div>
           </div>
         </div>
 
-        {/* Contact methods */}
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Contact methods — one hairline grid rather than four floating cards. */}
+        <ul className="mt-8 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {methods.map((m) => {
             const inner = (
               <>
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <Icon name={m.icon} className="h-5 w-5" />
+                <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  <Icon name={m.icon} className="h-4 w-4 shrink-0 text-primary" />
+                  {m.label}
                 </span>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-slate-400">{m.label}</p>
-                <p className="mt-1 text-base font-bold text-slate-900">{m.value}</p>
-                <p className="mt-0.5 text-sm text-slate-500">{m.sub}</p>
+                <span className="mt-2 block text-[15px] font-medium [overflow-wrap:anywhere]">{m.value}</span>
+                <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{m.sub}</span>
               </>
             );
-            return m.href ? (
-              <a key={m.label} href={m.href} className="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-brand-200 hover:shadow-[var(--shadow-card)]">
-                {inner}
-              </a>
-            ) : (
-              <div key={m.label} className="rounded-2xl border border-slate-200 bg-white p-5">
-                {inner}
-              </div>
+            return (
+              <li key={m.label} className="flex">
+                {m.href ? (
+                  <a
+                    href={m.href}
+                    className="flex w-full flex-col bg-card p-5 transition-colors hover:bg-accent"
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <div className="flex w-full flex-col bg-card p-5">{inner}</div>
+                )}
+              </li>
             );
           })}
-        </div>
+        </ul>
 
         {/* Business transparency */}
-        <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-7">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-slate-900">
-            <Icon name="shield" className="h-5 w-5 text-brand-600" />
+        <div className="mt-8 rounded-lg border bg-muted/40 p-6 sm:p-7">
+          <h2 className="flex items-center gap-2 text-xl font-semibold tracking-tight sm:text-2xl">
+            <Icon name="shield" className="h-5 w-5 shrink-0 text-primary" />
             About our business
           </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600">{business.description}</p>
-          <p className="mt-3 text-sm text-slate-600">{supportHours}</p>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{business.description}</p>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{supportHours}</p>
         </div>
       </Container>
     </>

@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/**
+ * Inline links inside legal prose stay underlined rather than relying on the
+ * primary colour alone — colour is not enough to mark a link in body text.
+ * Matches the blog's `PostBody` link treatment.
+ */
+const LINK =
+  "font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary";
+
 export default function TermsPage() {
   return (
     <LegalLayout
@@ -24,10 +32,7 @@ export default function TermsPage() {
           {siteConfig.addressLine}, {siteConfig.addressCity},{" "}
           {siteConfig.addressRegionCode} {siteConfig.addressPostal}. All
           reservations are taken by phone at{" "}
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`tel:${siteConfig.phone}`} className={LINK}>
             {siteConfig.phoneDisplay}
           </a>{" "}
           or through our WhatsApp line. We do not currently offer online
@@ -164,17 +169,11 @@ export default function TermsPage() {
         <h2>11. Contact</h2>
         <p>
           Questions about these Terms? Call us at{" "}
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`tel:${siteConfig.phone}`} className={LINK}>
             {siteConfig.phoneDisplay}
           </a>{" "}
           or email{" "}
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`mailto:${siteConfig.email}`} className={LINK}>
             {siteConfig.email}
           </a>
           .

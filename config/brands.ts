@@ -31,11 +31,19 @@ export type BrandConfig = {
   /** Optional logo image path under /public; empty falls back to the wordmark. */
   logo: string;
   /**
-   * Google Ads / gtag config. Leave `gtagId` empty to disable analytics for a
-   * brand (the tag simply won't render). `contactSendTo` is the conversion
-   * action's send_to value fired on calls + callback submissions.
+   * Measurement config. Every field is optional and each one independently
+   * gates the tag it belongs to, so a brand with no IDs renders no third-party
+   * script at all.
+   *
+   *  gtagId        Google Ads account, e.g. "AW-XXXXXXXXX". Empty disables Ads.
+   *  contactSendTo The Ads conversion action fired on a call tap or a callback
+   *                submission, e.g. "AW-XXXXXXXXX/AbC-dEfGhIjK".
+   *  ga4Id         GA4 measurement ID, e.g. "G-XXXXXXXXXX". Empty disables GA4.
+   *  gtmId         Google Tag Manager container, e.g. "GTM-XXXXXXX". Optional:
+   *                events are pushed to `window.dataLayer` either way, so a
+   *                container can be added later without touching the code.
    */
-  ads: { gtagId: string; contactSendTo: string };
+  ads: { gtagId: string; contactSendTo: string; ga4Id: string; gtmId: string };
 };
 
 export const BRANDS: Record<BrandId, BrandConfig> = {
@@ -50,6 +58,12 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     ads: {
       gtagId: "AW-18205099745",
       contactSendTo: "AW-18205099745/XUwSCKOdvL8cEOGN7-hD",
+      // [SET BEFORE LAUNCH] Create the GA4 property and paste its measurement
+      // ID here. Until then GA4 does not load and only Ads conversions fire.
+      ga4Id: "",
+      // [OPTIONAL] Paste a GTM container ID to route everything through Tag
+      // Manager instead. Events already land in window.dataLayer regardless.
+      gtmId: "",
     },
   },
   "budget-travel": {
@@ -60,7 +74,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     domain: "budgetravelsforu.com",
     email: "reservations@budgetravelsforu.com",
     logo: "",
-    ads: { gtagId: "", contactSendTo: "" },
+    ads: { gtagId: "", contactSendTo: "", ga4Id: "", gtmId: "" },
   },
   "rental-confirmation": {
     id: "rental-confirmation",
@@ -70,7 +84,7 @@ export const BRANDS: Record<BrandId, BrandConfig> = {
     domain: "rentalconfirmation.com",
     email: "reservations@rentalconfirmation.com",
     logo: "",
-    ads: { gtagId: "", contactSendTo: "" },
+    ads: { gtagId: "", contactSendTo: "", ga4Id: "", gtmId: "" },
   },
 };
 

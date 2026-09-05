@@ -1,12 +1,29 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
-import CallModal from "./CallModal";
+import dynamic from "next/dynamic";
 
-type OpenOptions = { source?: string; pickup?: string };
+/**
+ * The modal is code-split.
+ *
+ * CallProvider wraps every route, so a statically imported CallModal put Radix
+ * Dialog, the form controls and the callback form into the shared bundle on all
+ * 79 pages — for a component that renders nothing until someone asks for a
+ * callback. Loading it on first open costs a fetch at a moment the user is
+ * already waiting for a panel; loading it eagerly costs every visitor on every
+ * route.
+ */
+const CallModal = dynamic(() => import("./CallModal"), { ssr: false });
+
+type OpenOptions = { source?: string; pickup?: string; notes?: string };
 
 type CallContextValue = {
-  /** Open the call/callback popup. `source` is for analytics; `pickup` pre-fills the form. */
+  /**
+   * Open the call/callback popup. `source` is for analytics, `pickup` pre-fills
+   * the location field, and `notes` carries the rest of a search brief through
+   * so the agent sees dates, times and driver age instead of the visitor having
+   * to repeat them on the call.
+   */
   open: (opts?: OpenOptions) => void;
   close: () => void;
 };
@@ -20,19 +37,26 @@ export function useCall(): CallContextValue {
   return ctx;
 }
 
-const AUTO_KEY = "bt-auto-popup-shown";
-const LEAD_KEY = "bt-lead-submitted";
+const AUTO_KEY = "mbc-auto-popup-shown";
+const LEAD_KEY = "mbc-lead-submitted";
 
 export default function CallProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  /** Latches on first open so the closing animation is not cut short. */
+  const [everOpened, setEverOpened] = useState(false);
   const [source, setSource] = useState<string>("manual");
   const [pickup, setPickup] = useState<string>("");
+  const [notes, setNotes] = useState<string>("");
   const autoShownRef = useRef(false);
 
   const open = useCallback((opts?: OpenOptions) => {
     setSource(opts?.source ?? "manual");
-    if (opts?.pickup) setPickup(opts.pickup);
+    // Always assign, including to "", so a value from one CTA does not leak
+    // into the next open from a different CTA.
+    setPickup(opts?.pickup ?? "");
+    setNotes(opts?.notes ?? "");
     setIsOpen(true);
+    setEverOpened(true);
     // Any explicit open also satisfies the once-per-session auto gate.
     autoShownRef.current = true;
     try {
@@ -65,12 +89,16 @@ export default function CallProvider({ children }: { children: React.ReactNode }
       }
       setSource(autoSource);
       setIsOpen(true);
+      setEverOpened(true);
     };
 
+    // Fire on genuine scroll depth, not on arrival. Comparing the viewport
+    // bottom against half the document height opens the popup immediately on
+    // any page shorter than two viewports, which is most interior routes.
     const onScroll = () => {
-      const scrolled = window.scrollY + window.innerHeight;
-      const half = document.documentElement.scrollHeight * 0.5;
-      if (scrolled >= half) autoOpen("scroll-50");
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable < 400) return;
+      if (window.scrollY / scrollable >= 0.5) autoOpen("scroll-50");
     };
 
     const onMouseOut = (e: MouseEvent) => {
@@ -78,7 +106,8 @@ export default function CallProvider({ children }: { children: React.ReactNode }
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    document.addEventListener("mouseout", onMouseOut);
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    if (fine) document.addEventListener("mouseout", onMouseOut);
     return () => {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("mouseout", onMouseOut);
@@ -88,7 +117,9 @@ export default function CallProvider({ children }: { children: React.ReactNode }
   return (
     <CallContext.Provider value={{ open, close }}>
       {children}
-      <CallModal open={isOpen} onClose={close} pickup={pickup} source={source} />
+      {everOpened ? (
+        <CallModal open={isOpen} onClose={close} pickup={pickup} notes={notes} source={source} />
+      ) : null}
     </CallContext.Provider>
   );
 }

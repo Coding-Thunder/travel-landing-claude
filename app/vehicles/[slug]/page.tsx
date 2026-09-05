@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { vehicleCategories, getVehicleCategory } from "@/config/vehicles";
 import { siteConfig } from "@/config/siteConfig";
-import Container from "../../components/ui/Container";
+import { Button } from "@/components/ui/button";
 import PageHero from "../../components/PageHero";
 import CallBand from "../../components/CallBand";
+import { Section, SectionHeading } from "../../components/ui/Section";
+import CardImage from "../../components/ui/CardImage";
 import FaqList from "../../components/ui/FaqList";
 import VehicleCard from "../../components/VehicleCard";
 import Icon from "../../components/ui/Icon";
@@ -42,6 +43,16 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
+/**
+ * Vehicle class detail page.
+ *
+ * Built from the shared `Section` rhythm rather than one long container of
+ * hand-spaced blocks, so the page alternates quiet and page-surface bands the
+ * same way the home page does. Every region is a hairline set — the bordered
+ * grid for tips, the divided list for models, one table for pricing — which
+ * keeps a long content page reading as one document instead of a stack of
+ * floating cards.
+ */
 export default async function VehiclePage({ params }: Params) {
   const { slug } = await params;
   const v = getVehicleCategory(slug);
@@ -68,6 +79,14 @@ export default async function VehiclePage({ params }: Params) {
         eyebrow="Vehicle category"
         title={`${v.name} Car Rental`}
         subtitle={v.blurb}
+        actions={
+          <Button asChild data-cta="vehicle-hero-call">
+            <a href={`tel:${siteConfig.phone}`}>
+              <Icon name="phone" />
+              Call {siteConfig.phoneVanity}
+            </a>
+          </Button>
+        }
         breadcrumbs={[
           { name: "Home", href: "/" },
           { name: "Vehicles", href: "/vehicles" },
@@ -75,138 +94,153 @@ export default async function VehiclePage({ params }: Params) {
         ]}
       />
 
-      <Container className="py-14 sm:py-16">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <Section>
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <Reveal>
-            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+            <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
               About {v.name.toLowerCase()} rentals
             </h2>
-            {v.intro.map((p, i) => (
-              <p key={i} className={`${i === 0 ? "mt-4 text-lg text-slate-700" : "mt-3 text-[15px] text-slate-600"} leading-relaxed`}>
-                {p}
-              </p>
-            ))}
-            <dl className="mt-6 grid grid-cols-3 gap-3 text-center">
+            <div className="mt-4 space-y-3">
+              {v.intro.map((p, i) => (
+                <p key={i} className={`${i === 0 ? "text-[15px]" : "text-sm"} leading-relaxed text-muted-foreground`}>
+                  {p}
+                </p>
+              ))}
+            </div>
+            <dl className="mt-6 grid grid-cols-3 gap-x-6">
               <Stat icon="users" value={`${v.seats}`} label="Seats" />
               <Stat icon="car" value={`${v.bags}`} label="Bags" />
               <Stat icon="tag" value={`$${v.priceFrom}`} label="From /day" />
             </dl>
           </Reveal>
-          <Reveal delay={0.1} className={`relative order-first overflow-hidden rounded-3xl bg-gradient-to-br ${v.gradient} shadow-[var(--shadow-lift)] lg:order-last`}>
-            <div className="relative aspect-[4/3]">
-              <Image src={v.image} alt={`${v.name} rental car`} fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
-            </div>
+          <Reveal
+            delay={0.1}
+            className="relative order-first aspect-[4/3] overflow-hidden rounded-lg border lg:order-last"
+          >
+            <CardImage
+              src={v.image}
+              alt={`${v.name} rental car`}
+              gradient={v.gradient}
+              sizes="(min-width: 1024px) 560px, 100vw"
+            />
           </Reveal>
         </div>
 
         <div className="mt-12">
           <CallBand heading={`Best ${v.name.toLowerCase()} rate — by phone`} />
         </div>
+      </Section>
 
-        {/* Best for */}
-        <section className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-14">
+      {/* Best for */}
+      <Section tone="gray">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
           <div>
-            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">Best for</h2>
-            <ul className="mt-6 space-y-3">
+            <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Best for</h2>
+            <ul className="mt-5 divide-y divide-border border-t">
               {v.bestFor.map((use) => (
-                <li key={use} className="flex items-start gap-3 text-[15px] text-slate-700">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
-                    <Icon name="check" className="h-4 w-4" />
-                  </span>
+                <li key={use} className="flex items-start gap-2.5 py-3 text-sm leading-relaxed text-muted-foreground">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                   {use}
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">Popular models</h2>
-            <ul className="mt-6 space-y-3">
+            <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Popular models</h2>
+            <ul className="mt-5 divide-y divide-border overflow-hidden rounded-lg border bg-card">
               {v.models.map((m) => (
-                <li key={m.name} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-[var(--shadow-card)]">
-                  <p className="flex items-center gap-2 text-base font-bold text-slate-900">
-                    <Icon name="car" className="h-4 w-4 text-brand-600" />
+                <li key={m.name} className="p-4">
+                  <p className="flex items-center gap-2 text-[15px] font-medium">
+                    <Icon name="car" className="h-4 w-4 shrink-0 text-primary" />
                     {m.name}
                   </p>
-                  <p className="mt-1 text-sm text-slate-600">{m.note}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{m.note}</p>
                 </li>
               ))}
             </ul>
-            <p className="mt-3 text-xs text-slate-500">Specific makes and models are examples and subject to availability.</p>
+            <p className="mt-3 text-xs text-muted-foreground">Specific makes and models are examples and subject to availability.</p>
           </div>
-        </section>
+        </div>
+      </Section>
 
-        {/* Pricing */}
-        <section className="mt-14">
-          <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">Indicative pricing</h2>
-          <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
-                <tr>
-                  <th scope="col" className="px-5 py-3 font-semibold">Term</th>
-                  <th scope="col" className="px-5 py-3 font-semibold">Rate</th>
-                  <th scope="col" className="hidden px-5 py-3 font-semibold sm:table-cell">Notes</th>
+      {/* Pricing */}
+      <Section>
+        <SectionHeading title="Indicative pricing" />
+        <div className="mt-6 overflow-hidden rounded-lg border">
+          <table className="w-full text-left text-sm">
+            <thead className="border-b bg-muted/40 text-xs uppercase tracking-wider text-muted-foreground">
+              <tr>
+                <th scope="col" className="px-5 py-3 font-medium">Term</th>
+                <th scope="col" className="px-5 py-3 font-medium">Rate</th>
+                <th scope="col" className="hidden px-5 py-3 font-medium sm:table-cell">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {v.pricing.map((row) => (
+                <tr key={row.term} className="bg-card">
+                  <th scope="row" className="px-5 py-3 font-medium">{row.term}</th>
+                  <td className="px-5 py-3 font-medium tabular-nums text-primary">{row.price}</td>
+                  <td className="hidden px-5 py-3 text-muted-foreground sm:table-cell">{row.note}</td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {v.pricing.map((row) => (
-                  <tr key={row.term} className="bg-white">
-                    <th scope="row" className="px-5 py-3 font-bold text-slate-900">{row.term}</th>
-                    <td className="px-5 py-3 font-semibold text-brand-700">{row.price}</td>
-                    <td className="hidden px-5 py-3 text-slate-600 sm:table-cell">{row.note}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-xs text-slate-500">Rates are indicative, vary by location and date, and are confirmed by phone before you book.</p>
-        </section>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-3 text-xs text-muted-foreground">Rates are indicative, vary by location and date, and are confirmed by phone before you book.</p>
+      </Section>
 
-        {/* Tips */}
-        <section className="mt-14">
-          <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{v.name} rental tips</h2>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-            {v.tips.map((tip) => (
-              <li key={tip} className="flex gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-[var(--shadow-card)]">
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
-                  <Icon name="sparkles" className="h-4 w-4" />
-                </span>
-                <span className="text-sm leading-relaxed text-slate-700">{tip}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+      {/* Tips */}
+      <Section tone="gray">
+        <SectionHeading title={`${v.name} rental tips`} />
+        <ul className="mt-6 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-2">
+          {v.tips.map((tip) => (
+            <li key={tip} className="flex gap-2.5 bg-card p-5">
+              <Icon name="sparkles" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span className="text-sm leading-relaxed text-muted-foreground">{tip}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
-        {/* FAQ */}
-        <section className="mt-14">
-          <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{v.name} rental FAQs</h2>
-          <div className="mt-6 max-w-3xl">
-            <FaqList items={v.faqs} />
-          </div>
-        </section>
+      {/* FAQ */}
+      <Section>
+        <SectionHeading title={`${v.name} rental FAQs`} />
+        <div className="mt-6 max-w-3xl">
+          <FaqList items={v.faqs} />
+        </div>
+      </Section>
 
-        {/* Related */}
-        <section className="mt-14">
-          <div className="flex items-end justify-between gap-4">
-            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">Other vehicle types</h2>
-            <Link href="/vehicles" className="shrink-0 text-sm font-bold text-brand-700 hover:underline">View all</Link>
-          </div>
-          <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-            {related.map((c) => (
-              <VehicleCard key={c.slug} vehicle={c} />
-            ))}
-          </div>
-        </section>
-      </Container>
+      {/* Related */}
+      <Section tone="gray">
+        <SectionHeading
+          title="Other vehicle types"
+          actions={
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/vehicles">
+                View all
+                <Icon name="arrowRight" />
+              </Link>
+            </Button>
+          }
+        />
+        <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+          {related.map((c) => (
+            <VehicleCard key={c.slug} vehicle={c} />
+          ))}
+        </div>
+      </Section>
     </>
   );
 }
 
 function Stat({ icon, value, label }: { icon: Parameters<typeof Icon>[0]["name"]; value: string; label: string }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white py-4 shadow-[var(--shadow-card)]">
-      <Icon name={icon} className="mx-auto h-5 w-5 text-brand-600" />
-      <dd className="mt-1 text-xl font-extrabold text-slate-900">{value}</dd>
-      <dt className="text-[11px] font-medium uppercase tracking-wider text-slate-500">{label}</dt>
+    <div className="border-t pt-3">
+      <dd className="flex items-center gap-1.5 text-xl font-semibold tracking-tight">
+        <Icon name={icon} className="h-4 w-4 shrink-0 text-primary" />
+        {value}
+      </dd>
+      <dt className="mt-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</dt>
     </div>
   );
 }

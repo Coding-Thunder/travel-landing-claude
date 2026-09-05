@@ -5,6 +5,7 @@ import Icon from "../components/ui/Icon";
 import PageHero from "../components/PageHero";
 import CtaButton from "../components/call/CtaButton";
 import JsonLd from "../components/seo/JsonLd";
+import { Button } from "@/components/ui/button";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -52,7 +53,7 @@ export default function AboutPage() {
       />
 
       <Container className="py-14 sm:py-16">
-        <div className="mx-auto max-w-3xl text-[15px] leading-relaxed text-slate-700 sm:text-base">
+        <div className="max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
           <p>
             {name} was founded to fix the parts of car rental that frustrate travelers most — confusing
             online checkouts, surprise fees at the counter, and support lines that never seem to reach a
@@ -80,51 +81,48 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Stats */}
-        <dl className="mt-12 grid grid-cols-2 gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:grid-cols-4 sm:gap-6 sm:p-8">
+        {/* Stats — one hairline grid rather than four floating panels. */}
+        <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="text-center">
+            <div key={s.label} className="bg-card p-5 text-center">
               <dt className="sr-only">{s.label}</dt>
               <dd>
-                <span className="block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{s.value}</span>
-                <span className="mt-1 block text-xs font-medium uppercase tracking-wider text-slate-500">{s.label}</span>
+                <span className="block text-2xl font-semibold tracking-tight tabular-nums">{s.value}</span>
+                <span className="mt-1 block text-xs font-medium uppercase tracking-wider text-muted-foreground">{s.label}</span>
               </dd>
             </div>
           ))}
         </dl>
 
         {/* Values */}
-        <h2 className="mt-14 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+        <h2 className="mt-14 text-xl font-semibold tracking-tight sm:text-2xl">
           What we stand for
         </h2>
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <ul className="mt-6 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-2">
           {VALUES.map((v) => (
-            <article key={v.title} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-6">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Icon name={v.icon} className="h-5 w-5" />
-              </span>
-              <div>
-                <h3 className="text-base font-bold text-slate-900">{v.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-slate-600">{v.body}</p>
-              </div>
-            </article>
+            <li key={v.title} className="flex flex-col bg-card p-5">
+              <h3 className="flex items-center gap-2 text-[15px] font-medium">
+                <Icon name={v.icon} className="h-4 w-4 shrink-0 text-primary" />
+                {v.title}
+              </h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{v.body}</p>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {/* CTA */}
-        <div className="mt-12 flex flex-col items-center justify-center gap-3 rounded-2xl border border-brand-100 bg-brand-50 p-6 text-center sm:flex-row sm:p-8">
-          <p className="flex-1 text-base font-bold text-slate-900 sm:text-lg">
+        <div className="mt-12 flex flex-col items-start gap-5 rounded-lg border bg-muted/50 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+          <p className="flex-1 text-[15px] font-medium">
             Ready to drive? Talk to a {name} agent now.
           </p>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <a
-              href={`tel:${phone}`}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.55)] transition hover:bg-brand-700"
-            >
-              <Icon name="phone" className="h-5 w-5" />
-              Call {phoneVanity}
-            </a>
-            <CtaButton source="about-callback" variant="secondary" size="lg">
+          <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+            <Button asChild size="lg">
+              <a href={`tel:${phone}`}>
+                <Icon name="phone" />
+                Call {phoneVanity}
+              </a>
+            </Button>
+            <CtaButton source="about-callback" variant="outline" size="lg">
               Request a Callback
             </CtaButton>
           </div>

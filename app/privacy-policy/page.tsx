@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/**
+ * Inline links inside legal prose stay underlined rather than relying on the
+ * primary colour alone — colour is not enough to mark a link in body text.
+ * Matches the cookie policy and the blog's `PostBody` link treatment.
+ */
+const LINK =
+  "font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary";
+
 export default function PrivacyPage() {
   return (
     <LegalLayout
@@ -22,17 +30,11 @@ export default function PrivacyPage() {
           {siteConfig.legalName} is a car rental provider based in{" "}
           {siteConfig.addressCity}, {siteConfig.addressRegion}, United States.
           You can reach us by phone at{" "}
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`tel:${siteConfig.phone}`} className={LINK}>
             {siteConfig.phoneDisplay}
           </a>{" "}
           or by email at{" "}
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`mailto:${siteConfig.email}`} className={LINK}>
             {siteConfig.email}
           </a>
           . Our registered address is {siteConfig.addressLine},{" "}
@@ -137,7 +139,7 @@ export default function PrivacyPage() {
             href="https://adssettings.google.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
+            className={LINK}
           >
             adssettings.google.com
           </a>
@@ -146,7 +148,7 @@ export default function PrivacyPage() {
             href="https://tools.google.com/dlpage/gaoptout"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
+            className={LINK}
           >
             Google Analytics opt-out browser add-on
           </a>
@@ -224,17 +226,11 @@ export default function PrivacyPage() {
         </ul>
         <p>
           To exercise any of these rights, call us at{" "}
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`tel:${siteConfig.phone}`} className={LINK}>
             {siteConfig.phoneDisplay}
           </a>{" "}
           or email{" "}
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`mailto:${siteConfig.email}`} className={LINK}>
             {siteConfig.email}
           </a>
           . We may need to verify your identity before responding.
@@ -266,17 +262,11 @@ export default function PrivacyPage() {
         <p>
           Questions about this Privacy Policy or your data? Our team is
           available at{" "}
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`tel:${siteConfig.phone}`} className={LINK}>
             {siteConfig.phoneDisplay}
           </a>{" "}
           or{" "}
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`mailto:${siteConfig.email}`} className={LINK}>
             {siteConfig.email}
           </a>
           .

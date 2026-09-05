@@ -5,7 +5,10 @@ import Link from "next/link";
 import { getAuthor } from "@/content/authors";
 import { siteConfig } from "@/config/siteConfig";
 import { adjacent, allPosts, formatDate, getPost, headings, readingMinutes, related, toSummary } from "@/lib/blog";
+import { Badge } from "@/components/ui/badge";
 import Container from "../../components/ui/Container";
+import { Section, SectionHeading } from "../../components/ui/Section";
+import Icon from "../../components/ui/Icon";
 import Avatar from "../../components/ui/Avatar";
 import PostBody from "../../components/blog/PostBody";
 import Toc from "../../components/blog/Toc";
@@ -47,6 +50,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
+/** Breadcrumb link styling, matched to the shared `Breadcrumb` primitive. */
+const CRUMB = "rounded-sm transition-colors hover:text-foreground";
+
 export default async function BlogPostPage({ params }: Params) {
   const { slug } = await params;
   const post = getPost(slug);
@@ -82,29 +88,38 @@ export default async function BlogPostPage({ params }: Params) {
       />
 
       {/* Header */}
-      <header className="border-b border-slate-200 bg-slate-50">
-        <Container className="py-10 sm:py-12">
+      <header className="border-b bg-muted/40">
+        <Container className="py-8 sm:py-10">
+          {/* Hand-rolled rather than the shared `Breadcrumb`: the trailing crumb
+              here is the category, which stays a link because it is not the
+              current page. */}
           <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
-              <li><Link href="/" className="hover:text-brand-700">Home</Link></li>
-              <li className="text-slate-300">/</li>
-              <li><Link href="/blog" className="hover:text-brand-700">Blog</Link></li>
-              <li className="text-slate-300">/</li>
-              <li><Link href={`/blog/category/${post.category}`} className="hover:text-brand-700">{post.categoryLabel}</Link></li>
+            <ol className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
+              <li className="flex items-center gap-1">
+                <Link href="/" className={CRUMB}>Home</Link>
+              </li>
+              <li className="flex items-center gap-1">
+                <Icon name="chevronRight" className="h-3.5 w-3.5 opacity-60" />
+                <Link href="/blog" className={CRUMB}>Blog</Link>
+              </li>
+              <li className="flex items-center gap-1">
+                <Icon name="chevronRight" className="h-3.5 w-3.5 opacity-60" />
+                <Link href={`/blog/category/${post.category}`} className={CRUMB}>{post.categoryLabel}</Link>
+              </li>
             </ol>
           </nav>
 
-          <h1 className="mt-4 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+          <h1 className="mt-4 max-w-3xl font-display text-3xl tracking-tight sm:text-4xl">
             {post.title}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">{post.excerpt}</p>
+          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">{post.excerpt}</p>
 
           <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3">
             <div className="flex items-center gap-3">
               <Avatar src={author.avatar} name={author.name} size={40} />
               <div className="text-sm">
-                <p className="font-bold text-slate-900">{author.name}</p>
-                <p className="text-slate-500">
+                <p className="font-medium">{author.name}</p>
+                <p className="text-muted-foreground">
                   <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time> · {minutes} min read
                 </p>
               </div>
@@ -118,14 +133,14 @@ export default async function BlogPostPage({ params }: Params) {
 
       {/* Hero image */}
       <Container className="pt-8 sm:pt-10">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-3xl bg-slate-200 shadow-[var(--shadow-lift)] sm:aspect-[2/1]">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-lg border bg-muted sm:aspect-[2/1]">
           <Image src={post.heroImage} alt={post.heroAlt} fill priority sizes="(min-width: 1024px) 1024px, 100vw" className="object-cover" />
         </div>
-        <p className="mt-2 text-center text-xs text-slate-400">Photo via Unsplash</p>
+        <p className="mt-2 text-center text-xs text-muted-foreground">Photo via Unsplash</p>
       </Container>
 
       {/* Body + TOC */}
-      <Container className="grid gap-10 py-10 sm:py-12 lg:grid-cols-12 lg:gap-14">
+      <Container className="grid gap-10 py-14 sm:py-16 lg:grid-cols-12 lg:gap-14">
         <aside className="lg:col-span-4 lg:order-last">
           <div className="lg:sticky lg:top-24">
             <Toc items={toc} />
@@ -137,7 +152,7 @@ export default async function BlogPostPage({ params }: Params) {
 
           {post.faqs && post.faqs.length > 0 ? (
             <section className="mt-12">
-              <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">Frequently asked questions</h2>
+              <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Frequently asked questions</h2>
               <div className="mt-5">
                 <FaqList items={post.faqs} />
               </div>
@@ -147,7 +162,7 @@ export default async function BlogPostPage({ params }: Params) {
           {/* Tags */}
           <div className="mt-10 flex flex-wrap gap-2">
             {post.tags.map((t) => (
-              <span key={t} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">#{t}</span>
+              <Badge key={t} variant="secondary">#{t}</Badge>
             ))}
           </div>
 
@@ -159,15 +174,15 @@ export default async function BlogPostPage({ params }: Params) {
           {(older || newer) && (
             <nav aria-label="More articles" className="mt-8 grid gap-4 sm:grid-cols-2">
               {newer ? (
-                <Link href={`/blog/${newer.slug}`} className="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-brand-200">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Newer</p>
-                  <p className="mt-1 font-bold text-slate-900 group-hover:text-brand-700">{newer.title}</p>
+                <Link href={`/blog/${newer.slug}`} className="rounded-lg border bg-card p-5 transition-colors hover:bg-accent">
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Newer</span>
+                  <span className="mt-1 block text-[15px] font-medium">{newer.title}</span>
                 </Link>
               ) : <span className="hidden sm:block" />}
               {older ? (
-                <Link href={`/blog/${older.slug}`} className="group rounded-2xl border border-slate-200 bg-white p-5 text-right transition hover:border-brand-200">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Older</p>
-                  <p className="mt-1 font-bold text-slate-900 group-hover:text-brand-700">{older.title}</p>
+                <Link href={`/blog/${older.slug}`} className="rounded-lg border bg-card p-5 text-right transition-colors hover:bg-accent">
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Older</span>
+                  <span className="mt-1 block text-[15px] font-medium">{older.title}</span>
                 </Link>
               ) : null}
             </nav>
@@ -181,16 +196,14 @@ export default async function BlogPostPage({ params }: Params) {
 
       {/* Related */}
       {relatedPosts.length > 0 && (
-        <section className="border-t border-slate-200 bg-slate-50">
-          <Container className="py-12 sm:py-14">
-            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">Related reading</h2>
-            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {relatedPosts.map((p) => (
-                <PostCard key={p.slug} post={toSummary(p)} />
-              ))}
-            </div>
-          </Container>
-        </section>
+        <Section tone="gray">
+          <SectionHeading title="Related reading" />
+          <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedPosts.map((p) => (
+              <PostCard key={p.slug} post={toSummary(p)} />
+            ))}
+          </div>
+        </Section>
       )}
     </article>
   );

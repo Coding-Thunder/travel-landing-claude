@@ -1,34 +1,37 @@
 import Container from "./Container";
-import Reveal from "./Reveal";
+import { cn } from "@/lib/cn";
 
 type SectionProps = {
   id?: string;
   children: React.ReactNode;
   className?: string;
-  /** Background tone: white (default) or light-gray. */
+  /** Surface tone. `dark` flips the token scope rather than hardcoding colours. */
   tone?: "white" | "gray" | "dark";
   containerClassName?: string;
 };
 
+/**
+ * Vertical rhythm for page sections.
+ *
+ * Three tones, and only two of them are page surfaces: `gray` is the quiet band
+ * used to separate one region from the next, and `dark` enters the inverted
+ * token scope so the components inside need no parallel colour classes.
+ */
 const TONES: Record<NonNullable<SectionProps["tone"]>, string> = {
-  white: "bg-white",
-  gray: "bg-slate-50",
-  dark: "bg-slate-950 text-white",
+  white: "bg-background",
+  gray: "border-y bg-muted/40",
+  dark: "dark bg-background text-foreground",
 };
 
-/** Vertical-rhythm section wrapper with consistent spacing + optional tone. */
 export function Section({
   id,
   children,
-  className = "",
+  className,
   tone = "white",
-  containerClassName = "",
+  containerClassName,
 }: SectionProps) {
   return (
-    <section
-      id={id}
-      className={`scroll-mt-20 py-16 sm:py-20 lg:py-24 ${TONES[tone]} ${className}`}
-    >
+    <section id={id} className={cn("scroll-mt-20 py-14 sm:py-16", TONES[tone], className)}>
       <Container className={containerClassName}>{children}</Container>
     </section>
   );
@@ -38,49 +41,37 @@ type HeadingProps = {
   eyebrow?: string;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
-  align?: "center" | "left";
-  invert?: boolean;
+  /** Trailing action, e.g. a "view all" link. */
+  actions?: React.ReactNode;
   className?: string;
 };
 
-/** Reusable section heading: eyebrow + title + subtitle, with reveal animation. */
-export function SectionHeading({
-  eyebrow,
-  title,
-  subtitle,
-  align = "center",
-  invert = false,
-  className = "",
-}: HeadingProps) {
-  const alignment =
-    align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl text-left";
+/**
+ * Section heading.
+ *
+ * Left aligned with the description beneath and any action pinned to the
+ * right — a page of centred eyebrow-title-subtitle stacks is most of what makes
+ * a site read as a marketing template rather than a product. The `eyebrow` prop
+ * is still accepted and rendered, but quietly, as a label rather than a banner.
+ *
+ * In the inverted (`dark`) scope this needs no `invert` prop: the tokens
+ * already carry the right values.
+ */
+export function SectionHeading({ eyebrow, title, subtitle, actions, className }: HeadingProps) {
   return (
-    <Reveal className={`${alignment} ${className}`}>
-      {eyebrow ? (
-        <p
-          className={`text-xs font-semibold uppercase tracking-[0.18em] ${
-            invert ? "text-brand-300" : "text-brand-600"
-          }`}
-        >
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2
-        className={`mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl ${
-          invert ? "text-white" : "text-slate-900"
-        }`}
-      >
-        {title}
-      </h2>
-      {subtitle ? (
-        <p
-          className={`mt-4 text-base leading-relaxed sm:text-lg ${
-            invert ? "text-slate-300" : "text-slate-600"
-          }`}
-        >
-          {subtitle}
-        </p>
-      ) : null}
-    </Reveal>
+    <div className={cn("flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between", className)}>
+      <div className="max-w-2xl">
+        {eyebrow ? (
+          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{eyebrow}</p>
+        ) : null}
+        <h2 className={cn("text-xl font-semibold tracking-tight sm:text-2xl", eyebrow && "mt-1.5")}>
+          {title}
+        </h2>
+        {subtitle ? (
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{subtitle}</p>
+        ) : null}
+      </div>
+      {actions ? <div className="flex shrink-0 items-center gap-2">{actions}</div> : null}
+    </div>
   );
 }

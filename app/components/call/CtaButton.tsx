@@ -1,7 +1,8 @@
 "use client";
 
 import { useCall } from "./CallProvider";
-import { buttonClasses, type ButtonVariant, type ButtonSize } from "../ui/buttonStyles";
+import { Button, type ButtonProps } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 
 type CtaButtonProps = {
   children: React.ReactNode;
@@ -9,37 +10,42 @@ type CtaButtonProps = {
   source: string;
   /** Pre-fills the callback form's pickup-location field. */
   pickup?: string;
-  variant?: ButtonVariant;
-  size?: ButtonSize;
+  variant?: ButtonProps["variant"];
+  size?: ButtonProps["size"];
   fullWidth?: boolean;
   className?: string;
   icon?: React.ReactNode;
 };
 
 /**
- * The universal "soft" conversion CTA. Any high-intent action — Book Now,
- * Get Quote, Check Availability, Rent Now, Reserve, Learn More — renders this,
- * which opens the global call/callback popup instead of a booking flow.
+ * The universal "soft" conversion CTA. Any high-intent action that is not a
+ * direct dial — Check Availability, Get Rental Information, Reserve by Phone —
+ * renders this, which opens the call/callback popup.
  */
 export default function CtaButton({
   children,
   source,
   pickup,
-  variant = "primary",
-  size = "md",
+  variant = "default",
+  size = "default",
   fullWidth = false,
-  className = "",
+  className,
   icon,
 }: CtaButtonProps) {
   const { open } = useCall();
   return (
-    <button
+    <Button
       type="button"
-      onClick={() => open({ source, pickup })}
-      className={buttonClasses({ variant, size, fullWidth, className })}
+      variant={variant}
+      size={size}
+      className={[fullWidth ? "w-full" : "", className].filter(Boolean).join(" ")}
+      onClick={() => {
+        trackEvent("quote_request", { cta_source: source, pickup_location: pickup ?? "" });
+        open({ source, pickup });
+      }}
     >
       {icon}
       {children}
-    </button>
+    </Button>
   );
 }

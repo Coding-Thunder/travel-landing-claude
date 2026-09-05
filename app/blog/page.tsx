@@ -48,6 +48,7 @@ export default function BlogIndexPage() {
       />
 
       <Container className="py-14 sm:py-16">
+        <h2 className="sr-only">Rental guides</h2>
         <BlogExplorer posts={summaries} categories={categories()} />
       </Container>
     </>

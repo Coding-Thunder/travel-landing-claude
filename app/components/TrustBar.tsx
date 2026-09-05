@@ -1,25 +1,29 @@
 import { siteConfig } from "@/config/siteConfig";
 import Container from "./ui/Container";
 import Icon from "./ui/Icon";
-import Reveal from "./ui/Reveal";
 
+/**
+ * The five standing assurances.
+ *
+ * Plain text on a quiet band with a single small glyph each — no icon
+ * medallions and no card wrappers, because neither would add information and
+ * both are what make a trust strip read as decoration.
+ */
 export default function TrustBar() {
   return (
-    <section aria-label="Why drivers trust us" className="border-b border-slate-200 bg-white">
-      <Container className="py-6 sm:py-7">
-        <ul className="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-3 lg:grid-cols-5">
-          {siteConfig.trustBar.map((item, i) => (
-            <Reveal as="li" key={item.label} delay={i * 0.05} className="flex items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Icon name={item.icon} className="h-5 w-5" />
-              </span>
-              <span className="min-w-0">
-                <span className="block text-sm font-bold leading-tight text-slate-900">{item.label}</span>
-                <span className="block text-xs text-slate-500">{item.sub}</span>
-              </span>
-            </Reveal>
+    <section aria-label="Why drivers trust us" className="border-y bg-muted/40">
+      <Container className="py-8">
+        <dl className="grid grid-rows-[auto_auto] gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-5">
+          {siteConfig.trustBar.map((item) => (
+            <div key={item.label} className="row-span-2 grid grid-rows-subgrid gap-0">
+              <dt className="flex items-center gap-2 text-sm font-medium">
+                <Icon name={item.icon} className="h-4 w-4 shrink-0 text-primary" />
+                {item.label}
+              </dt>
+              <dd className="text-sm leading-relaxed text-muted-foreground">{item.sub}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </Container>
     </section>
   );

@@ -24,21 +24,14 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div
-            style={{
-              width: 64,
-              height: 64,
-              borderRadius: 16,
-              background: "#2563eb",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 36,
-              fontWeight: 800,
-            }}
-          >
-            {siteConfig.name.trim().charAt(0).toUpperCase()}
-          </div>
+          {/* The real brand mark, not an initial — the card is the first thing
+              a shared link shows, so it has to match the favicon and header. */}
+          <svg width="64" height="64" viewBox="0 0 64 64" style={{ display: "flex" }}>
+            <rect width="64" height="64" rx="14" fill="#2563eb" />
+            <g transform="translate(8,8) scale(2)" fill="#ffffff">
+              <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-5.99zM6.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 11l1.5-4.5h11L19 11H5z" />
+            </g>
+          </svg>
           <div style={{ fontSize: 36, fontWeight: 700 }}>{siteConfig.name}</div>
         </div>
 

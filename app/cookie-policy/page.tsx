@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/**
+ * Inline links inside legal prose stay underlined rather than relying on the
+ * primary colour alone — colour is not enough to mark a link in body text.
+ * Matches the blog's `PostBody` link treatment.
+ */
+const LINK =
+  "font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary";
+
 export default function CookiePolicyPage() {
   return (
     <LegalLayout
@@ -92,15 +100,15 @@ export default function CookiePolicyPage() {
         <h2>6. Contact us</h2>
         <p>
           Questions about this policy? Call us at{" "}
-          <a href={`tel:${siteConfig.phone}`} className="font-semibold text-brand-600 underline-offset-4 hover:underline">
+          <a href={`tel:${siteConfig.phone}`} className={LINK}>
             {siteConfig.phoneDisplay}
           </a>{" "}
           or email{" "}
-          <a href={`mailto:${siteConfig.email}`} className="font-semibold text-brand-600 underline-offset-4 hover:underline">
+          <a href={`mailto:${siteConfig.email}`} className={LINK}>
             {siteConfig.email}
           </a>
           . See also our{" "}
-          <Link href="/privacy-policy" className="font-semibold text-brand-600 underline-offset-4 hover:underline">
+          <Link href="/privacy-policy" className={LINK}>
             Privacy Policy
           </Link>
           .

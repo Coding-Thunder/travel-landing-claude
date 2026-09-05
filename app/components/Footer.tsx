@@ -1,12 +1,18 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/siteConfig";
 import Icon from "./ui/Icon";
+import { Logo } from "./site/logo";
+import { Separator } from "@/components/ui/separator";
 
+/**
+ * Inverted scope: the `dark` class swaps the token values, so every component
+ * inside renders correctly against the deep surface without a parallel set of
+ * colour classes.
+ */
 export default function Footer() {
   const year = new Date().getFullYear();
   const {
     name,
-    shortName,
     legalName,
     phone,
     phoneVanity,
@@ -23,128 +29,123 @@ export default function Footer() {
   } = siteConfig;
 
   return (
-    <footer className="border-t border-slate-800 bg-slate-950 text-slate-300">
-      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-14">
+    <footer className="dark border-t bg-background text-foreground">
+      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
         <div className="grid gap-10 lg:grid-cols-12">
-          {/* Brand + call block */}
+          {/* Brand and the call block. The number is the conversion, so it is
+              the only thing in the footer with a card around it. */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-2.5">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">
-                <Icon name="car" className="h-5 w-5" />
-              </span>
-              <span className="text-lg font-extrabold tracking-tight text-white">{shortName}</span>
-            </div>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-slate-400">
+            <Logo />
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Licensed, insured car rentals nationwide. Reserve by phone with a live US-based agent — no
               hidden fees, free cancellation, instant confirmation.
             </p>
 
             <a
               href={`tel:${phone}`}
-              className="mt-5 inline-flex flex-col rounded-2xl border border-slate-800 bg-slate-900 px-5 py-3.5 transition hover:border-slate-700"
+              data-cta="footer-call"
+              className="mt-5 inline-flex flex-col rounded-lg border bg-card px-5 py-3.5 transition-colors hover:bg-accent"
             >
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                Reservations · 24/7
-              </span>
-              <span className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white">
-                <Icon name="phone" className="h-5 w-5 text-brand-400" />
+              <span className="text-xs font-medium text-muted-foreground">Reservations · {hours}</span>
+              <span className="mt-0.5 flex items-center gap-2 text-xl font-semibold tracking-tight">
+                <Icon name="phone" className="h-5 w-5 text-primary" />
                 {phoneVanity}
               </span>
             </a>
 
-            {/* Social */}
-            <div className="mt-6 flex items-center gap-3">
+            <ul className="mt-6 flex items-center gap-2">
               {social.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 text-slate-400 transition hover:border-slate-600 hover:text-white"
-                >
-                  <Icon name={s.icon as "facebook"} className="h-4 w-4" />
-                </a>
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="flex h-10 w-10 items-center justify-center rounded-md border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                  >
+                    <Icon name={s.icon as "facebook"} className="h-4 w-4" />
+                  </a>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Link columns */}
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-5">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:col-span-5">
             {footerColumns.map((col) => (
-              <div key={col.title}>
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{col.title}</p>
-                <ul className="mt-4 space-y-2.5 text-sm">
+              <nav key={col.title} aria-label={col.title}>
+                <h2 className="text-sm font-medium text-foreground">{col.title}</h2>
+                <ul className="mt-3 space-y-2 text-sm">
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <Link href={l.href} className="text-slate-400 transition hover:text-white">
+                      <Link
+                        href={l.href}
+                        className="inline-block rounded-sm py-1 text-muted-foreground transition-colors hover:text-foreground"
+                      >
                         {l.label}
                       </Link>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </nav>
             ))}
           </div>
 
-          {/* Contact */}
           <div className="lg:col-span-3">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Contact</p>
-            <ul className="mt-4 space-y-3 text-sm">
+            <h2 className="text-sm font-medium text-foreground">Contact</h2>
+            <ul className="mt-3 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2.5">
-                <Icon name="phone" className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />
-                <a href={`tel:${phone}`} className="text-slate-300 hover:text-white">
+                <Icon name="phone" className="mt-0.5 h-4 w-4 shrink-0" />
+                <a href={`tel:${phone}`} className="transition-colors hover:text-foreground">
                   {phoneDisplay}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="headset" className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />
-                <a href={`mailto:${email}`} className="break-all text-slate-300 hover:text-white">
+                <Icon name="mail" className="mt-0.5 h-4 w-4 shrink-0" />
+                <a href={`mailto:${email}`} className="break-all transition-colors hover:text-foreground">
                   {email}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="map" className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />
-                <address className="not-italic leading-relaxed text-slate-400">
+                <Icon name="pin" className="mt-0.5 h-4 w-4 shrink-0" />
+                <address className="not-italic leading-relaxed">
                   {addressLine}
                   <br />
                   {addressCity}, {addressRegionCode} {addressPostal}
                 </address>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Icon name="clock" className="h-4 w-4 shrink-0 text-slate-500" />
-                <span className="text-slate-400">{hours}</span>
+              <li className="flex items-start gap-2.5">
+                <Icon name="clock" className="mt-0.5 h-4 w-4 shrink-0" />
+                <span>{hours}</span>
               </li>
             </ul>
           </div>
         </div>
-      </div>
 
-      <div className="border-t border-slate-800">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-5 text-xs text-slate-500 sm:px-8 md:flex-row md:items-center md:justify-between">
+        <Separator className="my-8" />
+
+        <p className="max-w-4xl text-xs leading-relaxed text-muted-foreground">
+          Vehicle images are illustrative. Rates from ${siteConfig.hero.priceFrom}/day are based on
+          availability and confirmed by phone. This site uses cookies and third-party analytics
+          (including Google Analytics &amp; Google Ads) to measure performance — see our{" "}
+          <Link href="/privacy-policy" className="underline underline-offset-4 hover:text-foreground">
+            Privacy Policy
+          </Link>
+          .
+        </p>
+
+        <div className="mt-6 flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {legalName}. All rights reserved. {name} is a registered trademark.
           </p>
           <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">
             {legalLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="underline-offset-4 transition hover:text-slate-300 hover:underline">
+                <Link href={l.href} className="inline-block rounded-sm py-1 transition-colors hover:text-foreground">
                   {l.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
-        <div className="mx-auto max-w-6xl px-5 pb-6 text-xs text-slate-600 sm:px-8">
-          <p>
-            Vehicle images are illustrative. Rates from ${siteConfig.hero.priceFrom}/day are based on
-            availability and confirmed by phone. This site uses cookies and third-party analytics
-            (including Google Analytics &amp; Google Ads) to measure performance — see our{" "}
-            <Link href="/privacy-policy" className="underline-offset-4 hover:underline">
-              Privacy Policy
-            </Link>
-            .
-          </p>
         </div>
       </div>
     </footer>

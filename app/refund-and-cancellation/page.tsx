@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/**
+ * Inline links inside legal prose stay underlined rather than relying on the
+ * primary colour alone — colour is not enough to mark a link in body text.
+ * Matches the Cookie Policy and the blog's `PostBody` link treatment.
+ */
+const LINK =
+  "font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary";
+
 export default function RefundPage() {
   return (
     <LegalLayout
@@ -23,10 +31,7 @@ export default function RefundPage() {
           cancelled free of charge at any time before the scheduled vehicle
           pickup. Since no payment or deposit is taken over the phone, there
           is nothing to refund at this stage. Simply call us back at{" "}
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`tel:${siteConfig.phone}`} className={LINK}>
             {siteConfig.phoneDisplay}
           </a>{" "}
           or message us on WhatsApp and let us know.
@@ -116,17 +121,11 @@ export default function RefundPage() {
           If you believe a charge is incorrect or a refund has not been
           processed, please contact us first — most issues are resolved the
           same day with a quick phone call. You can reach us at{" "}
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`tel:${siteConfig.phone}`} className={LINK}>
             {siteConfig.phoneDisplay}
           </a>{" "}
           or{" "}
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
-          >
+          <a href={`mailto:${siteConfig.email}`} className={LINK}>
             {siteConfig.email}
           </a>
           .

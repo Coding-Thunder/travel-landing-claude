@@ -2,88 +2,188 @@
 @import "tw-animate-css";
 
 /* ============================================================================
-   Design language — "Terminal": editorial, travel, premium.
-   Warm neutral paper · charcoal ink · restrained cobalt accent · hairline rules.
-   Blue is an ACCENT, not a flood. Most surfaces are neutral.
+   My Budget Car design system.
+
+   ONE semantic token layer, shadcn conventions. Components address semantic tokens
+   (background, card, muted, primary, border, ring) and never raw palette
+   values, so hierarchy stays consistent and a palette change is a one file
+   change.
+
+   Colour is My Budget Car's own: the existing brand blue (#2563eb, the same
+   value in app/icon.svg and the PWA theme colour) on slate neutrals, which is
+   what the site already used. Blue is reserved for the single primary action on
+   a surface — on a phone-first site that is nearly always the call CTA. Blue is
+   hierarchy, not decoration.
+
+   Contrast (verified): foreground 17.9:1, muted-foreground 7.6:1 and primary
+   5.2:1 on the page surface; 16.6:1, 8.3:1 and 8.0:1 in the inverted scope.
+   `--border` is a decorative hairline; `--input` (3.5:1) carries the 3:1
+   boundary on interactive controls.
 ============================================================================ */
+
+:root {
+  /* Surfaces */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  /* Primary action — My Budget Car brand blue. Carries white text at 5.2:1. */
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+
+  /* Quiet surfaces and quiet text */
+  --secondary: #f1f5f9;
+  --secondary-foreground: #1e293b;
+  --muted: #f8fafc;
+  --muted-foreground: #475569;
+
+  /* shadcn `accent` is the subtle hover surface, not the brand accent. */
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+  --success: #0f7a4d;
+  /* Ratings are conventionally gold; the brand accent reads as a link. */
+  --rating: #b45309;
+
+  --border: #e2e8f0;
+  --input: #7c8b9c;
+  --ring: #2563eb;
+
+  --radius: 0.5rem;
+
+  /*
+   * Height of the fixed mobile call bar, including the safe-area inset.
+   * Anything that docks above it (the cookie notice) offsets by this rather
+   * than hard-coding a guess. Zero from `sm` up, where the bar is hidden.
+   */
+  --call-bar-h: calc(4.25rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 40rem) {
+  :root { --call-bar-h: 0px; }
+}
+
+/* Inverted scope for the hero and the footer. Same token names, dark values,
+   so the same components render correctly without a parallel set of colour
+   classes. */
+.dark {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card: #16202f;
+  --card-foreground: #f1f5f9;
+  --popover: #16202f;
+  --popover-foreground: #f1f5f9;
+  --primary: #7dafff;
+  --primary-foreground: #0f172a;
+  --secondary: #1e2c40;
+  --secondary-foreground: #dbe4ee;
+  --muted: #182335;
+  --muted-foreground: #a2b2c4;
+  --accent: #1e2c40;
+  --accent-foreground: #f1f5f9;
+  --destructive: #f0776a;
+  --destructive-foreground: #0f172a;
+  --success: #5fd39b;
+  --rating: #fbbf24;
+  --border: #24344a;
+  --input: #24344a;
+  --ring: #7dafff;
+}
+
 @theme inline {
   --font-sans: var(--font-inter);
   --font-display: var(--font-fraunces);
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Warm neutral system */
-  --color-paper: #faf8f4;
-  --color-paper-deep: #f2efe8;
-  --color-surface: #ffffff;
-  --color-ink: #17150f;
-  --color-ink-soft: #4b4842;
-  --color-ink-muted: #7c786e;
-  --color-line: #e7e2d7;
-  --color-line-strong: #d8d2c4;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-rating: var(--rating);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-  /* Restrained accent (used sparingly) */
-  --color-accent: #1f3a8a;
-  --color-accent-bright: #2650e6;
-  --color-accent-soft: #eef1fb;
-
-  /* Legacy brand scale — retained during page-by-page migration */
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
-
-  --radius: 0.375rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #17150f;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
 
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
-  --shadow-lift: 0 8px 24px -8px rgba(15, 23, 42, 0.12), 0 24px 48px -24px rgba(37, 99, 235, 0.18);
+  html {
+    scroll-behavior: smooth;
+    /* Clears the 4rem sticky header plus a little breathing room. */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), system-ui, -apple-system, Arial, sans-serif;
+    font-feature-settings: "cv02", "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Focus is always visible and always the ring token. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, Arial, sans-serif;
-  font-feature-settings: "cv02", "cv11", "ss01";
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-/* Editorial display type helper */
+/* Fraunces is reserved for the one H1 that opens a page. Section headings stay
+   in Inter so the interface reads as a product rather than an editorial. */
 .font-display {
   font-family: var(--font-display), Georgia, "Times New Roman", serif;
-  font-optical-sizing: auto;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
-/* Small uppercase overline used across editorial sections */
-.overline {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
 }
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+.animate-accordion-down { animation: accordion-down 0.2s ease-out; }
+.animate-accordion-up { animation: accordion-up 0.2s ease-out; }
 
-/* Accessible focus ring */
-:where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-accent-bright);
-  outline-offset: 2px;
-  border-radius: 4px;
+/* Section entrance. Replaces the framer-motion `Reveal` wrapper: same intent,
+   no client bundle, and it degrades to "already visible" without JavaScript. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rise-in {
+    animation: rise-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 18%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
