@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { siteConfig } from "@/config/siteConfig";
+import { allPosts } from "@/lib/blog";
 import { Section, SectionHeading } from "./ui/Section";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -7,6 +9,14 @@ import CtaButton from "./call/CtaButton";
 
 export default function SeoContent() {
   const { seoArticles, phone, phoneVanity } = siteConfig;
+  /**
+   * The six cards below are static copy. This section is titled "Rental guides"
+   * and, until now, linked to no guide at all: the blog was reachable from the
+   * home page only through the header dropdown and the footer. Surfacing the
+   * four newest articles here gives /blog and the articles a real contextual
+   * link from the strongest page on the site.
+   */
+  const latest = allPosts.slice(0, 4);
 
   return (
     <Section tone="gray" id="guides">
@@ -14,6 +24,14 @@ export default function SeoContent() {
         eyebrow="Rental guides"
         title="Everything you need to know about renting a car"
         subtitle="Straight answers on how renting works, what you need, and the rentals we specialize in, so you can call ready to drive."
+        actions={
+          <Button asChild variant="ghost" size="sm">
+            <Link href="/blog">
+              All rental guides
+              <Icon name="arrowRight" />
+            </Link>
+          </Button>
+        }
       />
 
       <div className="mt-6 grid gap-px overflow-hidden rounded-lg border bg-border md:grid-cols-2">
@@ -31,6 +49,29 @@ export default function SeoContent() {
           </article>
         ))}
       </div>
+
+      <Separator className="my-10" />
+
+      <h3 className="text-[15px] font-medium">Latest from the rental guides</h3>
+      <ul className="mt-4 divide-y divide-border border-t">
+        {latest.map((post) => (
+          <li key={post.slug}>
+            <Link
+              href={`/blog/${post.slug}`}
+              className="group flex items-start justify-between gap-4 py-3.5 transition-colors hover:text-primary"
+            >
+              <span>
+                <span className="text-sm font-medium">{post.title}</span>
+                <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{post.excerpt}</span>
+              </span>
+              <Icon
+                name="arrowRight"
+                className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+              />
+            </Link>
+          </li>
+        ))}
+      </ul>
 
       <Separator className="my-10" />
 

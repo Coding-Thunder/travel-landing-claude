@@ -4,6 +4,29 @@ import { getAuthor } from "@/content/authors";
 
 export const POSTS_PER_PAGE = 6;
 
+/**
+ * Indexing policy for the two blog taxonomies.
+ *
+ * Twelve articles are currently spread across 5 categories and 26 tags, and 20
+ * of those tags hold exactly one post. A taxonomy page listing one article is a
+ * weaker duplicate of the article itself, and 31 taxonomy URLs against 17
+ * commercial URLs sends most of the site's crawl budget and internal link
+ * equity somewhere that can never rank or convert.
+ *
+ * So: categories are the one indexable taxonomy, and only once a category
+ * actually aggregates something. Tags stay as navigation, marked noindex,follow
+ * so they still pass equity through to the articles.
+ */
+export const MIN_POSTS_TO_INDEX = 2;
+
+/** A category earns indexing once it aggregates more than a single post. */
+export function categoryIsIndexable(slug: string): boolean {
+  return postsByCategory(slug).length >= MIN_POSTS_TO_INDEX;
+}
+
+/** Tags are never indexed: they duplicate the categories over the same posts. */
+export const TAGS_ARE_INDEXABLE = false;
+
 /** Lightweight, serializable shape for cards and client-side search. */
 export type PostSummary = {
   slug: string;
@@ -122,6 +145,31 @@ export function getTag(slug: string): Taxon | undefined {
 
 export function postsByTag(slug: string): Post[] {
   return allPosts.filter((p) => p.tags.some((t) => slugify(t) === slug));
+}
+
+/**
+ * Guides worth surfacing on a given airport page.
+ *
+ * Airport pages previously linked only to other airport pages, so the eight
+ * strongest commercial URLs on the site passed nothing to the articles written
+ * about them, and /airports/lax and /blog/lax-car-rental-guide did not link to
+ * each other in either direction.
+ *
+ * Matching is by the tags the posts already carry: the IATA code or the city
+ * name for a dedicated guide, falling back to the general airport guides for
+ * the three airports that do not have one of their own. No new data.
+ */
+export function guidesForAirport(iata: string, city: string, n = 3): Post[] {
+  const wants = [iata.toLowerCase(), city.toLowerCase()];
+  const tagged = (p: Post) => p.tags.map((t) => t.toLowerCase());
+
+  const specific = allPosts.filter((p) => tagged(p).some((t) => wants.includes(t)));
+  if (specific.length >= n) return specific.slice(0, n);
+
+  const general = allPosts.filter(
+    (p) => !specific.includes(p) && tagged(p).includes("airport rentals")
+  );
+  return [...specific, ...general].slice(0, n);
 }
 
 export function related(post: Post, n = 3): Post[] {

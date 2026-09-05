@@ -20,6 +20,7 @@ const LINK =
 export default function TermsPage() {
   return (
     <LegalLayout
+      path="/terms-and-conditions"
       title="Terms & Conditions"
       updated="January 2026"
       intro={`These Terms & Conditions ("Terms") govern your use of the ${siteConfig.legalName} website and the car rental services we provide by phone in ${siteConfig.city}, ${siteConfig.region}. By calling us to reserve a vehicle, picking up a rental, or using this website, you agree to the Terms below.`}

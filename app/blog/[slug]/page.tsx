@@ -33,7 +33,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const author = getAuthor(post.authorSlug);
 
   return {
-    title: post.seoTitle ?? post.title,
+    // Already a complete title; bypass the "%s | brand" template so it is
+    // not pushed past the SERP limit.
+    title: { absolute: post.seoTitle ?? post.title },
     description: post.seoDescription ?? post.excerpt,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {

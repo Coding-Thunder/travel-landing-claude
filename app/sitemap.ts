@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/siteConfig";
 import { airports } from "@/config/airports";
 import { vehicleCategories } from "@/config/vehicles";
-import { allPosts, categories, tags, postsByCategory, postsByTag } from "@/lib/blog";
+import { allPosts, categories, postsByCategory, categoryIsIndexable } from "@/lib/blog";
 
 type Entry = {
   path: string;
@@ -47,18 +47,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       lastModified: p.updatedAt,
     })),
-    ...categories().map((c) => ({
-      path: `/blog/category/${c.slug}`,
-      priority: 0.5,
-      changeFrequency: "weekly" as const,
-      lastModified: newest(postsByCategory(c.slug)),
-    })),
-    ...tags().map((t) => ({
-      path: `/blog/tag/${t.slug}`,
-      priority: 0.4,
-      changeFrequency: "monthly" as const,
-      lastModified: newest(postsByTag(t.slug)),
-    })),
+    // A sitemap is a list of the URLs worth indexing, not a list of URLs that
+    // exist. Tag pages are noindex (see lib/blog.ts) and single-post categories
+    // are too, so neither belongs here: submitting a noindex URL just spends
+    // crawl budget to be told not to index it. This drops the file from 69 URLs
+    // to the 38 that can actually rank, and lifts commercial pages from 25% of
+    // the sitemap to 45%.
+    ...categories()
+      .filter((c) => categoryIsIndexable(c.slug))
+      .map((c) => ({
+        path: `/blog/category/${c.slug}`,
+        priority: 0.5,
+        changeFrequency: "weekly" as const,
+        lastModified: newest(postsByCategory(c.slug)),
+      })),
     { path: "/about", priority: 0.8, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
     { path: "/sitemap", priority: 0.3, changeFrequency: "monthly" },

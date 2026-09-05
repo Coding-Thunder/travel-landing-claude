@@ -20,6 +20,7 @@ const LINK =
 export default function RefundPage() {
   return (
     <LegalLayout
+      path="/refund-and-cancellation"
       title="Refund & Cancellation Policy"
       updated="January 2026"
       intro={`This Refund & Cancellation Policy explains how cancellations, changes, and refunds work for reservations made with ${siteConfig.legalName}. In short: because no payment is taken during the phone reservation, you can cancel free of charge any time before pickup, and any refunds after pickup are handled case by case under the conditions below.`}

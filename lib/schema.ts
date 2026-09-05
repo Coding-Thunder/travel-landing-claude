@@ -30,6 +30,25 @@ const postalAddress = {
   addressCountry: "US",
 };
 
+/**
+ * The configured social links that are actually profiles.
+ *
+ * A bare origin such as "https://facebook.com" is the platform's own home page,
+ * not this business's profile, so it is not a `sameAs` for this organisation.
+ */
+function socialProfiles(): string[] {
+  return siteConfig.social
+    .map((s) => s.href)
+    .filter((href) => {
+      try {
+        const { pathname } = new URL(href);
+        return pathname.replace(/\/+$/, "").length > 0;
+      } catch {
+        return false;
+      }
+    });
+}
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
@@ -52,7 +71,12 @@ export function organizationSchema() {
         availableLanguage: ["English", "Spanish"],
       },
     ],
-    sameAs: siteConfig.social.map((s) => s.href),
+    // `sameAs` is an identity claim: it tells Google "these profiles are this
+    // organisation". The configured links are bare platform homepages
+    // (https://facebook.com), which are not profiles and belong to someone
+    // else, so a URL with no path is dropped. If every link is a placeholder
+    // the property is omitted entirely rather than asserting something false.
+    ...(socialProfiles().length ? { sameAs: socialProfiles() } : {}),
   };
 }
 

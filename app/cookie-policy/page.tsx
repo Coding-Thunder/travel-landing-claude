@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
-  description: `Cookie policy for ${siteConfig.legalName}: the cookies and analytics we use (including Google Analytics and Google Ads), why we use them, and how to control them.`,
+  description: `Cookie policy for ${siteConfig.legalName}: the cookies and analytics we use, why we use them, and how to control them.`,
   alternates: { canonical: "/cookie-policy" },
   robots: { index: true, follow: true },
 };
@@ -21,6 +21,7 @@ const LINK =
 export default function CookiePolicyPage() {
   return (
     <LegalLayout
+      path="/cookie-policy"
       title="Cookie Policy"
       updated="June 2026"
       intro={`This Cookie Policy explains how ${siteConfig.legalName} ("we", "us", "our") uses cookies and similar technologies on this website, the categories of cookies we set, and the choices you have. It should be read alongside our Privacy Policy.`}

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { airports, getAirport } from "@/config/airports";
+import { vehicleCategories } from "@/config/vehicles";
+import { guidesForAirport } from "@/lib/blog";
 import { siteConfig } from "@/config/siteConfig";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -29,7 +31,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!airport) return {};
 
   const title = `${airport.city} Airport Car Rental (${airport.iata})`;
-  const description = `Rent a car at ${airport.name} (${airport.iata}) from $${airport.priceFrom}/day. Airport pickup logistics, local rental tips and transparent all-in pricing confirmed by phone. Call ${siteConfig.phoneDisplay}.`;
+  const description = `Rent a car at ${airport.name} (${airport.iata}) from $${airport.priceFrom}/day. Pickup logistics, local tips and all-in pricing by phone.`;
 
   return {
     title,
@@ -51,6 +53,7 @@ export default async function AirportPage({ params }: Params) {
   if (!airport) notFound();
 
   const related = airports.filter((a) => a.slug !== airport.slug).slice(0, 4);
+  const guides = guidesForAirport(airport.iata, airport.city);
 
   return (
     <>
@@ -169,6 +172,87 @@ export default async function AirportPage({ params }: Params) {
             <FaqList items={airport.faqs} />
           </div>
         </section>
+
+        {/*
+          Vehicle classes bookable here.
+          Airport pages are the strongest commercial URLs on the site and they
+          previously linked only sideways, to other airports. This sends equity
+          down to the class pages and answers the obvious next question a
+          visitor has once they have picked a pickup location.
+        */}
+        <section className="mt-14">
+          <SectionHeading
+            title={`Vehicle classes you can book at ${airport.iata}`}
+            subtitle={`Every class below can be reserved for ${airport.name} pickup. Tell your agent the group size and luggage and they will confirm what is available for your dates.`}
+            actions={
+              <Button asChild variant="ghost" size="sm">
+                <Link href="/vehicles">
+                  Compare all classes
+                  <Icon name="arrowRight" />
+                </Link>
+              </Button>
+            }
+          />
+          <ul className="mt-6 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {vehicleCategories.map((v) => (
+              <li key={v.slug}>
+                <Link
+                  href={`/vehicles/${v.slug}`}
+                  className="group flex h-full flex-col bg-card p-4 transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                >
+                  <span className="flex items-center gap-2 text-[15px] font-medium">
+                    {v.name}
+                    <Icon
+                      name="arrowRight"
+                      className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                    />
+                  </span>
+                  <span className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{v.blurb}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/*
+          Guides written about this airport, matched on the tags the posts
+          already carry. Closes the loop: the articles link into the airport
+          pages, and now the airport pages link back out to them.
+        */}
+        {guides.length > 0 ? (
+          <section className="mt-14">
+            <SectionHeading
+              title={`Rental guides for ${airport.city}`}
+              actions={
+                <Button asChild variant="ghost" size="sm">
+                  <Link href="/blog">
+                    All rental guides
+                    <Icon name="arrowRight" />
+                  </Link>
+                </Button>
+              }
+            />
+            <ul className="mt-6 divide-y divide-border border-t">
+              {guides.map((g) => (
+                <li key={g.slug}>
+                  <Link
+                    href={`/blog/${g.slug}`}
+                    className="group flex items-start justify-between gap-4 py-4 transition-colors hover:text-primary"
+                  >
+                    <span>
+                      <span className="text-[15px] font-medium">{g.title}</span>
+                      <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{g.excerpt}</span>
+                    </span>
+                    <Icon
+                      name="arrowRight"
+                      className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         {/* Related airports: internal linking */}
         <section className="mt-14">

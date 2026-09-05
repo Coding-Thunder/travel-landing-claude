@@ -13,7 +13,7 @@ import { breadcrumbSchema, localBusinessSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Airport Car Rental Locations: Book by Phone",
-  description: `Rent a car at LAX, JFK, MCO, MIA, LAS, DFW, ATL and ORD with ${siteConfig.name}. Counter and curbside airport pickup, transparent all-in pricing, live agents 24/7. Call ${siteConfig.phoneDisplay}.`,
+  description: `Rent a car at LAX, JFK, MCO, MIA, LAS, DFW, ATL and ORD. Counter and curbside airport pickup, all-in pricing by phone. Call ${siteConfig.phoneDisplay}.`,
   alternates: { canonical: "/airports" },
   openGraph: {
     title: `Airport Car Rental Locations | ${siteConfig.name}`,

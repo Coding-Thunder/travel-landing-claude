@@ -8,7 +8,7 @@ import JsonLd from "../components/seo/JsonLd";
 import { breadcrumbSchema, websiteSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Car Rental Blog: Guides, Tips & Airport Advice",
+  title: "Car Rental Guides, Tips & Airport Advice",
   description: `Practical car rental guides from ${siteConfig.name}: saving money on airport rentals, insurance explained in plain English, destination road-trip tips and more.`,
   alternates: {
     canonical: "/blog",

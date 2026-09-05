@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { siteConfig } from "@/config/siteConfig";
 import Container from "../components/ui/Container";
 import Icon from "../components/ui/Icon";
@@ -10,7 +11,7 @@ import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "About Us: Licensed Nationwide Car Rental",
-  description: `Learn about ${siteConfig.name}, a licensed and insured car rental provider serving all 50 US states. Transparent pricing, 24/7 live support and a fleet for every trip. Book by phone in minutes.`,
+  description: `About ${siteConfig.name}, a licensed and insured car rental provider serving all 50 US states. Transparent pricing and 24/7 live support.`,
   alternates: { canonical: "/about" },
   openGraph: {
     title: `About ${siteConfig.name}`,
@@ -127,6 +128,38 @@ export default function AboutPage() {
             </CtaButton>
           </div>
         </div>
+
+        {/*
+          Both of these pages were internal-linking dead ends: neither imported
+          next/link, so every visitor and every crawler that arrived here could
+          only leave through the header or the footer. These are the two pages
+          Google and Ads reviewers land on to verify a business, so they should
+          hand you straight back to the commercial pages.
+        */}
+        <nav aria-label="Continue browsing" className="mt-12">
+          <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Where to next</h2>
+          <ul className="mt-5 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { href: "/airports", label: "Airport car rental", note: "Pickup logistics and local tips for the airports we cover." },
+              { href: "/vehicles", label: "Rental car classes", note: "Economy through minivan, and who each class is really for." },
+              { href: "/blog", label: "Rental guides", note: "Requirements, insurance, one-way rentals and how to pay less." },
+              { href: "/#faq", label: "Common questions", note: "What you need to rent, driver age rules and cancellation." },
+            ].map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  className="group flex h-full flex-col bg-card p-5 transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                >
+                  <span className="flex items-center gap-2 text-[15px] font-medium">
+                    {l.label}
+                    <Icon name="arrowRight" className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                  <span className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{l.note}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </Container>
     </>
   );

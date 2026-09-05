@@ -1,11 +1,16 @@
 import { siteConfig } from "@/config/siteConfig";
 import { Button } from "@/components/ui/button";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import JsonLd from "./seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import Icon from "./ui/Icon";
 
 type LegalLayoutProps = {
   title: string;
   updated: string;
   intro?: string;
+  /** Path of this policy page, e.g. "/privacy-policy". Drives the breadcrumb. */
+  path: string;
   children: React.ReactNode;
 };
 
@@ -20,14 +25,27 @@ export default function LegalLayout({
   title,
   updated,
   intro,
+  path,
   children,
 }: LegalLayoutProps) {
+  const crumbs = [
+    { name: "Home", href: "/" },
+    { name: title, href: path },
+  ];
+
   return (
     <div className="bg-background">
+      {/*
+        The four policy pages were the only routes with neither a visible
+        breadcrumb nor BreadcrumbList markup, so they sat outside the site
+        hierarchy for both readers and crawlers.
+      */}
+      <JsonLd data={breadcrumbSchema(crumbs.map((c) => ({ name: c.name, path: c.href })))} />
       {/* Hero band */}
       <div className="border-b bg-muted/40">
         <div className="mx-auto max-w-3xl px-5 py-8 sm:px-8 sm:py-10">
-          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          <Breadcrumb items={crumbs} />
+          <p className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
             Legal · {siteConfig.name}
           </p>
           <h1 className="mt-1.5 font-display text-3xl tracking-tight sm:text-4xl">

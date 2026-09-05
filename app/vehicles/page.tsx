@@ -12,8 +12,8 @@ import JsonLd from "../components/seo/JsonLd";
 import { breadcrumbSchema, localBusinessSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Rental Car Types & Categories: Economy to Luxury",
-  description: `Compare rental car categories with ${siteConfig.name}: economy, compact, mid-size, full-size, SUV, luxury and minivan. Popular models, indicative pricing and tips. Call ${siteConfig.phoneDisplay} for your rate.`,
+  title: "Rental Car Types: Economy to Luxury",
+  description: `Compare rental car classes: economy, compact, mid-size, full-size, SUV, luxury and minivan. Models, indicative pricing and tips. Call ${siteConfig.phoneDisplay}.`,
   alternates: { canonical: "/vehicles" },
   openGraph: {
     title: `Rental Car Types & Categories | ${siteConfig.name}`,

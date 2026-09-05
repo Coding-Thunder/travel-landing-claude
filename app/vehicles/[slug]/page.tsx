@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { vehicleCategories, getVehicleCategory } from "@/config/vehicles";
+import { airports } from "@/config/airports";
 import { siteConfig } from "@/config/siteConfig";
 import { Button } from "@/components/ui/button";
 import PageHero from "../../components/PageHero";
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!v) return {};
 
   const title = `${v.name} Car Rental: Models, Pricing & Tips`;
-  const description = `Rent a ${v.name.toLowerCase()} car from $${v.priceFrom}/day with ${siteConfig.name}. Popular models, indicative daily/weekly/monthly pricing, and rental tips. Call ${siteConfig.phoneDisplay} for your best rate.`;
+  const description = `Rent a ${v.name.toLowerCase()} car from $${v.priceFrom}/day. Popular models, indicative daily, weekly and monthly pricing, plus rental tips.`;
 
   return {
     title,
@@ -217,8 +218,51 @@ export default async function VehiclePage({ params }: Params) {
         </div>
       </Section>
 
-      {/* Related */}
+      {/*
+        Where this class can be picked up.
+        The reciprocal of the class links now on every airport page, so the two
+        commercial hubs reinforce each other instead of each sending equity only
+        to its own siblings. It also matches how the query is actually phrased:
+        people search "SUV rental LAX", not "SUV rental" alone.
+      */}
       <Section tone="gray">
+        <SectionHeading
+          title={`Where to pick up your ${v.name.toLowerCase()} rental`}
+          subtitle={`${v.name} rentals can be arranged at any of the airports below, and at city locations. Call and an agent confirms availability for your dates.`}
+          actions={
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/airports">
+                All airport locations
+                <Icon name="arrowRight" />
+              </Link>
+            </Button>
+          }
+        />
+        <ul className="mt-6 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {airports.map((a) => (
+            <li key={a.iata}>
+              <Link
+                href={`/airports/${a.slug}`}
+                className="group flex h-full items-center justify-between gap-3 bg-card p-4 transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+              >
+                <span>
+                  <span className="text-[15px] font-medium">
+                    {v.name} rental in {a.city}
+                  </span>
+                  <span className="mt-0.5 block font-mono text-xs text-muted-foreground">{a.iata}</span>
+                </span>
+                <Icon
+                  name="arrowRight"
+                  className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Related */}
+      <Section>
         <SectionHeading
           title="Other vehicle types"
           actions={

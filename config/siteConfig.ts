@@ -257,8 +257,8 @@ export const siteConfig = {
 
   // ---------- SEO ----------
   seo: {
-    title: `${BRAND}: Rent a Car Anywhere in the USA | Call for the Best Rate`,
-    description: `${BRAND}: nationwide car rental from $29/day. Call a live US-based agent for the best rate: economy, SUV, luxury & electric cars, airport pickup, no hidden fees, free cancellation, instant confirmation. Available in all 50 states.`,
+    title: `Rent a Car Anywhere in the USA | ${BRAND}`,
+    description: `Nationwide car rental from $29/day. Call a live US-based agent for your best rate on economy, SUV, luxury and electric cars, with airport pickup.`,
     keywords: [
       "car rental",
       "cheap car rental",
@@ -393,7 +393,7 @@ export const siteConfig = {
         { label: "Vehicle types", href: "/vehicles" },
         { label: "Featured fleet", href: "/#fleet" },
         { label: "FAQ", href: "/#faq" },
-        { label: "Roadside assistance", href: "/#why" },
+        { label: "Roadside assistance", href: "/#faq" },
       ],
     },
   ] as FooterColumn[],

@@ -22,6 +22,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: `${tag.label}: Car Rental Articles`,
     description: `Articles tagged "${tag.label}" from the ${siteConfig.name} car rental blog.`,
     alternates: { canonical: `/blog/tag/${tag.slug}` },
+    // Navigation, not a landing page. `follow` keeps equity flowing to the
+    // articles; see MIN_POSTS_TO_INDEX in lib/blog.ts for the reasoning.
+    robots: { index: false, follow: true },
     openGraph: { title: `${tag.label} articles | ${siteConfig.name}`, url: `/blog/tag/${tag.slug}`, type: "website" },
   };
 }

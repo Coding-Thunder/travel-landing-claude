@@ -20,6 +20,7 @@ const LINK =
 export default function PrivacyPage() {
   return (
     <LegalLayout
+      path="/privacy-policy"
       title="Privacy Policy"
       updated="January 2026"
       intro={`This Privacy Policy explains what information ${siteConfig.legalName} ("we", "us", "our") collects when you call us or visit this website, how we use it, who we share it with, and the choices you have. Because we take reservations by phone, most personal data is collected directly from our conversations with you.`}

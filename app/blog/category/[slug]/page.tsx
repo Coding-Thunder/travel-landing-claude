@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { categories, getCategory, postsByCategory, toSummary } from "@/lib/blog";
+import { categories, getCategory, postsByCategory, toSummary, categoryIsIndexable } from "@/lib/blog";
 import { siteConfig } from "@/config/siteConfig";
 import Container from "../../../components/ui/Container";
 import PageHero from "../../../components/PageHero";
@@ -22,6 +22,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: `${category.label}: Car Rental Guides`,
     description: `${category.label} car rental articles and guides from ${siteConfig.name}. Practical, honest advice to help you rent smarter.`,
     alternates: { canonical: `/blog/category/${category.slug}` },
+    // A category holding a single post is a weaker copy of that post, so it is
+    // kept out of the index while still passing equity to the article.
+    ...(categoryIsIndexable(category.slug) ? {} : { robots: { index: false, follow: true } }),
     openGraph: { title: `${category.label} guides | ${siteConfig.name}`, url: `/blog/category/${category.slug}`, type: "website" },
   };
 }

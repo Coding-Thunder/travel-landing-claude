@@ -39,7 +39,17 @@ export default function BlogExplorer({ posts, categories }: { posts: PostSummary
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const current = Math.min(page, totalPages);
-  const pageItems = filtered.slice((current - 1) * PER_PAGE, current * PER_PAGE);
+
+  /**
+   * Every article is rendered, always; the ones not on the current page or not
+   * matching the filter are hidden rather than unmounted.
+   *
+   * Slicing the array meant only the first six of twelve articles ever reached
+   * the HTML, so a crawler that does not run JavaScript could discover half the
+   * blog. Keeping them all mounted costs nothing at this size and makes every
+   * article reachable from the hub in one hop.
+   */
+  const visible = new Set(filtered.slice((current - 1) * PER_PAGE, current * PER_PAGE).map((p) => p.slug));
 
   return (
     <div>
@@ -72,13 +82,14 @@ export default function BlogExplorer({ posts, categories }: { posts: PostSummary
       </div>
 
       {/* Results */}
-      {pageItems.length > 0 ? (
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {pageItems.map((p) => (
-            <PostCard key={p.slug} post={p} />
-          ))}
-        </div>
-      ) : (
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((p) => (
+          <div key={p.slug} hidden={!visible.has(p.slug)} className="contents [&[hidden]]:hidden">
+            <PostCard post={p} />
+          </div>
+        ))}
+      </div>
+      {visible.size === 0 ? (
         <div className="mt-8 rounded-lg border border-dashed bg-muted/40 p-10 text-center">
           <p className="text-[15px] font-medium">No articles found</p>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">Try a different search term or category.</p>
@@ -92,7 +103,7 @@ export default function BlogExplorer({ posts, categories }: { posts: PostSummary
             Clear filters
           </Button>
         </div>
-      )}
+      ) : null}
 
       {/* Pagination */}
       {totalPages > 1 ? (

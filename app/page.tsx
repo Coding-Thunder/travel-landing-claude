@@ -19,7 +19,6 @@ import {
   localBusinessSchema,
   websiteSchema,
   faqSchema,
-  breadcrumbSchema,
 } from "@/lib/schema";
 
 /**
@@ -40,7 +39,8 @@ export default function Home() {
           localBusinessSchema(),
           websiteSchema(),
           faqSchema(),
-          breadcrumbSchema([{ name: "Home", path: "/" }]),
+          // No BreadcrumbList here: a single-item trail carries no hierarchy,
+          // Google discards it, and the home page has nothing to sit under.
         ]}
       />
 
