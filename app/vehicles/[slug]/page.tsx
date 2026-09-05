@@ -8,6 +8,7 @@ import PageHero from "../../components/PageHero";
 import CallBand from "../../components/CallBand";
 import { Section, SectionHeading } from "../../components/ui/Section";
 import CardImage from "../../components/ui/CardImage";
+import ClassIllustration from "../../components/ui/ClassIllustration";
 import FaqList from "../../components/ui/FaqList";
 import VehicleCard from "../../components/VehicleCard";
 import Icon from "../../components/ui/Icon";
@@ -38,7 +39,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       description,
       url: `/vehicles/${v.slug}`,
       type: "website",
-      images: [{ url: v.image, width: 1200, height: 630, alt: `${v.name} rental car` }],
+      // Only advertise a card image when a real photograph of this class
+      // exists; otherwise the site default is used.
+      ...(v.image ? { images: [{ url: v.image, width: 1200, height: 630, alt: `${v.name} rental car` }] } : {}),
     },
   };
 }
@@ -117,12 +120,16 @@ export default async function VehiclePage({ params }: Params) {
             delay={0.1}
             className="relative order-first aspect-[4/3] overflow-hidden rounded-lg border lg:order-last"
           >
-            <CardImage
-              src={v.image}
-              alt={`${v.name} rental car`}
-              gradient={v.gradient}
-              sizes="(min-width: 1024px) 560px, 100vw"
-            />
+            {v.image ? (
+              <CardImage
+                src={v.image}
+                alt={`${v.name} rental car`}
+                gradient={v.gradient}
+                sizes="(min-width: 1024px) 560px, 100vw"
+              />
+            ) : (
+              <ClassIllustration slug={v.slug} name={v.name} />
+            )}
           </Reveal>
         </div>
 

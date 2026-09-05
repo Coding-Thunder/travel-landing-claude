@@ -17,7 +17,17 @@ export type VehicleCategory = {
   seats: number;
   bags: number;
   transmission: string;
-  image: string;
+  /**
+   * Optional on purpose.
+   *
+   * A class with no photograph renders a class diagram instead. That is the
+   * honest fallback when the only images available show a different kind of
+   * vehicle: mid-size, full-size and minivan each had a photograph of something
+   * that is not that class (a two-door coupe, a Ferrari and a Tesla Model 3
+   * respectively), and no correct photograph exists anywhere in this project.
+   * Showing the wrong car is worse than showing no car.
+   */
+  image?: string;
   gradient: string;
   blurb: string;
   intro: string[];
@@ -120,7 +130,8 @@ export const vehicleCategories: VehicleCategory[] = [
     seats: 5,
     bags: 3,
     transmission: "Automatic",
-    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
+    // No image: the photograph previously used here showed the wrong class.
+    // mid-size (photograph is a two-door Chevrolet Camaro). See docs/VERIFY-BEFORE-PUBLISHING.md section 8.
     gradient: "from-blue-600 to-indigo-700",
     blurb: "The all-rounder: room for four adults, comfortable for long drives.",
     intro: [
@@ -162,7 +173,8 @@ export const vehicleCategories: VehicleCategory[] = [
     seats: 5,
     bags: 4,
     transmission: "Automatic",
-    image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1200&q=80",
+    // No image: the photograph previously used here showed the wrong class.
+    // full-size (photograph is a Ferrari in a showroom). See docs/VERIFY-BEFORE-PUBLISHING.md section 8.
     gradient: "from-slate-700 to-slate-900",
     blurb: "Maximum sedan space and comfort for passengers, luggage and long miles.",
     intro: [
@@ -288,7 +300,8 @@ export const vehicleCategories: VehicleCategory[] = [
     seats: 7,
     bags: 5,
     transmission: "Automatic",
-    image: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=1200&q=80",
+    // No image: the photograph previously used here showed the wrong class.
+    // minivan (photograph is a Tesla Model 3). See docs/VERIFY-BEFORE-PUBLISHING.md section 8.
     gradient: "from-violet-500 to-purple-700",
     blurb: "Seven or eight seats, sliding doors and the most usable space of any class.",
     intro: [

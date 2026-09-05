@@ -115,13 +115,15 @@ export function faqSchemaFrom(items: { q: string; a: string }[]) {
   };
 }
 
-export function vehicleSchema(v: { name: string; slug: string; priceFrom: number; image: string; blurb: string }) {
+export function vehicleSchema(v: { name: string; slug: string; priceFrom: number; image?: string; blurb: string }) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
     name: `${v.name} Car Rental`,
     description: v.blurb,
-    image: v.image,
+    // Omitted when the class has no photograph of its own: pointing structured
+    // data at an image of a different kind of vehicle would misrepresent it.
+    ...(v.image ? { image: v.image } : {}),
     url: `${url}/vehicles/${v.slug}`,
     brand: { "@type": "Brand", name: siteConfig.name },
     offers: {
