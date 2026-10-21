@@ -1,23 +1,50 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/config/siteConfig";
+import { site } from "@/config/site";
+
+type ChangeFrequency = MetadataRoute.Sitemap[number]["changeFrequency"];
+
+type Route = {
+  path: string;
+  priority: number;
+  changeFrequency: ChangeFrequency;
+};
+
+const routes: Route[] = [
+  { path: "", priority: 1, changeFrequency: "weekly" },
+
+  // The six travel categories
+  ...site.services.map((s) => ({
+    path: s.href,
+    priority: 0.9,
+    changeFrequency: "weekly" as ChangeFrequency,
+  })),
+
+  // Planning and specialist request types
+  { path: "/trip-planner", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/business-travel", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/group-travel", priority: 0.8, changeFrequency: "monthly" },
+
+  // Company and support
+  { path: "/about", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/callback", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
+
+  // Legal
+  { path: "/terms", priority: 0.4, changeFrequency: "yearly" },
+  { path: "/privacy", priority: 0.4, changeFrequency: "yearly" },
+  { path: "/refund-policy", priority: 0.4, changeFrequency: "yearly" },
+  { path: "/cookie-policy", priority: 0.4, changeFrequency: "yearly" },
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = siteConfig.url;
-  const now = new Date();
+  const base = site.url.replace(/\/$/, "");
+  const lastModified = new Date();
 
-  const routes: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
-    { path: "", priority: 1, changeFrequency: "weekly" },
-    { path: "/about", priority: 0.8, changeFrequency: "monthly" },
-    { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
-    { path: "/terms-and-conditions", priority: 0.4, changeFrequency: "yearly" },
-    { path: "/privacy-policy", priority: 0.4, changeFrequency: "yearly" },
-    { path: "/refund-and-cancellation", priority: 0.4, changeFrequency: "yearly" },
-  ];
-
-  return routes.map((r) => ({
-    url: `${base}${r.path}`,
-    lastModified: now,
-    changeFrequency: r.changeFrequency,
-    priority: r.priority,
+  return routes.map((route) => ({
+    url: `${base}${route.path}`,
+    lastModified,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 }

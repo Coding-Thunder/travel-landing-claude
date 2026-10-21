@@ -1,34 +1,49 @@
-import type { Metadata } from "next";
-import { siteConfig } from "@/config/siteConfig";
-import Container from "../components/ui/Container";
-import Icon from "../components/ui/Icon";
-import PageHero from "../components/PageHero";
-import CtaButton from "../components/call/CtaButton";
-import JsonLd from "../components/seo/JsonLd";
-import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
+import Link from "next/link";
+import { Phone } from "lucide-react";
+import { site, telHref } from "@/config/site";
+import { pageMetadata, organizationSchema, breadcrumbSchema } from "@/lib/seo";
+import PageHeader from "@/app/components/trip/page-hero";
+import { Section, SectionHeading } from "@/app/components/trip/section";
+import TrustBar from "@/app/components/trip/trust-bar";
+import JsonLd from "@/app/components/trip/json-ld";
+import SupplierDisclosure from "@/app/components/trip/supplier-disclosure";
+import { Button } from "@/components/ui/button";
 
-export const metadata: Metadata = {
-  title: "About Us — Licensed Nationwide Car Rental",
-  description: `Learn about ${siteConfig.name}, a licensed and insured car rental provider serving all 50 US states. Transparent pricing, 24/7 live support and a fleet for every trip — book by phone in minutes.`,
-  alternates: { canonical: "/about" },
-  openGraph: {
-    title: `About ${siteConfig.name}`,
-    description: `Licensed, insured nationwide car rental with transparent pricing and 24/7 live phone support.`,
-    url: "/about",
-    type: "website",
-  },
-};
+export const metadata = pageMetadata({
+  title: "About Us",
+  description:
+    "Rental Confirmation is a multi-service online travel platform operated by Rental Confirmation LLC, helping travelers search, compare and arrange flights, hotels, cars, transfers, activities and packages.",
+  path: "/about",
+});
 
 const VALUES = [
-  { icon: "tag" as const, title: "Transparent by default", body: "The all-in price we quote on the phone is exactly what you pay at pickup. No junk fees, no fine-print surprises." },
-  { icon: "headset" as const, title: "Real people, 24/7", body: "Every call is answered by a live US-based agent — day, night, weekends and holidays. No phone trees, no chatbots." },
-  { icon: "shield" as const, title: "Licensed & insured", body: "We operate as a fully licensed and insured rental provider, with coverage and roadside assistance available on every booking." },
-  { icon: "map" as const, title: "Truly nationwide", body: "300+ airport and city pickup locations across all 50 states, with one-way rentals between cities." },
+  {
+    title: "Transparency",
+    body: "The total price, every fee and the cancellation terms are in front of you before you are asked to decide anything.",
+  },
+  {
+    title: "Honesty about what we are",
+    body: "We are a travel platform. We do not claim accreditation, partnerships or capabilities we do not have, and we say so plainly.",
+  },
+  {
+    title: "Customer first",
+    body: "Your requirements drive the recommendations. Calling is always an option and never a requirement.",
+  },
+  {
+    title: "Named suppliers",
+    body: "You always know which airline, hotel, rental company or operator will fulfil your booking, and whose terms apply.",
+  },
+  {
+    title: "Support that continues",
+    body: "Changes, cancellations and refund requests are handled by the same team that arranged the trip.",
+  },
+  {
+    title: "Careful with your data",
+    body: "We collect what is needed to arrange your travel and nothing more, and we never ask for card details by email.",
+  },
 ];
 
 export default function AboutPage() {
-  const { name, legalName, phone, phoneVanity, stats, trust } = siteConfig;
-
   return (
     <>
       <JsonLd
@@ -36,100 +51,119 @@ export default function AboutPage() {
           organizationSchema(),
           breadcrumbSchema([
             { name: "Home", path: "/" },
-            { name: "About Us", path: "/about" },
+            { name: "About", path: "/about" },
           ]),
         ]}
       />
 
-      <PageHero
-        eyebrow="About us"
-        title={`Car rental, the way it should be`}
-        subtitle={`${name} is a nationwide car rental provider built on a simple idea: renting a car should be fast, honest and human.`}
+      <PageHeader
+        title="About Rental Confirmation"
+        description="A multi-service online travel platform built to make arranging a whole trip straightforward, with nothing hidden between the search and the booking."
         breadcrumbs={[
           { name: "Home", href: "/" },
-          { name: "About Us", href: "/about" },
+          { name: "About", href: "/about" },
         ]}
+        actions={
+          site.contact.hasPhone ? (
+            <Button asChild variant="outline">
+              <a href={telHref}>
+                <Phone aria-hidden />
+                {site.company.phone}
+              </a>
+            </Button>
+          ) : undefined
+        }
       />
 
-      <Container className="py-14 sm:py-16">
-        <div className="mx-auto max-w-3xl text-[15px] leading-relaxed text-slate-700 sm:text-base">
-          <p>
-            {name} was founded to fix the parts of car rental that frustrate travelers most — confusing
-            online checkouts, surprise fees at the counter, and support lines that never seem to reach a
-            real person. We took a different approach: reserve by phone with a live US-based agent who
-            quotes one clear, all-in price and has your vehicle ready when you arrive.
-          </p>
-          <p className="mt-4">
-            Today we serve drivers in all 50 states through a network of more than 300 airport and city
-            pickup locations. Our fleet spans fuel-efficient economy and compact cars, spacious SUVs and
-            seven-seat minivans, premium luxury sedans, zero-emission electric vehicles, convertibles and
-            pickup trucks — so there&rsquo;s a right vehicle for every trip, whether it&rsquo;s a weekend getaway, a
-            business trip, or a cross-country family vacation.
-          </p>
-          <p className="mt-4">
-            What hasn&rsquo;t changed is our commitment to transparency. The rate we quote includes taxes and
-            mandatory fees, free cancellation is standard up to the moment of pickup, and 24/7 roadside
-            assistance means help is always one call away. {legalName} is fully licensed and insured, and
-            our agents are trained to answer questions about coverage, additional drivers and requirements
-            clearly and honestly — before you ever commit.
-          </p>
-          <p className="mt-4">
-            We measure our success in repeat customers and word-of-mouth referrals, not upsells. That focus
-            has earned {name} an average rating of {trust.rating} out of 5 from {trust.ratingCount} verified
-            rentals — and it&rsquo;s why so many drivers call us first.
-          </p>
+      <Section>
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Who we are</h2>
+          </div>
+          <div className="space-y-4 text-[15px] leading-relaxed text-muted-foreground lg:col-span-8">
+            <p>
+              {site.name} is a multi-service online travel platform operated by {site.legalName}. The platform helps
+              travelers search, compare and arrange available travel services online, or by phone if that suits
+              better.
+            </p>
+            <p>
+              Across six categories, from{" "}
+              <Link href="/flights" className="font-medium text-primary underline-offset-4 hover:underline">
+                flights
+              </Link>{" "}
+              and{" "}
+              <Link href="/hotels" className="font-medium text-primary underline-offset-4 hover:underline">
+                hotels
+              </Link>{" "}
+              to{" "}
+              <Link href="/packages" className="font-medium text-primary underline-offset-4 hover:underline">
+                packages
+              </Link>
+              , the same team handles the request from first enquiry through to booking and beyond.
+            </p>
+            <p>
+              We are not an airline, a hotel group, a rental company or an activity operator. Fulfilment sits with
+              the supplier identified during booking, and their terms apply to your travel. Our job is to find the
+              right options, explain them properly and stay with you afterwards.
+            </p>
+            <p>
+              That also means being straightforward about what we are not. {site.name} does not hold IATA or ARC
+              accreditation, and we make no claim to certifications, awards or airline partnerships we do not have.
+              We would rather earn trust through clear pricing and honest terms.
+            </p>
+          </div>
         </div>
+      </Section>
 
-        {/* Stats */}
-        <dl className="mt-12 grid grid-cols-2 gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:grid-cols-4 sm:gap-6 sm:p-8">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <dt className="sr-only">{s.label}</dt>
-              <dd>
-                <span className="block text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{s.value}</span>
-                <span className="mt-1 block text-xs font-medium uppercase tracking-wider text-slate-500">{s.label}</span>
+      <Section tone="muted">
+        <SectionHeading
+          title="Business identity"
+          description="Rental Confirmation is a trading brand, not a separate legal entity. Here is the relationship in full."
+        />
+        <dl className="mt-6 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-2">
+          <div className="bg-card p-5">
+            <dt className="text-sm text-muted-foreground">Brand</dt>
+            <dd className="mt-1 text-[15px] font-medium">{site.name}</dd>
+          </div>
+          <div className="bg-card p-5">
+            <dt className="text-sm text-muted-foreground">Legal entity</dt>
+            <dd className="mt-1 text-[15px] font-medium">{site.legalName}</dd>
+          </div>
+          <div className="bg-card p-5">
+            <dt className="text-sm text-muted-foreground">Relationship</dt>
+            <dd className="mt-1 text-[15px] font-medium">{site.operatedBy}</dd>
+          </div>
+          <div className="bg-card p-5">
+            <dt className="text-sm text-muted-foreground">Business activity</dt>
+            <dd className="mt-1 text-[15px] font-medium">
+              Online travel platform covering flights, hotels, cars, transfers, activities and packages.
+            </dd>
+          </div>
+          {site.contact.hasAddress ? (
+            <div className="bg-card p-5 sm:col-span-2">
+              <dt className="text-sm text-muted-foreground">Registered address</dt>
+              <dd className="mt-1 text-[15px] font-medium">
+                <address className="not-italic">{site.company.registeredOffice}</address>
               </dd>
+            </div>
+          ) : null}
+        </dl>
+      </Section>
+
+      <Section>
+        <SectionHeading title="How we work" description="The principles behind every option we put in front of a customer." />
+        <dl className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+          {VALUES.map((v) => (
+            <div key={v.title} className="border-t pt-4">
+              <dt className="text-[15px] font-medium">{v.title}</dt>
+              <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{v.body}</dd>
             </div>
           ))}
         </dl>
+      </Section>
 
-        {/* Values */}
-        <h2 className="mt-14 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-          What we stand for
-        </h2>
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {VALUES.map((v) => (
-            <article key={v.title} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-6">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                <Icon name={v.icon} className="h-5 w-5" />
-              </span>
-              <div>
-                <h3 className="text-base font-bold text-slate-900">{v.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-slate-600">{v.body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-12 flex flex-col items-center justify-center gap-3 rounded-2xl border border-brand-100 bg-brand-50 p-6 text-center sm:flex-row sm:p-8">
-          <p className="flex-1 text-base font-bold text-slate-900 sm:text-lg">
-            Ready to drive? Talk to a {name} agent now.
-          </p>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <a
-              href={`tel:${phone}`}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.55)] transition hover:bg-brand-700"
-            >
-              <Icon name="phone" className="h-5 w-5" />
-              Call {phoneVanity}
-            </a>
-            <CtaButton source="about-callback" variant="secondary" size="lg">
-              Request a Callback
-            </CtaButton>
-          </div>
-        </div>
-      </Container>
+      <TrustBar />
+      <SupplierDisclosure />
     </>
   );
 }

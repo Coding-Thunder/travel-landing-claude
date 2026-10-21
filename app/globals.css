@@ -1,61 +1,148 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-/* ----------------------------------------------------------------------------
-   Brand design tokens — Modern SaaS + premium travel brand.
-   White background · navy ink · blue primary · light-gray sections.
----------------------------------------------------------------------------- */
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================================
+   Rental Confirmation design system, operated by Rental Confirmation LLC.
 
-  /* Brand blue (primary CTA) */
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
+   One token layer, shadcn conventions. Components address semantic tokens
+   (background, card, muted, primary, border, ring) and never raw palette
+   values, so hierarchy stays consistent and a palette change is a one file
+   change.
 
-  /* Navy ink (primary text) */
-  --color-ink: #0f172a;
-  --color-ink-soft: #334155;
-}
+   Palette: deep petrol neutrals carry the interface, coral is reserved for
+   the single primary action on a surface. Coral is hierarchy, not decoration.
+============================================================================ */
 
 :root {
+  /* Surfaces */
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #0c1c24;
+  --card: #ffffff;
+  --card-foreground: #0c1c24;
+  --popover: #ffffff;
+  --popover-foreground: #0c1c24;
 
-  /* Soft shadows — defined on :root so var() resolves in arbitrary utilities */
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
-  --shadow-lift: 0 8px 24px -8px rgba(15, 23, 42, 0.12), 0 24px 48px -24px rgba(37, 99, 235, 0.18);
+  /* Primary action. Coral on white is 4.67:1, so it carries white text. */
+  --primary: #c93c1c;
+  --primary-foreground: #ffffff;
+
+  /* Quiet surfaces and quiet text */
+  --secondary: #eef3f5;
+  --secondary-foreground: #21404c;
+  --muted: #f4f7f8;
+  --muted-foreground: #456b78;
+
+  /* shadcn `accent` is the subtle hover surface, not the brand accent. */
+  --accent: #eef3f5;
+  --accent-foreground: #16303a;
+
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+
+  --border: #dde7ea;
+  --input: #71909d;
+  --ring: #c93c1c;
+
+  --radius: 0.5rem;
 }
 
-html {
-  scroll-behavior: smooth;
-  /* Offset anchor jumps for the sticky header */
-  scroll-padding-top: 5rem;
+/* Inverted scope for the footer. Same token names, dark values, so the same
+   components render correctly without a parallel set of colour classes. */
+.dark {
+  --background: #0c1c24;
+  --foreground: #f4f7f8;
+  --card: #12262f;
+  --card-foreground: #f4f7f8;
+  --popover: #12262f;
+  --popover-foreground: #f4f7f8;
+  --primary: #ff8a63;
+  --primary-foreground: #0c1c24;
+  --secondary: #1a343f;
+  --secondary-foreground: #dfeaee;
+  --muted: #16303a;
+  --muted-foreground: #9fbcc6;
+  --accent: #1a343f;
+  --accent-foreground: #f4f7f8;
+  --border: #24414d;
+  --input: #24414d;
+  --ring: #ff8a63;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-fraunces);
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* Consistent, accessible focus ring across interactive elements */
-:where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-brand-600);
-  outline-offset: 2px;
-  border-radius: 6px;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), system-ui, -apple-system, Arial, sans-serif;
+    font-feature-settings: "cv02", "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Focus is always visible and always the ring token. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
 }
 
-/* Respect reduced-motion preferences globally */
+/* Fraunces is reserved for the one H1 that opens a page. Section headings stay
+   in Inter so the interface reads as a product rather than an editorial. */
+.font-display {
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+.animate-accordion-down { animation: accordion-down 0.2s ease-out; }
+.animate-accordion-up { animation: accordion-up 0.2s ease-out; }
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -69,7 +156,6 @@ body {
   }
 }
 
-/* Utility: hide scrollbars on horizontal scrollers (mobile carousels) */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

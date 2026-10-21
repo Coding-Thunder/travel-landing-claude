@@ -1,102 +1,68 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
-import { siteConfig } from "@/config/siteConfig";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import CallProvider from "./components/call/CallProvider";
-import StickyCallBar from "./components/call/StickyCallBar";
-import CookieNotice from "./components/CookieNotice";
+import { site } from "@/config/site";
+import SiteHeader from "./components/trip/site-header";
+import SiteFooter from "./components/trip/site-footer";
+import FloatingCall from "./components/trip/floating-call";
+import CallAssistPopup from "./components/trip/call-assist-popup";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
+/** Variable display serif that carries the Rental Confirmation headline voice. */
+const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    default: siteConfig.seo.title,
-    template: `%s | ${siteConfig.name}`,
-  },
-  alternates: { canonical: "/" },
-  description: siteConfig.seo.description,
-  keywords: [...siteConfig.seo.keywords],
-  applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.name }],
-  creator: siteConfig.name,
-  publisher: siteConfig.name,
-  formatDetection: {
-    telephone: true,
-    email: true,
-    address: true,
-  },
+  metadataBase: new URL(site.url),
+  title: { default: site.seo.defaultTitle, template: site.seo.titleTemplate },
+  description: site.seo.description,
+  applicationName: site.name,
+  // Canonical is set per page by pageMetadata(); declaring it here would also
+  // stamp every not-found URL with a canonical pointing at the home page.
   openGraph: {
     type: "website",
-    locale: "en_US",
-    siteName: siteConfig.name,
-    title: siteConfig.seo.title,
-    description: siteConfig.seo.description,
-    images: [
-      {
-        url: siteConfig.seo.ogImage,
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} — car rentals in ${siteConfig.city}`,
-      },
-    ],
+    locale: site.seo.locale,
+    siteName: site.name,
+    url: site.url,
+    title: site.seo.defaultTitle,
+    description: site.seo.description,
+    images: [{ url: site.seo.ogImage, width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.seo.title,
-    description: siteConfig.seo.description,
-    images: [siteConfig.seo.ogImage],
+    title: site.seo.defaultTitle,
+    description: site.seo.description,
+    images: [site.seo.ogImage],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  robots: { index: true, follow: true },
+  // No `icons` key: setting it opts out of Next's file-convention icon pipeline,
+  // which would leave app/apple-icon.tsx generated but never linked.
+  other: { "business:contact_data:legal_name": site.legalName },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#1d4ed8",
+  themeColor: "#0c1c24",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body
-        className="min-h-full flex flex-col bg-white text-slate-900"
-        suppressHydrationWarning
-      >
-        <CallProvider>
-          <Header />
-          <main className="flex flex-1 flex-col">{children}</main>
-          <Footer />
-          <StickyCallBar />
-          <CookieNotice />
-        </CallProvider>
+    <html lang="en-US" className={`${inter.variable} ${fraunces.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-background text-foreground" suppressHydrationWarning>
+        {/* Keyboard users can jump the header nav straight to the content. */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main" className="flex flex-1 flex-col">
+          {children}
+        </main>
+        <SiteFooter />
+        <FloatingCall />
+        <CallAssistPopup />
       </body>
     </html>
   );
